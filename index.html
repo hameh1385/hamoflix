@@ -7,6 +7,11 @@
 <title>HAMOFLIX | فیلم و سریال</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -18,7 +23,10 @@ html{
 }
 
 body{
-    background:#080808;
+    background:
+        radial-gradient(circle at 20% 0%,rgba(120,0,255,.10),transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(229,9,20,.10),transparent 30%),
+        #08080d;
     color:#fff;
     font-family:Tahoma,Arial,sans-serif;
     overflow-x:hidden;
@@ -40,15 +48,19 @@ a{
     text-decoration:none;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(8,8,8,.92);
-    backdrop-filter:blur(14px);
+    background:rgba(8,8,13,.88);
+    backdrop-filter:blur(18px);
     border-bottom:1px solid rgba(255,255,255,.06);
+    box-shadow:0 5px 25px rgba(0,0,0,.35);
 }
 
 .nav{
@@ -62,14 +74,17 @@ header{
 }
 
 .logo{
-    font-size:25px;
+    font-size:26px;
     font-weight:900;
     letter-spacing:1px;
-    color:#e50914;
+    color:#ff1830;
+    text-shadow:0 0 18px rgba(255,0,40,.3);
+    cursor:pointer;
+    user-select:none;
 }
 
 .logo span{
-    color:white;
+    color:#fff;
 }
 
 .nav-right{
@@ -99,7 +114,7 @@ header{
     padding:10px 14px;
     border-radius:20px;
     border:1px solid #333;
-    background:#151515;
+    background:#15151d;
     color:white;
     outline:none;
 }
@@ -108,19 +123,32 @@ header{
     border-color:#e50914;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
-    min-height:480px;
+    min-height:500px;
     display:flex;
     align-items:flex-end;
     position:relative;
     overflow:hidden;
+
     background:
-      linear-gradient(to top,#080808 3%,transparent 65%),
-      linear-gradient(to left,rgba(0,0,0,.15),rgba(0,0,0,.95)),
-      url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80")
-      center/cover;
+        linear-gradient(
+            to top,
+            #08080d 3%,
+            rgba(8,8,13,.35) 65%,
+            rgba(8,8,13,.15)
+        ),
+        linear-gradient(
+            to left,
+            rgba(0,0,0,.1),
+            rgba(0,0,0,.92)
+        ),
+        url("https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
 }
 
 .hero-content{
@@ -131,8 +159,9 @@ header{
 }
 
 .hero h1{
-    font-size:48px;
+    font-size:50px;
     margin-bottom:15px;
+    text-shadow:0 5px 25px #000;
 }
 
 .hero p{
@@ -159,6 +188,11 @@ header{
 .btn-red{
     background:#e50914;
     color:white;
+    box-shadow:0 5px 20px rgba(229,9,20,.2);
+}
+
+.btn-red:hover{
+    background:#ff1724;
 }
 
 .btn-dark{
@@ -166,7 +200,10 @@ header{
     color:#111;
 }
 
-/* MAIN */
+
+/* =========================
+   MAIN
+========================= */
 
 main{
     max-width:1400px;
@@ -175,7 +212,7 @@ main{
 }
 
 .section{
-    margin:35px 0;
+    margin:40px 0;
 }
 
 .section-head{
@@ -193,11 +230,14 @@ main{
 .view-all{
     background:none;
     border:0;
-    color:#e50914;
+    color:#ff2638;
     font-weight:bold;
 }
 
-/* CAROUSEL */
+
+/* =========================
+   CARDS
+========================= */
 
 .movie-row{
     display:flex;
@@ -215,16 +255,19 @@ main{
 .card{
     flex:0 0 190px;
     scroll-snap-align:start;
-    background:#111;
-    border-radius:10px;
+    background:
+        linear-gradient(145deg,#171722,#0e0e14);
+    border-radius:12px;
     overflow:hidden;
-    transition:.25s;
-    border:1px solid #191919;
+    transition:.3s;
+    border:1px solid rgba(255,255,255,.07);
+    box-shadow:0 8px 25px rgba(0,0,0,.35);
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    border-color:#333;
+    transform:translateY(-7px) scale(1.02);
+    border-color:rgba(229,9,20,.5);
+    box-shadow:0 12px 35px rgba(0,0,0,.6);
 }
 
 .poster{
@@ -232,7 +275,7 @@ main{
     height:275px;
     object-fit:cover;
     display:block;
-    background:#191919;
+    background:#191923;
 }
 
 .card-body{
@@ -241,10 +284,12 @@ main{
 
 .card-title{
     font-size:15px;
+    color:#fff;
     font-weight:bold;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    text-shadow:0 1px 8px rgba(0,0,0,.5);
 }
 
 .card-meta{
@@ -257,7 +302,8 @@ main{
 }
 
 .rating{
-    color:#ffd400;
+    color:#ffd43b;
+    text-shadow:0 0 8px rgba(255,212,59,.25);
 }
 
 .card-buttons{
@@ -279,12 +325,23 @@ main{
     color:white;
 }
 
+.watch:hover{
+    background:#ff1724;
+}
+
 .info{
-    background:#272727;
+    background:#272733;
     color:white;
 }
 
-/* COLLECTIONS */
+.info:hover{
+    background:#363646;
+}
+
+
+/* =========================
+   COLLECTIONS
+========================= */
 
 .collections{
     display:grid;
@@ -293,7 +350,7 @@ main{
 }
 
 .collection{
-    min-height:170px;
+    min-height:180px;
     border-radius:12px;
     overflow:hidden;
     position:relative;
@@ -303,13 +360,22 @@ main{
     padding:20px;
     background-size:cover;
     background-position:center;
+    transition:.3s;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.collection:hover{
+    transform:translateY(-5px);
 }
 
 .collection:after{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(transparent,rgba(0,0,0,.9));
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.95)
+    );
 }
 
 .collection-content{
@@ -327,7 +393,10 @@ main{
     margin-top:5px;
 }
 
-/* FILTERS */
+
+/* =========================
+   FILTERS
+========================= */
 
 .filters{
     display:flex;
@@ -338,7 +407,7 @@ main{
 
 .filters input,
 .filters select{
-    background:#151515;
+    background:#15151d;
     color:white;
     border:1px solid #333;
     border-radius:7px;
@@ -346,7 +415,20 @@ main{
     outline:none;
 }
 
-/* ALL CONTENT */
+.filters input{
+    flex:1;
+    min-width:200px;
+}
+
+.filters input:focus,
+.filters select:focus{
+    border-color:#e50914;
+}
+
+
+/* =========================
+   ALL CONTENT
+========================= */
 
 .all-grid{
     display:grid;
@@ -354,7 +436,10 @@ main{
     gap:15px;
 }
 
-/* EMPTY */
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty{
     padding:50px 20px;
@@ -363,12 +448,15 @@ main{
     display:none;
 }
 
-/* MODALS */
+
+/* =========================
+   MODALS
+========================= */
 
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.8);
+    background:rgba(0,0,0,.82);
     backdrop-filter:blur(8px);
     display:none;
     align-items:center;
@@ -386,10 +474,12 @@ main{
     max-width:600px;
     max-height:90vh;
     overflow:auto;
-    background:#111;
-    border:1px solid #292929;
+    background:
+        linear-gradient(145deg,#15151f,#0c0c12);
+    border:1px solid #292936;
     border-radius:13px;
     padding:25px;
+    box-shadow:0 20px 70px rgba(0,0,0,.7);
 }
 
 .modal-head{
@@ -400,12 +490,17 @@ main{
 }
 
 .close{
-    background:#222;
+    background:#22222d;
     border:0;
     color:white;
     width:35px;
     height:35px;
     border-radius:50%;
+    font-size:20px;
+}
+
+.close:hover{
+    background:#e50914;
 }
 
 .form-group{
@@ -424,11 +519,17 @@ main{
 .form-group textarea{
     width:100%;
     padding:11px;
-    background:#181818;
-    border:1px solid #333;
+    background:#181820;
+    border:1px solid #33333d;
     border-radius:7px;
     color:white;
     outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#e50914;
 }
 
 .form-group textarea{
@@ -454,30 +555,50 @@ main{
 .notice{
     padding:12px;
     border-radius:7px;
-    background:#191919;
+    background:#191922;
     color:#aaa;
     font-size:12px;
     line-height:1.8;
     margin-bottom:15px;
 }
 
-/* FOOTER */
+
+/* =========================
+   INFO MODAL
+========================= */
+
+.info-poster{
+    width:100%;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     margin-top:70px;
     padding:35px 20px;
     text-align:center;
-    border-top:1px solid #181818;
+    border-top:1px solid #181820;
     color:#666;
     font-size:12px;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:1000px){
+
     .all-grid{
         grid-template-columns:repeat(4,1fr);
     }
+
 }
 
 @media(max-width:700px){
@@ -499,7 +620,7 @@ footer{
     }
 
     .hero{
-        min-height:420px;
+        min-height:430px;
     }
 
     .hero-content{
@@ -531,66 +652,121 @@ footer{
         gap:10px;
     }
 
-    .all-grid .card{
-        width:100%;
-    }
-
     .section-title{
         font-size:19px;
     }
+
+    .logo{
+        font-size:22px;
+    }
+
 }
+
+
+/* =========================
+   EXTRA SMALL
+========================= */
+
+@media(max-width:380px){
+
+    .search-box input{
+        width:120px;
+    }
+
+    .card{
+        flex-basis:135px;
+    }
+
+    .poster{
+        height:200px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
     <div class="nav">
 
-        <div class="logo">
+        <div class="logo" id="logo">
             HAMO<span>FLIX</span>
         </div>
 
         <div class="nav-right">
 
-            <a href="#home">خانه</a>
-            <a href="#movies">فیلم‌ها</a>
-            <a href="#series">سریال‌ها</a>
-            <a href="#collections">کالکشن‌ها</a>
+            <a href="#home">
+                خانه
+            </a>
+
+            <a href="#movies">
+                فیلم‌ها
+            </a>
+
+            <a href="#series">
+                سریال‌ها
+            </a>
+
+            <a href="#collections">
+                کالکشن‌ها
+            </a>
 
             <div class="search-box">
+
                 <input
                     id="topSearch"
                     type="text"
-                    placeholder="جستجو..."
+                    placeholder="🔎 جستجو..."
                     oninput="searchMovies(this.value)"
                 >
+
             </div>
 
         </div>
 
     </div>
+
 </header>
 
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero" id="home">
 
     <div class="hero-content">
 
-        <h1>دنیای فیلم و سریال</h1>
+        <h1>
+            دنیای فیلم و سریال
+        </h1>
 
         <p>
             جدیدترین فیلم‌ها و سریال‌ها را در HAMOFLIX پیدا کن.
-            دسته‌بندی‌های مختلف، جستجوی سریع و محیطی ساده و جذاب.
+            دنیایی از داستان‌های فانتزی، علمی‌تخیلی، معمایی،
+            آخرالزمانی و ماجراجویی.
         </p>
 
         <div class="hero-buttons">
 
-            <button class="btn btn-red" onclick="scrollToContent()">
+            <button
+                class="btn btn-red"
+                onclick="scrollToContent()">
                 🎬 شروع تماشا
             </button>
 
-            <button class="btn btn-dark" onclick="showCategory('all')">
+            <button
+                class="btn btn-dark"
+                onclick="showCategory('all')">
                 مشاهده همه
             </button>
 
@@ -601,192 +777,296 @@ footer{
 </section>
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
 
-    <!-- FILM -->
 
-    <section class="section" id="movies">
+<!-- FILMS -->
 
-        <div class="section-head">
+<section
+    class="section"
+    id="movies">
 
-            <h2 class="section-title">
-                🎬 فیلم‌های جدید
-            </h2>
+    <div class="section-head">
 
-            <button
-                class="view-all"
-                onclick="showCategory('newMovies')">
-                مشاهده همه
-            </button>
+        <h2 class="section-title">
+            🎬 فیلم‌های جدید
+        </h2>
 
-        </div>
+        <button
+            class="view-all"
+            onclick="showCategory('newMovies')">
+            مشاهده همه
+        </button>
 
-        <div class="movie-row" id="newMovies"></div>
+    </div>
 
-    </section>
+    <div
+        class="movie-row"
+        id="newMovies">
+    </div>
 
-
-    <!-- SERIES -->
-
-    <section class="section" id="series">
-
-        <div class="section-head">
-
-            <h2 class="section-title">
-                📺 سریال‌های جدید
-            </h2>
-
-            <button
-                class="view-all"
-                onclick="showCategory('newSeries')">
-                مشاهده همه
-            </button>
-
-        </div>
-
-        <div class="movie-row" id="newSeries"></div>
-
-    </section>
+</section>
 
 
-    <!-- POPULAR -->
+<!-- SERIES -->
 
-    <section class="section">
+<section
+    class="section"
+    id="series">
 
-        <div class="section-head">
+    <div class="section-head">
 
-            <h2 class="section-title">
-                ⭐ محبوب‌ترین‌ها
-            </h2>
+        <h2 class="section-title">
+            📺 سریال‌های جدید
+        </h2>
 
-            <button
-                class="view-all"
-                onclick="showCategory('popular')">
-                مشاهده همه
-            </button>
+        <button
+            class="view-all"
+            onclick="showCategory('newSeries')">
+            مشاهده همه
+        </button>
 
-        </div>
+    </div>
 
-        <div class="movie-row" id="popular"></div>
+    <div
+        class="movie-row"
+        id="newSeries">
+    </div>
 
-    </section>
+</section>
 
 
-    <!-- COLLECTIONS -->
+<!-- POPULAR -->
 
-    <section class="section" id="collections">
+<section class="section">
 
-        <div class="section-head">
+    <div class="section-head">
 
-            <h2 class="section-title">
-                🍿 کالکشن‌ها
-            </h2>
+        <h2 class="section-title">
+            ⭐ محبوب‌ترین‌ها
+        </h2>
 
-        </div>
+        <button
+            class="view-all"
+            onclick="showCategory('popular')">
+            مشاهده همه
+        </button>
 
-        <div class="collections">
+    </div>
 
-            <div
-                class="collection"
-                onclick="showGenre('فانتزی')"
-                style="background-image:url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=80')">
+    <div
+        class="movie-row"
+        id="popular">
+    </div>
 
-                <div class="collection-content">
-                    <h3>🪄 دنیای فانتزی</h3>
-                    <p>جادو، ماجراجویی و جهان‌های عجیب</p>
-                </div>
+</section>
+
+
+<!-- COLLECTIONS -->
+
+<section
+    class="section"
+    id="collections">
+
+    <div class="section-head">
+
+        <h2 class="section-title">
+            🍿 کالکشن‌ها
+        </h2>
+
+    </div>
+
+
+    <div class="collections">
+
+
+        <!-- FANTASY -->
+
+        <div
+            class="collection"
+            onclick="showGenre('فانتزی')"
+            style="
+            background-image:
+            url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85');
+            ">
+
+            <div class="collection-content">
+
+                <h3>
+                    🪄 دنیای فانتزی
+                </h3>
+
+                <p>
+                    جادو، ماجراجویی و جهان‌های عجیب
+                </p>
 
             </div>
 
+        </div>
 
-            <div
-                class="collection"
-                onclick="showGenre('علمی‌تخیلی')"
-                style="background-image:url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=80')">
 
-                <div class="collection-content">
-                    <h3>🚀 علمی‌تخیلی</h3>
-                    <p>آینده، فضا و دنیاهای ناشناخته</p>
-                </div>
+        <!-- SCI FI -->
+
+        <div
+            class="collection"
+            onclick="showGenre('علمی‌تخیلی')"
+            style="
+            background-image:
+            url('https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=85');
+            ">
+
+            <div class="collection-content">
+
+                <h3>
+                    🚀 علمی‌تخیلی
+                </h3>
+
+                <p>
+                    آینده، فضا و دنیاهای ناشناخته
+                </p>
 
             </div>
 
+        </div>
 
-            <div
-                class="collection"
-                onclick="showDarkCollection()"
-                style="background-image:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80')">
 
-                <div class="collection-content">
-                    <h3>🌑 تاریک و آخرالزمانی</h3>
-                    <p>معمایی، تاریک و آخرالزمانی</p>
-                </div>
+        <!-- DARK -->
+
+        <div
+            class="collection"
+            onclick="showDarkCollection()"
+            style="
+            background-image:
+            url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85');
+            ">
+
+            <div class="collection-content">
+
+                <h3>
+                    🌑 تاریک و آخرالزمانی
+                </h3>
+
+                <p>
+                    معمایی، تاریک و آخرالزمانی
+                </p>
 
             </div>
 
         </div>
 
-    </section>
+
+    </div>
+
+</section>
 
 
-    <!-- SEARCH / ALL -->
+<!-- ALL CONTENT -->
 
-    <section class="section" id="allSection">
+<section
+    class="section"
+    id="allSection">
 
-        <div class="section-head">
+    <div class="section-head">
 
-            <h2 class="section-title" id="allTitle">
-                🎞 همه محتوا
-            </h2>
+        <h2
+            class="section-title"
+            id="allTitle">
+            🎞 همه محتوا
+        </h2>
 
-        </div>
+    </div>
 
-        <div class="filters">
 
-            <input
-                id="searchInput"
-                type="text"
-                placeholder="نام فیلم یا سریال..."
-                oninput="renderAll()"
-            >
+    <div class="filters">
 
-            <select
-                id="typeFilter"
-                onchange="renderAll()">
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="نام فیلم، سریال یا ژانر..."
+            oninput="renderAll()"
+        >
 
-                <option value="all">همه</option>
-                <option value="movie">فیلم</option>
-                <option value="series">سریال</option>
 
-            </select>
+        <select
+            id="typeFilter"
+            onchange="renderAll()">
 
-        </div>
+            <option value="all">
+                همه
+            </option>
 
-        <div class="all-grid" id="allMovies"></div>
+            <option value="movie">
+                فیلم
+            </option>
 
-        <div class="empty" id="empty">
-            چیزی پیدا نشد.
-        </div>
+            <option value="series">
+                سریال
+            </option>
 
-    </section>
+        </select>
+
+    </div>
+
+
+    <div
+        class="all-grid"
+        id="allMovies">
+    </div>
+
+
+    <div
+        class="empty"
+        id="empty">
+
+        چیزی پیدا نشد.
+
+    </div>
+
+</section>
+
 
 </main>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
-    © 2026 HAMOFLIX — تمامی حقوق محفوظ است.
+
+    <div style="margin-bottom:8px;font-size:15px;color:#aaa">
+        🎬 HAMOFLIX
+    </div>
+
+    فیلم و سریال در یک دنیای تاریک و جذاب
+
+    <br><br>
+
+    © 2026 HAMOFLIX
+
 </footer>
 
 
-<!-- LOGIN MODAL -->
+<!-- =========================
+     LOGIN MODAL
+========================= -->
 
-<div class="modal" id="loginModal">
+<div
+    class="modal"
+    id="loginModal">
 
     <div class="modal-box">
 
+
         <div class="modal-head">
 
-            <h3>ورود مدیریت</h3>
+            <h3>
+                🔐 ورود مدیریت
+            </h3>
 
             <button
                 class="close"
@@ -796,48 +1076,74 @@ footer{
 
         </div>
 
+
         <div class="notice">
-            این بخش برای مدیریت محتوای سایت است.
+
+            این بخش مخصوص مدیریت HAMOFLIX است.
+
         </div>
+
 
         <div class="form-group">
 
-            <label>رمز مدیریت</label>
+            <label>
+                رمز مدیریت
+            </label>
 
             <input
                 id="adminPassword"
                 type="password"
                 placeholder="رمز را وارد کنید"
+                onkeydown="
+                if(event.key==='Enter')
+                loginAdmin();
+                "
             >
 
         </div>
+
 
         <button
             class="btn btn-red"
             style="width:100%"
             onclick="loginAdmin()">
+
             ورود
+
         </button>
+
 
         <p
             id="loginError"
-            style="color:#e50914;margin-top:12px;font-size:12px;">
+            style="
+            color:#e50914;
+            margin-top:12px;
+            font-size:12px;
+            ">
         </p>
+
 
     </div>
 
 </div>
 
 
-<!-- ADMIN MODAL -->
+<!-- =========================
+     ADMIN MODAL
+========================= -->
 
-<div class="modal" id="adminModal">
+<div
+    class="modal"
+    id="adminModal">
 
     <div class="modal-box">
 
+
         <div class="modal-head">
 
-            <h3>⚙️ پنل مدیریت HAMOFLIX</h3>
+            <h3>
+                ⚙️ پنل مدیریت HAMOFLIX
+            </h3>
 
             <button
                 class="close"
@@ -849,29 +1155,43 @@ footer{
 
 
         <div class="notice">
-            محتواهایی که از این پنل اضافه می‌کنی در همین مرورگر ذخیره می‌شوند.
-            برای ذخیره عمومی و واقعی سایت، در مرحله بعد Supabase را وصل می‌کنیم.
+
+            محتوایی که از این پنل اضافه می‌کنی
+            فعلاً در همین مرورگر ذخیره می‌شود.
+            در مرحله بعد آن را به Supabase وصل می‌کنیم
+            تا برای همه بازدیدکننده‌ها نمایش داده شود.
+
         </div>
 
 
         <div class="form-group">
-            <label>نام فیلم / سریال</label>
-            <input id="title" placeholder="مثلاً Wednesday">
+
+            <label>
+                نام فیلم / سریال
+            </label>
+
+            <input
+                id="title"
+                placeholder="مثلاً Wednesday"
+            >
+
         </div>
 
 
         <div class="form-group">
 
-            <label>نوع</label>
+            <label>
+                نوع محتوا
+            </label>
 
             <select id="type">
 
                 <option value="movie">
-                    فیلم
+                    🎬 فیلم
                 </option>
 
                 <option value="series">
-                    سریال
+                    📺 سریال
                 </option>
 
             </select>
@@ -881,11 +1201,13 @@ footer{
 
         <div class="form-group">
 
-            <label>ژانر</label>
+            <label>
+                ژانر
+            </label>
 
             <input
                 id="genre"
-                placeholder="مثلاً فانتزی، علمی‌تخیلی"
+                placeholder="مثلاً فانتزی، معمایی، علمی‌تخیلی"
             >
 
         </div>
@@ -893,7 +1215,9 @@ footer{
 
         <div class="form-group">
 
-            <label>سال</label>
+            <label>
+                سال
+            </label>
 
             <input
                 id="year"
@@ -905,7 +1229,9 @@ footer{
 
         <div class="form-group">
 
-            <label>امتیاز</label>
+            <label>
+                امتیاز
+            </label>
 
             <input
                 id="rating"
@@ -917,20 +1243,22 @@ footer{
 
         <div class="form-group">
 
-            <label>دسته‌بندی</label>
+            <label>
+                دسته‌بندی
+            </label>
 
             <select id="category">
 
                 <option value="newMovies">
-                    فیلم‌های جدید
+                    🎬 فیلم‌های جدید
                 </option>
 
                 <option value="newSeries">
-                    سریال‌های جدید
+                    📺 سریال‌های جدید
                 </option>
 
                 <option value="popular">
-                    محبوب‌ترین‌ها
+                    ⭐ محبوب‌ترین‌ها
                 </option>
 
             </select>
@@ -940,7 +1268,9 @@ footer{
 
         <div class="form-group">
 
-            <label>لینک پوستر</label>
+            <label>
+                لینک پوستر
+            </label>
 
             <input
                 id="poster"
@@ -952,7 +1282,9 @@ footer{
 
         <div class="form-group">
 
-            <label>لینک تماشا</label>
+            <label>
+                لینک تماشا
+            </label>
 
             <input
                 id="watch"
@@ -964,7 +1296,9 @@ footer{
 
         <div class="form-group">
 
-            <label>توضیحات</label>
+            <label>
+                توضیحات
+            </label>
 
             <textarea
                 id="description"
@@ -979,84 +1313,112 @@ footer{
             <button
                 class="btn btn-red"
                 onclick="addMovie()">
+
                 ➕ افزودن محتوا
+
             </button>
+
 
             <button
                 class="btn delete-btn"
                 onclick="logoutAdmin()">
+
                 خروج
+
             </button>
 
         </div>
 
 
-        <hr style="border-color:#222;margin:25px 0">
+        <hr
+            style="
+            border-color:#222;
+            margin:25px 0;
+            ">
 
 
         <h3 style="margin-bottom:15px">
-            محتواهای اضافه‌شده
+
+            📋 محتواهای اضافه‌شده
+
         </h3>
 
-        <div id="adminList"></div>
+
+        <div id="adminList">
+        </div>
+
 
     </div>
 
 </div>
 
 
-<!-- INFO MODAL -->
+<!-- =========================
+     INFO MODAL
+========================= -->
 
-<div class="modal" id="infoModal">
+<div
+    class="modal"
+    id="infoModal">
 
     <div class="modal-box">
 
+
         <div class="modal-head">
 
-            <h3 id="infoTitle"></h3>
+            <h3 id="infoTitle">
+            </h3>
 
             <button
                 class="close"
                 onclick="closeModal('infoModal')">
+
                 ×
+
             </button>
 
         </div>
 
+
         <img
             id="infoPoster"
-            style="
-                width:100%;
-                max-height:400px;
-                object-fit:cover;
-                border-radius:10px;
-            "
+            class="info-poster"
+            src=""
         >
+
 
         <p
             id="infoMeta"
             style="
-                color:#aaa;
-                margin-top:15px;
-                line-height:2;
+            color:#aaa;
+            margin-top:15px;
+            line-height:2;
             ">
         </p>
+
 
         <p
             id="infoDescription"
             style="
-                color:#ccc;
-                margin-top:15px;
-                line-height:2;
+            color:#ccc;
+            margin-top:15px;
+            line-height:2;
             ">
         </p>
+
 
         <button
             id="infoWatch"
             class="btn btn-red"
-            style="width:100%;margin-top:20px">
+            style="
+            width:100%;
+            margin-top:20px;
+            ">
+
             ▶ تماشا
+
         </button>
+
 
     </div>
 
@@ -1065,22 +1427,20 @@ footer{
 
 <script>
 
+
 /* =========================
-   تنظیمات اصلی
+   تنظیمات
 ========================= */
 
-/*
-   فعلاً این رمز فقط برای مخفی‌کردن پنل از کاربران عادی است.
-   امنیت واقعی نیست.
-*/
-const ADMIN_PASSWORD = "HAMOFLIX_2026_ADMIN";
+const ADMIN_PASSWORD =
+    "HAMOFLIX_2026_ADMIN";
 
-
-const STORAGE_KEY = "hamoflix_movies";
+const STORAGE_KEY =
+    "hamoflix_movies";
 
 
 /* =========================
-   محتوای اولیه
+   محتوای نمونه
 ========================= */
 
 const defaultMovies = [
@@ -1093,10 +1453,13 @@ const defaultMovies = [
         year:"2022",
         rating:"8.0",
         category:"newSeries",
-        poster:"https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
+        poster:
+        "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=85",
         watch:"#",
-        description:"یک سریال فانتزی و معمایی درباره Wednesday Addams."
+        description:
+        "یک سریال فانتزی و معمایی با فضای تاریک و متفاوت."
     },
+
 
     {
         id:2,
@@ -1106,10 +1469,13 @@ const defaultMovies = [
         year:"2023",
         rating:"8.1",
         category:"newSeries",
-        poster:"https://image.tmdb.org/t/p/w500/1NxaSnBaCHATDcbM2sK7Tq6fQnG.jpg",
+        poster:
+        "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=700&q=85",
         watch:"#",
-        description:"داستان جامعه‌ای که در یک سیلوی عظیم زیرزمینی زندگی می‌کنند."
+        description:
+        "جامعه‌ای در یک سازه عظیم زیرزمینی رازهای عجیبی را پنهان می‌کند."
     },
+
 
     {
         id:3,
@@ -1119,10 +1485,13 @@ const defaultMovies = [
         year:"2022",
         rating:"7.5",
         category:"popular",
-        poster:"https://image.tmdb.org/t/p/w500/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg",
+        poster:
+        "https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=700&q=85",
         watch:"#",
-        description:"دانش‌آموزان یک مدرسه درگیر شیوعی مرموز می‌شوند."
+        description:
+        "دانش‌آموزان یک مدرسه با یک بحران مرموز و آخرالزمانی روبه‌رو می‌شوند."
     },
+
 
     {
         id:4,
@@ -1132,27 +1501,160 @@ const defaultMovies = [
         year:"2001",
         rating:"7.6",
         category:"newMovies",
-        poster:"https://image.tmdb.org/t/p/w500/1u1RZkqk6z0m9n3L6xJ6w7x1f2R.jpg",
+        poster:
+        "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=85",
         watch:"#",
-        description:"شروع ماجراهای جادویی هری پاتر."
+        description:
+        "یک ماجراجویی جادویی در دنیایی پر از رمز و راز."
+    },
+
+
+    {
+        id:5,
+        title:"Dark Horizon",
+        type:"movie",
+        genre:"علمی‌تخیلی، تاریک",
+        year:"2025",
+        rating:"8.4",
+        category:"newMovies",
+        poster:
+        "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "داستانی علمی‌تخیلی در آینده‌ای تاریک و ناشناخته."
+    },
+
+
+    {
+        id:6,
+        title:"Lost World",
+        type:"movie",
+        genre:"ماجراجویی، فانتزی",
+        year:"2024",
+        rating:"8.2",
+        category:"newMovies",
+        poster:
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "گروهی وارد جهانی ناشناخته می‌شوند که قوانین خودش را دارد."
+    },
+
+
+    {
+        id:7,
+        title:"After Midnight",
+        type:"series",
+        genre:"معمایی، تاریک",
+        year:"2025",
+        rating:"8.6",
+        category:"newSeries",
+        poster:
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "رازهایی که فقط بعد از نیمه‌شب آشکار می‌شوند."
+    },
+
+
+    {
+        id:8,
+        title:"The Last City",
+        type:"series",
+        genre:"آخرالزمانی، علمی‌تخیلی",
+        year:"2025",
+        rating:"8.3",
+        category:"popular",
+        poster:
+        "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "آخرین شهر باقی‌مانده تلاش می‌کند در برابر یک تهدید ناشناخته دوام بیاورد."
+    },
+
+
+    {
+        id:9,
+        title:"Moonlight",
+        type:"movie",
+        genre:"فانتزی، معمایی",
+        year:"2024",
+        rating:"7.9",
+        category:"popular",
+        poster:
+        "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "یک راز قدیمی در شبی عجیب دوباره زنده می‌شود."
+    },
+
+
+    {
+        id:10,
+        title:"Beyond Space",
+        type:"movie",
+        genre:"علمی‌تخیلی، ماجراجویی",
+        year:"2025",
+        rating:"8.7",
+        category:"popular",
+        poster:
+        "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "سفری به نقطه‌ای از فضا که هیچ‌کس قبلاً به آن نرفته است."
+    },
+
+
+    {
+        id:11,
+        title:"Night City",
+        type:"movie",
+        genre:"تاریک، معمایی",
+        year:"2025",
+        rating:"8.0",
+        category:"newMovies",
+        poster:
+        "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "شهری که شب‌های آن رازهای زیادی را پنهان کرده است."
+    },
+
+
+    {
+        id:12,
+        title:"Unknown Planet",
+        type:"series",
+        genre:"علمی‌تخیلی، ماجراجویی",
+        year:"2026",
+        rating:"8.5",
+        category:"newSeries",
+        poster:
+        "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=700&q=85",
+        watch:"#",
+        description:
+        "گروهی به سیاره‌ای ناشناخته می‌رسند."
     }
 
 ];
 
 
 /* =========================
-   گرفتن محتوا
+   دریافت محتوا
 ========================= */
 
 function getMovies(){
 
     const saved =
-        JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        JSON.parse(
+            localStorage.getItem(STORAGE_KEY) || "[]"
+        );
 
     return [
         ...defaultMovies,
         ...saved
     ];
+
 }
 
 
@@ -1171,7 +1673,23 @@ function saveUserMovies(movies){
 
 
 /* =========================
-   ساخت کارت
+   امن‌سازی متن
+========================= */
+
+function escapeHtml(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   کارت
 ========================= */
 
 function createCard(movie){
@@ -1182,40 +1700,66 @@ function createCard(movie){
 
             <img
                 class="poster"
-                src="${escapeHtml(movie.poster || '')}"
-                onerror="this.src='https://via.placeholder.com/500x750/151515/ffffff?text=HAMOFLIX'"
+                src="${escapeHtml(movie.poster)}"
+                onerror="
+                this.src='https://via.placeholder.com/500x750/11111a/ffffff?text=HAMOFLIX'
+                "
             >
 
             <div class="card-body">
 
                 <div class="card-title">
+
                     ${escapeHtml(movie.title)}
+
                 </div>
+
 
                 <div class="card-meta">
 
                     <span>
-                        ${movie.type === "movie" ? "فیلم" : "سریال"}
+
+                        ${
+                            movie.type === "movie"
+                            ? "🎬 فیلم"
+                            : "📺 سریال"
+                        }
+
                     </span>
 
+
                     <span class="rating">
-                        ⭐ ${escapeHtml(movie.rating || "-")}
+
+                        ⭐
+                        ${escapeHtml(movie.rating || "-")}
+
                     </span>
 
                 </div>
+
 
                 <div class="card-buttons">
 
                     <button
                         class="watch"
-                        onclick="watchMovie('${encodeURIComponent(movie.watch || '#')}')">
+                        onclick="
+                        watchMovie(
+                        '${encodeURIComponent(movie.watch || "#")}'
+                        )">
+
                         ▶ تماشا
+
                     </button>
+
 
                     <button
                         class="info"
-                        onclick="showInfo(${movie.id})">
+                        onclick="
+                        showInfo(${movie.id})
+                        ">
+
                         جزئیات
+
                     </button>
 
                 </div>
@@ -1225,44 +1769,61 @@ function createCard(movie){
         </div>
 
     `;
+
 }
 
 
 /* =========================
-   رندر دسته‌ها
+   رندر صفحه
 ========================= */
 
 function renderHome(){
 
-    const movies = getMovies();
+    const movies =
+        getMovies();
+
 
     renderRow(
         "newMovies",
-        movies.filter(m => m.category === "newMovies")
+        movies.filter(
+            m => m.category === "newMovies"
+        )
     );
+
 
     renderRow(
         "newSeries",
-        movies.filter(m => m.category === "newSeries")
+        movies.filter(
+            m => m.category === "newSeries"
+        )
     );
+
 
     renderRow(
         "popular",
-        movies.filter(m => m.category === "popular")
+        movies.filter(
+            m => m.category === "popular"
+        )
     );
+
 
     renderAll();
 
 }
 
 
-function renderRow(id, movies){
+/* =========================
+   رندر ردیف
+========================= */
 
-    const el = document.getElementById(id);
+function renderRow(id,movies){
 
-    if(!el) return;
+    const element =
+        document.getElementById(id);
 
-    el.innerHTML =
+    if(!element) return;
+
+    element.innerHTML =
         movies.map(createCard).join("");
 
 }
@@ -1274,42 +1835,71 @@ function renderRow(id, movies){
 
 function renderAll(){
 
-    const movies = getMovies();
+    const movies =
+        getMovies();
+
 
     const search =
-        document.getElementById("searchInput")?.value
-        .trim()
-        .toLowerCase() || "";
+        (
+            document.getElementById("searchInput")
+            ?.value
+            .trim()
+            .toLowerCase()
+        ) || "";
+
 
     const type =
-        document.getElementById("typeFilter")?.value || "all";
+        document.getElementById("typeFilter")
+        ?.value || "all";
 
-    let filtered = movies.filter(movie => {
 
-        const matchesSearch =
-            !search ||
-            movie.title.toLowerCase().includes(search) ||
-            (movie.genre || "").toLowerCase().includes(search);
+    const filtered =
+        movies.filter(movie => {
 
-        const matchesType =
-            type === "all" ||
-            movie.type === type;
+            const text =
+                (
+                    movie.title +
+                    " " +
+                    (movie.genre || "") +
+                    " " +
+                    (movie.description || "")
+                ).toLowerCase();
 
-        return matchesSearch && matchesType;
 
-    });
+            const matchesSearch =
+                !search ||
+                text.includes(search);
+
+
+            const matchesType =
+                type === "all" ||
+                movie.type === type;
+
+
+            return (
+                matchesSearch &&
+                matchesType
+            );
+
+        });
+
 
     const container =
         document.getElementById("allMovies");
 
+
     const empty =
         document.getElementById("empty");
+
 
     container.innerHTML =
         filtered.map(createCard).join("");
 
+
     empty.style.display =
-        filtered.length ? "none" : "block";
+        filtered.length
+        ? "none"
+        : "block";
 
 }
 
@@ -1320,37 +1910,68 @@ function renderAll(){
 
 function showCategory(category){
 
-    let movies = getMovies();
+    let movies =
+        getMovies();
+
 
     if(category !== "all"){
 
         movies =
             movies.filter(
-                movie => movie.category === category
+                movie =>
+                movie.category === category
             );
 
     }
 
-    document.getElementById("allTitle").textContent =
-        category === "newMovies"
-        ? "🎬 همه فیلم‌های جدید"
-        : category === "newSeries"
-        ? "📺 همه سریال‌های جدید"
-        : category === "popular"
-        ? "⭐ همه محبوب‌ترین‌ها"
-        : "🎞 همه محتوا";
 
-    document.getElementById("searchInput").value = "";
-    document.getElementById("typeFilter").value = "all";
+    let title =
+        "🎞 همه محتوا";
 
-    document.getElementById("allMovies").innerHTML =
+
+    if(category === "newMovies"){
+        title =
+            "🎬 همه فیلم‌های جدید";
+    }
+
+
+    if(category === "newSeries"){
+        title =
+            "📺 همه سریال‌های جدید";
+    }
+
+
+    if(category === "popular"){
+        title =
+            "⭐ همه محبوب‌ترین‌ها";
+    }
+
+
+    document.getElementById("allTitle")
+        .textContent = title;
+
+
+    document.getElementById("searchInput")
+        .value = "";
+
+
+    document.getElementById("typeFilter")
+        .value = "all";
+
+
+    document.getElementById("allMovies")
+        .innerHTML =
         movies.map(createCard).join("");
 
-    document.getElementById("empty").style.display =
-        movies.length ? "none" : "block";
 
-    document
-        .getElementById("allSection")
+    document.getElementById("empty")
+        .style.display =
+        movies.length
+        ? "none"
+        : "block";
+
+
+    document.getElementById("allSection")
         .scrollIntoView({
             behavior:"smooth"
         });
@@ -1364,21 +1985,32 @@ function showCategory(category){
 
 function showGenre(genre){
 
-    const movies = getMovies().filter(movie =>
-        (movie.genre || "").includes(genre)
-    );
+    const movies =
+        getMovies().filter(
+            movie =>
+            (movie.genre || "")
+            .includes(genre)
+        );
 
-    document.getElementById("allTitle").textContent =
+
+    document.getElementById("allTitle")
+        .textContent =
         "🍿 کالکشن " + genre;
 
-    document.getElementById("allMovies").innerHTML =
+
+    document.getElementById("allMovies")
+        .innerHTML =
         movies.map(createCard).join("");
 
-    document.getElementById("empty").style.display =
-        movies.length ? "none" : "block";
 
-    document
-        .getElementById("allSection")
+    document.getElementById("empty")
+        .style.display =
+        movies.length
+        ? "none"
+        : "block";
+
+
+    document.getElementById("allSection")
         .scrollIntoView({
             behavior:"smooth"
         });
@@ -1386,31 +2018,46 @@ function showGenre(genre){
 }
 
 
+/* =========================
+   کالکشن تاریک
+========================= */
+
 function showDarkCollection(){
 
-    const movies = getMovies().filter(movie => {
+    const movies =
+        getMovies().filter(movie => {
 
-        const genre = movie.genre || "";
+            const genre =
+                movie.genre || "";
 
-        return (
-            genre.includes("تاریک") ||
-            genre.includes("آخرالزمانی") ||
-            genre.includes("معمایی")
-        );
 
-    });
+            return (
+                genre.includes("تاریک") ||
+                genre.includes("آخرالزمانی") ||
+                genre.includes("معمایی")
+            );
 
-    document.getElementById("allTitle").textContent =
+        });
+
+
+    document.getElementById("allTitle")
+        .textContent =
         "🌑 تاریک و آخرالزمانی";
 
-    document.getElementById("allMovies").innerHTML =
+
+    document.getElementById("allMovies")
+        .innerHTML =
         movies.map(createCard).join("");
 
-    document.getElementById("empty").style.display =
-        movies.length ? "none" : "block";
 
-    document
-        .getElementById("allSection")
+    document.getElementById("empty")
+        .style.display =
+        movies.length
+        ? "none"
+        : "block";
+
+
+    document.getElementById("allSection")
         .scrollIntoView({
             behavior:"smooth"
         });
@@ -1424,14 +2071,16 @@ function showDarkCollection(){
 
 function searchMovies(value){
 
-    document.getElementById("searchInput").value = value;
+    document.getElementById("searchInput")
+        .value = value;
+
 
     renderAll();
 
+
     if(value.trim()){
 
-        document
-            .getElementById("allSection")
+        document.getElementById("allSection")
             .scrollIntoView({
                 behavior:"smooth"
             });
@@ -1442,30 +2091,53 @@ function searchMovies(value){
 
 
 /* =========================
-   اطلاعات
+   اطلاعات محتوا
 ========================= */
 
 function showInfo(id){
 
     const movie =
-        getMovies().find(m => m.id === id);
+        getMovies().find(
+            m => m.id === id
+        );
+
 
     if(!movie) return;
 
-    document.getElementById("infoTitle").textContent =
+
+    document.getElementById("infoTitle")
+        .textContent =
         movie.title;
 
-    document.getElementById("infoPoster").src =
-        movie.poster || "";
 
-    document.getElementById("infoMeta").textContent =
-        `${movie.type === "movie" ? "فیلم" : "سریال"} | ${movie.year || "-"} | ⭐ ${movie.rating || "-" } | ${movie.genre || "-"}`;
+    document.getElementById("infoPoster")
+        .src =
+        movie.poster;
 
-    document.getElementById("infoDescription").textContent =
-        movie.description || "توضیحی ثبت نشده است.";
 
-    document.getElementById("infoWatch").onclick =
-        () => watchMovie(encodeURIComponent(movie.watch || "#"));
+    document.getElementById("infoMeta")
+        .textContent =
+        `${
+            movie.type === "movie"
+            ? "🎬 فیلم"
+            : "📺 سریال"
+        } | سال ${movie.year || "-"} | ⭐ ${movie.rating || "-"} | ${movie.genre || "-"}`;
+
+
+    document.getElementById("infoDescription")
+        .textContent =
+        movie.description ||
+        "توضیحی ثبت نشده است.";
+
+
+    document.getElementById("infoWatch")
+        .onclick =
+        () => watchMovie(
+            encodeURIComponent(
+                movie.watch || "#"
+            )
+        );
+
 
     openModal("infoModal");
 
@@ -1478,64 +2150,93 @@ function showInfo(id){
 
 function watchMovie(encoded){
 
-    const url = decodeURIComponent(encoded);
+    const url =
+        decodeURIComponent(encoded);
 
-    if(!url || url === "#"){
 
-        alert("هنوز لینک تماشا برای این محتوا ثبت نشده.");
+    if(
+        !url ||
+        url === "#"
+    ){
+
+        alert(
+            "هنوز لینک تماشا برای این محتوا ثبت نشده."
+        );
 
         return;
+
     }
 
-    window.open(url,"_blank");
+
+    window.open(
+        url,
+        "_blank"
+    );
 
 }
 
 
 /* =========================
-   مدیریت
-   دسترسی مخفی
+   ورود مخفی مدیریت
 ========================= */
 
-/*
-   برای باز کردن پنل مدیریت:
-   روی لوگوی HAMOFLIX پنج بار پشت سر هم بزن.
-*/
-
 let logoClicks = 0;
+
 let logoTimer = null;
 
+
 document
-    .querySelector(".logo")
-    .addEventListener("click", () => {
+    .getElementById("logo")
+    .addEventListener(
+        "click",
+        () => {
 
-        logoClicks++;
+            logoClicks++;
 
-        clearTimeout(logoTimer);
 
-        logoTimer =
-            setTimeout(() => {
+            clearTimeout(
+                logoTimer
+            );
+
+
+            logoTimer =
+                setTimeout(
+                    () => {
+                        logoClicks = 0;
+                    },
+                    1500
+                );
+
+
+            if(logoClicks >= 5){
+
                 logoClicks = 0;
-            },1500);
 
-        if(logoClicks >= 5){
 
-            logoClicks = 0;
+                if(
+                    localStorage.getItem(
+                        "hamoflix_admin"
+                    ) === "true"
+                ){
 
-            if(localStorage.getItem("hamoflix_admin") === "true"){
+                    openModal(
+                        "adminModal"
+                    );
 
-                openModal("adminModal");
-                renderAdminList();
+                    renderAdminList();
 
-            }else{
+                }else{
 
-                openModal("loginModal");
+                    openModal(
+                        "loginModal"
+                    );
+
+                }
 
             }
 
         }
-
-    });
+    );
 
 
 /* =========================
@@ -1545,27 +2246,49 @@ document
 function loginAdmin(){
 
     const password =
-        document.getElementById("adminPassword").value;
+        document.getElementById(
+            "adminPassword"
+        ).value;
 
-    if(password === ADMIN_PASSWORD){
+
+    if(
+        password === ADMIN_PASSWORD
+    ){
 
         localStorage.setItem(
             "hamoflix_admin",
             "true"
         );
 
-        document.getElementById("adminPassword").value = "";
 
-        closeModal("loginModal");
+        document.getElementById(
+            "adminPassword"
+        ).value = "";
 
-        openModal("adminModal");
+
+        document.getElementById(
+            "loginError"
+        ).textContent = "";
+
+
+        closeModal(
+            "loginModal"
+        );
+
+
+        openModal(
+            "adminModal"
+        );
+
 
         renderAdminList();
 
     }else{
 
-        document.getElementById("loginError").textContent =
-            "رمز اشتباه است.";
+        document.getElementById(
+            "loginError"
+        ).textContent =
+        "❌ رمز اشتباه است.";
 
     }
 
@@ -1578,9 +2301,14 @@ function loginAdmin(){
 
 function logoutAdmin(){
 
-    localStorage.removeItem("hamoflix_admin");
+    localStorage.removeItem(
+        "hamoflix_admin"
+    );
 
-    closeModal("adminModal");
+
+    closeModal(
+        "adminModal"
+    );
 
 }
 
@@ -1591,20 +2319,32 @@ function logoutAdmin(){
 
 function addMovie(){
 
-    if(localStorage.getItem("hamoflix_admin") !== "true"){
+    if(
+        localStorage.getItem(
+            "hamoflix_admin"
+        ) !== "true"
+    ){
 
-        alert("ابتدا وارد مدیریت شوید.");
+        alert(
+            "ابتدا وارد مدیریت شوید."
+        );
 
         return;
 
     }
 
+
     const title =
-        document.getElementById("title").value.trim();
+        document.getElementById(
+            "title"
+        ).value.trim();
+
 
     if(!title){
 
-        alert("نام محتوا را وارد کن.");
+        alert(
+            "نام محتوا را وارد کن."
+        );
 
         return;
 
@@ -1618,48 +2358,76 @@ function addMovie(){
         title:title,
 
         type:
-            document.getElementById("type").value,
+            document.getElementById(
+                "type"
+            ).value,
 
         genre:
-            document.getElementById("genre").value.trim(),
+            document.getElementById(
+                "genre"
+            ).value.trim(),
 
         year:
-            document.getElementById("year").value.trim(),
+            document.getElementById(
+                "year"
+            ).value.trim(),
 
         rating:
-            document.getElementById("rating").value.trim(),
+            document.getElementById(
+                "rating"
+            ).value.trim(),
 
         category:
-            document.getElementById("category").value,
+            document.getElementById(
+                "category"
+            ).value,
 
         poster:
-            document.getElementById("poster").value.trim(),
+            document.getElementById(
+                "poster"
+            ).value.trim(),
 
         watch:
-            document.getElementById("watch").value.trim(),
+            document.getElementById(
+                "watch"
+            ).value.trim(),
 
         description:
-            document.getElementById("description").value.trim()
+            document.getElementById(
+                "description"
+            ).value.trim()
 
     };
 
 
     const movies =
         JSON.parse(
-            localStorage.getItem(STORAGE_KEY) || "[]"
+            localStorage.getItem(
+                STORAGE_KEY
+            ) || "[]"
         );
+
 
     movies.push(movie);
 
-    saveUserMovies(movies);
+
+    saveUserMovies(
+        movies
+    );
+
 
     clearForm();
 
+
     renderHome();
+
 
     renderAdminList();
 
-    alert("محتوا با موفقیت اضافه شد.");
+
+    alert(
+        "✅ محتوا با موفقیت اضافه شد."
+    );
 
 }
 
@@ -1680,7 +2448,9 @@ function clearForm(){
         "description"
     ].forEach(id => {
 
-        document.getElementById(id).value = "";
+        document.getElementById(
+            id
+        ).value = "";
 
     });
 
@@ -1694,17 +2464,30 @@ function clearForm(){
 function renderAdminList(){
 
     const container =
-        document.getElementById("adminList");
+        document.getElementById(
+            "adminList"
+        );
+
 
     const movies =
         JSON.parse(
-            localStorage.getItem(STORAGE_KEY) || "[]"
+            localStorage.getItem(
+                STORAGE_KEY
+            ) || "[]"
         );
+
 
     if(!movies.length){
 
-        container.innerHTML =
-            `<p style="color:#777">هنوز محتوایی اضافه نکردی.</p>`;
+        container.innerHTML = `
+
+            <p style="color:#777">
+
+                هنوز محتوایی اضافه نکردی.
+
+            </p>
+
+        `;
 
         return;
 
@@ -1714,40 +2497,62 @@ function renderAdminList(){
     container.innerHTML =
         movies.map(movie => `
 
-            <div style="
+            <div
+                style="
                 display:flex;
                 align-items:center;
                 justify-content:space-between;
                 gap:10px;
                 padding:12px;
-                background:#181818;
+                background:#181820;
+                border:1px solid #252530;
                 border-radius:8px;
                 margin-bottom:8px;
-            ">
+                ">
 
                 <div>
 
                     <strong>
+
                         ${escapeHtml(movie.title)}
+
                     </strong>
 
-                    <div style="
+                    <div
+                        style="
                         color:#777;
                         font-size:11px;
                         margin-top:5px;
-                    ">
-                        ${movie.type === "movie" ? "فیلم" : "سریال"}
+                        ">
+
+                        ${
+                            movie.type === "movie"
+                            ? "🎬 فیلم"
+                            : "📺 سریال"
+                        }
+
                         |
-                        ${escapeHtml(movie.category || "")}
+
+                        ${escapeHtml(
+                            movie.category || ""
+                        )}
+
                     </div>
 
                 </div>
 
+
                 <button
                     class="btn delete-btn"
-                    style="padding:7px 10px"
-                    onclick="deleteMovie(${movie.id})">
+                    style="
+                    padding:7px 10px;
+                    "
+                    onclick="
+                    deleteMovie(${movie.id})
+                    ">
+
                     حذف
+
                 </button>
 
             </div>
@@ -1758,24 +2563,44 @@ function renderAdminList(){
 
 
 /* =========================
-   حذف
+   حذف محتوا
 ========================= */
 
 function deleteMovie(id){
 
-    if(!confirm("این محتوا حذف شود؟")) return;
+    if(
+        !confirm(
+            "این محتوا حذف شود؟"
+        )
+    ){
+
+        return;
+
+    }
+
 
     let movies =
         JSON.parse(
-            localStorage.getItem(STORAGE_KEY) || "[]"
+            localStorage.getItem(
+                STORAGE_KEY
+            ) || "[]"
         );
 
-    movies =
-        movies.filter(movie => movie.id !== id);
 
-    saveUserMovies(movies);
+    movies =
+        movies.filter(
+            movie =>
+            movie.id !== id
+        );
+
+
+    saveUserMovies(
+        movies
+    );
+
 
     renderHome();
+
 
     renderAdminList();
 
@@ -1783,7 +2608,7 @@ function deleteMovie(id){
 
 
 /* =========================
-   Modal
+   MODAL
 ========================= */
 
 function openModal(id){
@@ -1805,6 +2630,29 @@ function closeModal(id){
 
 
 /* =========================
+   کلیک بیرون Modal
+========================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.classList
+            .contains("modal")
+        ){
+
+            event.target
+                .classList
+                .remove("active");
+
+        }
+
+    }
+);
+
+
+/* =========================
    اسکرول
 ========================= */
 
@@ -1815,22 +2663,6 @@ function scrollToContent(){
         .scrollIntoView({
             behavior:"smooth"
         });
-
-}
-
-
-/* =========================
-   جلوگیری از HTML خراب
-========================= */
-
-function escapeHtml(value){
-
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
 
 }
 
