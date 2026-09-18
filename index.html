@@ -9,180 +9,286 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{
   font-family:Tahoma,Arial,sans-serif;
-  background:#08050e;
+  background:#07040f;
   color:#fff;
   min-height:100vh;
-  padding-bottom:90px;
+  padding-bottom:95px;
+  overflow-x:hidden;
 }
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+/* ===== HEADER ===== */
 header{
   position:sticky;top:0;z-index:50;
-  background:rgba(8,5,14,.9);
-  backdrop-filter:blur(12px);
-  padding:12px 14px;
+  background:rgba(10,6,18,.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  padding:11px 14px;
   display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(170,110,255,.18);
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
 }
 .logo{
-  font-size:18px;font-weight:900;
-  color:#fff;cursor:pointer;
-  text-shadow:0 0 15px rgba(165,90,255,.7);
+  font-size:19px;font-weight:900;letter-spacing:1px;
+  background:linear-gradient(90deg,#e0c0ff,#c084fc,#a855f7,#ffffff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-shadow:0 0 25px rgba(168,85,247,.7);
+  cursor:pointer;user-select:none;
 }
 .search-box{flex:1}
 .search-box input{
   width:100%;height:40px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:12px;
-  background:rgba(255,255,255,.08);
-  color:#fff;padding:0 12px;outline:none;
+  border:1px solid rgba(170,110,255,.25);
+  border-radius:13px;
+  background:rgba(255,255,255,.07);
+  color:#fff;padding:0 13px;outline:none;
+  backdrop-filter:blur(8px);
 }
+.search-box input::placeholder{color:#999}
 .history-btn{
-  height:40px;padding:0 12px;
-  border-radius:12px;border:1px solid rgba(170,110,255,.4);
-  background:rgba(120,50,200,.3);color:#e0c0ff;font-size:12px;
+  height:40px;padding:0 12px;border-radius:13px;
+  border:1px solid rgba(170,110,255,.4);
+  background:linear-gradient(145deg,rgba(120,50,200,.4),rgba(70,20,140,.45));
+  color:#e0c0ff;font-size:13px;
+  box-shadow:0 4px 12px rgba(100,40,180,.3),inset 0 1px rgba(255,255,255,.12);
 }
+
+/* ===== MAIN ===== */
 main{padding:14px;max-width:1200px;margin:0 auto}
+
 .hero{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(170,110,255,.3);
-  border-radius:18px;padding:14px;margin-bottom:16px;
+  background:rgba(255,255,255,.055);
+  border:1.5px solid rgba(170,110,255,.32);
+  border-radius:20px;padding:14px;margin-bottom:18px;
+  box-shadow:0 12px 30px rgba(80,30,160,.2),inset 0 1px rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
 }
-.hero h1{font-size:18px;margin-bottom:6px}
-.hero p{font-size:12px;color:#aaa}
+.hero h1{font-size:18px;margin-bottom:5px}
+.hero p{font-size:12px;color:#aaa;margin-bottom:10px}
+
 .featured-track{
   display:flex;gap:10px;overflow-x:auto;
-  padding:10px 0 6px;scrollbar-width:none;
+  padding:6px 0 4px;scrollbar-width:none;
 }
 .featured-track::-webkit-scrollbar{display:none}
 .featured-card{
-  flex:0 0 120px;border-radius:12px;overflow:hidden;
-  background:#1a1225;cursor:pointer;
-  border:1px solid rgba(255,255,255,.08);
+  flex:0 0 118px;border-radius:14px;overflow:hidden;
+  background:#1a1225;cursor:pointer;position:relative;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+  transition:transform .2s;
 }
+.featured-card:active{transform:scale(.97)}
 .featured-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
 .featured-info{
   position:absolute;bottom:0;left:0;right:0;
-  padding:20px 6px 6px;
-  background:linear-gradient(transparent,rgba(0,0,0,.85));
+  padding:22px 7px 7px;
+  background:linear-gradient(transparent,rgba(0,0,0,.9));
   font-size:11px;
 }
-.section{margin-top:22px}
+
+/* ===== SECTIONS ===== */
+.section{margin-top:24px}
 .section-head{
   display:flex;justify-content:space-between;
-  align-items:center;margin-bottom:10px;
+  align-items:center;margin-bottom:11px;
 }
 .section-head h2{font-size:15px}
-.view-all{background:none;border:none;color:#b983ff;font-size:12px}
+.view-all{
+  background:none;border:none;color:#c084fc;font-size:12px;
+}
 .movie-row{
   display:flex;gap:9px;overflow-x:auto;
   padding-bottom:6px;scrollbar-width:none;
 }
 .movie-row::-webkit-scrollbar{display:none}
 .movie-card{
-  flex:0 0 105px;border-radius:11px;overflow:hidden;
+  flex:0 0 105px;border-radius:13px;overflow:hidden;
   background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);cursor:pointer;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 6px 16px rgba(0,0,0,.35);
+  cursor:pointer;transition:transform .2s;
 }
+.movie-card:active{transform:scale(.97)}
 .movie-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
-.movie-info{padding:6px}
-.movie-info strong{font-size:11px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.movie-meta{font-size:9px;color:#999;margin-top:3px;display:flex;justify-content:space-between}
+.movie-info{padding:6px 7px}
+.movie-info strong{
+  font-size:11px;display:block;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.movie-meta{
+  font-size:9px;color:#999;margin-top:3px;
+  display:flex;justify-content:space-between;
+}
 .rating{color:#ffc94d}
-.bottom-nav{
-  position:fixed;bottom:8px;left:50%;transform:translateX(-50%);
-  width:calc(100% - 20px);max-width:420px;
-  background:rgba(22,12,35,.85);
-  backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;padding:6px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
-}
-.nav-item{
-  background:none;border:none;color:#aaa;
-  padding:8px 4px;border-radius:14px;
-  display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;
-}
-.nav-item.active{
-  background:linear-gradient(135deg,rgba(135,57,222,.5),rgba(75,24,130,.4));
-  color:#fff;
-}
-.nav-item span:first-child{font-size:18px}
-.page{display:none}
-.page.active{display:block}
+
+/* ===== FULL GRID ===== */
 .full-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(105px,1fr));
   gap:10px;margin-top:12px;
 }
+.page{display:none}
+.page.active{display:block}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav{
+  position:fixed;bottom:9px;left:50%;transform:translateX(-50%);
+  width:calc(100% - 18px);max-width:430px;
+  background:rgba(18,10,30,.78);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(170,110,255,.22);
+  border-radius:20px;padding:6px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
+  box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.08);
+}
+.nav-item{
+  background:none;border:none;color:#999;
+  padding:8px 3px;border-radius:15px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;
+}
+.nav-item.active{
+  background:linear-gradient(135deg,rgba(145,70,230,.5),rgba(80,30,150,.45));
+  color:#fff;
+  box-shadow:inset 0 1px rgba(255,255,255,.15),0 4px 12px rgba(100,40,180,.25);
+}
+.nav-item span:first-child{font-size:18px}
+
+/* ===== MODAL ===== */
 .modal{
   position:fixed;inset:0;z-index:200;
-  background:#000;display:none;overflow:auto;
+  display:none;overflow:auto;background:#05030a;
 }
 .modal.show{display:block}
-.modal-bg{
-  position:fixed;inset:0;
-  background-size:cover;background-position:center;
-  filter:blur(20px) brightness(.35);transform:scale(1.1);
+
+.modal-top{
+  position:relative;
+  height:280px;
+  overflow:hidden;
 }
-.modal-content{
+.modal-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center top;
+  filter:blur(18px) brightness(.45);
+  transform:scale(1.12);
+}
+.modal-top-content{
   position:relative;z-index:2;
-  padding:20px 16px 40px;max-width:600px;margin:0 auto;
+  height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding-bottom:18px;
+  background:linear-gradient(to top,rgba(5,3,10,.92) 0%,rgba(5,3,10,.3) 50%,transparent 100%);
 }
 .modal-poster{
-  width:130px;aspect-ratio:2/3;object-fit:cover;
-  border-radius:14px;display:block;margin:0 auto 14px;
-  box-shadow:0 15px 40px rgba(0,0,0,.6);
+  width:125px;aspect-ratio:2/3;object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 15px 40px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.15);
+  margin-bottom:10px;
 }
 .close{
-  position:fixed;top:14px;left:14px;z-index:10;
+  position:absolute;top:14px;left:14px;z-index:5;
   width:36px;height:36px;border-radius:50%;
-  background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);
-  color:#fff;font-size:20px;
+  background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.18);
+  color:#fff;font-size:20px;backdrop-filter:blur(8px);
 }
-.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+
+.modal-body{
+  background:rgba(12,8,20,.75);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid rgba(170,110,255,.15);
+  padding:18px 16px 50px;
+  min-height:calc(100vh - 280px);
+}
+.modal-body h2{text-align:center;font-size:21px;margin-bottom:5px}
+.modal-meta{text-align:center;color:#aaa;font-size:12px;margin-bottom:14px}
+.description{
+  font-size:13px;line-height:1.85;color:#ddd;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:12px 14px;
+}
+
+.actions{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0;
+}
 .btn{
-  padding:10px 16px;border-radius:12px;border:none;color:#fff;font-size:13px;
-  background:rgba(255,255,255,.1);
+  padding:11px 16px;border-radius:13px;border:none;color:#fff;font-size:13px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .15s;
 }
+.btn:active{transform:scale(.96)}
 .btn.play,.btn.download{
   background:linear-gradient(145deg,#a855f7,#6b21a8);
-  box-shadow:0 4px 12px rgba(120,50,200,.4);
+  border:1px solid rgba(200,140,255,.5);
+  box-shadow:0 6px 18px rgba(120,50,200,.45),0 2px 0 #4a1580,inset 0 1px rgba(255,255,255,.2);
 }
-.episodes-box,.comments-box{
-  background:rgba(255,255,255,.05);
+
+/* Season & Episode */
+.season-box,.episodes-box,.comments-box{
+  background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.08);
-  border-radius:14px;padding:12px;margin:14px 0;
+  border-radius:14px;padding:13px;margin:14px 0;
 }
-.episodes-grid{display:flex;flex-wrap:wrap;gap:6px}
-.episode-btn{
-  padding:7px 12px;border-radius:9px;
+.season-box h3,.episodes-box h3,.comments-box h3{font-size:14px;margin-bottom:10px}
+.season-grid,.episodes-grid{display:flex;flex-wrap:wrap;gap:7px}
+.season-btn,.episode-btn{
+  min-width:70px;padding:8px 12px;border-radius:10px;
   border:1px solid rgba(170,110,255,.3);
-  background:rgba(120,50,200,.2);color:#e0c0ff;font-size:12px;
+  background:rgba(120,50,200,.18);color:#e0c0ff;font-size:12px;
 }
-.episode-btn.selected{background:linear-gradient(145deg,#9b4dff,#5a1a9e);color:#fff}
-.comment-form{display:flex;gap:6px;margin-bottom:10px}
+.season-btn.selected,.episode-btn.selected{
+  background:linear-gradient(145deg,#9b4dff,#5a1a9e);
+  border-color:rgba(200,140,255,.55);color:#fff;
+  box-shadow:0 4px 12px rgba(100,40,180,.3);
+}
+
+.comment-form{display:flex;gap:7px;margin-bottom:10px}
 .comment-form input{
-  flex:1;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);color:#fff;padding:0 10px;outline:none;
+  flex:1;height:40px;border-radius:11px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);color:#fff;padding:0 12px;outline:none;
 }
 .comment-form button{
-  padding:0 14px;border-radius:10px;border:none;
+  padding:0 15px;border-radius:11px;border:none;
   background:linear-gradient(145deg,#9b4dff,#5a1a9e);color:#fff;
 }
+
+/* ===== SETTINGS ===== */
+.settings-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(170,110,255,.2);
+  border-radius:16px;padding:15px;margin-bottom:12px;
+  backdrop-filter:blur(10px);
+}
+.settings-card h3{font-size:14px;margin-bottom:6px}
+.settings-card p{font-size:12px;color:#aaa;line-height:1.6}
+
+/* ===== TOAST ===== */
 .toast{
-  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
-  background:rgba(30,15,45,.95);padding:10px 16px;border-radius:12px;
+  position:fixed;bottom:85px;left:50%;transform:translateX(-50%);
+  background:rgba(25,12,40,.95);
+  border:1px solid rgba(170,110,255,.25);
+  padding:10px 16px;border-radius:13px;
   font-size:12px;opacity:0;transition:.25s;z-index:300;
-  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 8px 25px rgba(0,0,0,.4);
 }
 .toast.show{opacity:1}
+
+/* ===== ADMIN ===== */
 .admin-box{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:16px;padding:14px;margin-top:16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(170,110,255,.25);
+  border-radius:16px;padding:15px;margin-top:14px;
 }
 .admin-input{
   width:100%;margin-bottom:8px;padding:10px;
-  border-radius:10px;border:1px solid rgba(255,255,255,.12);
+  border-radius:11px;border:1px solid rgba(255,255,255,.12);
   background:rgba(255,255,255,.06);color:#fff;outline:none;
 }
 </style>
@@ -208,17 +314,17 @@ main{padding:14px;max-width:1200px;margin:0 auto}
   </section>
 
   <section id="moviesPage" class="page">
-    <h2 style="margin:10px 0">🎬 فیلم‌ها</h2>
+    <h2 style="margin:8px 0 12px;font-size:18px">🎬 فیلم‌ها</h2>
     <div id="moviesGrid" class="full-grid"></div>
   </section>
 
   <section id="seriesPage" class="page">
-    <h2 style="margin:10px 0">📺 سریال‌ها</h2>
+    <h2 style="margin:8px 0 12px;font-size:18px">📺 سریال‌ها</h2>
     <div id="seriesGrid" class="full-grid"></div>
   </section>
 
   <section id="settingsPage" class="page">
-    <h2 style="margin:10px 0">⚙️ تنظیمات</h2>
+    <h2 style="margin:8px 0 14px;font-size:18px">⚙️ تنظیمات</h2>
     <div id="settingsContent"></div>
   </section>
 </main>
@@ -238,17 +344,30 @@ main{padding:14px;max-width:1200px;margin:0 auto}
   </button>
 </nav>
 
+<!-- MODAL -->
 <div id="modal" class="modal">
-  <div class="modal-bg" id="modalBg"></div>
-  <button class="close" onclick="hideModal()">×</button>
-  <div class="modal-content">
-    <img id="modalPoster" class="modal-poster" src="">
-    <h2 id="modalTitle" style="text-align:center;margin-bottom:6px"></h2>
-    <div id="modalMeta" style="text-align:center;color:#aaa;font-size:12px;margin-bottom:12px"></div>
-    <div id="modalDescription" style="font-size:13px;line-height:1.8;color:#ddd;background:rgba(255,255,255,.05);padding:12px;border-radius:12px"></div>
-    
+  <div class="modal-top">
+    <div class="modal-bg" id="modalBg"></div>
+    <button class="close" onclick="hideModal()">×</button>
+    <div class="modal-top-content">
+      <img id="modalPoster" class="modal-poster" src="">
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <h2 id="modalTitle"></h2>
+    <div id="modalMeta" class="modal-meta"></div>
+    <div id="modalDescription" class="description"></div>
+
+    <!-- فصل‌ها -->
+    <div id="seasonBox" class="season-box" style="display:none">
+      <h3>انتخاب فصل</h3>
+      <div id="seasonGrid" class="season-grid"></div>
+    </div>
+
+    <!-- قسمت‌ها -->
     <div id="episodesBox" class="episodes-box" style="display:none">
-      <h3 style="font-size:14px;margin-bottom:8px">انتخاب قسمت</h3>
+      <h3>انتخاب قسمت</h3>
       <div id="episodesGrid" class="episodes-grid"></div>
     </div>
 
@@ -259,7 +378,7 @@ main{padding:14px;max-width:1200px;margin:0 auto}
     </div>
 
     <div class="comments-box">
-      <h3 style="font-size:14px;margin-bottom:8px">💬 نظرات</h3>
+      <h3>💬 نظرات</h3>
       <div class="comment-form">
         <input id="commentInput" placeholder="نظرت رو بنویس...">
         <button onclick="addComment()">ارسال</button>
@@ -273,25 +392,25 @@ main{padding:14px;max-width:1200px;margin:0 auto}
 
 <script>
 const ADMIN_PASSWORD = "hamoxu";
-const STORAGE_KEY = "hamo_v7";
-const FAV_KEY = "hamo_fav_v7";
-const HISTORY_KEY = "hamo_hist_v7";
-const COMMENTS_KEY = "hamo_com_v7";
-const FEATURED_KEY = "hamo_feat_v7";
+const STORAGE_KEY = "hamo_v8";
+const FAV_KEY = "hamo_fav_v8";
+const HISTORY_KEY = "hamo_hist_v8";
+const COMMENTS_KEY = "hamo_com_v8";
+const FEATURED_KEY = "hamo_feat_v8";
 
-const fallback = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect fill="#1a1225" width="100%" height="100%"/><text x="50%" y="50%" text-anchor="middle" fill="#a96cff" font-size="28">HAMOFLIX</text></svg>');
+const fallback = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect fill="#1a1225" width="100%" height="100%"/><text x="50%" y="50%" text-anchor="middle" fill="#a96cff" font-size="26">HAMOFLIX</text></svg>');
 
 const defaultMovies = [
-  {id:"1",title:"Wednesday",type:"series",genre:"فانتزی",year:"2022",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",description:"داستان ونزدی آدامز",isNew:true,episodes:8},
-  {id:"2",title:"Silo",type:"series",genre:"علمی تخیلی",year:"2023",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/1NxaSnba1QbbaZ6UVGqL9Y16k.jpg",description:"زندگی در سیلو",isNew:true,episodes:10},
-  {id:"3",title:"The Last of Us",type:"series",genre:"درام",year:"2023",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",description:"سفر در دنیای ویران",isNew:true,episodes:9},
-  {id:"4",title:"Interstellar",type:"movie",genre:"علمی تخیلی",year:"2014",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",description:"سفر میان‌ستاره‌ای",isNew:false},
-  {id:"5",title:"Inception",type:"movie",genre:"علمی تخیلی",year:"2010",rating:"8.8",poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",description:"دزدی از ذهن",isNew:false},
-  {id:"6",title:"Dune",type:"movie",genre:"علمی تخیلی",year:"2021",rating:"8.0",poster:"https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",description:"سیاره شن",isNew:true},
-  {id:"7",title:"Stranger Things",type:"series",genre:"علمی تخیلی",year:"2016",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",description:"ماجراهای ماورایی",isNew:false,episodes:8},
-  {id:"8",title:"Breaking Bad",type:"series",genre:"جنایی",year:"2008",rating:"9.5",poster:"https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",description:"معلم شیمی",isNew:false,episodes:7},
-  {id:"9",title:"Avatar",type:"movie",genre:"فانتزی",year:"2009",rating:"7.9",poster:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",description:"پاندورا",isNew:false},
-  {id:"10",title:"Dark",type:"series",genre:"معمایی",year:"2017",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",description:"راز زمان",isNew:false,episodes:10}
+  {id:"1",title:"Wednesday",type:"series",genre:"فانتزی",year:"2022",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",description:"داستان ونزدی آدامز در مدرسه جدید.",isNew:true,seasons:2,episodesPerSeason:8},
+  {id:"2",title:"Silo",type:"series",genre:"علمی تخیلی",year:"2023",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/1NxaSnba1QbbaZ6UVGqL9Y16k.jpg",description:"زندگی در سیلوی زیرزمینی.",isNew:true,seasons:2,episodesPerSeason:10},
+  {id:"3",title:"The Last of Us",type:"series",genre:"درام",year:"2023",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",description:"سفر دو نفر در دنیای ویران‌شده.",isNew:true,seasons:2,episodesPerSeason:9},
+  {id:"4",title:"Interstellar",type:"movie",genre:"علمی تخیلی",year:"2014",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",description:"سفر میان‌ستاره‌ای برای نجات بشریت.",isNew:false},
+  {id:"5",title:"Inception",type:"movie",genre:"علمی تخیلی",year:"2010",rating:"8.8",poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",description:"دزدی از ذهن انسان‌ها در رؤیا.",isNew:false},
+  {id:"6",title:"Dune",type:"movie",genre:"علمی تخیلی",year:"2021",rating:"8.0",poster:"https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",description:"خاندان آتریدیس و سیاره شن.",isNew:true},
+  {id:"7",title:"Stranger Things",type:"series",genre:"علمی تخیلی",year:"2016",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",description:"ماجراهای ماورایی نوجوانان.",isNew:false,seasons:4,episodesPerSeason:8},
+  {id:"8",title:"Breaking Bad",type:"series",genre:"جنایی",year:"2008",rating:"9.5",poster:"https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",description:"معلم شیمی وارد دنیای جرم می‌شود.",isNew:false,seasons:5,episodesPerSeason:7},
+  {id:"9",title:"Avatar",type:"movie",genre:"فانتزی",year:"2009",rating:"7.9",poster:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",description:"سرباز در دنیای پاندورا.",isNew:false},
+  {id:"10",title:"Dark",type:"series",genre:"معمایی",year:"2017",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",description:"راز زمان و ناپدید شدن یک کودک.",isNew:false,seasons:3,episodesPerSeason:10}
 ];
 
 let movies = [];
@@ -300,6 +419,7 @@ let historyList = [];
 let comments = {};
 let featuredIds = ["4","5","1","3","6"];
 let currentMovie = null;
+let selectedSeason = 1;
 let selectedEpisode = 1;
 let modalOpen = false;
 
@@ -309,51 +429,47 @@ function loadData(){
     if(saved){
       const p = JSON.parse(saved);
       if(Array.isArray(p) && p.length) movies = p;
-      else movies = JSON.parse(JSON.stringify(defaultMovies));
+      else { movies = JSON.parse(JSON.stringify(defaultMovies)); localStorage.setItem(STORAGE_KEY, JSON.stringify(movies)); }
     } else {
       movies = JSON.parse(JSON.stringify(defaultMovies));
       localStorage.setItem(STORAGE_KEY, JSON.stringify(movies));
     }
-  }catch(e){
-    movies = JSON.parse(JSON.stringify(defaultMovies));
-  }
+  }catch(e){ movies = JSON.parse(JSON.stringify(defaultMovies)); }
 
-  try{ favorites = JSON.parse(localStorage.getItem(FAV_KEY) || "[]"); }catch(e){ favorites = []; }
-  try{ historyList = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]"); }catch(e){ historyList = []; }
-  try{ comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || "{}"); }catch(e){ comments = {}; }
-  try{ 
-    const f = JSON.parse(localStorage.getItem(FEATURED_KEY) || "null");
-    if(Array.isArray(f) && f.length) featuredIds = f;
+  try{ favorites = JSON.parse(localStorage.getItem(FAV_KEY)||"[]"); }catch(e){ favorites=[]; }
+  try{ historyList = JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]"); }catch(e){ historyList=[]; }
+  try{ comments = JSON.parse(localStorage.getItem(COMMENTS_KEY)||"{}"); }catch(e){ comments={}; }
+  try{
+    const f = JSON.parse(localStorage.getItem(FEATURED_KEY)||"null");
+    if(Array.isArray(f)&&f.length) featuredIds=f;
   }catch(e){}
 }
 
 function saveMovies(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(movies)); }
 
 function toast(msg){
-  const t = document.getElementById("toast");
-  t.textContent = msg;
+  const t=document.getElementById("toast");
+  t.textContent=msg;
   t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2000);
+  setTimeout(()=>t.classList.remove("show"),2000);
 }
 
 function esc(t){ return String(t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-
 function posterError(img){ img.onerror=null; img.src=fallback; }
 
-function openPage(id, btn){
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+function openPage(id,btn){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-  document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".nav-item").forEach(b=>b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 
-  if(id === "moviesPage") renderFull("movie", "moviesGrid");
-  if(id === "seriesPage") renderFull("series", "seriesGrid");
-  if(id === "settingsPage") renderSettings();
+  if(id==="moviesPage") renderFull("movie","moviesGrid");
+  if(id==="seriesPage") renderFull("series","seriesGrid");
+  if(id==="settingsPage") renderSettings();
   window.scrollTo(0,0);
 }
 
 function card(m){
-  const fav = favorites.includes(String(m.id));
   return `<div class="movie-card" onclick="openMovie('${esc(m.id)}')">
     <img src="${esc(m.poster||fallback)}" onerror="posterError(this)" loading="lazy">
     <div class="movie-info">
@@ -364,14 +480,14 @@ function card(m){
 }
 
 function renderFeatured(){
-  const track = document.getElementById("featuredTrack");
-  let list = featuredIds.map(id => movies.find(m => String(m.id)===String(id))).filter(Boolean);
-  if(list.length < 5){
-    const extra = movies.filter(m => !list.find(x => x.id===m.id)).slice(0,5-list.length);
-    list = list.concat(extra);
+  const track=document.getElementById("featuredTrack");
+  let list=featuredIds.map(id=>movies.find(m=>String(m.id)===String(id))).filter(Boolean);
+  if(list.length<5){
+    const extra=movies.filter(m=>!list.find(x=>x.id===m.id)).slice(0,5-list.length);
+    list=list.concat(extra);
   }
-  track.innerHTML = list.map(m => `
-    <div class="featured-card" style="position:relative" onclick="openMovie('${esc(m.id)}')">
+  track.innerHTML=list.map(m=>`
+    <div class="featured-card" onclick="openMovie('${esc(m.id)}')">
       <img src="${esc(m.poster||fallback)}" onerror="posterError(this)">
       <div class="featured-info"><strong>${esc(m.title)}</strong><br>⭐ ${esc(m.rating||"—")}</div>
     </div>
@@ -380,21 +496,21 @@ function renderFeatured(){
 
 function renderHome(){
   renderFeatured();
-  const box = document.getElementById("homeSections");
-  const sections = [
-    {title:"🔥 فیلم‌های جدید", filter:m => m.type==="movie" && m.isNew},
-    {title:"📺 سریال‌های جدید", filter:m => m.type==="series" && m.isNew},
-    {title:"📺 سریال‌ها", filter:m => m.type==="series"},
-    {title:"🎬 فیلم‌ها", filter:m => m.type==="movie"},
-    {title:"⭐ محبوب‌ترین‌ها", filter:m => true, sort:(a,b)=>Number(b.rating)-Number(a.rating)}
+  const box=document.getElementById("homeSections");
+  const sections=[
+    {title:"🔥 فیلم‌های جدید",filter:m=>m.type==="movie"&&m.isNew},
+    {title:"📺 سریال‌های جدید",filter:m=>m.type==="series"&&m.isNew},
+    {title:"📺 سریال‌ها",filter:m=>m.type==="series"},
+    {title:"🎬 فیلم‌ها",filter:m=>m.type==="movie"},
+    {title:"⭐ محبوب‌ترین‌ها",filter:m=>true,sort:(a,b)=>Number(b.rating)-Number(a.rating)}
   ];
-  let html = "";
-  sections.forEach((s,i) => {
-    let items = movies.filter(s.filter);
+  let html="";
+  sections.forEach((s,i)=>{
+    let items=movies.filter(s.filter);
     if(s.sort) items.sort(s.sort);
-    items = items.slice(0,8);
+    items=items.slice(0,8);
     if(!items.length) return;
-    html += `<div class="section">
+    html+=`<div class="section">
       <div class="section-head">
         <h2>${s.title}</h2>
         <button class="view-all" onclick="openSection(${i})">مشاهده همه</button>
@@ -402,106 +518,131 @@ function renderHome(){
       <div class="movie-row">${items.map(card).join("")}</div>
     </div>`;
   });
-  box.innerHTML = html || "<p style='text-align:center;color:#888;padding:30px'>محتوایی نیست</p>";
+  box.innerHTML=html||"<p style='text-align:center;color:#888;padding:30px'>محتوایی نیست</p>";
 }
 
 function openSection(i){
-  if(i===2){ document.querySelector('[data-page="seriesPage"]').click(); return; }
-  if(i===3){ document.querySelector('[data-page="moviesPage"]').click(); return; }
+  if(i===2){document.querySelector('[data-page="seriesPage"]').click();return;}
+  if(i===3){document.querySelector('[data-page="moviesPage"]').click();return;}
   document.querySelector('[data-page="moviesPage"]').click();
 }
 
-function renderFull(type, id){
-  const list = movies.filter(m => m.type===type).sort((a,b)=>Number(b.rating)-Number(a.rating));
-  document.getElementById(id).innerHTML = list.map(card).join("") || "<p style='color:#888'>موردی نیست</p>";
+function renderFull(type,id){
+  const list=movies.filter(m=>m.type===type).sort((a,b)=>Number(b.rating)-Number(a.rating));
+  document.getElementById(id).innerHTML=list.map(card).join("")||"<p style='color:#888'>موردی نیست</p>";
 }
 
 function openMovie(id){
-  const m = movies.find(x => String(x.id)===String(id));
+  const m=movies.find(x=>String(x.id)===String(id));
   if(!m) return;
-  currentMovie = m;
-  selectedEpisode = 1;
+  currentMovie=m;
+  selectedSeason=1;
+  selectedEpisode=1;
 
-  // تاریخچه
-  historyList = historyList.filter(x => x !== String(id));
+  historyList=historyList.filter(x=>x!==String(id));
   historyList.unshift(String(id));
   if(historyList.length>15) historyList.length=15;
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(historyList));
+  localStorage.setItem(HISTORY_KEY,JSON.stringify(historyList));
 
-  document.getElementById("modalBg").style.backgroundImage = `url('${m.poster||fallback}')`;
-  document.getElementById("modalPoster").src = m.poster||fallback;
-  document.getElementById("modalTitle").textContent = m.title;
-  document.getElementById("modalMeta").textContent = `${m.type==="movie"?"فیلم":"سریال"} · ${m.year||""} · ${m.genre||""} · ⭐ ${m.rating||"—"}`;
-  document.getElementById("modalDescription").textContent = m.description || "توضیحی ثبت نشده";
+  document.getElementById("modalBg").style.backgroundImage=`url('${m.poster||fallback}')`;
+  document.getElementById("modalPoster").src=m.poster||fallback;
+  document.getElementById("modalTitle").textContent=m.title;
+  document.getElementById("modalMeta").textContent=`${m.type==="movie"?"فیلم":"سریال"} · ${m.year||""} · ${m.genre||""} · ⭐ ${m.rating||"—"}`;
+  document.getElementById("modalDescription").textContent=m.description||"توضیحی ثبت نشده";
 
-  // قسمت‌ها
-  const epBox = document.getElementById("episodesBox");
+  // فصل و قسمت
+  const seasonBox=document.getElementById("seasonBox");
+  const epBox=document.getElementById("episodesBox");
+
   if(m.type==="series"){
-    epBox.style.display="block";
-    let epHtml="";
-    for(let i=1;i<=(m.episodes||8);i++){
-      epHtml += `<button class="episode-btn \( {i===1?"selected":""}" onclick="selectEp( \){i})">قسمت ${i}</button>`;
+    const seasons=m.seasons||1;
+    seasonBox.style.display="block";
+    let sHtml="";
+    for(let i=1;i<=seasons;i++){
+      sHtml+=`<button class="season-btn \( {i===1?"selected":""}" onclick="selectSeason( \){i})">فصل ${i}</button>`;
     }
-    document.getElementById("episodesGrid").innerHTML = epHtml;
-  } else {
+    document.getElementById("seasonGrid").innerHTML=sHtml;
+    renderEpisodes();
+    epBox.style.display="block";
+  }else{
+    seasonBox.style.display="none";
     epBox.style.display="none";
   }
 
   updateFavBtn();
   renderComments();
   document.getElementById("modal").classList.add("show");
-  modalOpen = true;
+  modalOpen=true;
   history.pushState({modal:1},"");
 }
 
-function selectEp(n){
-  selectedEpisode = n;
-  document.querySelectorAll(".episode-btn").forEach((b,i) => b.classList.toggle("selected", i+1===n));
-  toast("قسمت " + n + " انتخاب شد");
+function selectSeason(n){
+  selectedSeason=n;
+  selectedEpisode=1;
+  document.querySelectorAll(".season-btn").forEach((b,i)=>b.classList.toggle("selected",i+1===n));
+  renderEpisodes();
+  toast("فصل "+n+" انتخاب شد");
+}
+
+function renderEpisodes(){
+  const count=currentMovie.episodesPerSeason||8;
+  let html="";
+  for(let i=1;i<=count;i++){
+    html+=`<button class="episode-btn \( {i===selectedEpisode?"selected":""}" onclick="selectEpisode( \){i})">قسمت ${i}</button>`;
+  }
+  document.getElementById("episodesGrid").innerHTML=html;
+}
+
+function selectEpisode(n){
+  selectedEpisode=n;
+  document.querySelectorAll(".episode-btn").forEach((b,i)=>b.classList.toggle("selected",i+1===n));
+  toast("قسمت "+n+" انتخاب شد");
 }
 
 function hideModal(){
   document.getElementById("modal").classList.remove("show");
-  modalOpen = false;
-  currentMovie = null;
+  modalOpen=false;
+  currentMovie=null;
 }
 
-window.addEventListener("popstate", () => {
-  if(modalOpen) hideModal();
-});
+window.addEventListener("popstate",()=>{ if(modalOpen) hideModal(); });
 
 function playMovie(){
   if(!currentMovie) return;
-  toast(currentMovie.type==="series" ? `پخش قسمت ${selectedEpisode}` : "در حال پخش...");
+  if(currentMovie.type==="series"){
+    toast(`پخش فصل ${selectedSeason} - قسمت ${selectedEpisode}`);
+  }else toast("در حال پخش...");
 }
 function downloadMovie(){
   if(!currentMovie) return;
-  toast("دانلود شروع شد");
+  if(currentMovie.type==="series"){
+    toast(`دانلود فصل ${selectedSeason} - قسمت ${selectedEpisode}`);
+  }else toast("دانلود شروع شد");
 }
 
 function updateFavBtn(){
-  const active = favorites.includes(String(currentMovie.id));
-  document.getElementById("favoriteBtn").textContent = active ? "♥ حذف" : "♡ علاقه‌مندی";
+  const active=favorites.includes(String(currentMovie.id));
+  document.getElementById("favoriteBtn").textContent=active?"♥ حذف از علاقه‌مندی":"♡ علاقه‌مندی";
 }
 function toggleFavorite(){
   if(!currentMovie) return;
-  const id = String(currentMovie.id);
+  const id=String(currentMovie.id);
   if(favorites.includes(id)){
-    favorites = favorites.filter(x=>x!==id);
-    toast("حذف شد");
-  } else {
+    favorites=favorites.filter(x=>x!==id);
+    toast("از علاقه‌مندی‌ها حذف شد");
+  }else{
     favorites.push(id);
-    toast("اضافه شد");
+    toast("به علاقه‌مندی‌ها اضافه شد ❤️");
   }
-  localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
+  localStorage.setItem(FAV_KEY,JSON.stringify(favorites));
   updateFavBtn();
   renderHome();
 }
 
 function renderComments(){
-  const list = comments[String(currentMovie.id)] || [];
-  document.getElementById("commentList").innerHTML = list.length 
-    ? list.map(c => `<div style="background:rgba(255,255,255,.05);padding:8px;border-radius:8px;margin-bottom:6px;font-size:12px">
+  const list=comments[String(currentMovie.id)]||[];
+  document.getElementById("commentList").innerHTML=list.length
+    ? list.map(c=>`<div style="background:rgba(255,255,255,.05);padding:9px;border-radius:10px;margin-bottom:6px;font-size:12px">
         <div style="color:#aaa;font-size:10px;margin-bottom:3px">کاربر · ${new Date(c.date).toLocaleDateString("fa-IR")}</div>
         ${esc(c.text)}
       </div>`).join("")
@@ -509,136 +650,149 @@ function renderComments(){
 }
 function addComment(){
   if(!currentMovie) return;
-  const input = document.getElementById("commentInput");
-  const text = input.value.trim();
+  const input=document.getElementById("commentInput");
+  const text=input.value.trim();
   if(!text) return;
-  const id = String(currentMovie.id);
+  const id=String(currentMovie.id);
   if(!comments[id]) comments[id]=[];
-  comments[id].unshift({text, date:Date.now()});
-  localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
+  comments[id].unshift({text,date:Date.now()});
+  localStorage.setItem(COMMENTS_KEY,JSON.stringify(comments));
   input.value="";
   renderComments();
   toast("نظر ثبت شد");
 }
 
 function toggleHistory(){
-  if(!historyList.length){ toast("تاریخچه‌ای نیست"); return; }
-  const items = historyList.map(id => movies.find(m=>String(m.id)===id)).filter(Boolean);
-  let msg = items.map(m => m.title).join("\n");
-  alert("تاریخچه:\n\n" + msg);
+  if(!historyList.length){toast("تاریخچه‌ای نیست");return;}
+  const items=historyList.map(id=>movies.find(m=>String(m.id)===id)).filter(Boolean);
+  alert("تاریخچه اخیر:\n\n"+items.map(m=>m.title).join("\n"));
 }
 
 function renderSettings(){
-  document.getElementById("settingsContent").innerHTML = `
-    <div style="background:rgba(255,255,255,.05);padding:14px;border-radius:12px;margin-bottom:10px">
-      <strong>علاقه‌مندی‌ها</strong>
-      <button class="btn" style="margin-top:8px" onclick="showFavs()">مشاهده</button>
+  const favCount=favorites.length;
+  document.getElementById("settingsContent").innerHTML=`
+    <div class="settings-card">
+      <h3>❤️ علاقه‌مندی‌های من</h3>
+      <p>${favCount ? favCount+" مورد ذخیره کردی" : "هنوز چیزی ذخیره نکردی"}</p>
+      <button class="btn play" style="margin-top:10px;width:100%" onclick="showFavorites()">مشاهده علاقه‌مندی‌ها</button>
     </div>
-    <div style="background:rgba(255,255,255,.05);padding:14px;border-radius:12px">
-      <strong>گزارش مشکل</strong>
-      <button class="btn" style="margin-top:8px" onclick="report()">گزارش</button>
+
+    <div class="settings-card">
+      <h3>ℹ️ درباره سازنده</h3>
+      <p>
+        این سایت توسط <strong>HAMO</strong> ساخته شده.
+        هدفش اینه که بتونی راحت فیلم و سریال مورد علاقه‌ت رو پیدا کنی و ازش لذت ببری.
+        اگر پیشنهادی داری از بخش گزارش مشکل بفرست ❤️
+      </p>
+    </div>
+
+    <div class="settings-card">
+      <h3>⚠ گزارش مشکل</h3>
+      <p>اگر باگ یا مشکلی دیدی بهم بگو</p>
+      <button class="btn" style="margin-top:8px" onclick="report()">ارسال گزارش</button>
     </div>
   `;
 }
-function showFavs(){
-  const list = movies.filter(m => favorites.includes(String(m.id)));
-  document.getElementById("homeSections").innerHTML = list.length
-    ? `<div class="section"><h2>❤️ علاقه‌مندی‌ها</h2><div class="movie-row">${list.map(card).join("")}</div></div>`
-    : "<p style='text-align:center;color:#888;padding:20px'>چیزی ذخیره نکردی</p>";
-  openPage("homePage", document.querySelector('[data-page="homePage"]'));
-}
-function report(){
-  const t = prompt("مشکل را بنویس:");
-  if(t) toast("گزارش ثبت شد");
+
+function showFavorites(){
+  const list=movies.filter(m=>favorites.includes(String(m.id)));
+  document.getElementById("homeSections").innerHTML=list.length
+    ? `<div class="section"><div class="section-head"><h2>❤️ علاقه‌مندی‌های من</h2></div>
+       <div class="movie-row">${list.map(card).join("")}</div></div>`
+    : "<p style='text-align:center;color:#888;padding:30px'>هنوز فیلمی ذخیره نکردی</p>";
+  openPage("homePage",document.querySelector('[data-page="homePage"]'));
 }
 
-/* ADMIN */
-let clicks = 0;
-document.getElementById("logo").onclick = function(){
+function report(){
+  const t=prompt("مشکل را بنویس:");
+  if(t) toast("گزارش ثبت شد ❤️");
+}
+
+/* ===== ADMIN ===== */
+let clicks=0;
+document.getElementById("logo").onclick=function(){
   clicks++;
   clearTimeout(window.clk);
-  window.clk = setTimeout(()=>clicks=0, 1600);
-  if(clicks >= 5){
+  window.clk=setTimeout(()=>clicks=0,1600);
+  if(clicks>=5){
     clicks=0;
-    const p = prompt("رمز ادمین:");
-    if(p === ADMIN_PASSWORD){
-      openAdmin();
-      toast("ورود موفق");
-    } else if(p!==null) toast("رمز اشتباه");
+    const p=prompt("رمز ادمین:");
+    if(p===ADMIN_PASSWORD){ openAdmin(); toast("ورود موفق"); }
+    else if(p!==null) toast("رمز اشتباه");
   }
 };
 
 function openAdmin(){
-  openPage("settingsPage", document.querySelector('[data-page="settingsPage"]'));
-  document.getElementById("settingsContent").innerHTML = `
+  openPage("settingsPage",document.querySelector('[data-page="settingsPage"]'));
+  document.getElementById("settingsContent").innerHTML=`
     <div class="admin-box">
       <h3>🛠 پنل مدیریت</h3>
-      <p style="font-size:12px;color:#aaa;margin:8px 0">فیلم‌های فعلی:</p>
-      <div style="max-height:200px;overflow:auto;margin-bottom:12px">
-        ${movies.map(m => `
+      <div style="max-height:220px;overflow:auto;margin:10px 0">
+        ${movies.map(m=>`
           <div style="display:flex;align-items:center;gap:8px;padding:6px;background:rgba(255,255,255,.04);border-radius:8px;margin-bottom:4px">
-            <img src="${esc(m.poster||fallback)}" style="width:30px;height:42px;object-fit:cover;border-radius:4px" onerror="posterError(this)">
+            <img src="${esc(m.poster||fallback)}" style="width:32px;height:45px;object-fit:cover;border-radius:5px" onerror="posterError(this)">
             <span style="flex:1;font-size:12px">${esc(m.title)}</span>
             <button onclick="editMovie('${esc(m.id)}')" style="padding:4px 8px;font-size:11px;border-radius:6px;border:1px solid #a855f7;background:rgba(168,85,247,.2);color:#e0c0ff">ویرایش</button>
           </div>
         `).join("")}
       </div>
-      <h4 id="formTitle">➕ افزودن جدید</h4>
-      <input class="admin-input" id="aTitle" placeholder="نام فیلم/سریال">
+      <h4 id="formTitle" style="margin:12px 0 8px">➕ افزودن جدید</h4>
+      <input class="admin-input" id="aTitle" placeholder="نام">
       <select class="admin-input" id="aType"><option value="movie">فیلم</option><option value="series">سریال</option></select>
       <input class="admin-input" id="aGenre" placeholder="ژانر">
       <input class="admin-input" id="aYear" placeholder="سال">
       <input class="admin-input" id="aRating" placeholder="امتیاز">
       <input class="admin-input" id="aPoster" placeholder="لینک پوستر">
-      <input class="admin-input" id="aVideo" placeholder="لینک ویدیو">
-      <input class="admin-input" id="aEpisodes" placeholder="تعداد قسمت (سریال)">
+      <input class="admin-input" id="aSeasons" placeholder="تعداد فصل (سریال)">
+      <input class="admin-input" id="aEpisodes" placeholder="قسمت در هر فصل">
       <textarea class="admin-input" id="aDesc" rows="2" placeholder="توضیحات"></textarea>
       <button class="btn play" style="width:100%;margin-top:6px" onclick="saveAdmin()">ذخیره</button>
       <button class="btn" style="width:100%;margin-top:6px" onclick="renderSettings()">بستن</button>
     </div>
   `;
-  window.editingId = null;
+  window.editingId=null;
 }
 
 function editMovie(id){
-  const m = movies.find(x => String(x.id)===String(id));
+  const m=movies.find(x=>String(x.id)===String(id));
   if(!m) return;
-  window.editingId = id;
-  document.getElementById("formTitle").textContent = "✏️ ویرایش: " + m.title;
-  document.getElementById("aTitle").value = m.title||"";
-  document.getElementById("aType").value = m.type||"movie";
-  document.getElementById("aGenre").value = m.genre||"";
-  document.getElementById("aYear").value = m.year||"";
-  document.getElementById("aRating").value = m.rating||"";
-  document.getElementById("aPoster").value = m.poster||"";
-  document.getElementById("aVideo").value = m.videoLink||"";
-  document.getElementById("aEpisodes").value = m.episodes||"";
-  document.getElementById("aDesc").value = m.description||"";
+  window.editingId=id;
+  document.getElementById("formTitle").textContent="✏️ ویرایش: "+m.title;
+  document.getElementById("aTitle").value=m.title||"";
+  document.getElementById("aType").value=m.type||"movie";
+  document.getElementById("aGenre").value=m.genre||"";
+  document.getElementById("aYear").value=m.year||"";
+  document.getElementById("aRating").value=m.rating||"";
+  document.getElementById("aPoster").value=m.poster||"";
+  document.getElementById("aSeasons").value=m.seasons||"";
+  document.getElementById("aEpisodes").value=m.episodesPerSeason||"";
+  document.getElementById("aDesc").value=m.description||"";
   toast("در حال ویرایش");
 }
 
 function saveAdmin(){
-  const title = document.getElementById("aTitle").value.trim();
-  if(!title){ toast("نام را وارد کن"); return; }
-  const data = {
+  const title=document.getElementById("aTitle").value.trim();
+  if(!title){toast("نام را وارد کن");return;}
+  const data={
     title,
-    type: document.getElementById("aType").value,
-    genre: document.getElementById("aGenre").value.trim()||"عمومی",
-    year: document.getElementById("aYear").value.trim(),
-    rating: document.getElementById("aRating").value.trim()||"0",
-    poster: document.getElementById("aPoster").value.trim()||fallback,
-    videoLink: document.getElementById("aVideo").value.trim(),
-    description: document.getElementById("aDesc").value.trim(),
-    isNew: true
+    type:document.getElementById("aType").value,
+    genre:document.getElementById("aGenre").value.trim()||"عمومی",
+    year:document.getElementById("aYear").value.trim(),
+    rating:document.getElementById("aRating").value.trim()||"0",
+    poster:document.getElementById("aPoster").value.trim()||fallback,
+    description:document.getElementById("aDesc").value.trim(),
+    isNew:true
   };
-  if(data.type==="series") data.episodes = parseInt(document.getElementById("aEpisodes").value)||8;
-
+  if(data.type==="series"){
+    data.seasons=parseInt(document.getElementById("aSeasons").value)||1;
+    data.episodesPerSeason=parseInt(document.getElementById("aEpisodes").value)||8;
+  }
   if(window.editingId){
-    const i = movies.findIndex(m => String(m.id)===String(window.editingId));
-    if(i>-1) movies[i] = {...movies[i], ...data};
+    const i=movies.findIndex(m=>String(m.id)===String(window.editingId));
+    if(i>-1) movies[i]={...movies[i],...data};
     toast("ویرایش شد");
-  } else {
-    data.id = String(Date.now());
+  }else{
+    data.id=String(Date.now());
     movies.unshift(data);
     toast("اضافه شد");
   }
