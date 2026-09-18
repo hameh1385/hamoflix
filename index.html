@@ -3,853 +3,906 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0615">
+<meta name="theme-color" content="#08050e">
 <title>HAMOFLIX</title>
 
 <style>
 *{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent;
 }
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 20% 0%,rgba(130,70,255,.18),transparent 35%),
-    radial-gradient(circle at 100% 20%,rgba(90,30,180,.13),transparent 35%),
-    #08050e;
-  color:#fff;
-  min-height:100vh;
-  overflow-x:hidden;
+ margin:0;
+ font-family:Tahoma,Arial,sans-serif;
+ background:
+ radial-gradient(circle at 20% 0%,rgba(130,70,255,.18),transparent 35%),
+ radial-gradient(circle at 100% 20%,rgba(90,30,180,.13),transparent 35%),
+ #08050e;
+ color:#fff;
+ min-height:100vh;
+ overflow-x:hidden;
 }
 
-button,input,select,textarea{
-  font:inherit;
-}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
 
-button{
-  cursor:pointer;
-}
-
-::-webkit-scrollbar{
-  width:5px;
-  height:5px;
-}
+::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-thumb{
-  background:rgba(170,110,255,.35);
-  border-radius:20px;
+ background:rgba(170,110,255,.35);
+ border-radius:20px;
 }
-::-webkit-scrollbar-track{
-  background:transparent;
-}
-
-/* GLASS */
+::-webkit-scrollbar-track{background:transparent}
 
 .glass{
-  background:rgba(255,255,255,.065);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.25),
-    inset 0 1px rgba(255,255,255,.06);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+ background:rgba(255,255,255,.065);
+ border:1px solid rgba(255,255,255,.10);
+ box-shadow:
+ 0 15px 40px rgba(0,0,0,.25),
+ inset 0 1px rgba(255,255,255,.06);
+ backdrop-filter:blur(14px);
+ -webkit-backdrop-filter:blur(14px);
 }
 
+/* HEADER */
+
 header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  padding:12px 16px;
-  background:rgba(8,5,14,.78);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
+ position:sticky;
+ top:0;
+ z-index:50;
+ padding:12px 16px;
+ background:rgba(8,5,14,.78);
+ border-bottom:1px solid rgba(255,255,255,.06);
+ backdrop-filter:blur(16px);
+ -webkit-backdrop-filter:blur(16px);
 }
 
 .header-inner{
-  max-width:1250px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  gap:12px;
+ max-width:1250px;
+ margin:auto;
+ display:flex;
+ align-items:center;
+ gap:12px;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:1px;
-  color:#fff;
-  cursor:pointer;
-  user-select:none;
-  text-shadow:0 0 20px rgba(165,90,255,.8);
+ font-size:22px;
+ font-weight:900;
+ letter-spacing:1px;
+ cursor:pointer;
+ user-select:none;
+ text-shadow:0 0 20px rgba(165,90,255,.8);
 }
 
 .search-box{
-  flex:1;
-  position:relative;
+ flex:1;
+ position:relative;
 }
 
 .search-box input{
-  width:100%;
-  height:43px;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:15px;
-  outline:none;
-  padding:0 16px;
-  background:rgba(255,255,255,.07);
-  color:white;
+ width:100%;
+ height:43px;
+ border:1px solid rgba(255,255,255,.10);
+ border-radius:15px;
+ outline:none;
+ padding:0 16px;
+ background:rgba(255,255,255,.07);
+ color:white;
 }
 
-.search-box input::placeholder{
-  color:#aaa;
-}
+.search-box input::placeholder{color:#aaa}
 
 .search-results{
-  position:absolute;
-  top:49px;
-  right:0;
-  left:0;
-  z-index:100;
-  border-radius:16px;
-  overflow:hidden;
-  display:none;
-  background:rgba(17,10,28,.96);
-  border:1px solid rgba(255,255,255,.1);
-  box-shadow:0 20px 50px #0008;
+ position:absolute;
+ top:49px;
+ right:0;
+ left:0;
+ z-index:100;
+ border-radius:16px;
+ overflow:hidden;
+ display:none;
+ background:rgba(17,10,28,.96);
+ border:1px solid rgba(255,255,255,.1);
+ box-shadow:0 20px 50px #0008;
 }
 
 .search-result{
-  padding:11px 14px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.06);
+ padding:11px 14px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .search-result:hover{
-  background:rgba(160,80,255,.13);
+ background:rgba(160,80,255,.13);
 }
 
 .search-result img{
-  width:35px;
-  height:50px;
-  object-fit:cover;
-  border-radius:7px;
+ width:35px;
+ height:50px;
+ object-fit:cover;
+ border-radius:7px;
 }
 
 /* PAGE */
 
 main{
-  width:min(1250px,calc(100% - 24px));
-  margin:auto;
-  padding-bottom:115px;
+ width:min(1250px,calc(100% - 24px));
+ margin:auto;
+ padding-bottom:115px;
 }
 
-.page{
-  display:none;
-}
+.page{display:none}
+.page.active{display:block}
 
-.page.active{
-  display:block;
-}
-
-/* FEATURED */
+/* HERO */
 
 .hero{
-  margin-top:18px;
-  padding:17px;
-  border-radius:24px;
-  overflow:hidden;
+ margin-top:18px;
+ padding:17px;
+ border-radius:24px;
+ overflow:hidden;
 }
 
-.welcome{
-  margin-bottom:14px;
-}
+.welcome{margin-bottom:14px}
 
 .welcome h1{
-  margin:0 0 7px;
-  font-size:24px;
+ margin:0 0 7px;
+ font-size:24px;
 }
 
 .welcome p{
-  margin:0;
-  color:#bbb;
-  font-size:13px;
+ margin:0;
+ color:#bbb;
+ font-size:13px;
 }
 
 .featured-window{
-  position:relative;
-  overflow:hidden;
-  border-radius:18px;
+ position:relative;
+ overflow:hidden;
+ border-radius:18px;
 }
 
 .featured-track{
-  display:flex;
-  direction:ltr;
-  gap:12px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  scroll-behavior:auto;
-  padding:2px 2px 8px;
-  overscroll-behavior-x:contain;
+ display:flex;
+ direction:ltr;
+ gap:12px;
+ overflow-x:auto;
+ scrollbar-width:none;
+ padding:2px 2px 8px;
 }
 
-.featured-track::-webkit-scrollbar{
-  display:none;
-}
+.featured-track::-webkit-scrollbar{display:none}
 
 .featured-card{
-  direction:rtl;
-  flex:0 0 calc((100% - 48px)/5);
-  min-width:0;
-  position:relative;
-  border-radius:17px;
-  overflow:hidden;
-  background:#171021;
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 10px 25px #0005;
-  cursor:pointer;
+ direction:rtl;
+ flex:0 0 calc((100% - 48px)/5);
+ min-width:0;
+ position:relative;
+ border-radius:17px;
+ overflow:hidden;
+ background:#171021;
+ border:1px solid rgba(255,255,255,.09);
+ box-shadow:0 10px 25px #0005;
+ cursor:pointer;
 }
 
 .featured-card img{
-  display:block;
-  width:100%;
-  aspect-ratio:2/3;
-  object-fit:cover;
-  background:#171021;
+ display:block;
+ width:100%;
+ aspect-ratio:2/3;
+ object-fit:cover;
+ background:#171021;
 }
 
 .featured-info{
-  position:absolute;
-  bottom:0;
-  right:0;
-  left:0;
-  padding:30px 9px 9px;
-  background:linear-gradient(transparent,rgba(0,0,0,.9));
+ position:absolute;
+ bottom:0;
+ right:0;
+ left:0;
+ padding:30px 9px 9px;
+ background:linear-gradient(transparent,rgba(0,0,0,.9));
 }
 
 .featured-info strong{
-  font-size:12px;
-  display:block;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+ font-size:12px;
+ display:block;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
 }
 
 .featured-info span{
-  font-size:10px;
-  color:#ccc;
+ font-size:10px;
+ color:#ccc;
 }
 
 .featured-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:5;
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:50%;
-  background:rgba(15,8,25,.72);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.13);
-  backdrop-filter:blur(10px);
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ z-index:5;
+ width:38px;
+ height:38px;
+ border:0;
+ border-radius:50%;
+ background:rgba(15,8,25,.72);
+ color:#fff;
+ border:1px solid rgba(255,255,255,.13);
+ backdrop-filter:blur(10px);
 }
 
-.featured-arrow.right{
-  right:8px;
-}
-
-.featured-arrow.left{
-  left:8px;
-}
+.featured-arrow.right{right:8px}
+.featured-arrow.left{left:8px}
 
 /* GENRES */
 
 .genres{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:16px 1px 5px;
-  scrollbar-width:none;
+ display:flex;
+ gap:8px;
+ overflow-x:auto;
+ padding:16px 1px 5px;
+ scrollbar-width:none;
 }
 
-.genres::-webkit-scrollbar{
-  display:none;
-}
+.genres::-webkit-scrollbar{display:none}
 
 .genre{
-  flex:0 0 auto;
-  border:1px solid rgba(255,255,255,.09);
-  background:rgba(255,255,255,.055);
-  color:#ddd;
-  padding:8px 14px;
-  border-radius:30px;
+ flex:0 0 auto;
+ border:1px solid rgba(255,255,255,.09);
+ background:rgba(255,255,255,.055);
+ color:#ddd;
+ padding:8px 14px;
+ border-radius:30px;
 }
 
 .genre.active,
 .genre:hover{
-  background:linear-gradient(135deg,#7c35d7,#4d168c);
-  color:#fff;
+ background:linear-gradient(135deg,#7c35d7,#4d168c);
+ color:#fff;
 }
 
 /* SECTIONS */
 
 .section{
-  margin-top:25px;
-  content-visibility:auto;
-  contain-intrinsic-size:400px;
+ margin-top:25px;
+ content-visibility:auto;
+ contain-intrinsic-size:400px;
 }
 
 .section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:12px;
 }
 
 .section-head h2{
-  margin:0;
-  font-size:18px;
+ margin:0;
+ font-size:18px;
 }
 
 .view-all{
-  border:0;
-  background:none;
-  color:#b983ff;
-  font-size:12px;
+ border:0;
+ background:none;
+ color:#b983ff;
+ font-size:12px;
 }
 
 .movie-row{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding:2px 2px 10px;
-  scrollbar-width:none;
+ display:flex;
+ gap:12px;
+ overflow-x:auto;
+ padding:2px 2px 10px;
+ scrollbar-width:none;
 }
 
-.movie-row::-webkit-scrollbar{
-  display:none;
-}
+.movie-row::-webkit-scrollbar{display:none}
 
 .movie-card,
 .see-all-card{
-  flex:0 0 calc((100% - 48px)/5);
-  min-width:0;
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
-  cursor:pointer;
-  background:rgba(255,255,255,.055);
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 10px 25px #0005;
-  transition:.2s;
+ flex:0 0 calc((100% - 48px)/5);
+ min-width:0;
+ border-radius:16px;
+ overflow:hidden;
+ position:relative;
+ cursor:pointer;
+ background:rgba(255,255,255,.055);
+ border:1px solid rgba(255,255,255,.09);
+ box-shadow:0 10px 25px #0005;
+ transition:.2s;
 }
 
-.movie-card:hover{
-  transform:translateY(-3px);
-}
+.movie-card:hover{transform:translateY(-3px)}
 
 .poster-wrap{
-  position:relative;
-  aspect-ratio:2/3;
-  overflow:hidden;
-  background:#171021;
+ position:relative;
+ aspect-ratio:2/3;
+ overflow:hidden;
+ background:#171021;
 }
 
 .poster-wrap img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ display:block;
 }
 
-.movie-info{
-  padding:9px;
-}
+.movie-info{padding:9px}
 
 .movie-info strong{
-  display:block;
-  font-size:12px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+ display:block;
+ font-size:12px;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
 }
 
 .movie-meta{
-  margin-top:5px;
-  display:flex;
-  justify-content:space-between;
-  color:#999;
-  font-size:10px;
+ margin-top:5px;
+ display:flex;
+ justify-content:space-between;
+ color:#999;
+ font-size:10px;
 }
 
-.rating{
-  color:#ffc94d;
-}
+.rating{color:#ffc94d}
 
 .new-badge{
-  position:absolute;
-  top:7px;
-  right:7px;
-  padding:4px 7px;
-  border-radius:9px;
-  background:#8a35df;
-  font-size:9px;
-  z-index:2;
+ position:absolute;
+ top:7px;
+ right:7px;
+ padding:4px 7px;
+ border-radius:9px;
+ background:#8a35df;
+ font-size:9px;
+ z-index:2;
 }
 
 .fav-badge{
-  position:absolute;
-  top:7px;
-  left:7px;
-  width:28px;
-  height:28px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#0008;
-  z-index:3;
+ position:absolute;
+ top:7px;
+ left:7px;
+ width:28px;
+ height:28px;
+ display:grid;
+ place-items:center;
+ border-radius:50%;
+ background:#0008;
+ z-index:3;
 }
 
 .see-all-card{
-  display:grid;
-  place-items:center;
-  background:
-    radial-gradient(circle at center,rgba(145,70,255,.25),transparent 55%),
-    rgba(255,255,255,.04);
-  min-height:100px;
+ display:grid;
+ place-items:center;
+ background:
+ radial-gradient(circle at center,rgba(145,70,255,.25),transparent 55%),
+ rgba(255,255,255,.04);
+ min-height:100px;
 }
 
-.see-all-inner{
-  text-align:center;
-}
+.see-all-inner{text-align:center}
 
 .see-all-inner div{
-  font-size:29px;
-  margin-bottom:7px;
+ font-size:29px;
+ margin-bottom:7px;
 }
 
 .see-all-inner span{
-  font-size:12px;
-  color:#ccc;
+ font-size:12px;
+ color:#ccc;
 }
 
 /* FULL PAGE */
 
 .full-page-title{
-  padding:25px 0 15px;
+ padding:25px 0 15px;
 }
 
 .full-page-title h1{
-  margin:0;
-  font-size:24px;
+ margin:0;
+ font-size:24px;
 }
 
 .full-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(165px,1fr));
-  gap:15px;
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(165px,1fr));
+ gap:15px;
 }
 
 /* SETTINGS */
 
 .settings-list{
-  display:grid;
-  gap:10px;
-  margin-top:20px;
+ display:grid;
+ gap:10px;
+ margin-top:20px;
 }
 
 .setting{
-  padding:15px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
+ padding:15px;
+ border-radius:16px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
 }
 
-.setting-info strong{
-  display:block;
-  font-size:14px;
-}
+.setting-info strong{display:block;font-size:14px}
 
 .setting-info small{
-  display:block;
-  margin-top:5px;
-  color:#999;
-  font-size:11px;
+ display:block;
+ margin-top:5px;
+ color:#999;
+ font-size:11px;
 }
 
 .switch{
-  width:47px;
-  height:26px;
-  border-radius:30px;
-  background:#333;
-  padding:3px;
-  transition:.2s;
+ width:47px;
+ height:26px;
+ border-radius:30px;
+ background:#333;
+ padding:3px;
+ transition:.2s;
 }
 
 .switch i{
-  display:block;
-  width:20px;
-  height:20px;
-  background:#fff;
-  border-radius:50%;
-  transition:.2s;
+ display:block;
+ width:20px;
+ height:20px;
+ background:#fff;
+ border-radius:50%;
+ transition:.2s;
 }
 
-.switch.on{
-  background:#7c35d7;
-}
-
-.switch.on i{
-  transform:translateX(-21px);
-}
+.switch.on{background:#7c35d7}
+.switch.on i{transform:translateX(-21px)}
 
 /* BOTTOM NAV */
 
 .bottom-nav{
-  position:fixed;
-  z-index:100;
-  bottom:calc(10px + env(safe-area-inset-bottom));
-  left:50%;
-  transform:translateX(-50%);
-  width:min(520px,calc(100% - 22px));
-  padding:8px;
-  border-radius:23px;
-
-  background:rgba(22,12,35,.72);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:
-    0 18px 45px rgba(0,0,0,.45),
-    inset 0 1px rgba(255,255,255,.09);
-
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
+ position:fixed;
+ z-index:100;
+ bottom:calc(10px + env(safe-area-inset-bottom));
+ left:50%;
+ transform:translateX(-50%);
+ width:min(520px,calc(100% - 22px));
+ padding:8px;
+ border-radius:23px;
+ background:rgba(22,12,35,.72);
+ border:1px solid rgba(255,255,255,.14);
+ box-shadow:
+ 0 18px 45px rgba(0,0,0,.45),
+ inset 0 1px rgba(255,255,255,.09);
+ backdrop-filter:blur(20px);
+ -webkit-backdrop-filter:blur(20px);
 }
 
 .nav-inner{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:5px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:5px;
 }
 
 .nav-item{
-  border:0;
-  color:#aaa;
-  background:transparent;
-  border-radius:17px;
-  padding:8px 4px;
-  min-height:52px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
+ border:0;
+ color:#aaa;
+ background:transparent;
+ border-radius:17px;
+ padding:8px 4px;
+ min-height:52px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:4px;
 }
 
-.nav-item span:first-child{
-  font-size:20px;
-}
-
-.nav-item span:last-child{
-  font-size:10px;
-}
+.nav-item span:first-child{font-size:20px}
+.nav-item span:last-child{font-size:10px}
 
 .nav-item.active{
-  color:#fff;
-  background:linear-gradient(
-    135deg,
-    rgba(135,57,222,.48),
-    rgba(75,24,130,.38)
-  );
-  box-shadow:
-    inset 0 1px rgba(255,255,255,.12),
-    0 5px 15px rgba(100,40,180,.18);
+ color:#fff;
+ background:linear-gradient(
+ 135deg,
+ rgba(135,57,222,.48),
+ rgba(75,24,130,.38)
+ );
+ box-shadow:
+ inset 0 1px rgba(255,255,255,.12),
+ 0 5px 15px rgba(100,40,180,.18);
 }
 
 /* MODAL */
 
 .modal{
-  position:fixed;
-  inset:0;
-  z-index:200;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  background:#0009;
-  padding:12px;
+ position:fixed;
+ inset:0;
+ z-index:200;
+ display:none;
+ align-items:flex-end;
+ justify-content:center;
+ background:#0009;
+ padding:12px;
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
-  width:min(800px,100%);
-  max-height:92vh;
-  overflow:auto;
-  border-radius:25px 25px 15px 15px;
-  background:#100a18;
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 -20px 80px #000;
+ width:min(800px,100%);
+ max-height:92vh;
+ overflow:auto;
+ border-radius:25px 25px 15px 15px;
+ background:#100a18;
+ border:1px solid rgba(255,255,255,.12);
+ box-shadow:0 -20px 80px #000;
 }
 
-.modal-top{
-  position:relative;
-}
+.modal-top{position:relative}
 
 .modal-poster{
-  width:100%;
-  aspect-ratio:2/3;
-  max-height:55vh;
-  object-fit:cover;
-  display:block;
+ width:100%;
+ aspect-ratio:2/3;
+ max-height:55vh;
+ object-fit:cover;
+ display:block;
 }
 
 .modal-gradient{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(transparent 35%,#100a18 90%);
+ position:absolute;
+ inset:0;
+ background:linear-gradient(transparent 35%,#100a18 90%);
 }
 
 .close{
-  position:absolute;
-  top:12px;
-  left:12px;
-  z-index:5;
-  width:36px;
-  height:36px;
-  border:0;
-  border-radius:50%;
-  background:#0009;
-  color:white;
-  font-size:20px;
+ position:absolute;
+ top:12px;
+ left:12px;
+ z-index:5;
+ width:36px;
+ height:36px;
+ border:0;
+ border-radius:50%;
+ background:#0009;
+ color:white;
+ font-size:20px;
 }
 
 .modal-content{
-  padding:0 20px 25px;
-  margin-top:-70px;
-  position:relative;
+ padding:0 20px 25px;
+ margin-top:-70px;
+ position:relative;
 }
 
 .modal-content h2{
-  margin:0 0 8px;
-  font-size:23px;
+ margin:0 0 8px;
+ font-size:23px;
 }
 
 .modal-meta{
-  color:#aaa;
-  font-size:12px;
-  margin-bottom:15px;
+ color:#aaa;
+ font-size:12px;
+ margin-bottom:15px;
 }
 
 .description{
-  color:#ccc;
-  line-height:2;
-  font-size:13px;
+ color:#ccc;
+ line-height:2;
+ font-size:13px;
+}
+
+/* WATCH BUTTONS */
+
+.watch-actions{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:9px;
+ margin:16px 0;
+}
+
+.watch-btn{
+ min-height:46px;
+ border:1px solid rgba(255,255,255,.10);
+ border-radius:13px;
+ color:#fff;
+ background:rgba(255,255,255,.07);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:7px;
+ transition:.2s;
+}
+
+.watch-btn:hover{
+ background:rgba(145,65,225,.25);
+ transform:translateY(-1px);
+}
+
+.watch-btn.primary{
+ background:linear-gradient(135deg,#8d42ed,#4d168c);
+}
+
+.watch-btn.disabled{
+ opacity:.45;
+ cursor:not-allowed;
 }
 
 .actions{
-  display:flex;
-  gap:8px;
-  margin:16px 0;
-  flex-wrap:wrap;
+ display:flex;
+ gap:8px;
+ margin:12px 0;
+ flex-wrap:wrap;
 }
 
 .btn{
-  border:0;
-  padding:10px 15px;
-  border-radius:13px;
-  color:#fff;
-  background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.1);
+ border:0;
+ padding:10px 15px;
+ border-radius:13px;
+ color:#fff;
+ background:rgba(255,255,255,.09);
+ border:1px solid rgba(255,255,255,.1);
 }
 
 .btn.primary{
-  background:linear-gradient(135deg,#8d42ed,#4d168c);
+ background:linear-gradient(135deg,#8d42ed,#4d168c);
 }
 
-.similar{
-  margin-top:22px;
-}
-
-.similar h3{
-  font-size:16px;
-}
+/* SMALL RATING */
 
 .rating-box{
-  padding:12px;
-  border-radius:15px;
-  background:rgba(255,255,255,.045);
+ padding:10px;
+ border-radius:14px;
+ background:rgba(255,255,255,.045);
+ margin-top:15px;
+}
+
+.rating-title{
+ font-size:11px;
+ color:#bbb;
 }
 
 .rating-numbers{
-  display:flex;
-  gap:6px;
-  margin-top:9px;
-  flex-wrap:wrap;
+ display:flex;
+ gap:4px;
+ margin-top:7px;
+ flex-wrap:wrap;
 }
 
 .rate{
-  width:32px;
-  height:32px;
-  border-radius:9px;
-  border:1px solid rgba(255,255,255,.1);
-  background:#ffffff08;
-  color:#aaa;
+ width:25px;
+ height:25px;
+ border-radius:7px;
+ border:1px solid rgba(255,255,255,.08);
+ background:#ffffff08;
+ color:#999;
+ font-size:10px;
+ padding:0;
 }
 
 .rate.selected{
-  background:#8739dc;
-  color:#fff;
+ background:#8739dc;
+ color:#fff;
+ border-color:#a565e8;
+}
+
+/* COMMENTS */
+
+.comments{
+ margin-top:25px;
+}
+
+.comments h3{
+ font-size:16px;
+ margin-bottom:12px;
+}
+
+.comment-form{
+ padding:12px;
+ border-radius:16px;
+ background:rgba(255,255,255,.045);
+ border:1px solid rgba(255,255,255,.07);
+}
+
+.comment-row{
+ display:flex;
+ gap:8px;
+}
+
+.comment-input{
+ flex:1;
+ min-width:0;
+ border:1px solid rgba(255,255,255,.09);
+ background:#ffffff07;
+ color:#fff;
+ border-radius:11px;
+ outline:none;
+ padding:10px;
+}
+
+.comment-input::placeholder{color:#777}
+
+.comments-list{
+ display:grid;
+ gap:9px;
+ margin-top:12px;
+}
+
+.comment{
+ padding:11px;
+ border-radius:14px;
+ background:rgba(255,255,255,.045);
+ border:1px solid rgba(255,255,255,.06);
+}
+
+.comment-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:5px;
+}
+
+.comment-name{
+ font-size:11px;
+ color:#c995ff;
+}
+
+.comment-date{
+ font-size:9px;
+ color:#777;
+}
+
+.comment-text{
+ font-size:11px;
+ color:#ccc;
+ line-height:1.8;
+ word-break:break-word;
+}
+
+.no-comments{
+ color:#777;
+ font-size:11px;
+ text-align:center;
+ padding:15px;
 }
 
 /* ADMIN */
 
 .admin-box{
-  padding:18px;
-  border-radius:20px;
-  margin-top:15px;
+ padding:18px;
+ border-radius:20px;
+ margin-top:15px;
 }
 
-.admin-box h3{
-  margin-top:0;
-}
+.admin-box h3{margin-top:0}
 
 .admin-input{
-  width:100%;
-  margin-bottom:9px;
-  padding:11px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.1);
-  background:#ffffff08;
-  color:#fff;
-  outline:none;
+ width:100%;
+ margin-bottom:9px;
+ padding:11px;
+ border-radius:12px;
+ border:1px solid rgba(255,255,255,.1);
+ background:#ffffff08;
+ color:#fff;
+ outline:none;
 }
 
 .admin-movies{
-  display:grid;
-  gap:8px;
-  max-height:400px;
-  overflow:auto;
-  margin-top:12px;
+ display:grid;
+ gap:8px;
+ max-height:400px;
+ overflow:auto;
+ margin-top:12px;
 }
 
 .admin-movie{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:8px;
-  border-radius:12px;
-  background:#ffffff05;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:8px;
+ border-radius:12px;
+ background:#ffffff05;
 }
 
 .admin-movie img{
-  width:40px;
-  height:55px;
-  object-fit:cover;
-  border-radius:7px;
+ width:40px;
+ height:55px;
+ object-fit:cover;
+ border-radius:7px;
 }
 
 .admin-movie label{
-  flex:1;
-  font-size:12px;
+ flex:1;
+ font-size:12px;
 }
 
 .count{
-  color:#bb8cff;
-  font-size:12px;
+ color:#bb8cff;
+ font-size:12px;
 }
 
 /* TOAST */
 
 .toast{
-  position:fixed;
-  z-index:500;
-  bottom:92px;
-  left:50%;
-  transform:translateX(-50%) translateY(15px);
-  background:rgba(25,15,38,.95);
-  border:1px solid rgba(255,255,255,.12);
-  padding:10px 16px;
-  border-radius:14px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  font-size:12px;
+ position:fixed;
+ z-index:500;
+ bottom:92px;
+ left:50%;
+ transform:translateX(-50%) translateY(15px);
+ background:rgba(25,15,38,.95);
+ border:1px solid rgba(255,255,255,.12);
+ padding:10px 16px;
+ border-radius:14px;
+ opacity:0;
+ pointer-events:none;
+ transition:.25s;
+ font-size:12px;
 }
 
 .toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+ opacity:1;
+ transform:translateX(-50%) translateY(0);
 }
 
 /* MOBILE */
 
 @media(max-width:800px){
 
-  main{
-    width:calc(100% - 14px);
-  }
+ main{width:calc(100% - 14px)}
 
-  header{
-    padding:10px;
-  }
+ header{padding:10px}
 
-  .logo{
-    font-size:18px;
-  }
+ .logo{font-size:18px}
 
-  .featured-card{
-    flex:0 0 calc((100vw - 45px)/2.25);
-  }
+ .featured-card{
+  flex:0 0 calc((100vw - 45px)/2.25);
+ }
 
-  .movie-card,
-  .see-all-card{
-    flex-basis:calc((100vw - 35px)/2.25);
-  }
+ .movie-card,
+ .see-all-card{
+  flex-basis:calc((100vw - 35px)/2.25);
+ }
 
-  .full-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:11px;
-  }
+ .full-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+ }
 
-  .hero{
-    padding:12px;
-    border-radius:20px;
-  }
+ .hero{
+  padding:12px;
+  border-radius:20px;
+ }
 
-  .welcome h1{
-    font-size:20px;
-  }
+ .welcome h1{font-size:20px}
 
-  .featured-arrow{
-    width:34px;
-    height:34px;
-  }
+ .featured-arrow{
+  width:34px;
+  height:34px;
+ }
 
-  .modal{
-    padding:0;
-  }
+ .modal{
+  padding:0;
+ }
 
-  .modal-box{
-    max-height:95vh;
-    border-radius:24px 24px 0 0;
-  }
+ .modal-box{
+  max-height:95vh;
+  border-radius:24px 24px 0 0;
+ }
+
+ .watch-actions{
+  grid-template-columns:1fr 1fr;
+ }
+
 }
 
-@media(min-width:801px){
-  .featured-card img,
-  .poster-wrap{
-    aspect-ratio:2/3;
-  }
+@media(max-width:400px){
+
+ .watch-actions{
+  grid-template-columns:1fr;
+ }
+
 }
 </style>
 </head>
@@ -857,20 +910,31 @@ main{
 <body>
 
 <header>
-  <div class="header-inner">
-    <div class="logo" id="logo">HAMOFLIX</div>
 
-    <div class="search-box">
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="جستجوی فیلم یا سریال..."
-        autocomplete="off"
-      >
-      <div id="searchResults" class="search-results"></div>
-    </div>
+ <div class="header-inner">
+
+  <div class="logo" id="logo">HAMOFLIX</div>
+
+  <div class="search-box">
+
+   <input
+    id="searchInput"
+    type="search"
+    placeholder="جستجوی فیلم یا سریال..."
+    autocomplete="off"
+   >
+
+   <div
+    id="searchResults"
+    class="search-results"
+   ></div>
+
   </div>
+
+ </div>
+
 </header>
+
 
 <main>
 
@@ -878,39 +942,44 @@ main{
 
 <section id="homePage" class="page active">
 
-  <section class="hero glass">
+ <section class="hero glass">
 
-    <div class="welcome">
-      <h1>به HAMOFLIX خوش اومدی 👋</h1>
-      <p>
-        اینجا قراره دنیای فیلم و سریال مورد علاقه‌ات رو راحت‌تر پیدا کنی.
-      </p>
-    </div>
+  <div class="welcome">
 
-    <div class="featured-window">
+   <h1>به HAMOFLIX خوش اومدی 👋</h1>
 
-      <button
-        class="featured-arrow right"
-        onclick="featuredMove(-1)"
-      >›</button>
+   <p>
+    اینجا قراره دنیای فیلم و سریال مورد علاقه‌ات رو راحت‌تر پیدا کنی.
+   </p>
 
-      <div
-        id="featuredTrack"
-        class="featured-track"
-      ></div>
+  </div>
 
-      <button
-        class="featured-arrow left"
-        onclick="featuredMove(1)"
-      >‹</button>
+  <div class="featured-window">
 
-    </div>
+   <button
+    class="featured-arrow right"
+    onclick="featuredMove(-1)"
+   >›</button>
 
-  </section>
+   <div
+    id="featuredTrack"
+    class="featured-track"
+   ></div>
 
-  <div id="genres" class="genres"></div>
+   <button
+    class="featured-arrow left"
+    onclick="featuredMove(1)"
+   >‹</button>
 
-  <div id="homeSections"></div>
+  </div>
+
+ </section>
+
+
+ <div id="genres" class="genres"></div>
+
+
+ <div id="homeSections"></div>
 
 </section>
 
@@ -919,11 +988,11 @@ main{
 
 <section id="moviesPage" class="page">
 
-  <div class="full-page-title">
-    <h1>🎬 فیلم‌ها</h1>
-  </div>
+ <div class="full-page-title">
+  <h1>🎬 فیلم‌ها</h1>
+ </div>
 
-  <div id="moviesGrid" class="full-grid"></div>
+ <div id="moviesGrid" class="full-grid"></div>
 
 </section>
 
@@ -932,11 +1001,11 @@ main{
 
 <section id="seriesPage" class="page">
 
-  <div class="full-page-title">
-    <h1>📺 سریال‌ها</h1>
-  </div>
+ <div class="full-page-title">
+  <h1>📺 سریال‌ها</h1>
+ </div>
 
-  <div id="seriesGrid" class="full-grid"></div>
+ <div id="seriesGrid" class="full-grid"></div>
 
 </section>
 
@@ -945,51 +1014,83 @@ main{
 
 <section id="settingsPage" class="page">
 
-  <div class="full-page-title">
-    <h1>⚙️ تنظیمات</h1>
-  </div>
+ <div class="full-page-title">
+  <h1>⚙️ تنظیمات</h1>
+ </div>
 
-  <div class="settings-list">
+ <div class="settings-list">
 
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>اعلان فیلم‌های جدید</strong>
-        <small>وقتی محتوای جدید اضافه شد مطلع شو</small>
-      </div>
-      <div class="switch" data-setting="notify">
-        <i></i>
-      </div>
-    </div>
+  <div class="setting glass">
 
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>پخش خودکار بخش ویژه</strong>
-        <small>حرکت خودکار فیلم‌های بالای صفحه</small>
-      </div>
-      <div class="switch" data-setting="auto">
-        <i></i>
-      </div>
-    </div>
+   <div class="setting-info">
+    <strong>اعلان فیلم‌های جدید</strong>
+    <small>وقتی محتوای جدید اضافه شد مطلع شو</small>
+   </div>
 
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>نمایش علاقه‌مندی‌ها</strong>
-        <small>فیلم‌هایی که ذخیره کردی</small>
-      </div>
-      <button class="btn primary" onclick="showFavorites()">مشاهده</button>
-    </div>
-
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>گزارش مشکل</strong>
-        <small>مشکل مربوط به یک فیلم یا سایت را گزارش کن</small>
-      </div>
-      <button class="btn" onclick="reportProblem()">گزارش</button>
-    </div>
+   <div
+    class="switch"
+    data-setting="notify"
+   >
+    <i></i>
+   </div>
 
   </div>
 
-  <div id="adminArea"></div>
+
+  <div class="setting glass">
+
+   <div class="setting-info">
+    <strong>پخش خودکار بخش ویژه</strong>
+    <small>حرکت خودکار فیلم‌های بالای صفحه</small>
+   </div>
+
+   <div
+    class="switch"
+    data-setting="auto"
+   >
+    <i></i>
+   </div>
+
+  </div>
+
+
+  <div class="setting glass">
+
+   <div class="setting-info">
+    <strong>علاقه‌مندی‌های من</strong>
+    <small>فیلم‌هایی که ذخیره کردی</small>
+   </div>
+
+   <button
+    class="btn primary"
+    onclick="showFavorites()"
+   >
+    مشاهده
+   </button>
+
+  </div>
+
+
+  <div class="setting glass">
+
+   <div class="setting-info">
+    <strong>گزارش مشکل</strong>
+    <small>مشکل مربوط به یک فیلم یا سایت را گزارش کن</small>
+   </div>
+
+   <button
+    class="btn"
+    onclick="reportProblem()"
+   >
+    گزارش
+   </button>
+
+  </div>
+
+ </div>
+
+
+ <div id="adminArea"></div>
 
 </section>
 
@@ -1000,119 +1101,237 @@ main{
 
 <nav class="bottom-nav">
 
-  <div class="nav-inner">
+ <div class="nav-inner">
 
-    <button
-      class="nav-item active"
-      data-page="homePage"
-      onclick="openPage('homePage',this)"
-    >
-      <span>⌂</span>
-      <span>خانه</span>
-    </button>
+  <button
+   class="nav-item active"
+   data-page="homePage"
+   onclick="openPage('homePage',this)"
+  >
+   <span>⌂</span>
+   <span>خانه</span>
+  </button>
 
-    <button
-      class="nav-item"
-      data-page="moviesPage"
-      onclick="openPage('moviesPage',this)"
-    >
-      <span>🎬</span>
-      <span>فیلم‌ها</span>
-    </button>
 
-    <button
-      class="nav-item"
-      data-page="seriesPage"
-      onclick="openPage('seriesPage',this)"
-    >
-      <span>📺</span>
-      <span>سریال‌ها</span>
-    </button>
+  <button
+   class="nav-item"
+   data-page="moviesPage"
+   onclick="openPage('moviesPage',this)"
+  >
+   <span>🎬</span>
+   <span>فیلم‌ها</span>
+  </button>
 
-    <button
-      class="nav-item"
-      data-page="settingsPage"
-      onclick="openPage('settingsPage',this)"
-    >
-      <span>⚙️</span>
-      <span>تنظیمات</span>
-    </button>
 
-  </div>
+  <button
+   class="nav-item"
+   data-page="seriesPage"
+   onclick="openPage('seriesPage',this)"
+  >
+   <span>📺</span>
+   <span>سریال‌ها</span>
+  </button>
+
+
+  <button
+   class="nav-item"
+   data-page="settingsPage"
+   onclick="openPage('settingsPage',this)"
+  >
+   <span>⚙️</span>
+   <span>تنظیمات</span>
+  </button>
+
+ </div>
 
 </nav>
 
 
-<!-- MODAL -->
+<!-- DETAIL MODAL -->
 
-<div id="modal" class="modal" onclick="closeModal(event)">
+<div
+ id="modal"
+ class="modal"
+ onclick="closeModal(event)"
+>
 
-  <div class="modal-box" onclick="event.stopPropagation()">
+ <div
+  class="modal-box"
+  onclick="event.stopPropagation()"
+ >
 
-    <div class="modal-top">
+  <div class="modal-top">
 
-      <button class="close" onclick="hideModal()">×</button>
+   <button
+    class="close"
+    onclick="hideModal()"
+   >×</button>
 
-      <img
-        id="modalPoster"
-        class="modal-poster"
-        src=""
-        alt=""
-      >
+   <img
+    id="modalPoster"
+    class="modal-poster"
+    src=""
+    alt=""
+   >
 
-      <div class="modal-gradient"></div>
-
-    </div>
-
-    <div class="modal-content">
-
-      <h2 id="modalTitle"></h2>
-
-      <div id="modalMeta" class="modal-meta"></div>
-
-      <div id="modalDescription" class="description"></div>
-
-      <div class="actions">
-
-        <button
-          id="favoriteBtn"
-          class="btn"
-          onclick="toggleFavorite()"
-        >
-          ♡ علاقه‌مندی
-        </button>
-
-        <button
-          class="btn primary"
-          onclick="reportProblem()"
-        >
-          ⚠ گزارش
-        </button>
-
-      </div>
-
-      <div class="rating-box">
-
-        <strong>امتیاز شما</strong>
-
-        <div id="ratingNumbers" class="rating-numbers"></div>
-
-      </div>
-
-      <div class="similar">
-
-        <h3>فیلم‌های مشابه</h3>
-
-        <div
-          id="similarRow"
-          class="movie-row"
-        ></div>
-
-      </div>
-
-    </div>
+   <div class="modal-gradient"></div>
 
   </div>
+
+
+  <div class="modal-content">
+
+   <h2 id="modalTitle"></h2>
+
+   <div
+    id="modalMeta"
+    class="modal-meta"
+   ></div>
+
+   <div
+    id="modalDescription"
+    class="description"
+   ></div>
+
+
+   <!-- WATCH OPTIONS -->
+
+   <div class="watch-actions">
+
+    <button
+     id="onlineBtn"
+     class="watch-btn primary"
+     onclick="playOnline()"
+    >
+     ▶️ پخش آنلاین
+    </button>
+
+
+    <button
+     id="mxBtn"
+     class="watch-btn"
+     onclick="openMXPlayer()"
+    >
+     📱 MX Player
+    </button>
+
+
+    <button
+     id="chromeBtn"
+     class="watch-btn"
+     onclick="openChrome()"
+    >
+     🌐 Google Chrome
+    </button>
+
+
+    <button
+     id="downloadBtn"
+     class="watch-btn"
+     onclick="downloadMovie()"
+    >
+     ⬇️ دانلود
+    </button>
+
+   </div>
+
+
+   <div class="actions">
+
+    <button
+     id="favoriteBtn"
+     class="btn"
+     onclick="toggleFavorite()"
+    >
+     ♡ علاقه‌مندی
+    </button>
+
+    <button
+     class="btn"
+     onclick="reportProblem()"
+    >
+     ⚠ گزارش
+    </button>
+
+   </div>
+
+
+   <!-- RATING -->
+
+   <div class="rating-box">
+
+    <div class="rating-title">
+     امتیاز شما
+    </div>
+
+    <div
+     id="ratingNumbers"
+     class="rating-numbers"
+    ></div>
+
+   </div>
+
+
+   <!-- COMMENTS -->
+
+   <div class="comments">
+
+    <h3>💬 نظرات کاربران</h3>
+
+    <div class="comment-form">
+
+     <div class="comment-row">
+
+      <input
+       id="commentName"
+       class="comment-input"
+       placeholder="نام شما"
+       maxlength="30"
+      >
+
+      <input
+       id="commentText"
+       class="comment-input"
+       placeholder="نظرت درباره این فیلم..."
+       maxlength="250"
+      >
+
+      <button
+       class="btn primary"
+       onclick="addComment()"
+      >
+       ارسال
+      </button>
+
+     </div>
+
+    </div>
+
+
+    <div
+     id="commentsList"
+     class="comments-list"
+    ></div>
+
+   </div>
+
+
+   <!-- SIMILAR -->
+
+   <div class="similar">
+
+    <h3>🎞 فیلم‌های مشابه</h3>
+
+    <div
+     id="similarRow"
+     class="movie-row"
+    ></div>
+
+   </div>
+
+  </div>
+
+ </div>
 
 </div>
 
@@ -1123,38 +1342,48 @@ main{
 <script>
 
 /* =========================
-   DATA
+   STORAGE
 ========================= */
 
-const STORAGE_KEY = "hamoflix_movies_v5";
-const FEATURED_KEY = "hamoflix_featured_v5";
-const FAV_KEY = "hamoflix_favorites_v5";
-const RATINGS_KEY = "hamoflix_ratings_v5";
-const SETTINGS_KEY = "hamoflix_settings_v5";
+const STORAGE_KEY="hamoflix_movies_v6";
+const FEATURED_KEY="hamoflix_featured_v6";
+const FAV_KEY="hamoflix_favorites_v6";
+const RATINGS_KEY="hamoflix_ratings_v6";
+const COMMENTS_KEY="hamoflix_comments_v6";
+const SETTINGS_KEY="hamoflix_settings_v6";
 
-const ADMIN_PASSWORD = "HAMOFLIX_2026_ADMIN";
+const ADMIN_PASSWORD="HAMOFLIX_2026_ADMIN";
 
-const fallbackPoster =
-"data:image/svg+xml;charset=UTF-8," +
+
+const fallbackPoster=
+"data:image/svg+xml;charset=UTF-8,"+
 encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="750">
-<rect width="100%" height="100%" fill="#170d22"/>
-<text x="50%" y="48%" text-anchor="middle"
-fill="#a96cff" font-size="45"
-font-family="Arial">HAMOFLIX</text>
-<text x="50%" y="56%" text-anchor="middle"
-fill="#777" font-size="22"
-font-family="Arial">NO POSTER</text>
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="500" height="750">
+ <rect width="100%" height="100%" fill="#170d22"/>
+ <text x="50%" y="48%"
+ text-anchor="middle"
+ fill="#a96cff"
+ font-size="45"
+ font-family="Arial">
+ HAMOFLIX
+ </text>
+ <text x="50%" y="56%"
+ text-anchor="middle"
+ fill="#777"
+ font-size="22"
+ font-family="Arial">
+ NO POSTER
+ </text>
 </svg>
 `);
 
 
-/*
-  داده نمونه
-  می‌توانی بعداً از پنل ادمین تغییرشان بدهی.
-*/
+/* =========================
+   SAMPLE MOVIES
+========================= */
 
-const defaultMovies = [
+const defaultMovies=[
 
 {
  id:"1",
@@ -1165,7 +1394,10 @@ const defaultMovies = [
  rating:"8.1",
  poster:"https://image.tmdb.org/t/p/w780/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
  description:"یک داستان رازآلود و فانتزی درباره ونزدی آدامز و اتفاقاتی که در مدرسه جدیدش رخ می‌دهد.",
- isNew:true
+ isNew:true,
+ updated:true,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1177,7 +1409,10 @@ const defaultMovies = [
  rating:"8.1",
  poster:"https://image.tmdb.org/t/p/w780/1NxaSnba1QbbaZ6UVGqL9Y16k.jpg",
  description:"هزاران انسان در یک سیلوی زیرزمینی زندگی می‌کنند و راز بزرگی درباره دنیای بیرون وجود دارد.",
- isNew:true
+ isNew:true,
+ updated:true,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1189,7 +1424,10 @@ const defaultMovies = [
  rating:"7.5",
  poster:"https://image.tmdb.org/t/p/w780/pTEFqAjLd5YTsMD6NSUxV6Dq7A.jpg",
  description:"دانش‌آموزان یک مدرسه در میان شیوع یک ویروس خطرناک گرفتار می‌شوند.",
- isNew:false
+ isNew:false,
+ updated:false,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1201,7 +1439,10 @@ const defaultMovies = [
  rating:"8.7",
  poster:"https://image.tmdb.org/t/p/w780/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
  description:"گروهی از فضانوردان برای پیدا کردن خانه‌ای جدید برای بشریت وارد سفری میان ستاره‌ای می‌شوند.",
- isNew:false
+ isNew:false,
+ updated:false,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1213,7 +1454,10 @@ const defaultMovies = [
  rating:"8.8",
  poster:"https://image.tmdb.org/t/p/w780/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
  description:"دزدی از ذهن انسان‌ها با استفاده از فناوری رؤیاها.",
- isNew:false
+ isNew:false,
+ updated:false,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1225,7 +1469,10 @@ const defaultMovies = [
  rating:"8.6",
  poster:"https://image.tmdb.org/t/p/w780/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",
  description:"سال‌ها پس از یک فروپاشی جهانی، دو نفر برای عبور از آمریکای ویران‌شده تلاش می‌کنند.",
- isNew:true
+ isNew:true,
+ updated:true,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1237,7 +1484,10 @@ const defaultMovies = [
  rating:"8.6",
  poster:"https://image.tmdb.org/t/p/w780/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
  description:"گروهی از نوجوانان وارد ماجراهایی عجیب و ماورایی می‌شوند.",
- isNew:false
+ isNew:false,
+ updated:true,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1249,7 +1499,10 @@ const defaultMovies = [
  rating:"7.6",
  poster:"https://image.tmdb.org/t/p/w780/1u0kQ4LzZ2i5w8J8QyLxYw.jpg",
  description:"داستان جادوگری جوان که وارد مدرسه هاگوارتز می‌شود.",
- isNew:false
+ isNew:false,
+ updated:false,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1261,7 +1514,10 @@ const defaultMovies = [
  rating:"8.0",
  poster:"https://image.tmdb.org/t/p/w780/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
  description:"داستان خاندان آتریدیس و سیاره‌ای که مهم‌ترین منبع جهان را در خود دارد.",
- isNew:true
+ isNew:true,
+ updated:false,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1273,7 +1529,10 @@ const defaultMovies = [
  rating:"7.9",
  poster:"https://image.tmdb.org/t/p/w780/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
  description:"یک سرباز وارد دنیایی بیگانه می‌شود و با مردمان آنجا آشنا می‌شود.",
- isNew:false
+ isNew:false,
+ updated:false,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1285,7 +1544,10 @@ const defaultMovies = [
  rating:"9.5",
  poster:"https://image.tmdb.org/t/p/w780/ztkUQFLlC2W2aG9f9J5YpV3Vv8C.jpg",
  description:"داستان یک معلم شیمی که وارد دنیای جرم و جنایت می‌شود.",
- isNew:false
+ isNew:false,
+ updated:false,
+ watchUrl:"",
+ downloadUrl:""
 },
 
 {
@@ -1297,25 +1559,85 @@ const defaultMovies = [
  rating:"8.7",
  poster:"https://image.tmdb.org/t/p/w780/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",
  description:"ناپدید شدن یک کودک رازهای عجیبی درباره زمان و خانواده‌ها آشکار می‌کند.",
- isNew:false
+ isNew:false,
+ updated:true,
+ watchUrl:"",
+ downloadUrl:""
 }
 
 ];
 
 
-let movies = loadMovies();
-let favorites = loadJSON(FAV_KEY,[]);
-let ratings = loadJSON(RATINGS_KEY,{});
-let settings = loadJSON(SETTINGS_KEY,{
+function loadJSON(key,fallback){
+
+ try{
+  const x=JSON.parse(
+   localStorage.getItem(key)||"null"
+  );
+  return x ?? fallback;
+ }catch(e){
+  return fallback;
+ }
+}
+
+
+function loadMovies(){
+
+ try{
+
+  const saved=
+   JSON.parse(
+    localStorage.getItem(STORAGE_KEY)||"null"
+   );
+
+  if(Array.isArray(saved)&&saved.length){
+
+   /*
+     برای سازگاری با نسخه قبلی:
+     فیلدهای جدید را به محتواهای قدیمی اضافه می‌کنیم.
+   */
+
+   return saved.map(m=>({
+    ...m,
+    watchUrl:m.watchUrl||"",
+    downloadUrl:m.downloadUrl||"",
+    updated:!!m.updated
+   }));
+
+  }
+
+ }catch(e){}
+
+ localStorage.setItem(
+  STORAGE_KEY,
+  JSON.stringify(defaultMovies)
+ );
+
+ return [...defaultMovies];
+}
+
+
+let movies=loadMovies();
+
+let favorites=loadJSON(FAV_KEY,[]);
+
+let ratings=loadJSON(RATINGS_KEY,{});
+
+let comments=loadJSON(COMMENTS_KEY,{});
+
+let settings=loadJSON(
+ SETTINGS_KEY,
+ {
   notify:false,
   auto:true
-});
+ }
+);
 
-let currentMovie = null;
+let currentMovie=null;
 
-let featuredIds = loadJSON(
-  FEATURED_KEY,
-  ["4","5","1","6","7"]
+let featuredIds=loadJSON(
+ FEATURED_KEY,
+ ["4","5","1","6","7"]
 );
 
 
@@ -1323,121 +1645,86 @@ let featuredIds = loadJSON(
    HELPERS
 ========================= */
 
-function loadMovies(){
-
-  try{
-
-    const saved = localStorage.getItem(STORAGE_KEY);
-
-    if(saved){
-      const parsed = JSON.parse(saved);
-
-      if(Array.isArray(parsed) && parsed.length){
-        return parsed;
-      }
-    }
-
-  }catch(e){}
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(defaultMovies)
-  );
-
-  return [...defaultMovies];
-}
-
-
-function loadJSON(key, fallback){
-
-  try{
-    const x = JSON.parse(
-      localStorage.getItem(key) || "null"
-    );
-
-    return x ?? fallback;
-
-  }catch(e){
-    return fallback;
-  }
-}
-
-
 function saveMovies(){
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(movies)
-  );
+
+ localStorage.setItem(
+  STORAGE_KEY,
+  JSON.stringify(movies)
+ );
+
 }
 
 
 function toast(text){
 
-  const el = document.getElementById("toast");
+ const el=document.getElementById("toast");
 
-  el.textContent=text;
-  el.classList.add("show");
+ el.textContent=text;
 
-  clearTimeout(window.toastTimer);
+ el.classList.add("show");
 
-  window.toastTimer=setTimeout(()=>{
-    el.classList.remove("show");
-  },2200);
+ clearTimeout(window.toastTimer);
+
+ window.toastTimer=setTimeout(()=>{
+  el.classList.remove("show");
+ },2200);
+
 }
 
 
 function escapeHTML(text){
 
-  return String(text ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+ return String(text??"")
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
+
 }
 
 
 function posterError(img){
-  img.onerror=null;
-  img.src=fallbackPoster;
+
+ img.onerror=null;
+
+ img.src=fallbackPoster;
+
 }
 
 
 /* =========================
-   NAV
+   NAVIGATION
 ========================= */
 
 function openPage(id,button){
 
-  document.querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
 
-  document.getElementById(id)
-    .classList.add("active");
+ document.getElementById(id)
+ .classList.add("active");
 
-  document.querySelectorAll(".nav-item")
-    .forEach(b=>b.classList.remove("active"));
+ document.querySelectorAll(".nav-item")
+ .forEach(b=>b.classList.remove("active"));
 
-  if(button){
-    button.classList.add("active");
-  }
+ if(button)
+  button.classList.add("active");
 
-  if(id==="moviesPage"){
-    renderFullMovies();
-  }
+ if(id==="moviesPage")
+  renderFullMovies();
 
-  if(id==="seriesPage"){
-    renderFullSeries();
-  }
+ if(id==="seriesPage")
+  renderFullSeries();
 
-  if(id==="settingsPage"){
-    renderSettings();
-  }
+ if(id==="settingsPage")
+  renderSettings();
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+
 }
 
 
@@ -1445,346 +1732,366 @@ function openPage(id,button){
    FEATURED
 ========================= */
 
-let featuredLoopItems=[];
 let featuredBaseCount=0;
+let correctingFeatured=false;
+
 
 function getFeatured(){
 
-  let selected = featuredIds
-    .map(id=>movies.find(m=>String(m.id)===String(id)))
-    .filter(Boolean);
+ let selected=
+  featuredIds
+  .map(id=>
+   movies.find(
+    m=>String(m.id)===String(id)
+   )
+  )
+  .filter(Boolean);
 
-  /*
-    اگر ادمین کمتر از ۵ تا انتخاب کرده باشد،
-    بقیه از فیلم‌های برتر پر می‌شوند.
-  */
-
-  const used=new Set(
-    selected.map(x=>String(x.id))
+ const used=
+  new Set(
+   selected.map(m=>String(m.id))
   );
 
-  const extras=[...movies]
-    .sort((a,b)=>Number(b.rating||0)-Number(a.rating||0))
-    .filter(x=>!used.has(String(x.id)));
+ const extras=
+  [...movies]
+  .sort(
+   (a,b)=>
+    Number(b.rating||0)-Number(a.rating||0)
+  )
+  .filter(
+   m=>!used.has(String(m.id))
+  );
 
-  while(selected.length<5 && extras.length){
-    selected.push(extras.shift());
-  }
+ while(selected.length<5&&extras.length)
+  selected.push(extras.shift());
 
-  return selected.slice(0,5);
+ return selected.slice(0,5);
+
 }
 
 
 function featuredCard(movie){
 
-  return `
-    <article
-      class="featured-card"
-      onclick="openMovie('${escapeHTML(movie.id)}')"
-    >
+ return `
 
-      <img
-        src="${escapeHTML(movie.poster || fallbackPoster)}"
-        onerror="posterError(this)"
-        loading="lazy"
-        decoding="async"
-        alt="${escapeHTML(movie.title)}"
-      >
+ <article
+  class="featured-card"
+  onclick="openMovie('${escapeHTML(movie.id)}')"
+ >
 
-      <div class="featured-info">
+  <img
+   src="${escapeHTML(movie.poster||fallbackPoster)}"
+   onerror="posterError(this)"
+   loading="lazy"
+   decoding="async"
+   alt="${escapeHTML(movie.title)}"
+  >
 
-        <strong>${escapeHTML(movie.title)}</strong>
+  <div class="featured-info">
 
-        <span>
-          ⭐ ${escapeHTML(movie.rating || "—")}
-        </span>
+   <strong>
+    ${escapeHTML(movie.title)}
+   </strong>
 
-      </div>
+   <span>
+    ⭐ ${escapeHTML(movie.rating||"—")}
+   </span>
 
-    </article>
-  `;
+  </div>
+
+ </article>
+
+ `;
+
 }
 
 
 function renderFeatured(){
 
-  const track=document.getElementById("featuredTrack");
+ const track=
+  document.getElementById("featuredTrack");
 
-  const base=getFeatured();
+ const base=getFeatured();
 
-  if(!base.length){
-    track.innerHTML="";
-    return;
-  }
+ if(!base.length){
+  track.innerHTML="";
+  return;
+ }
 
-  /*
-    سه کپی:
-    [کپی آخر] [۵ اصلی] [کپی اول]
+ featuredBaseCount=base.length;
 
-    با این روش هنگام رسیدن به ابتدا/انتها،
-    اسکرول به نسخه وسط منتقل می‌شود و
-    کاربر پرش نمی‌بیند.
-  */
+ track.innerHTML=
+  [
+   ...base,
+   ...base,
+   ...base
+  ]
+  .map(featuredCard)
+  .join("");
 
-  featuredBaseCount=base.length;
+ requestAnimationFrame(()=>{
 
-  const before=[...base];
-  const middle=[...base];
-  const after=[...base];
+  const card=track.children[0];
 
-  featuredLoopItems=[
-    ...before,
-    ...middle,
-    ...after
-  ];
+  if(!card)return;
 
-  track.innerHTML=
-    featuredLoopItems.map(featuredCard).join("");
+  const width=
+   card.getBoundingClientRect().width+12;
 
-  requestAnimationFrame(()=>{
+  track.scrollLeft=
+   width*featuredBaseCount;
 
-    const cards=track.children;
+ });
 
-    if(cards.length>=10){
+ track.onscroll=handleFeaturedScroll;
 
-      const firstWidth =
-        cards[0].getBoundingClientRect().width;
-
-      const gap=12;
-
-      track.scrollLeft =
-        (firstWidth+gap)*featuredBaseCount;
-    }
-
-  });
-
-  track.onscroll=handleFeaturedScroll;
 }
 
 
-let correctingFeatured=false;
-
 function handleFeaturedScroll(){
 
-  if(correctingFeatured) return;
+ if(correctingFeatured)return;
 
-  const track=document.getElementById("featuredTrack");
+ const track=
+  document.getElementById("featuredTrack");
 
-  const cards=track.children;
+ const card=track.children[0];
 
-  if(!cards.length) return;
+ if(!card)return;
 
-  const firstWidth =
-    cards[0].getBoundingClientRect().width + 12;
+ const width=
+  card.getBoundingClientRect().width+12;
 
-  const oneSet =
-    firstWidth * featuredBaseCount;
+ const setWidth=
+  width*featuredBaseCount;
 
-  /*
-    چون direction در track چپ‌به‌راست است،
-    اینجا محدوده نسخه وسط را حفظ می‌کنیم.
-  */
+ if(track.scrollLeft<setWidth*.35){
 
-  const min=oneSet*0.35;
-  const max=oneSet*1.65;
+  correctingFeatured=true;
 
-  if(track.scrollLeft < min){
+  track.scrollLeft+=setWidth;
 
-    correctingFeatured=true;
+  requestAnimationFrame(()=>{
+   correctingFeatured=false;
+  });
 
-    track.scrollLeft += oneSet;
+ }
 
-    requestAnimationFrame(()=>{
-      correctingFeatured=false;
-    });
+ else if(track.scrollLeft>setWidth*1.65){
 
-  }
-  else if(track.scrollLeft > max){
+  correctingFeatured=true;
 
-    correctingFeatured=true;
+  track.scrollLeft-=setWidth;
 
-    track.scrollLeft -= oneSet;
+  requestAnimationFrame(()=>{
+   correctingFeatured=false;
+  });
 
-    requestAnimationFrame(()=>{
-      correctingFeatured=false;
-    });
+ }
 
-  }
 }
 
 
 function featuredMove(direction){
 
-  const track=document.getElementById("featuredTrack");
+ const track=
+  document.getElementById("featuredTrack");
 
-  const card=track.querySelector(".featured-card");
+ const card=
+  track.querySelector(".featured-card");
 
-  if(!card) return;
+ if(!card)return;
 
-  const amount=
-    card.getBoundingClientRect().width+12;
+ const amount=
+  card.getBoundingClientRect().width+12;
 
-  track.scrollBy({
-    left:direction*amount,
-    behavior:"smooth"
-  });
+ track.scrollBy({
+  left:direction*amount,
+  behavior:"smooth"
+ });
+
 }
 
 
 /* =========================
-   HOME
+   HOME SECTIONS
 ========================= */
 
 const sectionData=[
 
-  {
-    title:"🔥 جدیدترین‌ها",
-    filter:m=>m.isNew
-  },
+ {
+  title:"🔥 جدیدترین‌ها",
+  filter:m=>m.isNew
+ },
 
-  {
-    title:"📺 سریال‌ها",
-    filter:m=>m.type==="series"
-  },
+ {
+  title:"📺 سریال‌های بروز شده",
+  filter:m=>
+   m.type==="series"&&m.updated
+ },
 
-  {
-    title:"🎬 فیلم‌ها",
-    filter:m=>m.type==="movie"
-  },
+ {
+  title:"📺 سریال‌ها",
+  filter:m=>m.type==="series"
+ },
 
-  {
-    title:"⭐ محبوب‌ترین‌ها",
-    filter:m=>true,
-    sort:(a,b)=>Number(b.rating||0)-Number(a.rating||0)
-  }
+ {
+  title:"🎬 فیلم‌ها",
+  filter:m=>m.type==="movie"
+ },
+
+ {
+  title:"⭐ محبوب‌ترین‌ها",
+  filter:m=>true,
+  sort:(a,b)=>
+   Number(b.rating||0)-Number(a.rating||0)
+ }
 
 ];
 
 
 function renderHome(){
 
-  renderFeatured();
+ renderFeatured();
 
-  renderGenres();
+ renderGenres();
 
-  const container=
-    document.getElementById("homeSections");
+ const container=
+  document.getElementById("homeSections");
 
-  container.innerHTML="";
+ container.innerHTML="";
 
-  sectionData.forEach((section,index)=>{
+ sectionData.forEach(
+  (section,index)=>{
 
-    let items=movies.filter(section.filter);
+   let items=
+    movies.filter(section.filter);
 
-    if(section.sort){
-      items.sort(section.sort);
-    }
+   if(section.sort)
+    items.sort(section.sort);
 
-    items=items.slice(0,10);
+   items=items.slice(0,10);
 
-    if(!items.length) return;
+   if(!items.length)return;
 
-    const sectionEl=document.createElement("section");
+   const el=
+    document.createElement("section");
 
-    sectionEl.className="section";
+   el.className="section";
 
-    sectionEl.innerHTML=`
+   el.innerHTML=`
 
-      <div class="section-head">
+    <div class="section-head">
 
-        <h2>${section.title}</h2>
+     <h2>
+      ${section.title}
+     </h2>
 
-        <button
-          class="view-all"
-          onclick="openSectionAll(${index})"
-        >
-          مشاهده همه
-        </button>
+     <button
+      class="view-all"
+      onclick="openSectionAll(${index})"
+     >
+      مشاهده همه
+     </button>
 
+    </div>
+
+    <div class="movie-row">
+
+     ${items.slice(0,5)
+       .map(movieCard)
+       .join("")}
+
+     <div
+      class="see-all-card"
+      onclick="openSectionAll(${index})"
+     >
+
+      <div class="see-all-inner">
+       <div>➜</div>
+       <span>مشاهده همه</span>
       </div>
 
-      <div class="movie-row">
+     </div>
 
-        ${items.slice(0,5).map(movieCard).join("")}
+    </div>
 
-        <div
-          class="see-all-card"
-          onclick="openSectionAll(${index})"
-        >
+   `;
 
-          <div class="see-all-inner">
+   container.appendChild(el);
 
-            <div>➜</div>
+  }
+ );
 
-            <span>مشاهده همه</span>
-
-          </div>
-
-        </div>
-
-      </div>
-    `;
-
-    container.appendChild(sectionEl);
-  });
 }
 
 
 function movieCard(movie){
 
-  const fav=favorites.includes(String(movie.id));
+ const fav=
+  favorites.includes(String(movie.id));
 
-  return `
+ return `
 
-    <article
-      class="movie-card"
-      onclick="openMovie('${escapeHTML(movie.id)}')"
-    >
+ <article
+  class="movie-card"
+  onclick="openMovie('${escapeHTML(movie.id)}')"
+ >
 
-      <div class="poster-wrap">
+  <div class="poster-wrap">
 
-        ${movie.isNew
-          ? `<span class="new-badge">جدید</span>`
-          : ""
-        }
+   ${
+    movie.isNew
+    ?
+    `<span class="new-badge">جدید</span>`
+    :
+    ""
+   }
 
-        <span
-          class="fav-badge"
-          onclick="event.stopPropagation();quickFavorite('${escapeHTML(movie.id)}')"
-        >
-          ${fav?"♥":"♡"}
-        </span>
+   <span
+    class="fav-badge"
+    onclick="
+     event.stopPropagation();
+     quickFavorite('${escapeHTML(movie.id)}')
+    "
+   >
+    ${fav?"♥":"♡"}
+   </span>
 
-        <img
-          src="${escapeHTML(movie.poster || fallbackPoster)}"
-          onerror="posterError(this)"
-          loading="lazy"
-          decoding="async"
-          alt="${escapeHTML(movie.title)}"
-        >
+   <img
+    src="${escapeHTML(movie.poster||fallbackPoster)}"
+    onerror="posterError(this)"
+    loading="lazy"
+    decoding="async"
+    alt="${escapeHTML(movie.title)}"
+   >
 
-      </div>
+  </div>
 
-      <div class="movie-info">
+  <div class="movie-info">
 
-        <strong>
-          ${escapeHTML(movie.title)}
-        </strong>
+   <strong>
+    ${escapeHTML(movie.title)}
+   </strong>
 
-        <div class="movie-meta">
+   <div class="movie-meta">
 
-          <span>${escapeHTML(movie.year || "")}</span>
+    <span>
+     ${escapeHTML(movie.year||"")}
+    </span>
 
-          <span class="rating">
-            ⭐ ${escapeHTML(movie.rating || "—")}
-          </span>
+    <span class="rating">
+     ⭐ ${escapeHTML(movie.rating||"—")}
+    </span>
 
-        </div>
+   </div>
 
-      </div>
+  </div>
 
-    </article>
-  `;
+ </article>
+
+ `;
+
 }
 
 
@@ -1794,76 +2101,80 @@ function movieCard(movie){
 
 function renderGenres(){
 
-  const genres=[
-    "همه",
-    ...new Set(
-      movies
-        .map(m=>m.genre)
-        .filter(Boolean)
-    )
-  ];
+ const genres=[
+  "همه",
+  ...new Set(
+   movies.map(m=>m.genre).filter(Boolean)
+  )
+ ];
 
-  document.getElementById("genres").innerHTML=
-    genres.map((g,i)=>`
+ document.getElementById("genres").innerHTML=
+  genres.map((g,i)=>`
 
-      <button
-        class="genre ${i===0?"active":""}"
-        onclick="filterGenre('${escapeHTML(g)}',this)"
-      >
-        ${escapeHTML(g)}
-      </button>
+   <button
+    class="genre ${i===0?"active":""}"
+    onclick="filterGenre('${escapeHTML(g)}',this)"
+   >
+    ${escapeHTML(g)}
+   </button>
 
-    `).join("");
+  `).join("");
+
 }
 
 
 function filterGenre(genre,button){
 
-  document.querySelectorAll(".genre")
-    .forEach(x=>x.classList.remove("active"));
+ document.querySelectorAll(".genre")
+ .forEach(x=>x.classList.remove("active"));
 
-  button.classList.add("active");
+ button.classList.add("active");
 
-  const list =
-    genre==="همه"
-      ? movies
-      : movies.filter(m=>m.genre===genre);
+ const list=
+  genre==="همه"
+  ?
+  movies
+  :
+  movies.filter(m=>m.genre===genre);
 
-  const container=
-    document.getElementById("homeSections");
+ document.getElementById("homeSections").innerHTML=`
 
-  container.innerHTML=`
+  <section class="section">
 
-    <section class="section">
+   <div class="section-head">
+    <h2>🎞 ${escapeHTML(genre)}</h2>
+   </div>
 
-      <div class="section-head">
-        <h2>🎞 ${escapeHTML(genre)}</h2>
+   <div class="movie-row">
+
+    ${list.slice(0,5)
+      .map(movieCard)
+      .join("")}
+
+    ${
+     list.length>5
+     ?
+     `
+     <div
+      class="see-all-card"
+      onclick="showFilteredAll('${escapeHTML(genre)}')"
+     >
+      <div class="see-all-inner">
+       <div>➜</div>
+       <span>مشاهده همه</span>
       </div>
+     </div>
+     `
+     :
+     ""
+    }
 
-      <div class="movie-row">
+   </div>
 
-        ${list.slice(0,5).map(movieCard).join("")}
+  </section>
 
-        ${
-          list.length>5
-          ?
-          `<div
-            class="see-all-card"
-            onclick="showFilteredAll('${escapeHTML(genre)}')"
-          >
-            <div class="see-all-inner">
-              <div>➜</div>
-              <span>مشاهده همه</span>
-            </div>
-          </div>`
-          :
-          ""
-        }
+ `;
 
-      </div>
-
-    </section>
-  `;
 }
 
 
@@ -1873,59 +2184,93 @@ function filterGenre(genre,button){
 
 function renderFullMovies(){
 
-  const list=movies
-    .filter(m=>m.type==="movie")
-    .sort((a,b)=>Number(b.rating||0)-Number(a.rating||0));
+ const list=
+  movies
+  .filter(m=>m.type==="movie")
+  .sort(
+   (a,b)=>
+    Number(b.rating||0)-Number(a.rating||0)
+  );
 
-  document.getElementById("moviesGrid").innerHTML=
-    list.map(movieCard).join("");
+ document.getElementById("moviesGrid")
+ .innerHTML=
+  list.map(movieCard).join("");
+
 }
 
 
 function renderFullSeries(){
 
-  const list=movies
-    .filter(m=>m.type==="series")
-    .sort((a,b)=>Number(b.rating||0)-Number(a.rating||0));
+ const list=
+  movies
+  .filter(m=>m.type==="series")
+  .sort(
+   (a,b)=>
+    Number(b.rating||0)-Number(a.rating||0)
+  );
 
-  document.getElementById("seriesGrid").innerHTML=
-    list.map(movieCard).join("");
+ document.getElementById("seriesGrid")
+ .innerHTML=
+  list.map(movieCard).join("");
+
 }
 
 
 function openSectionAll(index){
 
-  if(index===1){
-    document.querySelector('[data-page="seriesPage"]').click();
-    return;
-  }
+ if(index===1||index===2){
 
-  if(index===2){
-    document.querySelector('[data-page="moviesPage"]').click();
-    return;
-  }
+  document.querySelector(
+   '[data-page="seriesPage"]'
+  ).click();
 
-  const list=
-    sectionData[index]
-      ? movies.filter(sectionData[index].filter)
-      : movies;
+  return;
 
-  document.getElementById("moviesGrid").innerHTML=
-    list.map(movieCard).join("");
+ }
 
-  document.querySelector('[data-page="moviesPage"]').click();
+ if(index===3){
+
+  document.querySelector(
+   '[data-page="moviesPage"]'
+  ).click();
+
+  return;
+
+ }
+
+ const section=sectionData[index];
+
+ const list=
+  section
+  ?
+  movies.filter(section.filter)
+  :
+  movies;
+
+ document.getElementById("moviesGrid")
+ .innerHTML=
+  list.map(movieCard).join("");
+
+ document.querySelector(
+  '[data-page="moviesPage"]'
+ ).click();
+
 }
 
 
 function showFilteredAll(genre){
 
-  const list=
-    movies.filter(m=>m.genre===genre);
+ const list=
+  movies.filter(m=>m.genre===genre);
 
-  document.getElementById("moviesGrid").innerHTML=
-    list.map(movieCard).join("");
+ document.getElementById("moviesGrid")
+ .innerHTML=
+  list.map(movieCard).join("");
 
-  document.querySelector('[data-page="moviesPage"]').click();
+ document.querySelector(
+  '[data-page="moviesPage"]'
+ ).click();
+
 }
 
 
@@ -1934,134 +2279,404 @@ function showFilteredAll(genre){
 ========================= */
 
 const searchInput=
-  document.getElementById("searchInput");
+ document.getElementById("searchInput");
 
 const searchResults=
-  document.getElementById("searchResults");
+ document.getElementById("searchResults");
 
 
-searchInput.addEventListener("input",()=>{
+searchInput.addEventListener(
+ "input",
+ ()=>{
 
   const q=
-    searchInput.value.trim().toLowerCase();
+   searchInput.value.trim().toLowerCase();
 
   if(!q){
 
-    searchResults.style.display="none";
-    searchResults.innerHTML="";
-    return;
+   searchResults.style.display="none";
+   searchResults.innerHTML="";
+   return;
+
   }
 
   const found=
-    movies
-      .filter(m=>
-        `${m.title} ${m.genre} ${m.year}`
-          .toLowerCase()
-          .includes(q)
-      )
-      .slice(0,7);
+   movies
+   .filter(m=>
+    `${m.title} ${m.genre} ${m.year}`
+    .toLowerCase()
+    .includes(q)
+   )
+   .slice(0,7);
 
   searchResults.innerHTML=
-    found.length
-    ?
-    found.map(m=>`
+   found.length
+   ?
+   found.map(m=>`
 
-      <div
-        class="search-result"
-        onclick="openMovie('${escapeHTML(m.id)}')"
-      >
+    <div
+     class="search-result"
+     onclick="openMovie('${escapeHTML(m.id)}')"
+    >
 
-        <img
-          src="${escapeHTML(m.poster || fallbackPoster)}"
-          onerror="posterError(this)"
-        >
+     <img
+      src="${escapeHTML(m.poster||fallbackPoster)}"
+      onerror="posterError(this)"
+     >
 
-        <div>
-          <strong>${escapeHTML(m.title)}</strong>
-          <small>
-            ${escapeHTML(m.type==="movie"?"فیلم":"سریال")}
-            ·
-            ${escapeHTML(m.year||"")}
-          </small>
-        </div>
+     <div>
 
-      </div>
+      <strong>
+       ${escapeHTML(m.title)}
+      </strong>
 
-    `).join("")
-    :
-    `<div class="search-result">چیزی پیدا نشد 😕</div>`;
+      <small>
+       ${escapeHTML(
+        m.type==="movie"
+        ?"فیلم"
+        :"سریال"
+       )}
+       ·
+       ${escapeHTML(m.year||"")}
+      </small>
+
+     </div>
+
+    </div>
+
+   `).join("")
+   :
+   `<div class="search-result">
+     چیزی پیدا نشد 😕
+    </div>`;
 
   searchResults.style.display="block";
-});
+
+ }
+);
 
 
 document.addEventListener("click",e=>{
 
-  if(!e.target.closest(".search-box")){
-    searchResults.style.display="none";
-  }
+ if(!e.target.closest(".search-box"))
+  searchResults.style.display="none";
 
 });
 
 
 /* =========================
-   MOVIE DETAIL
+   DETAIL
 ========================= */
 
 function openMovie(id){
 
-  const movie=
-    movies.find(m=>String(m.id)===String(id));
+ const movie=
+  movies.find(
+   m=>String(m.id)===String(id)
+  );
 
-  if(!movie) return;
+ if(!movie)return;
 
-  currentMovie=movie;
+ currentMovie=movie;
 
-  document.getElementById("modalPoster").src=
-    movie.poster || fallbackPoster;
+ const poster=
+  document.getElementById("modalPoster");
 
-  document.getElementById("modalPoster")
-    .onerror=function(){
-      this.onerror=null;
-      this.src=fallbackPoster;
-    };
+ poster.src=
+  movie.poster||fallbackPoster;
 
-  document.getElementById("modalTitle").textContent=
-    movie.title;
+ poster.onerror=function(){
+  this.onerror=null;
+  this.src=fallbackPoster;
+ };
 
-  document.getElementById("modalMeta").textContent=
-    `${movie.type==="movie"?"فیلم":"سریال"} · ${movie.year||"نامشخص"} · ${movie.genre||"عمومی"} · ⭐ ${movie.rating||"—"}`;
 
-  document.getElementById("modalDescription").textContent=
-    movie.description ||
-    "توضیحی برای این محتوا ثبت نشده است.";
+ document.getElementById("modalTitle")
+ .textContent=movie.title;
 
-  updateFavoriteButton();
 
-  renderRating();
+ document.getElementById("modalMeta")
+ .textContent=
+  `${movie.type==="movie"?"فیلم":"سریال"} · `+
+  `${movie.year||"نامشخص"} · `+
+  `${movie.genre||"عمومی"} · `+
+  `⭐ ${movie.rating||"—"}`;
 
-  renderSimilar();
 
-  document.getElementById("modal")
-    .classList.add("show");
+ document.getElementById("modalDescription")
+ .textContent=
+  movie.description||
+  "توضیحی برای این محتوا ثبت نشده است.";
+
+
+ updateWatchButtons();
+
+ updateFavoriteButton();
+
+ renderRating();
+
+ renderComments();
+
+ renderSimilar();
+
+
+ document.getElementById("modal")
+ .classList.add("show");
 
 }
 
 
 function hideModal(){
 
-  document.getElementById("modal")
-    .classList.remove("show");
+ document.getElementById("modal")
+ .classList.remove("show");
 
-  currentMovie=null;
+ currentMovie=null;
+
 }
 
 
 function closeModal(e){
 
-  if(e.target.id==="modal"){
-    hideModal();
-  }
+ if(e.target.id==="modal")
+  hideModal();
+
+}
+
+
+/* =========================
+   WATCH
+========================= */
+
+function updateWatchButtons(){
+
+ if(!currentMovie)return;
+
+ const online=
+  document.getElementById("onlineBtn");
+
+ const mx=
+  document.getElementById("mxBtn");
+
+ const chrome=
+  document.getElementById("chromeBtn");
+
+ const download=
+  document.getElementById("downloadBtn");
+
+
+ const hasWatch=
+  !!currentMovie.watchUrl;
+
+ const hasDownload=
+  !!currentMovie.downloadUrl;
+
+
+ online.classList.toggle(
+  "disabled",
+  !hasWatch
+ );
+
+ mx.classList.toggle(
+  "disabled",
+  !hasWatch
+ );
+
+ chrome.classList.toggle(
+  "disabled",
+  !hasWatch
+ );
+
+ download.classList.toggle(
+  "disabled",
+  !hasDownload
+ );
+
+}
+
+
+function validUrl(url){
+
+ try{
+
+  const u=new URL(url);
+
+  return(
+   u.protocol==="https:"||
+   u.protocol==="http:"
+  );
+
+ }catch(e){
+
+  return false;
+
+ }
+
+}
+
+
+function playOnline(){
+
+ if(!currentMovie?.watchUrl){
+
+  toast("لینک پخش برای این محتوا ثبت نشده");
+
+  return;
+
+ }
+
+ if(!validUrl(currentMovie.watchUrl)){
+
+  toast("لینک پخش معتبر نیست");
+
+  return;
+
+ }
+
+ window.open(
+  currentMovie.watchUrl,
+  "_blank",
+  "noopener"
+ );
+
+}
+
+
+function openChrome(){
+
+ if(!currentMovie?.watchUrl){
+
+  toast("لینک پخش برای این محتوا ثبت نشده");
+
+  return;
+
+ }
+
+ if(!validUrl(currentMovie.watchUrl)){
+
+  toast("لینک پخش معتبر نیست");
+
+  return;
+
+ }
+
+ /*
+   روی اندروید تلاش می‌کنیم لینک را
+   با Chrome باز کنیم.
+   اگر intent توسط دستگاه پشتیبانی نشود،
+   لینک عادی باز می‌شود.
+ */
+
+ const url=currentMovie.watchUrl;
+
+ if(/Android/i.test(navigator.userAgent)){
+
+  const clean=url.replace(/^https?:\/\//,"");
+
+  window.location.href=
+   `intent://${clean}`+
+   `#Intent;scheme=https;`+
+   `package=com.android.chrome;end`;
+
+  setTimeout(()=>{
+   window.open(url,"_blank");
+  },900);
+
+ }else{
+
+  window.open(
+   url,
+   "_blank",
+   "noopener"
+  );
+
+ }
+
+}
+
+
+function openMXPlayer(){
+
+ if(!currentMovie?.watchUrl){
+
+  toast("لینک پخش برای این محتوا ثبت نشده");
+
+  return;
+
+ }
+
+ if(!validUrl(currentMovie.watchUrl)){
+
+  toast("لینک پخش معتبر نیست");
+
+  return;
+
+ }
+
+ const url=currentMovie.watchUrl;
+
+ /*
+   MX Player باید روی گوشی نصب باشد.
+   اگر سیستم intent را نپذیرد،
+   لینک عادی باز می‌شود.
+ */
+
+ if(/Android/i.test(navigator.userAgent)){
+
+  const clean=url.replace(/^https?:\/\//,"");
+
+  window.location.href=
+   `intent://${clean}`+
+   `#Intent;scheme=https;`+
+   `package=com.mxtech.videoplayer.ad;end`;
+
+  setTimeout(()=>{
+   window.open(url,"_blank");
+  },1000);
+
+ }else{
+
+  window.open(
+   url,
+   "_blank",
+   "noopener"
+  );
+
+ }
+
+}
+
+
+function downloadMovie(){
+
+ if(!currentMovie?.downloadUrl){
+
+  toast("لینک دانلود برای این محتوا ثبت نشده");
+
+  return;
+
+ }
+
+ if(!validUrl(currentMovie.downloadUrl)){
+
+  toast("لینک دانلود معتبر نیست");
+
+  return;
+
+ }
+
+ const a=document.createElement("a");
+
+ a.href=currentMovie.downloadUrl;
+ a.target="_blank";
+ a.rel="noopener";
+ a.download="";
+
+ document.body.appendChild(a);
+
+ a.click();
+
+ a.remove();
 
 }
 
@@ -2072,82 +2687,113 @@ function closeModal(e){
 
 function quickFavorite(id){
 
-  id=String(id);
+ id=String(id);
 
-  if(favorites.includes(id)){
-    favorites=favorites.filter(x=>x!==id);
-    toast("از علاقه‌مندی‌ها حذف شد");
-  }else{
-    favorites.push(id);
-    toast("به علاقه‌مندی‌ها اضافه شد ❤️");
-  }
+ if(favorites.includes(id)){
 
-  localStorage.setItem(
-    FAV_KEY,
-    JSON.stringify(favorites)
-  );
+  favorites=
+   favorites.filter(x=>x!==id);
 
-  renderHome();
+  toast("از علاقه‌مندی‌ها حذف شد");
+
+ }else{
+
+  favorites.push(id);
+
+  toast("به علاقه‌مندی‌ها اضافه شد ❤️");
+
+ }
+
+ localStorage.setItem(
+  FAV_KEY,
+  JSON.stringify(favorites)
+ );
+
+ renderHome();
 
 }
 
 
 function toggleFavorite(){
 
-  if(!currentMovie) return;
+ if(!currentMovie)return;
 
-  quickFavorite(String(currentMovie.id));
+ quickFavorite(
+  String(currentMovie.id)
+ );
 
-  updateFavoriteButton();
+ updateFavoriteButton();
+
 }
 
 
 function updateFavoriteButton(){
 
-  if(!currentMovie) return;
+ if(!currentMovie)return;
 
-  const active=
-    favorites.includes(String(currentMovie.id));
+ const active=
+  favorites.includes(
+   String(currentMovie.id)
+  );
 
-  document.getElementById("favoriteBtn")
-    .textContent=
-      active
-      ? "♥ حذف از علاقه‌مندی"
-      : "♡ علاقه‌مندی";
+ document.getElementById("favoriteBtn")
+ .textContent=
+  active
+  ?
+  "♥ حذف از علاقه‌مندی"
+  :
+  "♡ علاقه‌مندی";
+
 }
 
 
 function showFavorites(){
 
-  const list=
-    movies.filter(m=>
-      favorites.includes(String(m.id))
-    );
+ const list=
+  movies.filter(m=>
+   favorites.includes(
+    String(m.id)
+   )
+  );
 
-  document.getElementById("homeSections").innerHTML=`
+ document.getElementById("homeSections")
+ .innerHTML=`
 
-    <section class="section">
+  <section class="section">
 
-      <div class="section-head">
-        <h2>❤️ علاقه‌مندی‌های من</h2>
-      </div>
+   <div class="section-head">
+    <h2>❤️ علاقه‌مندی‌های من</h2>
+   </div>
 
-      ${
-        list.length
-        ?
-        `<div class="movie-row">
-          ${list.map(movieCard).join("")}
-        </div>`
-        :
-        `<div class="glass" style="padding:25px;border-radius:18px;text-align:center;color:#aaa">
-          هنوز فیلمی ذخیره نکردی.
-        </div>`
-      }
+   ${
+    list.length
+    ?
+    `<div class="movie-row">
+      ${list.map(movieCard).join("")}
+     </div>`
+    :
+    `
+     <div
+      class="glass"
+      style="
+       padding:25px;
+       border-radius:18px;
+       text-align:center;
+       color:#aaa
+      "
+     >
+      هنوز فیلمی ذخیره نکردی.
+     </div>
+    `
+   }
 
-    </section>
-  `;
+  </section>
+ `;
 
-  document.querySelector('[data-page="homePage"]').click();
+ document.querySelector(
+  '[data-page="homePage"]'
+ ).click();
+
 }
 
 
@@ -2157,41 +2803,184 @@ function showFavorites(){
 
 function renderRating(){
 
-  const current=
-    ratings[String(currentMovie.id)] || 0;
+ if(!currentMovie)return;
 
-  document.getElementById("ratingNumbers").innerHTML=
-    Array.from({length:10},(_,i)=>{
+ const current=
+  ratings[String(currentMovie.id)]||0;
 
-      const n=i+1;
+ document.getElementById("ratingNumbers")
+ .innerHTML=
+  Array.from(
+   {length:10},
+   (_,i)=>{
 
-      return `
-        <button
-          class="rate ${current===n?"selected":""}"
-          onclick="setRating(${n})"
-        >
-          ${n}
-        </button>
-      `;
+    const n=i+1;
 
-    }).join("");
+    return `
+     <button
+      class="rate ${current===n?"selected":""}"
+      onclick="setRating(${n})"
+     >
+      ${n}
+     </button>
+    `;
+
+   }
+  ).join("");
+
 }
 
 
 function setRating(n){
 
-  if(!currentMovie) return;
+ if(!currentMovie)return;
 
-  ratings[String(currentMovie.id)]=n;
+ ratings[
+  String(currentMovie.id)
+ ]=n;
 
-  localStorage.setItem(
-    RATINGS_KEY,
-    JSON.stringify(ratings)
-  );
+ localStorage.setItem(
+  RATINGS_KEY,
+  JSON.stringify(ratings)
+ );
 
-  renderRating();
+ renderRating();
 
-  toast(`امتیاز ${n} ثبت شد ⭐`);
+ toast(`امتیاز ${n} ثبت شد ⭐`);
+
+}
+
+
+/* =========================
+   COMMENTS
+========================= */
+
+function renderComments(){
+
+ if(!currentMovie)return;
+
+ const list=
+  comments[String(currentMovie.id)]||[];
+
+ const container=
+  document.getElementById("commentsList");
+
+ if(!list.length){
+
+  container.innerHTML=
+   `<div class="no-comments">
+     هنوز نظری ثبت نشده؛ اولین نفر باش 👋
+    </div>`;
+
+  return;
+
+ }
+
+ container.innerHTML=
+  list
+  .slice()
+  .reverse()
+  .map(comment=>`
+
+   <div class="comment">
+
+    <div class="comment-head">
+
+     <span class="comment-name">
+      👤 ${escapeHTML(comment.name)}
+     </span>
+
+     <span class="comment-date">
+      ${escapeHTML(comment.date)}
+     </span>
+
+    </div>
+
+    <div class="comment-text">
+     ${escapeHTML(comment.text)}
+    </div>
+
+   </div>
+
+  `)
+  .join("");
+
+}
+
+
+function addComment(){
+
+ if(!currentMovie)return;
+
+ const name=
+  document.getElementById("commentName")
+  .value
+  .trim();
+
+ const text=
+  document.getElementById("commentText")
+  .value
+  .trim();
+
+ if(!name){
+
+  toast("اسمت رو وارد کن");
+
+  return;
+
+ }
+
+ if(!text){
+
+  toast("متن نظرت رو بنویس");
+
+  return;
+
+ }
+
+
+ const id=
+  String(currentMovie.id);
+
+ if(!comments[id])
+  comments[id]=[];
+
+
+ comments[id].push({
+
+  name:name,
+
+  text:text,
+
+  date:new Date()
+   .toLocaleDateString("fa-IR")
+
+ });
+
+
+ /*
+   فعلاً نظرات روی همین دستگاه ذخیره می‌شوند.
+   در مرحله بعد می‌توانیم آنها را به Supabase
+   متصل کنیم تا همه کاربران سایت ببینند.
+ */
+
+ localStorage.setItem(
+  COMMENTS_KEY,
+  JSON.stringify(comments)
+ );
+
+
+ document.getElementById("commentName")
+ .value="";
+
+ document.getElementById("commentText")
+ .value="";
+
+
+ renderComments();
+
+ toast("نظرت ثبت شد 💜");
+
 }
 
 
@@ -2201,19 +2990,23 @@ function setRating(n){
 
 function renderSimilar(){
 
-  const list=
-    movies
-      .filter(m=>
-        m.id!==currentMovie.id &&
-        (
-          m.genre===currentMovie.genre ||
-          m.type===currentMovie.type
-        )
-      )
-      .slice(0,5);
+ if(!currentMovie)return;
 
-  document.getElementById("similarRow").innerHTML=
-    list.map(movieCard).join("");
+ const list=
+  movies
+  .filter(m=>
+   m.id!==currentMovie.id&&
+   (
+    m.genre===currentMovie.genre||
+    m.type===currentMovie.type
+   )
+  )
+  .slice(0,5);
+
+ document.getElementById("similarRow")
+ .innerHTML=
+  list.map(movieCard).join("");
+
 }
 
 
@@ -2223,36 +3016,35 @@ function renderSimilar(){
 
 function renderSettings(){
 
-  document.querySelectorAll(".switch")
-    .forEach(sw=>{
+ document.querySelectorAll(".switch")
+ .forEach(sw=>{
 
-      const key=sw.dataset.setting;
+  const key=sw.dataset.setting;
 
-      sw.classList.toggle(
-        "on",
-        !!settings[key]
-      );
+  sw.classList.toggle(
+   "on",
+   !!settings[key]
+  );
 
-      sw.onclick=()=>{
+  sw.onclick=()=>{
 
-        settings[key]=!settings[key];
+   settings[key]=!settings[key];
 
-        localStorage.setItem(
-          SETTINGS_KEY,
-          JSON.stringify(settings)
-        );
+   localStorage.setItem(
+    SETTINGS_KEY,
+    JSON.stringify(settings)
+   );
 
-        renderSettings();
+   renderSettings();
 
-        if(key==="auto"){
-          setupFeaturedAuto();
-        }
+   setupFeaturedAuto();
 
-      };
+  };
 
-    });
+ });
 
-  renderAdminArea();
+ renderAdminArea();
+
 }
 
 
@@ -2262,334 +3054,619 @@ function renderSettings(){
 
 let adminClicks=0;
 
+
 document.getElementById("logo")
-  .addEventListener("click",()=>{
+.addEventListener(
+ "click",
+ ()=>{
 
-    adminClicks++;
+  adminClicks++;
 
-    clearTimeout(window.adminClickTimer);
+  clearTimeout(
+   window.adminClickTimer
+  );
 
-    window.adminClickTimer=
-      setTimeout(()=>{
-        adminClicks=0;
-      },1200);
+  window.adminClickTimer=
+   setTimeout(()=>{
+    adminClicks=0;
+   },1200);
 
-    if(adminClicks>=5){
+  if(adminClicks>=5){
 
-      adminClicks=0;
+   adminClicks=0;
 
-      const pass=
-        prompt("رمز ورود مدیر:");
+   const pass=
+    prompt("رمز ورود مدیر:");
 
-      if(pass===ADMIN_PASSWORD){
+   if(pass===ADMIN_PASSWORD){
 
-        renderAdminPanel();
+    renderAdminPanel();
 
-      }else if(pass!==null){
+   }else if(pass!==null){
 
-        toast("رمز اشتباه است");
+    toast("رمز اشتباه است");
 
-      }
+   }
 
-    }
+  }
 
-  });
+ }
+);
 
 
 function renderAdminArea(){
 
-  const area=
-    document.getElementById("adminArea");
+ document.getElementById("adminArea")
+ .innerHTML=`
 
-  area.innerHTML=`
-    <div class="admin-box glass">
+  <div class="admin-box glass">
 
-      <h3>🔐 مدیریت</h3>
+   <h3>🔐 مدیریت</h3>
 
-      <p style="color:#999;font-size:11px">
-        برای ورود، روی لوگوی HAMOFLIX پنج بار بزن.
-      </p>
+   <p
+    style="
+     color:#999;
+     font-size:11px
+    "
+   >
+    برای ورود روی لوگوی HAMOFLIX
+    پنج بار بزن.
+   </p>
 
-    </div>
-  `;
+  </div>
+ `;
+
 }
 
 
 function renderAdminPanel(){
 
-  openPage(
-    "settingsPage",
-    document.querySelector('[data-page="settingsPage"]')
+ openPage(
+  "settingsPage",
+  document.querySelector(
+   '[data-page="settingsPage"]'
+  )
+ );
+
+ const area=
+  document.getElementById("adminArea");
+
+ const selected=
+  new Set(
+   featuredIds.map(String)
   );
 
-  const area=
-    document.getElementById("adminArea");
 
-  const selected=
-    new Set(featuredIds.map(String));
+ area.innerHTML=`
 
-  area.innerHTML=`
+  <div class="admin-box glass">
 
-    <div class="admin-box glass">
+   <h3>🛠 پنل مدیریت HAMOFLIX</h3>
 
-      <h3>🛠 پنل مدیریت HAMOFLIX</h3>
+   <p class="count">
 
-      <p class="count">
-        ویژه‌های انتخاب‌شده:
-        <span id="featuredCount">
-          ${Math.min(selected.size,5)}
-        </span>
-        / 5
-      </p>
+    ویژه‌های انتخاب‌شده:
+    <span id="featuredCount">
+     ${Math.min(selected.size,5)}
+    </span>
+    / 5
 
-      <p style="font-size:11px;color:#999;line-height:1.8">
-        پنج فیلم را انتخاب کن تا در بخش ویژه بالای صفحه نمایش داده شوند.
-        هر زمان خواستی می‌توانی انتخابشان را تغییر بدهی.
-      </p>
+   </p>
 
-      <div class="admin-movies">
 
+   <p
+    style="
+     font-size:11px;
+     color:#999;
+     line-height:1.8
+    "
+   >
+    پنج فیلم را انتخاب کن تا در بالای سایت
+    نمایش داده شوند.
+   </p>
+
+
+   <div class="admin-movies">
+
+    ${
+     movies.map(m=>`
+
+      <div class="admin-movie">
+
+       <img
+        src="${escapeHTML(
+         m.poster||fallbackPoster
+        )}"
+        onerror="posterError(this)"
+        loading="lazy"
+       >
+
+       <label>
+        ${escapeHTML(m.title)}
+       </label>
+
+       <input
+        type="checkbox"
+        class="featured-check"
+        value="${escapeHTML(m.id)}"
         ${
-          movies.map(m=>`
-
-            <div class="admin-movie">
-
-              <img
-                src="${escapeHTML(m.poster || fallbackPoster)}"
-                onerror="posterError(this)"
-                loading="lazy"
-              >
-
-              <label>
-                ${escapeHTML(m.title)}
-              </label>
-
-              <input
-                type="checkbox"
-                class="featured-check"
-                value="${escapeHTML(m.id)}"
-                ${selected.has(String(m.id))?"checked":""}
-              >
-
-            </div>
-
-          `).join("")
+         selected.has(String(m.id))
+         ?"checked"
+         :""
         }
+       >
 
       </div>
 
-      <button
-        class="btn primary"
-        style="margin-top:14px;width:100%"
-        onclick="saveFeaturedAdmin()"
-      >
-        ذخیره بخش ویژه
-      </button>
+     `).join("")
+    }
 
-      <hr style="border-color:#ffffff10;margin:20px 0">
+   </div>
 
-      <h3>➕ افزودن فیلم / سریال</h3>
 
-      <input
-        id="newTitle"
-        class="admin-input"
-        placeholder="نام فیلم یا سریال"
-      >
+   <button
+    class="btn primary"
+    style="
+     margin-top:14px;
+     width:100%
+    "
+    onclick="saveFeaturedAdmin()"
+   >
+    ذخیره بخش ویژه
+   </button>
 
-      <select id="newType" class="admin-input">
-        <option value="movie">فیلم</option>
-        <option value="series">سریال</option>
-      </select>
 
-      <input
-        id="newGenre"
-        class="admin-input"
-        placeholder="ژانر"
-      >
+   <hr
+    style="
+     border-color:#ffffff10;
+     margin:20px 0
+    "
+   >
 
-      <input
-        id="newYear"
-        class="admin-input"
-        placeholder="سال"
-      >
 
-      <input
-        id="newRating"
-        class="admin-input"
-        placeholder="امتیاز"
-      >
+   <h3>➕ افزودن فیلم / سریال</h3>
 
-      <input
-        id="newPoster"
-        class="admin-input"
-        placeholder="لینک پوستر"
-      >
 
-      <textarea
-        id="newDescription"
-        class="admin-input"
-        rows="3"
-        placeholder="توضیحات"
-      ></textarea>
+   <input
+    id="newTitle"
+    class="admin-input"
+    placeholder="نام فیلم یا سریال"
+   >
 
-      <label style="
-        display:flex;
-        gap:8px;
-        align-items:center;
-        font-size:12px;
-        margin:10px 0;
-      ">
-        <input
-          id="newFeatured"
-          type="checkbox"
-        >
-        نمایش در بخش ویژه بالا
-      </label>
 
-      <button
-        class="btn primary"
-        style="width:100%"
-        onclick="addMovieAdmin()"
-      >
-        افزودن محتوا
-      </button>
+   <select
+    id="newType"
+    class="admin-input"
+   >
+    <option value="movie">فیلم</option>
+    <option value="series">سریال</option>
+   </select>
 
-    </div>
-  `;
 
-  document
-    .querySelectorAll(".featured-check")
-    .forEach(check=>{
+   <input
+    id="newGenre"
+    class="admin-input"
+    placeholder="ژانر"
+   >
 
-      check.addEventListener("change",()=>{
 
-        const count=
-          document.querySelectorAll(
-            ".featured-check:checked"
-          ).length;
+   <input
+    id="newYear"
+    class="admin-input"
+    placeholder="سال"
+   >
 
-        if(count>5){
 
-          check.checked=false;
+   <input
+    id="newRating"
+    class="admin-input"
+    placeholder="امتیاز"
+   >
 
-          toast("حداکثر ۵ فیلم می‌توانی انتخاب کنی");
 
-          return;
-        }
+   <input
+    id="newPoster"
+    class="admin-input"
+    placeholder="لینک پوستر"
+   >
 
-        document.getElementById("featuredCount")
-          .textContent=count;
 
-      });
+   <input
+    id="newWatchUrl"
+    class="admin-input"
+    placeholder="لینک پخش قانونی"
+   >
 
-    });
+
+   <input
+    id="newDownloadUrl"
+    class="admin-input"
+    placeholder="لینک دانلود قانونی"
+   >
+
+
+   <textarea
+    id="newDescription"
+    class="admin-input"
+    rows="3"
+    placeholder="توضیحات"
+   ></textarea>
+
+
+   <label
+    style="
+     display:flex;
+     gap:8px;
+     align-items:center;
+     font-size:12px;
+     margin:10px 0
+    "
+   >
+
+    <input
+     id="newFeatured"
+     type="checkbox"
+    >
+
+    نمایش در بخش ویژه بالا
+
+   </label>
+
+
+   <label
+    style="
+     display:flex;
+     gap:8px;
+     align-items:center;
+     font-size:12px;
+     margin:10px 0
+    "
+   >
+
+    <input
+     id="newUpdated"
+     type="checkbox"
+    >
+
+    نمایش در «سریال‌های بروز شده»
+
+   </label>
+
+
+   <button
+    class="btn primary"
+    style="width:100%"
+    onclick="addMovieAdmin()"
+   >
+    افزودن محتوا
+   </button>
+
+
+   <hr
+    style="
+     border-color:#ffffff10;
+     margin:20px 0
+    "
+   >
+
+
+   <h3>✏️ ویرایش لینک‌های محتوا</h3>
+
+
+   <div
+    id="adminEditMovies"
+    class="admin-movies"
+   ></div>
+
+  </div>
+ `;
+
+
+ document
+ .querySelectorAll(".featured-check")
+ .forEach(check=>{
+
+  check.addEventListener(
+   "change",
+   ()=>{
+
+    const count=
+     document.querySelectorAll(
+      ".featured-check:checked"
+     ).length;
+
+    if(count>5){
+
+     check.checked=false;
+
+     toast(
+      "حداکثر ۵ فیلم می‌توانی انتخاب کنی"
+     );
+
+     return;
+
+    }
+
+    document.getElementById(
+     "featuredCount"
+    ).textContent=count;
+
+   }
+  );
+
+ });
+
+
+ renderAdminEditMovies();
+
+}
+
+
+function renderAdminEditMovies(){
+
+ const area=
+  document.getElementById(
+   "adminEditMovies"
+  );
+
+ if(!area)return;
+
+ area.innerHTML=
+  movies.map(m=>`
+
+   <div
+    style="
+     padding:12px;
+     border-radius:14px;
+     background:#ffffff05;
+     margin-bottom:8px
+    "
+   >
+
+    <strong
+     style="
+      font-size:12px;
+      display:block;
+      margin-bottom:8px
+     "
+    >
+     ${escapeHTML(m.title)}
+    </strong>
+
+
+    <input
+     class="admin-input"
+     value="${escapeHTML(m.watchUrl||"")}"
+     placeholder="لینک پخش"
+     id="watch_${escapeHTML(m.id)}"
+    >
+
+
+    <input
+     class="admin-input"
+     value="${escapeHTML(m.downloadUrl||"")}"
+     placeholder="لینک دانلود"
+     id="download_${escapeHTML(m.id)}"
+    >
+
+
+    <label
+     style="
+      font-size:11px;
+      color:#aaa;
+      display:block;
+      margin:7px 0
+     "
+    >
+     <input
+      type="checkbox"
+      id="updated_${escapeHTML(m.id)}"
+      ${m.updated?"checked":""}
+     >
+     سریال بروز شده
+    </label>
+
+
+    <button
+     class="btn primary"
+     onclick="saveMovieLinks('${escapeHTML(m.id)}')"
+    >
+     ذخیره
+    </button>
+
+   </div>
+
+  `).join("");
+
+}
+
+
+function saveMovieLinks(id){
+
+ const movie=
+  movies.find(
+   m=>String(m.id)===String(id)
+  );
+
+ if(!movie)return;
+
+ movie.watchUrl=
+  document.getElementById(
+   `watch_${id}`
+  ).value.trim();
+
+ movie.downloadUrl=
+  document.getElementById(
+   `download_${id}`
+  ).value.trim();
+
+ movie.updated=
+  document.getElementById(
+   `updated_${id}`
+  ).checked;
+
+ saveMovies();
+
+ renderHome();
+
+ toast("اطلاعات محتوا ذخیره شد");
 
 }
 
 
 function saveFeaturedAdmin(){
 
-  const checked=[
-    ...document.querySelectorAll(
-      ".featured-check:checked"
-    )
-  ];
+ const checked=[
+  ...document.querySelectorAll(
+   ".featured-check:checked"
+  )
+ ];
 
-  if(checked.length!==5){
+ if(checked.length!==5){
 
-    toast("دقیقاً ۵ فیلم انتخاب کن");
+  toast("دقیقاً ۵ فیلم انتخاب کن");
 
-    return;
-  }
+  return;
 
-  featuredIds=
-    checked.map(x=>String(x.value));
+ }
 
-  localStorage.setItem(
-    FEATURED_KEY,
-    JSON.stringify(featuredIds)
+ featuredIds=
+  checked.map(
+   x=>String(x.value)
   );
 
-  renderFeatured();
+ localStorage.setItem(
+  FEATURED_KEY,
+  JSON.stringify(featuredIds)
+ );
 
-  toast("بخش ویژه با موفقیت تغییر کرد ✨");
+ renderFeatured();
+
+ toast(
+  "بخش ویژه با موفقیت تغییر کرد ✨"
+ );
+
 }
 
 
 function addMovieAdmin(){
 
-  const title=
-    document.getElementById("newTitle").value.trim();
+ const title=
+  document.getElementById(
+   "newTitle"
+  ).value.trim();
 
-  if(!title){
+ if(!title){
 
-    toast("اسم فیلم را وارد کن");
+  toast("اسم فیلم را وارد کن");
 
-    return;
+  return;
+
+ }
+
+
+ const movie={
+
+  id:String(Date.now()),
+
+  title:title,
+
+  type:
+   document.getElementById(
+    "newType"
+   ).value,
+
+  genre:
+   document.getElementById(
+    "newGenre"
+   ).value.trim()||
+   "عمومی",
+
+  year:
+   document.getElementById(
+    "newYear"
+   ).value.trim(),
+
+  rating:
+   document.getElementById(
+    "newRating"
+   ).value.trim()||
+   "0",
+
+  poster:
+   document.getElementById(
+    "newPoster"
+   ).value.trim()||
+   fallbackPoster,
+
+  description:
+   document.getElementById(
+    "newDescription"
+   ).value.trim(),
+
+  watchUrl:
+   document.getElementById(
+    "newWatchUrl"
+   ).value.trim(),
+
+  downloadUrl:
+   document.getElementById(
+    "newDownloadUrl"
+   ).value.trim(),
+
+  isNew:true,
+
+  updated:
+   document.getElementById(
+    "newUpdated"
+   ).checked
+
+ };
+
+
+ movies.unshift(movie);
+
+ saveMovies();
+
+
+ const wantFeatured=
+  document.getElementById(
+   "newFeatured"
+  ).checked;
+
+
+ if(wantFeatured){
+
+  if(featuredIds.length<5){
+
+   featuredIds.push(
+    String(movie.id)
+   );
+
+   localStorage.setItem(
+    FEATURED_KEY,
+    JSON.stringify(featuredIds)
+   );
+
+  }else{
+
+   toast(
+    "محتوا اضافه شد؛ برای ویژه کردن اول یکی را بردار."
+   );
+
   }
 
-  const movie={
+ }
 
-    id:String(Date.now()),
 
-    title,
+ renderHome();
 
-    type:
-      document.getElementById("newType").value,
+ renderAdminPanel();
 
-    genre:
-      document.getElementById("newGenre").value.trim() ||
-      "عمومی",
+ toast(
+  "محتوا با موفقیت اضافه شد 🎉"
+ );
 
-    year:
-      document.getElementById("newYear").value.trim(),
-
-    rating:
-      document.getElementById("newRating").value.trim() ||
-      "0",
-
-    poster:
-      document.getElementById("newPoster").value.trim() ||
-      fallbackPoster,
-
-    description:
-      document.getElementById("newDescription").value.trim(),
-
-    isNew:true
-
-  };
-
-  movies.unshift(movie);
-
-  saveMovies();
-
-  const wantFeatured=
-    document.getElementById("newFeatured").checked;
-
-  if(wantFeatured){
-
-    if(featuredIds.length<5){
-
-      featuredIds.push(String(movie.id));
-
-      localStorage.setItem(
-        FEATURED_KEY,
-        JSON.stringify(featuredIds)
-      );
-
-    }else{
-
-      toast("فیلم اضافه شد؛ برای ویژه کردن، اول یکی را از بخش ویژه بردار.");
-
-    }
-
-  }
-
-  renderHome();
-
-  renderAdminPanel();
-
-  toast("محتوا با موفقیت اضافه شد 🎉");
 }
 
 
@@ -2599,39 +3676,45 @@ function addMovieAdmin(){
 
 function reportProblem(){
 
-  const title=
-    currentMovie
-    ? currentMovie.title
-    : "سایت";
+ const title=
+  currentMovie
+  ?
+  currentMovie.title
+  :
+  "سایت";
 
-  const text=
-    prompt(
-      `مشکل مربوط به «${title}» را بنویس:`
-    );
-
-  if(!text) return;
-
-  const reports=
-    loadJSON("hamoflix_reports_v1",[]);
-
-  reports.push({
-
-    id:Date.now(),
-
-    movie:title,
-
-    text,
-
-    date:new Date().toISOString()
-
-  });
-
-  localStorage.setItem(
-    "hamoflix_reports_v1",
-    JSON.stringify(reports)
+ const text=
+  prompt(
+   `مشکل مربوط به «${title}» را بنویس:`
   );
 
-  toast("گزارش ثبت شد ❤️");
+ if(!text)return;
+
+ const reports=
+  loadJSON(
+   "hamoflix_reports_v1",
+   []
+  );
+
+ reports.push({
+
+  id:Date.now(),
+
+  movie:title,
+
+  text:text,
+
+  date:new Date().toISOString()
+
+ });
+
+ localStorage.setItem(
+  "hamoflix_reports_v1",
+  JSON.stringify(reports)
+ );
+
+ toast("گزارش ثبت شد ❤️");
+
 }
 
 
@@ -2641,26 +3724,34 @@ function reportProblem(){
 
 let featuredTimer=null;
 
+
 function setupFeaturedAuto(){
 
-  clearInterval(featuredTimer);
+ clearInterval(featuredTimer);
 
-  if(!settings.auto) return;
+ if(!settings.auto)return;
 
-  featuredTimer=
-    setInterval(()=>{
+ featuredTimer=
+  setInterval(()=>{
 
-      const track=
-        document.getElementById("featuredTrack");
+   const track=
+    document.getElementById(
+     "featuredTrack"
+    );
 
-      if(!track) return;
+   if(!track)return;
 
-      if(!document.getElementById("homePage")
-        .classList.contains("active")) return;
+   if(
+    !document
+    .getElementById("homePage")
+    .classList
+    .contains("active")
+   )return;
 
-      featuredMove(1);
+   featuredMove(1);
 
-    },4500);
+  },4500);
+
 }
 
 
@@ -2669,19 +3760,10 @@ function setupFeaturedAuto(){
 ========================= */
 
 renderHome();
+
 renderSettings();
+
 setupFeaturedAuto();
-
-
-window.addEventListener("resize",()=>{
-
-  /*
-    فقط برای اطمینان از حفظ موقعیت
-    حلقه‌ای بخش ویژه.
-  */
-
-});
-
 
 </script>
 
