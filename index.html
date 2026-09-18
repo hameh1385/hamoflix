@@ -5,13 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090613">
 <meta name="description" content="HAMOFLIX - فیلم و سریال">
-
 <title>HAMOFLIX</title>
 
 <style>
 :root{
   --bg:#090613;
-  --bg2:#120a20;
   --glass:rgba(255,255,255,.075);
   --glass2:rgba(255,255,255,.11);
   --border:rgba(255,255,255,.13);
@@ -19,7 +17,6 @@
   --purple2:#6c35d9;
   --text:#fff;
   --muted:#aaa5b8;
-  --danger:#ff5577;
 }
 
 *{
@@ -39,17 +36,11 @@ body{
     radial-gradient(circle at 20% 0%,rgba(137,65,255,.18),transparent 35%),
     radial-gradient(circle at 100% 35%,rgba(91,37,165,.12),transparent 30%),
     linear-gradient(180deg,#090613,#0d0717 60%,#08050d);
-  font-family:
-    Tahoma,
-    Arial,
-    sans-serif;
+  font-family:Tahoma,Arial,sans-serif;
   overflow-x:hidden;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -66,14 +57,14 @@ img{
   display:none!important;
 }
 
-/* ---------- HEADER ---------- */
+/* ================= HEADER ================= */
 
 .header{
   position:sticky;
   top:0;
-  z-index:50;
-  padding:12px 14px;
-  background:rgba(9,6,19,.82);
+  z-index:100;
+  padding:10px 14px;
+  background:rgba(9,6,19,.84);
   border-bottom:1px solid rgba(255,255,255,.07);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
@@ -92,9 +83,8 @@ img{
   font-size:21px;
   font-weight:900;
   letter-spacing:.5px;
-  color:#fff;
-  text-shadow:0 0 18px rgba(155,92,255,.7);
   user-select:none;
+  text-shadow:0 0 18px rgba(155,92,255,.7);
 }
 
 .logo span{
@@ -115,9 +105,6 @@ img{
   border:1px solid var(--border);
   border-radius:15px;
   background:rgba(255,255,255,.065);
-  box-shadow:
-    inset 0 1px rgba(255,255,255,.05),
-    0 5px 20px rgba(0,0,0,.15);
 }
 
 .search::placeholder{
@@ -138,7 +125,7 @@ img{
   padding:7px;
   border:1px solid var(--border);
   border-radius:16px;
-  background:rgba(18,10,32,.96);
+  background:rgba(18,10,32,.97);
   box-shadow:0 15px 40px rgba(0,0,0,.45);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
@@ -158,7 +145,7 @@ img{
 
 .search-item img{
   width:40px;
-  height:52px;
+  height:55px;
   object-fit:cover;
   border-radius:7px;
 }
@@ -174,7 +161,7 @@ img{
   font-size:11px;
 }
 
-/* ---------- HERO ---------- */
+/* ================= HERO ================= */
 
 .hero{
   max-width:1250px;
@@ -216,7 +203,7 @@ img{
   font-size:13px;
 }
 
-/* ---------- GENRES ---------- */
+/* ================= GENRES ================= */
 
 .genres{
   max-width:1250px;
@@ -240,11 +227,6 @@ img{
   color:#ddd6e8;
   background:var(--glass);
   white-space:nowrap;
-  transition:transform .15s,background .15s;
-}
-
-.genre:active{
-  transform:scale(.96);
 }
 
 .genre.active{
@@ -253,12 +235,12 @@ img{
   border-color:rgba(155,92,255,.5);
 }
 
-/* ---------- SECTIONS ---------- */
+/* ================= MAIN ================= */
 
 main{
   max-width:1250px;
   margin:auto;
-  padding-bottom:120px;
+  padding-bottom:125px;
 }
 
 .section{
@@ -269,7 +251,6 @@ main{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
   padding:0 14px 11px;
 }
 
@@ -298,7 +279,15 @@ main{
   font-size:12px;
 }
 
-/* ---------- CAROUSEL ---------- */
+/* ================= HOME CARDS ================= */
+
+/*
+  خانه:
+  دقیقاً ساختار قبلی حفظ شده:
+  یک ردیف افقی
+  ۵ کارت + کارت مشاهده همه
+  پوسترها ۳:۴
+*/
 
 .carousel{
   display:flex;
@@ -315,17 +304,12 @@ main{
   display:none;
 }
 
-/*
-  دقیقاً 5 کارت در دسکتاپ.
-  در موبایل کارت‌ها کوچک‌تر هستند تا اسکرول روان‌تر شود.
-*/
-
 .movie-card{
   position:relative;
   flex:0 0 calc((100% - 48px)/5);
   min-width:0;
   scroll-snap-align:start;
-  padding:9px;
+  padding:8px;
   border:1px solid var(--border);
   border-radius:17px;
   background:var(--glass);
@@ -336,14 +320,13 @@ main{
   contain:layout paint;
 }
 
-.movie-card:active{
-  transform:scale(.985);
-}
-
 .poster-wrap{
   position:relative;
   overflow:hidden;
-  aspect-ratio:16/10;
+
+  /* ۳:۴ واقعی */
+  aspect-ratio:3/4;
+
   border-radius:12px;
   background:#171020;
 }
@@ -353,16 +336,6 @@ main{
   height:100%;
   object-fit:cover;
   background:#171020;
-}
-
-.poster-loading{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg,
-      rgba(255,255,255,.03),
-      rgba(255,255,255,.09),
-      rgba(255,255,255,.03));
 }
 
 .movie-info{
@@ -391,41 +364,38 @@ main{
 
 .new-badge{
   position:absolute;
-  top:14px;
-  right:14px;
-  z-index:2;
+  top:13px;
+  right:13px;
+  z-index:3;
   padding:4px 7px;
   border-radius:7px;
   color:white;
-  background:rgba(155,92,255,.85);
+  background:rgba(155,92,255,.88);
   font-size:9px;
   font-weight:bold;
 }
 
 .favorite-btn{
   position:absolute;
-  top:13px;
-  left:13px;
-  z-index:3;
+  top:12px;
+  left:12px;
+  z-index:4;
   width:29px;
   height:29px;
   padding:0;
   border:1px solid rgba(255,255,255,.15);
   border-radius:50%;
   color:white;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.48);
 }
 
 .favorite-btn.active{
   color:#ff73a2;
 }
 
-/* ---------- SEE ALL CARD ---------- */
-
 .see-all-card{
   flex:0 0 calc((100% - 48px)/5);
-  min-width:0;
-  min-height:180px;
+  min-height:270px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -434,9 +404,7 @@ main{
   background:
     radial-gradient(circle,rgba(155,92,255,.18),transparent 65%),
     rgba(255,255,255,.055);
-  color:#c493ff;
   scroll-snap-align:start;
-  box-shadow:inset 0 1px rgba(255,255,255,.06);
 }
 
 .see-all-inner{
@@ -460,21 +428,90 @@ main{
   font-weight:bold;
 }
 
-/* ---------- BOTTOM NAV ---------- */
+/* ================= FULL PAGES ================= */
+
+.page{
+  min-height:calc(100vh - 75px);
+  padding:20px 14px 130px;
+}
+
+.page-inner{
+  max-width:1250px;
+  margin:auto;
+}
+
+.page-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.page-title{
+  margin:0;
+  font-size:25px;
+  font-weight:900;
+}
+
+.page-subtitle{
+  margin:7px 0 0;
+  color:#9992a5;
+  font-size:12px;
+}
+
+.back-btn{
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:white;
+  background:var(--glass);
+}
+
+/*
+  صفحات فیلم و سریال:
+  کارت‌های بزرگ‌تر
+  پوستر ۳:۴
+*/
+
+.full-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill,minmax(165px,1fr));
+  gap:15px;
+}
+
+.full-grid .movie-card{
+  width:100%;
+  flex:none;
+}
+
+.full-grid .poster-wrap{
+  aspect-ratio:3/4;
+}
+
+.full-grid .movie-title{
+  font-size:14px;
+}
+
+.full-grid .movie-meta{
+  font-size:11px;
+}
+
+/* ================= BOTTOM NAV ================= */
 
 .bottom-nav{
   position:fixed;
   left:50%;
-  bottom:12px;
-  z-index:100;
-  width:min(420px,calc(100% - 30px));
+  bottom:11px;
+  z-index:150;
+  width:min(430px,calc(100% - 26px));
   transform:translateX(-50%);
   display:flex;
   justify-content:space-around;
   padding:7px;
   border:1px solid rgba(255,255,255,.14);
   border-radius:22px;
-  background:rgba(20,11,33,.83);
+  background:rgba(20,11,33,.86);
   box-shadow:
     0 15px 45px rgba(0,0,0,.45),
     inset 0 1px rgba(255,255,255,.07);
@@ -483,8 +520,9 @@ main{
 }
 
 .nav-btn{
-  min-width:70px;
-  padding:7px 10px;
+  flex:1;
+  min-width:65px;
+  padding:7px 5px;
   border:0;
   border-radius:15px;
   color:#9d97a8;
@@ -503,12 +541,12 @@ main{
   background:rgba(155,92,255,.2);
 }
 
-/* ---------- MODALS ---------- */
+/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
   inset:0;
-  z-index:200;
+  z-index:300;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -519,7 +557,7 @@ main{
 }
 
 .modal-box{
-  width:min(700px,100%);
+  width:min(720px,100%);
   max-height:90vh;
   overflow:auto;
   padding:20px;
@@ -527,11 +565,6 @@ main{
   border-radius:23px;
   background:#120a20;
   box-shadow:0 25px 80px rgba(0,0,0,.6);
-}
-
-.modal-title{
-  margin:0 0 16px;
-  font-size:20px;
 }
 
 .close{
@@ -543,6 +576,122 @@ main{
   color:white;
   background:rgba(255,255,255,.08);
 }
+
+.modal-title{
+  margin:0 0 16px;
+  font-size:20px;
+}
+
+/* ================= DETAIL ================= */
+
+.detail{
+  display:grid;
+  grid-template-columns:210px 1fr;
+  gap:20px;
+}
+
+.detail-poster{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:15px;
+}
+
+.detail-description{
+  color:#b8b1c2;
+  line-height:2;
+  font-size:13px;
+}
+
+.detail-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:12px 0;
+}
+
+.tag{
+  padding:6px 9px;
+  border-radius:9px;
+  color:#c9a2ff;
+  background:rgba(155,92,255,.12);
+}
+
+/* ================= BUTTONS ================= */
+
+.primary{
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  border:0;
+  border-radius:13px;
+  color:white;
+  background:linear-gradient(135deg,#9b5cff,#6530c9);
+}
+
+.secondary{
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  color:white;
+  background:var(--glass);
+}
+
+/* ================= SETTINGS ================= */
+
+.setting{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.setting-info strong{
+  display:block;
+  font-size:14px;
+}
+
+.setting-info small{
+  display:block;
+  margin-top:4px;
+  color:#918a9b;
+  font-size:11px;
+}
+
+.switch{
+  position:relative;
+  width:45px;
+  height:25px;
+  flex:none;
+  border:0;
+  border-radius:20px;
+  background:#312a3b;
+}
+
+.switch::after{
+  content:"";
+  position:absolute;
+  top:3px;
+  right:22px;
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  background:#aaa;
+  transition:.2s;
+}
+
+.switch.on{
+  background:#7c42db;
+}
+
+.switch.on::after{
+  right:3px;
+  background:white;
+}
+
+/* ================= FORMS ================= */
 
 .form-grid{
   display:grid;
@@ -569,117 +718,7 @@ textarea.field{
   grid-column:1/-1;
 }
 
-.primary{
-  width:100%;
-  margin-top:12px;
-  padding:12px;
-  border:0;
-  border-radius:13px;
-  color:white;
-  background:linear-gradient(135deg,#9b5cff,#6530c9);
-}
-
-.secondary{
-  padding:10px 14px;
-  border:1px solid var(--border);
-  border-radius:11px;
-  color:white;
-  background:var(--glass);
-}
-
-/* ---------- MOVIE DETAIL ---------- */
-
-.detail{
-  display:grid;
-  grid-template-columns:210px 1fr;
-  gap:20px;
-}
-
-.detail-poster{
-  width:100%;
-  aspect-ratio:2/3;
-  object-fit:cover;
-  border-radius:15px;
-}
-
-.detail h2{
-  margin-top:0;
-}
-
-.detail-description{
-  color:#b8b1c2;
-  line-height:2;
-  font-size:13px;
-}
-
-.detail-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin:12px 0;
-}
-
-.tag{
-  padding:6px 9px;
-  border-radius:9px;
-  color:#c9a2ff;
-  background:rgba(155,92,255,.12);
-}
-
-/* ---------- SETTINGS ---------- */
-
-.setting{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  padding:14px 0;
-  border-bottom:1px solid rgba(255,255,255,.07);
-}
-
-.setting-info strong{
-  display:block;
-  font-size:14px;
-}
-
-.setting-info small{
-  display:block;
-  margin-top:4px;
-  color:#918a9b;
-  font-size:11px;
-}
-
-.switch{
-  position:relative;
-  width:45px;
-  height:25px;
-  flex:none;
-  border-radius:20px;
-  background:#312a3b;
-}
-
-.switch::after{
-  content:"";
-  position:absolute;
-  top:3px;
-  right:22px;
-  width:19px;
-  height:19px;
-  border-radius:50%;
-  background:#aaa;
-  transition:.2s;
-}
-
-.switch.on{
-  background:#7c42db;
-}
-
-.switch.on::after{
-  right:3px;
-  background:white;
-}
-
-/* ---------- ADMIN ---------- */
+/* ================= ADMIN ================= */
 
 .admin-list{
   margin-top:15px;
@@ -715,7 +754,7 @@ textarea.field{
   background:rgba(255,60,90,.16);
 }
 
-/* ---------- TOAST ---------- */
+/* ================= TOAST ================= */
 
 .toast{
   position:fixed;
@@ -741,12 +780,21 @@ textarea.field{
   transform:translateX(-50%) translateY(0);
 }
 
-/* ---------- MOBILE ---------- */
+/* ================= MOBILE ================= */
 
 @media(max-width:900px){
-  .movie-card,
+
+  .movie-card{
+    flex-basis:calc((100% - 24px)/3);
+  }
+
   .see-all-card{
     flex-basis:calc((100% - 24px)/3);
+  }
+
+  .full-grid{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
   }
 }
 
@@ -818,6 +866,11 @@ textarea.field{
     padding-right:10px;
   }
 
+  /*
+    موبایل:
+    کارت‌ها دوباره عمودی ۳:۴
+  */
+
   .movie-card,
   .see-all-card{
     flex-basis:calc((100vw - 29px)/2.25);
@@ -829,6 +882,7 @@ textarea.field{
   }
 
   .poster-wrap{
+    aspect-ratio:3/4;
     border-radius:10px;
   }
 
@@ -840,9 +894,39 @@ textarea.field{
     font-size:9px;
   }
 
+  /* صفحه کامل فیلم/سریال */
+
+  .page{
+    padding:
+      16px 10px
+      125px;
+  }
+
+  .page-title{
+    font-size:22px;
+  }
+
+  .full-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .full-grid .movie-card{
+    padding:7px;
+  }
+
+  .full-grid .movie-title{
+    font-size:12px;
+  }
+
+  .full-grid .movie-meta{
+    font-size:9px;
+  }
+
   .bottom-nav{
     bottom:8px;
-    width:calc(100% - 24px);
+    width:calc(100% - 22px);
     border-radius:19px;
   }
 
@@ -877,9 +961,8 @@ textarea.field{
   }
 }
 
-/* کاهش حرکت برای دستگاه‌های ضعیف/تنظیمات accessibility */
-
 @media(prefers-reduced-motion:reduce){
+
   *,
   *::before,
   *::after{
@@ -894,6 +977,7 @@ textarea.field{
 <body>
 
 <header class="header">
+
   <div class="header-inner">
 
     <div class="logo" id="logo">
@@ -910,89 +994,141 @@ textarea.field{
         placeholder="جستجوی فیلم یا سریال..."
       >
 
-      <div id="searchResults" class="search-results hidden"></div>
+      <div
+        id="searchResults"
+        class="search-results hidden">
+      </div>
 
     </div>
 
   </div>
+
 </header>
 
 <section class="hero">
+
   <div class="hero-card">
+
     <div class="hero-content">
-      <h1 class="hero-title">HAMOFLIX</h1>
+
+      <h1 class="hero-title">
+        HAMOFLIX
+      </h1>
+
       <p class="hero-text">
         دنیای فیلم و سریال مورد علاقه‌ات،
-        سریع‌تر و سبک‌تر از همیشه.
+        سریع و سبک روی گوشی.
       </p>
+
     </div>
+
   </div>
+
 </section>
 
 <div id="genres" class="genres"></div>
 
 <main id="main"></main>
 
+<!--
+  این قسمت عمداً همیشه ثابت و شناور است.
+  هر دکمه صفحه کامل مربوط به خودش را باز می‌کند.
+-->
+
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" data-nav="home">
+  <button
+    class="nav-btn active"
+    data-nav="home">
+
     <span>⌂</span>
     خانه
+
   </button>
 
-  <button class="nav-btn" data-nav="movies">
+  <button
+    class="nav-btn"
+    data-nav="movies">
+
     <span>🎬</span>
     فیلم‌ها
+
   </button>
 
-  <button class="nav-btn" data-nav="series">
+  <button
+    class="nav-btn"
+    data-nav="series">
+
     <span>📺</span>
     سریال‌ها
+
   </button>
 
-  <button class="nav-btn" data-nav="settings">
+  <button
+    class="nav-btn"
+    data-nav="settings">
+
     <span>⚙</span>
     تنظیمات
+
   </button>
 
 </nav>
 
-<div id="modal" class="modal hidden">
-  <div id="modalBox" class="modal-box"></div>
+<div
+  id="modal"
+  class="modal hidden">
+
+  <div
+    id="modalBox"
+    class="modal-box">
+  </div>
+
 </div>
 
 <div id="toast" class="toast"></div>
 
 <script>
+
 /* =========================================================
-   HAMOFLIX OPTIMIZED ENGINE
+   HAMOFLIX
+   OPTIMIZED + 3:4 POSTERS + FULL MOVIE/SERIES PAGES
    ========================================================= */
 
-/* ---------- STORAGE ---------- */
+const STORAGE_KEY="hamoflix_movies_v4";
+const FAVORITES_KEY="hamoflix_favorites";
+const RATINGS_KEY="hamoflix_ratings";
+const WATCHING_KEY="hamoflix_watching";
+const SETTINGS_KEY="hamoflix_settings";
 
-const STORAGE_KEY = "hamoflix_movies_v3";
-const FAVORITES_KEY = "hamoflix_favorites";
-const RATINGS_KEY = "hamoflix_ratings";
-const WATCHING_KEY = "hamoflix_watching";
-const SETTINGS_KEY = "hamoflix_settings";
-
-/* ---------- FALLBACK POSTER ---------- */
-
-const FALLBACK_POSTER =
-"data:image/svg+xml;charset=UTF-8," +
+const FALLBACK_POSTER=
+"data:image/svg+xml;charset=UTF-8,"+
 encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="375">
-<rect width="100%" height="100%" fill="#171020"/>
-<text x="50%" y="50%" fill="#9b5cff"
-font-size="42" text-anchor="middle"
+<svg xmlns="http://www.w3.org/2000/svg"
+width="600" height="800">
+
+<rect width="100%" height="100%"
+fill="#171020"/>
+
+<text
+x="50%"
+y="50%"
+fill="#9b5cff"
+font-size="42"
+text-anchor="middle"
 dominant-baseline="middle"
-font-family="Arial">HAMOFLIX</text>
+font-family="Arial">
+
+HAMOFLIX
+
+</text>
+
 </svg>
 `);
 
-/* ---------- SAMPLE DATA ---------- */
+/* ================= DATA ================= */
 
-const defaultMovies = [
+const defaultMovies=[
 
 {
  id:"wednesday",
@@ -1240,92 +1376,114 @@ const defaultMovies = [
 
 ];
 
-/* ---------- STATE ---------- */
+/* ================= STATE ================= */
 
-let movies = loadMovies();
-let favorites = loadJSON(FAVORITES_KEY, []);
-let ratings = loadJSON(RATINGS_KEY, {});
-let watching = loadJSON(WATCHING_KEY, {});
-let settings = loadJSON(SETTINGS_KEY, {
- notifications:false,
- continueWatching:true
-});
+function loadJSON(key,fallback){
 
-let currentGenre = "همه";
-let searchTimer = null;
-let logoClicks = 0;
-let logoTimer = null;
-
-/* ---------- BASIC HELPERS ---------- */
-
-function loadJSON(key, fallback){
   try{
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : fallback;
+
+    const x=localStorage.getItem(key);
+
+    return x?JSON.parse(x):fallback;
+
   }catch(e){
+
     return fallback;
+
   }
 }
 
 function saveJSON(key,value){
-  try{
-    localStorage.setItem(key,JSON.stringify(value));
-  }catch(e){}
-}
-
-function loadMovies(){
-
-  const saved = loadJSON(STORAGE_KEY,null);
-
-  if(Array.isArray(saved) && saved.length){
-    return saved;
-  }
 
   try{
     localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(defaultMovies)
+      key,
+      JSON.stringify(value)
     );
   }catch(e){}
 
-  return [...defaultMovies];
 }
 
+let movies=
+  loadJSON(STORAGE_KEY,null);
+
+if(!Array.isArray(movies)||!movies.length){
+
+  movies=[...defaultMovies];
+
+  saveJSON(
+    STORAGE_KEY,
+    movies
+  );
+
+}
+
+let favorites=
+  loadJSON(FAVORITES_KEY,[]);
+
+let ratings=
+  loadJSON(RATINGS_KEY,{});
+
+let watching=
+  loadJSON(WATCHING_KEY,{});
+
+let settings=
+  loadJSON(
+    SETTINGS_KEY,
+    {
+      notifications:false,
+      continueWatching:true
+    }
+  );
+
+let currentGenre="همه";
+let searchTimer=null;
+let logoClicks=0;
+let logoTimer=null;
+
+/* ================= HELPERS ================= */
+
 function escapeHTML(value){
-  return String(value ?? "")
+
+  return String(value??"")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
 }
 
 function posterURL(url){
 
-  if(!url) return FALLBACK_POSTER;
+  return url||FALLBACK_POSTER;
 
-  return url;
 }
 
 function toast(message){
 
-  const el = document.getElementById("toast");
+  const el=
+    document.getElementById("toast");
 
-  el.textContent = message;
+  el.textContent=message;
+
   el.classList.add("show");
 
   clearTimeout(toast.timer);
 
-  toast.timer = setTimeout(()=>{
+  toast.timer=setTimeout(()=>{
+
     el.classList.remove("show");
+
   },2200);
+
 }
 
-/* ---------- GENRES ---------- */
+/* ================= GENRES ================= */
 
 function buildGenres(){
 
-  const genres = [
+  const genres=[
     "همه",
     ...new Set(
       movies
@@ -1334,42 +1492,65 @@ function buildGenres(){
     )
   ];
 
-  document.getElementById("genres").innerHTML =
-    genres.map(g=>`
-      <button
-        class="genre ${g===currentGenre?"active":""}"
-        data-genre="${escapeHTML(g)}">
-        ${escapeHTML(g)}
-      </button>
-    `).join("");
+  document.getElementById("genres")
+    .innerHTML=
+      genres.map(g=>`
+
+        <button
+          class="genre ${g===currentGenre?"active":""}"
+          data-genre="${escapeHTML(g)}">
+
+          ${escapeHTML(g)}
+
+        </button>
+
+      `).join("");
 
   document
     .querySelectorAll(".genre")
     .forEach(btn=>{
+
       btn.onclick=()=>{
-        currentGenre=btn.dataset.genre;
+
+        currentGenre=
+          btn.dataset.genre;
+
         buildGenres();
         renderHome();
+
       };
+
     });
+
 }
 
-/* ---------- MOVIE CARD ---------- */
+/* ================= CARD ================= */
 
 function movieCard(movie){
 
-  const fav = favorites.includes(movie.id);
+  const fav=
+    favorites.includes(movie.id);
 
   return `
+
     <article class="movie-card">
 
-      ${movie.isNew ? `<div class="new-badge">جدید</div>` : ""}
+      ${
+        movie.isNew
+        ?`
+        <div class="new-badge">
+          جدید
+        </div>
+        `
+        :""
+      }
 
       <button
         class="favorite-btn ${fav?"active":""}"
-        onclick="toggleFavorite('${movie.id}',event)"
-        aria-label="علاقه‌مندی">
-        ${fav ? "♥" : "♡"}
+        onclick="toggleFavorite('${movie.id}',event)">
+
+        ${fav?"♥":"♡"}
+
       </button>
 
       <div
@@ -1381,8 +1562,8 @@ function movieCard(movie){
           src="${escapeHTML(posterURL(movie.poster))}"
           loading="lazy"
           decoding="async"
-          width="780"
-          height="488"
+          width="600"
+          height="800"
           onerror="this.onerror=null;this.src=FALLBACK_POSTER"
           alt="${escapeHTML(movie.title)}">
 
@@ -1397,96 +1578,121 @@ function movieCard(movie){
         </div>
 
         <div class="movie-meta">
-          <span>${escapeHTML(movie.year || "")}</span>
-          <span>•</span>
-          <span class="movie-rating">
-            ⭐ ${escapeHTML(movie.rating || "—")}
+
+          <span>
+            ${escapeHTML(movie.year||"")}
           </span>
+
+          <span>•</span>
+
+          <span class="movie-rating">
+            ⭐ ${escapeHTML(movie.rating||"—")}
+          </span>
+
         </div>
 
       </div>
 
     </article>
+
   `;
+
 }
 
-/* ---------- SECTIONS ---------- */
+/* ================= HOME SECTIONS ================= */
 
-const sectionData = [
+const sectionData=[
 
   {
     id:"newMovies",
     title:"فیلم‌های جدید",
-    filter:m=>m.type==="movie" && m.isNew
+    filter:m=>
+      m.type==="movie" &&
+      m.isNew
   },
 
   {
     id:"newSeries",
     title:"سریال‌های جدید",
-    filter:m=>m.type==="series" && m.isNew
+    filter:m=>
+      m.type==="series" &&
+      m.isNew
   },
 
   {
     id:"iran",
     title:"فیلم‌های ایرانی",
-    filter:m=>m.section==="iran"
+    filter:m=>
+      m.section==="iran"
   },
 
   {
     id:"india",
     title:"فیلم و سریال هندی",
-    filter:m=>m.section==="india"
+    filter:m=>
+      m.section==="india"
   },
 
   {
     id:"korea",
     title:"فیلم و سریال کره‌ای",
-    filter:m=>m.section==="korea"
+    filter:m=>
+      m.section==="korea"
   },
 
   {
     id:"popular",
     title:"محبوب‌ترین‌ها",
-    filter:m=>Number(m.rating || 0)>=7.5
+    filter:m=>
+      Number(m.rating||0)>=7.5
   }
-];
 
-/*
-  کارت‌های هر بخش حداکثر 5 مورد نمایش می‌دهند.
-  کارت ششم همیشه "مشاهده همه" است.
-*/
+];
 
 function getFilteredMovies(){
 
-  let list = [...movies];
+  let list=[...movies];
 
-  if(currentGenre !== "همه"){
-    list = list.filter(
-      m=>m.genre===currentGenre
-    );
+  if(currentGenre!=="همه"){
+
+    list=
+      list.filter(
+        m=>m.genre===currentGenre
+      );
+
   }
 
   return list;
+
 }
 
 function renderSection(section){
 
-  let list = getFilteredMovies()
-    .filter(section.filter);
+  let list=
+    getFilteredMovies()
+      .filter(section.filter);
 
   list.sort((a,b)=>{
-    if(a.isNew && !b.isNew) return -1;
-    if(!a.isNew && b.isNew) return 1;
 
-    return Number(b.rating || 0) -
-           Number(a.rating || 0);
+    if(a.isNew&&!b.isNew)
+      return -1;
+
+    if(!a.isNew&&b.isNew)
+      return 1;
+
+    return Number(b.rating||0)-
+           Number(a.rating||0);
+
   });
 
-  const visible = list.slice(0,5);
+  const visible=
+    list.slice(0,5);
 
-  if(!visible.length) return "";
+  if(!visible.length)
+    return "";
 
   return `
+
     <section class="section">
 
       <div class="section-head">
@@ -1498,7 +1704,9 @@ function renderSection(section){
         <button
           class="view-all"
           onclick="openAll('${section.id}')">
+
           مشاهده همه
+
         </button>
 
       </div>
@@ -1513,7 +1721,9 @@ function renderSection(section){
 
           <div class="see-all-inner">
 
-            <div class="see-all-icon">＋</div>
+            <div class="see-all-icon">
+              ＋
+            </div>
 
             <div class="see-all-text">
               مشاهده همه
@@ -1526,50 +1736,183 @@ function renderSection(section){
       </div>
 
     </section>
-  `;
-}
 
-/* ---------- HOME ---------- */
+  `;
+
+}
 
 function renderHome(){
 
-  const main = document.getElementById("main");
-
-  main.innerHTML = sectionData
-    .map(renderSection)
-    .join("");
+  document.getElementById("main")
+    .innerHTML=
+      sectionData
+        .map(renderSection)
+        .join("");
 
 }
 
-/* ---------- MOVIE DETAIL ---------- */
+/* ================= FULL PAGE ================= */
+
+function renderFullPage(
+  title,
+  subtitle,
+  list,
+  navName
+){
+
+  document.getElementById("main")
+    .innerHTML=`
+
+      <section class="page">
+
+        <div class="page-inner">
+
+          <div class="page-header">
+
+            <div>
+
+              <h1 class="page-title">
+                ${escapeHTML(title)}
+              </h1>
+
+              <p class="page-subtitle">
+                ${escapeHTML(subtitle)}
+              </p>
+
+            </div>
+
+            <button
+              class="back-btn"
+              onclick="goHome()">
+
+              ← خانه
+
+            </button>
+
+          </div>
+
+          <div class="full-grid">
+
+            ${list.map(movieCard).join("")}
+
+          </div>
+
+        </div>
+
+      </section>
+
+    `;
+
+  setActiveNav(navName);
+
+  window.scrollTo({
+    top:0,
+    behavior:"auto"
+  });
+
+}
+
+/* ================= MOVIES PAGE ================= */
+
+function openMoviesPage(){
+
+  const list=
+    movies
+      .filter(m=>m.type==="movie")
+      .sort(
+        (a,b)=>
+          Number(b.rating||0)-
+          Number(a.rating||0)
+      );
+
+  renderFullPage(
+    "همه فیلم‌ها",
+    `${list.length} فیلم در HAMOFLIX`,
+    list,
+    "movies"
+  );
+
+}
+
+/* ================= SERIES PAGE ================= */
+
+function openSeriesPage(){
+
+  const list=
+    movies
+      .filter(m=>m.type==="series")
+      .sort(
+        (a,b)=>
+          Number(b.rating||0)-
+          Number(a.rating||0)
+      );
+
+  renderFullPage(
+    "همه سریال‌ها",
+    `${list.length} سریال در HAMOFLIX`,
+    list,
+    "series"
+  );
+
+}
+
+/* ================= HOME ================= */
+
+function goHome(){
+
+  currentGenre="همه";
+
+  buildGenres();
+  renderHome();
+
+  setActiveNav("home");
+
+  window.scrollTo({
+    top:0,
+    behavior:"auto"
+  });
+
+}
+
+/* ================= MOVIE DETAIL ================= */
 
 function openMovie(id){
 
-  const movie = movies.find(
-    m=>String(m.id)===String(id)
+  const movie=
+    movies.find(
+      m=>String(m.id)===String(id)
+    );
+
+  if(!movie)
+    return;
+
+  watching[movie.id]=Date.now();
+
+  saveJSON(
+    WATCHING_KEY,
+    watching
   );
 
-  if(!movie) return;
-
-  watching[movie.id] = Date.now();
-  saveJSON(WATCHING_KEY,watching);
-
-  const currentRating =
-    ratings[movie.id] || "";
-
-  const similar = movies
-    .filter(m=>
-      m.id!==movie.id &&
-      (
-        m.genre===movie.genre ||
-        m.section===movie.section
+  const similar=
+    movies
+      .filter(m=>
+        m.id!==movie.id &&
+        (
+          m.genre===movie.genre ||
+          m.section===movie.section
+        )
       )
-    )
-    .slice(0,5);
+      .slice(0,5);
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">×</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+
+      ×
+
+    </button>
 
     <div class="detail">
 
@@ -1589,27 +1932,43 @@ function openMovie(id){
         <div class="detail-tags">
 
           <span class="tag">
-            ${escapeHTML(movie.type==="series"?"سریال":"فیلم")}
+            ${
+              movie.type==="series"
+              ?"سریال"
+              :"فیلم"
+            }
           </span>
 
-          ${movie.genre ?
-          `<span class="tag">${escapeHTML(movie.genre)}</span>`
-          :""}
+          ${
+            movie.genre
+            ?
+            `<span class="tag">
+              ${escapeHTML(movie.genre)}
+            </span>`
+            :""
+          }
 
-          ${movie.year ?
-          `<span class="tag">${escapeHTML(movie.year)}</span>`
-          :""}
+          ${
+            movie.year
+            ?
+            `<span class="tag">
+              ${escapeHTML(movie.year)}
+            </span>`
+            :""
+          }
 
         </div>
 
         <p>
-          ⭐ امتیاز سایت:
-          <strong>${escapeHTML(movie.rating || "—")}</strong>
+          ⭐ امتیاز:
+          <strong>
+            ${escapeHTML(movie.rating||"—")}
+          </strong>
         </p>
 
         <p class="detail-description">
           ${escapeHTML(
-            movie.description ||
+            movie.description||
             "توضیحی برای این عنوان ثبت نشده است."
           )}
         </p>
@@ -1617,16 +1976,22 @@ function openMovie(id){
         <button
           class="primary"
           onclick="watchMovie('${movie.id}')">
+
           ▶ مشاهده
+
         </button>
 
         <button
           class="secondary"
           style="width:100%;margin-top:8px"
           onclick="toggleFavorite('${movie.id}')">
-          ${favorites.includes(movie.id)
+
+          ${
+            favorites.includes(movie.id)
             ?"♥ حذف از علاقه‌مندی‌ها"
-            :"♡ افزودن به علاقه‌مندی‌ها"}
+            :"♡ افزودن به علاقه‌مندی‌ها"
+          }
+
         </button>
 
       </div>
@@ -1639,7 +2004,9 @@ function openMovie(id){
       margin:20px 0;
     ">
 
-    <h3>امتیاز شما</h3>
+    <h3>
+      امتیاز شما
+    </h3>
 
     <div style="
       display:flex;
@@ -1647,403 +2014,618 @@ function openMovie(id){
       flex-wrap:wrap;
     ">
 
-      ${[1,2,3,4,5,6,7,8,9,10]
+      ${
+        [1,2,3,4,5,6,7,8,9,10]
         .map(n=>`
+
           <button
             class="secondary"
-            style="
-              padding:8px 11px;
-              ${Number(currentRating)===n
-              ?"background:rgba(155,92,255,.3);":""}
-            "
             onclick="rateMovie('${movie.id}',${n})">
+
             ${n}
+
           </button>
-        `).join("")}
+
+        `).join("")
+      }
 
     </div>
 
     ${
       similar.length
-      ?`
-        <h3 style="margin-top:22px">
-          فیلم‌ها و سریال‌های مشابه
-        </h3>
+      ?
+      `
 
-        <div class="carousel" style="padding:0">
-          ${similar.map(movieCard).join("")}
-        </div>
+      <h3 style="margin-top:22px">
+        مشابه این عنوان
+      </h3>
+
+      <div class="carousel" style="padding:0">
+
+        ${similar.map(movieCard).join("")}
+
+      </div>
+
       `
       :""
     }
 
   `);
+
 }
 
 function watchMovie(id){
 
-  const movie = movies.find(
-    m=>String(m.id)===String(id)
-  );
+  const movie=
+    movies.find(
+      m=>String(m.id)===String(id)
+    );
 
-  if(!movie) return;
-
-  if(movie.watch && movie.watch !== "#"){
-    window.open(movie.watch,"_blank","noopener");
+  if(!movie)
     return;
+
+  if(
+    movie.watch &&
+    movie.watch!=="#"
+  ){
+
+    window.open(
+      movie.watch,
+      "_blank",
+      "noopener"
+    );
+
+  }else{
+
+    toast(
+      "لینک مشاهده هنوز ثبت نشده است."
+    );
+
   }
 
-  toast("لینک مشاهده برای این عنوان هنوز ثبت نشده است.");
 }
 
-/* ---------- FAVORITES ---------- */
+/* ================= FAVORITES ================= */
 
 function toggleFavorite(id,event){
 
-  if(event){
+  if(event)
     event.stopPropagation();
-  }
 
-  const index = favorites.indexOf(id);
+  const index=
+    favorites.indexOf(id);
 
   if(index>=0){
+
     favorites.splice(index,1);
-    toast("از علاقه‌مندی‌ها حذف شد");
+
+    toast(
+      "از علاقه‌مندی‌ها حذف شد"
+    );
+
   }else{
+
     favorites.push(id);
-    toast("به علاقه‌مندی‌ها اضافه شد");
+
+    toast(
+      "به علاقه‌مندی‌ها اضافه شد"
+    );
+
   }
 
-  saveJSON(FAVORITES_KEY,favorites);
+  saveJSON(
+    FAVORITES_KEY,
+    favorites
+  );
 
-  renderHome();
+  /*
+    اگر صفحه خانه باشد دوباره رندر می‌کنیم.
+    اگر صفحه فیلم‌ها/سریال‌ها باشد هم همان صفحه را
+    دوباره می‌سازیم.
+  */
+
+  const active=
+    document.querySelector(
+      ".nav-btn.active"
+    );
+
+  if(
+    active &&
+    active.dataset.nav==="movies"
+  ){
+
+    openMoviesPage();
+
+  }else if(
+    active &&
+    active.dataset.nav==="series"
+  ){
+
+    openSeriesPage();
+
+  }else{
+
+    renderHome();
+
+  }
+
 }
 
-/* ---------- RATINGS ---------- */
+/* ================= RATING ================= */
 
 function rateMovie(id,rating){
 
   ratings[id]=rating;
 
-  saveJSON(RATINGS_KEY,ratings);
+  saveJSON(
+    RATINGS_KEY,
+    ratings
+  );
 
-  toast(`امتیاز ${rating} ثبت شد`);
+  toast(
+    `امتیاز ${rating} ثبت شد`
+  );
 
-  setTimeout(()=>{
-    openMovie(id);
-  },150);
 }
 
-/* ---------- ALL ---------- */
+/* ================= ALL ================= */
 
 function openAll(sectionId){
 
-  const section =
-    sectionData.find(s=>s.id===sectionId);
+  const section=
+    sectionData.find(
+      s=>s.id===sectionId
+    );
 
-  if(!section) return;
+  if(!section)
+    return;
 
-  let list =
+  let list=
     getFilteredMovies()
       .filter(section.filter);
 
   list.sort(
     (a,b)=>
-      Number(b.rating||0) -
+      Number(b.rating||0)-
       Number(a.rating||0)
   );
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">×</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+
+      ×
+
+    </button>
 
     <h2 class="modal-title">
-      ${section.title}
+      ${escapeHTML(section.title)}
     </h2>
 
-    <div
-      style="
-        display:grid;
-        grid-template-columns:
-          repeat(auto-fill,minmax(145px,1fr));
-        gap:10px;
-      "
-    >
+    <div class="full-grid">
 
       ${list.map(movieCard).join("")}
 
     </div>
 
   `);
+
 }
 
-/* ---------- SEARCH ---------- */
+/* ================= SEARCH ================= */
 
 document
   .getElementById("searchInput")
-  .addEventListener("input",function(){
+  .addEventListener(
+    "input",
+    function(){
 
-    const value =
-      this.value.trim().toLowerCase();
+      const value=
+        this.value
+          .trim()
+          .toLowerCase();
 
-    clearTimeout(searchTimer);
+      clearTimeout(searchTimer);
 
-    searchTimer=setTimeout(()=>{
+      searchTimer=
+        setTimeout(()=>{
 
-      if(!value){
-
-        document
-          .getElementById("searchResults")
-          .classList.add("hidden");
-
-        return;
-      }
-
-      const results =
-        movies
-          .filter(m=>
-            `${m.title} ${m.genre} ${m.year}`
-              .toLowerCase()
-              .includes(value)
-          )
-          .slice(0,8);
-
-      const box =
-        document.getElementById("searchResults");
-
-      if(!results.length){
-
-        box.innerHTML=`
-          <div style="
-            padding:15px;
-            color:#999;
-            text-align:center;
-          ">
-            چیزی پیدا نشد
-          </div>
-        `;
-
-      }else{
-
-        box.innerHTML =
-          results.map(m=>`
-
-            <div
-              class="search-item"
-              onclick="openMovie('${m.id}')">
-
-              <img
-                src="${escapeHTML(posterURL(m.poster))}"
-                loading="lazy"
-                onerror="this.onerror=null;this.src=FALLBACK_POSTER"
-                alt="">
-
-              <div>
-
-                <div class="search-item-title">
-                  ${escapeHTML(m.title)}
-                </div>
-
-                <div class="search-item-info">
-                  ${escapeHTML(m.year||"")}
-                  •
-                  ${escapeHTML(m.genre||"")}
-                </div>
-
-              </div>
-
-            </div>
-
-          `).join("");
-      }
-
-      box.classList.remove("hidden");
-
-    },180);
-  });
-
-document.addEventListener("click",e=>{
-
-  if(
-    !e.target.closest(".search-box")
-  ){
-    document
-      .getElementById("searchResults")
-      .classList.add("hidden");
-  }
-
-});
-
-/* ---------- SETTINGS ---------- */
-
-function openSettings(){
-
-  const notifications =
-    settings.notifications;
-
-  openModal(`
-
-    <button class="close" onclick="closeModal()">×</button>
-
-    <h2 class="modal-title">
-      تنظیمات
-    </h2>
-
-    <div class="setting">
-
-      <div class="setting-info">
-        <strong>اعلان فیلم‌های جدید</strong>
-        <small>
-          وقتی عنوان جدید اضافه شود اطلاع بده
-        </small>
-      </div>
-
-      <button
-        id="notificationSwitch"
-        class="switch ${notifications?"on":""}"
-        onclick="toggleNotifications()">
-      </button>
-
-    </div>
-
-    <div class="setting">
-
-      <div class="setting-info">
-        <strong>ادامه تماشا</strong>
-        <small>
-          آخرین عنوان‌های مشاهده‌شده ذخیره شوند
-        </small>
-      </div>
-
-      <button
-        class="switch ${settings.continueWatching?"on":""}"
-        onclick="toggleContinueWatching()">
-      </button>
-
-    </div>
-
-    <div class="setting">
-
-      <div class="setting-info">
-        <strong>فیلم‌های مورد علاقه</strong>
-        <small>
-          نمایش عنوان‌هایی که ذخیره کرده‌ای
-        </small>
-      </div>
-
-      <button
-        class="secondary"
-        onclick="openFavorites()">
-        نمایش
-      </button>
-
-    </div>
-
-    <div class="setting">
-
-      <div class="setting-info">
-        <strong>جستجوی پیشرفته</strong>
-        <small>
-          جستجو بر اساس نوع، ژانر، سال و امتیاز
-        </small>
-      </div>
-
-      <button
-        class="secondary"
-        onclick="openAdvancedSearch()">
-        باز کردن
-      </button>
-
-    </div>
-
-    <div class="setting">
-
-      <div class="setting-info">
-        <strong>گزارش مشکل</strong>
-        <small>
-          گزارش مشکل پوستر یا اطلاعات
-        </small>
-      </div>
-
-      <button
-        class="secondary"
-        onclick="openReport()">
-        گزارش
-      </button>
-
-    </div>
-
-    <div class="setting">
-
-      <div class="setting-info">
-        <strong>درباره HAMOFLIX</strong>
-        <small>
-          نسخه سبک و بهینه
-        </small>
-      </div>
-
-      <button
-        class="secondary"
-        onclick="openAbout()">
-        درباره
-      </button>
-
-    </div>
-
-  `);
-}
-
-function toggleNotifications(){
-
-  if(!settings.notifications){
-
-    if("Notification" in window){
-
-      Notification.requestPermission()
-        .then(permission=>{
-
-          if(permission==="granted"){
-
-            settings.notifications=true;
-            saveJSON(
-              SETTINGS_KEY,
-              settings
+          const box=
+            document.getElementById(
+              "searchResults"
             );
 
-            toast("اعلان‌ها فعال شدند");
+          if(!value){
 
-            openSettings();
+            box.classList.add(
+              "hidden"
+            );
 
-          }else{
-
-            toast("اجازه اعلان داده نشد");
+            return;
 
           }
 
-        });
+          const results=
+            movies
+              .filter(m=>
+                `${m.title} ${m.genre} ${m.year}`
+                  .toLowerCase()
+                  .includes(value)
+              )
+              .slice(0,8);
 
-    }else{
+          if(!results.length){
 
-      toast("مرورگر شما اعلان را پشتیبانی نمی‌کند");
+            box.innerHTML=`
+              <div style="
+                padding:15px;
+                color:#999;
+                text-align:center;
+              ">
+                چیزی پیدا نشد
+              </div>
+            `;
+
+          }else{
+
+            box.innerHTML=
+              results
+                .map(m=>`
+
+                  <div
+                    class="search-item"
+                    onclick="openMovie('${m.id}')">
+
+                    <img
+                      src="${escapeHTML(posterURL(m.poster))}"
+                      loading="lazy"
+                      onerror="this.onerror=null;this.src=FALLBACK_POSTER"
+                      alt="">
+
+                    <div>
+
+                      <div class="search-item-title">
+                        ${escapeHTML(m.title)}
+                      </div>
+
+                      <div class="search-item-info">
+                        ${escapeHTML(m.year||"")}
+                        •
+                        ${escapeHTML(m.genre||"")}
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                `)
+                .join("");
+
+          }
+
+          box.classList.remove(
+            "hidden"
+          );
+
+        },180);
+
+    }
+  );
+
+document.addEventListener(
+  "click",
+  e=>{
+
+    if(
+      !e.target.closest(".search-box")
+    ){
+
+      document
+        .getElementById(
+          "searchResults"
+        )
+        .classList.add("hidden");
 
     }
 
+  }
+);
+
+/* ================= NAV ================= */
+
+function setActiveNav(nav){
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>{
+
+      btn.classList.toggle(
+        "active",
+        btn.dataset.nav===nav
+      );
+
+    });
+
+}
+
+document
+  .querySelectorAll(".nav-btn")
+  .forEach(btn=>{
+
+    btn.onclick=()=>{
+
+      const nav=
+        btn.dataset.nav;
+
+      if(nav==="home"){
+
+        goHome();
+
+      }
+
+      else if(nav==="movies"){
+
+        openMoviesPage();
+
+      }
+
+      else if(nav==="series"){
+
+        openSeriesPage();
+
+      }
+
+      else if(nav==="settings"){
+
+        openSettingsPage();
+
+      }
+
+    };
+
+  });
+
+/* ================= SETTINGS FULL PAGE ================= */
+
+function openSettingsPage(){
+
+  setActiveNav("settings");
+
+  document.getElementById("main")
+    .innerHTML=`
+
+      <section class="page">
+
+        <div class="page-inner">
+
+          <div class="page-header">
+
+            <div>
+
+              <h1 class="page-title">
+                تنظیمات
+              </h1>
+
+              <p class="page-subtitle">
+                مدیریت امکانات HAMOFLIX
+              </p>
+
+            </div>
+
+            <button
+              class="back-btn"
+              onclick="goHome()">
+
+              ← خانه
+
+            </button>
+
+          </div>
+
+          <div class="setting">
+
+            <div class="setting-info">
+
+              <strong>
+                اعلان فیلم‌های جدید
+              </strong>
+
+              <small>
+                هنگام اضافه شدن محتوای جدید اطلاع بده
+              </small>
+
+            </div>
+
+            <button
+              class="switch ${settings.notifications?"on":""}"
+              onclick="toggleNotificationsPage()">
+            </button>
+
+          </div>
+
+          <div class="setting">
+
+            <div class="setting-info">
+
+              <strong>
+                ادامه تماشا
+              </strong>
+
+              <small>
+                آخرین عنوان‌های مشاهده‌شده ذخیره شوند
+              </small>
+
+            </div>
+
+            <button
+              class="switch ${settings.continueWatching?"on":""}"
+              onclick="toggleContinuePage()">
+            </button>
+
+          </div>
+
+          <div class="setting">
+
+            <div class="setting-info">
+
+              <strong>
+                علاقه‌مندی‌ها
+              </strong>
+
+              <small>
+                فیلم‌ها و سریال‌های ذخیره‌شده
+              </small>
+
+            </div>
+
+            <button
+              class="secondary"
+              onclick="openFavoritesPage()">
+
+              نمایش
+
+            </button>
+
+          </div>
+
+          <div class="setting">
+
+            <div class="setting-info">
+
+              <strong>
+                جستجوی پیشرفته
+              </strong>
+
+              <small>
+                جستجو بر اساس نوع، ژانر، سال و امتیاز
+              </small>
+
+            </div>
+
+            <button
+              class="secondary"
+              onclick="openAdvancedSearchPage()">
+
+              جستجو
+
+            </button>
+
+          </div>
+
+          <div class="setting">
+
+            <div class="setting-info">
+
+              <strong>
+                گزارش مشکل
+              </strong>
+
+              <small>
+                مشکل پوستر یا اطلاعات را گزارش کن
+              </small>
+
+            </div>
+
+            <button
+              class="secondary"
+              onclick="openReportPage()">
+
+              گزارش
+
+            </button>
+
+          </div>
+
+          <div class="setting">
+
+            <div class="setting-info">
+
+              <strong>
+                درباره HAMOFLIX
+              </strong>
+
+              <small>
+                نسخه بهینه‌شده موبایل
+              </small>
+
+            </div>
+
+            <button
+              class="secondary"
+              onclick="openAboutPage()">
+
+              درباره
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    `;
+
+  window.scrollTo({
+    top:0,
+    behavior:"auto"
+  });
+
+}
+
+/* ================= SETTINGS ACTIONS ================= */
+
+function toggleNotificationsPage(){
+
+  if(
+    !settings.notifications &&
+    "Notification" in window
+  ){
+
+    Notification
+      .requestPermission()
+      .then(permission=>{
+
+        if(permission==="granted"){
+
+          settings.notifications=true;
+
+          saveJSON(
+            SETTINGS_KEY,
+            settings
+          );
+
+          toast(
+            "اعلان‌ها فعال شدند"
+          );
+
+        }
+
+        openSettingsPage();
+
+      });
+
   }else{
 
-    settings.notifications=false;
+    settings.notifications=
+      !settings.notifications;
 
     saveJSON(
       SETTINGS_KEY,
       settings
     );
 
-    openSettings();
+    openSettingsPage();
+
   }
+
 }
 
-function toggleContinueWatching(){
+function toggleContinuePage(){
 
-  settings.continueWatching =
+  settings.continueWatching=
     !settings.continueWatching;
 
   saveJSON(
@@ -2051,147 +2633,229 @@ function toggleContinueWatching(){
     settings
   );
 
-  openSettings();
+  openSettingsPage();
+
 }
 
-/* ---------- FAVORITES PAGE ---------- */
+/* ================= FAVORITES PAGE ================= */
 
-function openFavorites(){
+function openFavoritesPage(){
 
-  const list =
-    movies.filter(m=>
-      favorites.includes(m.id)
+  const list=
+    movies.filter(
+      m=>favorites.includes(m.id)
     );
 
-  openModal(`
+  document.getElementById("main")
+    .innerHTML=`
 
-    <button class="close" onclick="closeModal()">×</button>
+      <section class="page">
 
-    <h2 class="modal-title">
-      علاقه‌مندی‌ها
-    </h2>
+        <div class="page-inner">
 
-    ${
-      list.length
-      ?
-      `
-      <div style="
-        display:grid;
-        grid-template-columns:
-          repeat(auto-fill,minmax(145px,1fr));
-        gap:10px;
-      ">
-        ${list.map(movieCard).join("")}
-      </div>
-      `
-      :
-      `
-      <p style="color:#aaa">
-        هنوز چیزی به علاقه‌مندی‌ها اضافه نکرده‌ای.
-      </p>
-      `
-    }
+          <div class="page-header">
 
-  `);
+            <div>
+
+              <h1 class="page-title">
+                علاقه‌مندی‌ها
+              </h1>
+
+              <p class="page-subtitle">
+                ${list.length} عنوان ذخیره شده
+              </p>
+
+            </div>
+
+            <button
+              class="back-btn"
+              onclick="openSettingsPage()">
+
+              ← تنظیمات
+
+            </button>
+
+          </div>
+
+          ${
+            list.length
+            ?
+            `<div class="full-grid">
+              ${list.map(movieCard).join("")}
+            </div>`
+            :
+            `
+            <div style="
+              padding:50px 20px;
+              text-align:center;
+              color:#999;
+            ">
+              هنوز فیلم یا سریالی ذخیره نکرده‌ای.
+            </div>
+            `
+          }
+
+        </div>
+
+      </section>
+
+    `;
+
+  setActiveNav("settings");
+
 }
 
-/* ---------- ADVANCED SEARCH ---------- */
+/* ================= ADVANCED SEARCH PAGE ================= */
 
-function openAdvancedSearch(){
+function openAdvancedSearchPage(){
 
-  openModal(`
+  document.getElementById("main")
+    .innerHTML=`
 
-    <button class="close" onclick="closeModal()">×</button>
+      <section class="page">
 
-    <h2 class="modal-title">
-      جستجوی پیشرفته
-    </h2>
+        <div class="page-inner">
 
-    <div class="form-grid">
+          <div class="page-header">
 
-      <input
-        id="advTitle"
-        class="field"
-        placeholder="نام">
+            <div>
 
-      <select
-        id="advType"
-        class="field">
+              <h1 class="page-title">
+                جستجوی پیشرفته
+              </h1>
 
-        <option value="">همه</option>
-        <option value="movie">فیلم</option>
-        <option value="series">سریال</option>
+              <p class="page-subtitle">
+                دقیق‌تر دنبال چیزی که می‌خواهی بگرد
+              </p>
 
-      </select>
+            </div>
 
-      <input
-        id="advGenre"
-        class="field"
-        placeholder="ژانر">
+            <button
+              class="back-btn"
+              onclick="openSettingsPage()">
 
-      <input
-        id="advYear"
-        class="field"
-        placeholder="سال">
+              ← تنظیمات
 
-      <input
-        id="advRating"
-        class="field"
-        type="number"
-        min="0"
-        max="10"
-        step=".1"
-        placeholder="حداقل امتیاز">
+            </button>
 
-    </div>
+          </div>
 
-    <button
-      class="primary"
-      onclick="runAdvancedSearch()">
-      جستجو
-    </button>
+          <div class="form-grid">
 
-    <div id="advancedResults"></div>
+            <input
+              id="advTitle"
+              class="field"
+              placeholder="نام">
 
-  `);
+            <select
+              id="advType"
+              class="field">
+
+              <option value="">
+                همه
+              </option>
+
+              <option value="movie">
+                فیلم
+              </option>
+
+              <option value="series">
+                سریال
+              </option>
+
+            </select>
+
+            <input
+              id="advGenre"
+              class="field"
+              placeholder="ژانر">
+
+            <input
+              id="advYear"
+              class="field"
+              placeholder="سال">
+
+            <input
+              id="advRating"
+              class="field"
+              type="number"
+              min="0"
+              max="10"
+              step=".1"
+              placeholder="حداقل امتیاز">
+
+          </div>
+
+          <button
+            class="primary"
+            onclick="runAdvancedSearchPage()">
+
+            جستجو
+
+          </button>
+
+          <div
+            id="advancedResults"
+            style="margin-top:20px">
+          </div>
+
+        </div>
+
+      </section>
+
+    `;
+
+  setActiveNav("settings");
+
+  window.scrollTo({
+    top:0,
+    behavior:"auto"
+  });
+
 }
 
-function runAdvancedSearch(){
+function runAdvancedSearchPage(){
 
-  const title =
+  const title=
     document.getElementById("advTitle")
       .value
       .trim()
       .toLowerCase();
 
-  const type =
+  const type=
     document.getElementById("advType").value;
 
-  const genre =
+  const genre=
     document.getElementById("advGenre")
       .value
       .trim()
       .toLowerCase();
 
-  const year =
+  const year=
     document.getElementById("advYear")
       .value
       .trim();
 
-  const rating =
+  const rating=
     Number(
       document.getElementById("advRating").value
-    ) || 0;
+    )||0;
 
-  const result =
+  const result=
     movies.filter(m=>{
 
       if(
         title &&
-        !m.title.toLowerCase().includes(title)
-      ) return false;
+        !m.title
+          .toLowerCase()
+          .includes(title)
+      )
+        return false;
 
-      if(type && m.type!==type)
+      if(
+        type &&
+        m.type!==type
+      )
         return false;
 
       if(
@@ -2199,92 +2863,140 @@ function runAdvancedSearch(){
         !(m.genre||"")
           .toLowerCase()
           .includes(genre)
-      ) return false;
+      )
+        return false;
 
-      if(year && m.year!==year)
+      if(
+        year &&
+        m.year!==year
+      )
         return false;
 
       if(
         rating &&
         Number(m.rating||0)<rating
-      ) return false;
+      )
+        return false;
 
       return true;
+
     });
 
-  document.getElementById("advancedResults")
+  document.getElementById(
+    "advancedResults"
+  ).innerHTML=`
+
+    <h3>
+      ${result.length} نتیجه
+    </h3>
+
+    <div class="full-grid">
+      ${result.map(movieCard).join("")}
+    </div>
+
+  `;
+
+}
+
+/* ================= REPORT ================= */
+
+function openReportPage(){
+
+  document.getElementById("main")
     .innerHTML=`
 
-      <h3>
-        ${result.length} نتیجه
-      </h3>
+      <section class="page">
 
-      <div style="
-        display:grid;
-        grid-template-columns:
-          repeat(auto-fill,minmax(145px,1fr));
-        gap:10px;
-      ">
-        ${result.map(movieCard).join("")}
-      </div>
+        <div class="page-inner">
+
+          <div class="page-header">
+
+            <div>
+
+              <h1 class="page-title">
+                گزارش مشکل
+              </h1>
+
+              <p class="page-subtitle">
+                مشکل اطلاعات یا پوستر را گزارش کن
+              </p>
+
+            </div>
+
+            <button
+              class="back-btn"
+              onclick="openSettingsPage()">
+
+              ← تنظیمات
+
+            </button>
+
+          </div>
+
+          <select
+            id="reportType"
+            class="field">
+
+            <option value="poster">
+              مشکل پوستر
+            </option>
+
+            <option value="info">
+              اطلاعات اشتباه
+            </option>
+
+            <option value="search">
+              مشکل جستجو
+            </option>
+
+            <option value="other">
+              مشکل دیگر
+            </option>
+
+          </select>
+
+          <textarea
+            id="reportText"
+            class="field"
+            style="margin-top:10px"
+            placeholder="توضیح مشکل...">
+          </textarea>
+
+          <button
+            class="primary"
+            onclick="sendReportPage()">
+
+            ارسال گزارش
+
+          </button>
+
+        </div>
+
+      </section>
 
     `;
+
+  setActiveNav("settings");
+
 }
 
-/* ---------- REPORT ---------- */
-
-function openReport(){
-
-  openModal(`
-
-    <button class="close" onclick="closeModal()">×</button>
-
-    <h2 class="modal-title">
-      گزارش مشکل
-    </h2>
-
-    <select id="reportType" class="field">
-
-      <option value="poster">
-        مشکل پوستر
-      </option>
-
-      <option value="info">
-        اطلاعات اشتباه
-      </option>
-
-      <option value="search">
-        مشکل جستجو
-      </option>
-
-      <option value="other">
-        مشکل دیگر
-      </option>
-
-    </select>
-
-    <textarea
-      id="reportText"
-      class="field"
-      style="margin-top:10px"
-      placeholder="توضیح مشکل...">
-    </textarea>
-
-    <button
-      class="primary"
-      onclick="sendReport()">
-      ارسال گزارش
-    </button>
-
-  `);
-}
-
-function sendReport(){
+function sendReportPage(){
 
   const report={
-    type:document.getElementById("reportType").value,
-    text:document.getElementById("reportText").value,
-    date:new Date().toISOString()
+
+    type:
+      document.getElementById(
+        "reportType"
+      ).value,
+
+    text:
+      document.getElementById(
+        "reportText"
+      ).value,
+
+    date:
+      new Date().toISOString()
+
   };
 
   saveJSON(
@@ -2292,48 +3004,91 @@ function sendReport(){
     report
   );
 
-  closeModal();
+  toast(
+    "گزارش ذخیره شد"
+  );
 
-  toast("گزارش ذخیره شد");
+  setTimeout(
+    openSettingsPage,
+    500
+  );
+
 }
 
-/* ---------- ABOUT ---------- */
+/* ================= ABOUT ================= */
 
-function openAbout(){
+function openAboutPage(){
 
-  openModal(`
+  document.getElementById("main")
+    .innerHTML=`
 
-    <button class="close" onclick="closeModal()">×</button>
+      <section class="page">
 
-    <h2 class="modal-title">
-      درباره HAMOFLIX
-    </h2>
+        <div class="page-inner">
 
-    <p class="detail-description">
-      HAMOFLIX یک پروژه شخصی برای مدیریت و نمایش
-      فیلم‌ها و سریال‌هاست.
-    </p>
+          <div class="page-header">
 
-    <p style="color:#999;font-size:11px">
-      نسخه بهینه‌شده برای موبایل
-    </p>
+            <div>
 
-  `);
+              <h1 class="page-title">
+                درباره HAMOFLIX
+              </h1>
+
+              <p class="page-subtitle">
+                نسخه بهینه‌شده
+              </p>
+
+            </div>
+
+            <button
+              class="back-btn"
+              onclick="openSettingsPage()">
+
+              ← تنظیمات
+
+            </button>
+
+          </div>
+
+          <div class="modal-box"
+               style="width:100%;max-height:none">
+
+            <p class="detail-description">
+
+              HAMOFLIX یک پروژه شخصی برای مدیریت
+              و نمایش فیلم‌ها و سریال‌هاست.
+
+              این نسخه برای استفاده روان‌تر روی
+              گوشی‌های ضعیف‌تر بهینه شده است.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    `;
+
+  setActiveNav("settings");
+
 }
 
-/* ---------- MODAL ---------- */
+/* ================= MODAL ================= */
 
 function openModal(html){
 
-  const modal =
-    document.getElementById("modal");
-
-  document.getElementById("modalBox")
+  document
+    .getElementById("modalBox")
     .innerHTML=html;
 
-  modal.classList.remove("hidden");
+  document
+    .getElementById("modal")
+    .classList.remove("hidden");
 
   document.body.style.overflow="hidden";
+
 }
 
 function closeModal(){
@@ -2343,168 +3098,87 @@ function closeModal(){
     .classList.add("hidden");
 
   document.body.style.overflow="";
+
 }
 
 document
   .getElementById("modal")
-  .addEventListener("click",e=>{
+  .addEventListener(
+    "click",
+    e=>{
 
-    if(e.target.id==="modal"){
-      closeModal();
+      if(
+        e.target.id==="modal"
+      )
+        closeModal();
+
     }
+  );
 
-  });
+/* ================= ADMIN ================= */
 
-/* ---------- BOTTOM NAV ---------- */
-
-document
-  .querySelectorAll(".nav-btn")
-  .forEach(btn=>{
-
-    btn.onclick=()=>{
-
-      document
-        .querySelectorAll(".nav-btn")
-        .forEach(x=>
-          x.classList.remove("active")
-        );
-
-      btn.classList.add("active");
-
-      const nav=btn.dataset.nav;
-
-      if(nav==="home"){
-        currentGenre="همه";
-        buildGenres();
-        renderHome();
-      }
-
-      if(nav==="movies"){
-        currentGenre="همه";
-
-        const movieSection={
-          id:"allMovies",
-          title:"همه فیلم‌ها",
-          filter:m=>m.type==="movie"
-        };
-
-        openModal(`
-
-          <button
-            class="close"
-            onclick="closeModal()">
-            ×
-          </button>
-
-          <h2 class="modal-title">
-            همه فیلم‌ها
-          </h2>
-
-          <div style="
-            display:grid;
-            grid-template-columns:
-              repeat(auto-fill,minmax(145px,1fr));
-            gap:10px;
-          ">
-
-            ${
-              movies
-                .filter(m=>m.type==="movie")
-                .map(movieCard)
-                .join("")
-            }
-
-          </div>
-
-        `);
-      }
-
-      if(nav==="series"){
-
-        openModal(`
-
-          <button
-            class="close"
-            onclick="closeModal()">
-            ×
-          </button>
-
-          <h2 class="modal-title">
-            همه سریال‌ها
-          </h2>
-
-          <div style="
-            display:grid;
-            grid-template-columns:
-              repeat(auto-fill,minmax(145px,1fr));
-            gap:10px;
-          ">
-
-            ${
-              movies
-                .filter(m=>m.type==="series")
-                .map(movieCard)
-                .join("")
-            }
-
-          </div>
-
-        `);
-      }
-
-      if(nav==="settings"){
-        openSettings();
-      }
-
-    };
-
-  });
-
-/* ---------- ADMIN ---------- */
-
-/*
-  نکته:
-  این رمز فقط یک قفل ظاهری سمت کاربر است
-  و امنیت واقعی محسوب نمی‌شود.
-*/
-
-const ADMIN_PASSWORD =
-"HAMOFLIX_2026_ADMIN";
+const ADMIN_PASSWORD=
+  "HAMOFLIX_2026_ADMIN";
 
 document
   .getElementById("logo")
-  .addEventListener("click",()=>{
+  .addEventListener(
+    "click",
+    ()=>{
 
-    logoClicks++;
+      logoClicks++;
 
-    clearTimeout(logoTimer);
+      clearTimeout(
+        logoTimer
+      );
 
-    logoTimer=setTimeout(()=>{
-      logoClicks=0;
-    },1500);
+      logoTimer=
+        setTimeout(
+          ()=>{
+            logoClicks=0;
+          },
+          1500
+        );
 
-    if(logoClicks>=5){
+      if(logoClicks>=5){
 
-      logoClicks=0;
+        logoClicks=0;
 
-      const pass =
-        prompt("رمز مدیریت را وارد کنید:");
+        const pass=
+          prompt(
+            "رمز مدیریت را وارد کنید:"
+          );
 
-      if(pass===ADMIN_PASSWORD){
-        openAdmin();
-      }else{
-        toast("رمز اشتباه است");
+        if(
+          pass===ADMIN_PASSWORD
+        ){
+
+          openAdmin();
+
+        }else{
+
+          toast(
+            "رمز اشتباه است"
+          );
+
+        }
+
       }
 
     }
-
-  });
+  );
 
 function openAdmin(){
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">×</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+
+      ×
+
+    </button>
 
     <h2 class="modal-title">
       پنل مدیریت
@@ -2521,8 +3195,13 @@ function openAdmin(){
         id="aType"
         class="field">
 
-        <option value="movie">فیلم</option>
-        <option value="series">سریال</option>
+        <option value="movie">
+          فیلم
+        </option>
+
+        <option value="series">
+          سریال
+        </option>
 
       </select>
 
@@ -2606,99 +3285,143 @@ function openAdmin(){
     <button
       class="primary"
       onclick="addMovie()">
+
       افزودن محتوا
+
     </button>
 
     <div class="admin-list">
 
-      ${movies.map(m=>`
+      ${
+        movies.map(m=>`
 
-        <div class="admin-item">
+          <div class="admin-item">
 
-          <img
-            src="${escapeHTML(posterURL(m.poster))}"
-            loading="lazy"
-            onerror="this.onerror=null;this.src=FALLBACK_POSTER"
-            alt="">
+            <img
+              src="${escapeHTML(posterURL(m.poster))}"
+              loading="lazy"
+              onerror="this.onerror=null;this.src=FALLBACK_POSTER"
+              alt="">
 
-          <div class="admin-item-main">
+            <div class="admin-item-main">
 
-            <strong>
-              ${escapeHTML(m.title)}
-            </strong>
+              <strong>
+                ${escapeHTML(m.title)}
+              </strong>
 
-            <div style="
-              color:#999;
-              font-size:10px;
-              margin-top:4px;
-            ">
-              ${escapeHTML(m.year||"")}
-              •
-              ${escapeHTML(m.genre||"")}
+              <div style="
+                color:#999;
+                font-size:10px;
+                margin-top:4px;
+              ">
+
+                ${escapeHTML(m.year||"")}
+                •
+                ${escapeHTML(m.genre||"")}
+
+              </div>
+
             </div>
+
+            <button
+              class="delete"
+              onclick="deleteMovie('${m.id}')">
+
+              حذف
+
+            </button>
 
           </div>
 
-          <button
-            class="delete"
-            onclick="deleteMovie('${m.id}')">
-            حذف
-          </button>
-
-        </div>
-
-      `).join("")}
+        `).join("")
+      }
 
     </div>
 
   `);
+
 }
 
 function addMovie(){
 
-  const title =
-    document.getElementById("aTitle").value.trim();
+  const title=
+    document
+      .getElementById("aTitle")
+      .value
+      .trim();
 
   if(!title){
-    toast("نام را وارد کن");
+
+    toast(
+      "نام را وارد کن"
+    );
+
     return;
+
   }
 
   const movie={
 
     id:
-      "m_"+Date.now()+"_"+Math.random()
+      "m_"+
+      Date.now()+
+      "_"+
+      Math.random()
         .toString(36)
         .slice(2,7),
 
     title,
 
     type:
-      document.getElementById("aType").value,
+      document
+        .getElementById("aType")
+        .value,
 
     genre:
-      document.getElementById("aGenre").value.trim(),
+      document
+        .getElementById("aGenre")
+        .value
+        .trim(),
 
     year:
-      document.getElementById("aYear").value.trim(),
+      document
+        .getElementById("aYear")
+        .value
+        .trim(),
 
     rating:
-      document.getElementById("aRating").value.trim(),
+      document
+        .getElementById("aRating")
+        .value
+        .trim(),
 
     poster:
-      document.getElementById("aPoster").value.trim(),
+      document
+        .getElementById("aPoster")
+        .value
+        .trim(),
 
     watch:
-      document.getElementById("aWatch").value.trim(),
+      document
+        .getElementById("aWatch")
+        .value
+        .trim(),
 
     description:
-      document.getElementById("aDescription").value.trim(),
+      document
+        .getElementById("aDescription")
+        .value
+        .trim(),
 
     section:
-      document.getElementById("aSection").value,
+      document
+        .getElementById("aSection")
+        .value,
 
     isNew:
-      document.getElementById("aNew").value==="true"
+      document
+        .getElementById("aNew")
+        .value==="true"
 
   };
 
@@ -2712,19 +3435,27 @@ function addMovie(){
   buildGenres();
   renderHome();
 
-  toast("محتوا اضافه شد");
+  toast(
+    "محتوا اضافه شد"
+  );
 
   openAdmin();
+
 }
 
 function deleteMovie(id){
 
-  if(!confirm("این محتوا حذف شود؟"))
+  if(
+    !confirm(
+      "این محتوا حذف شود؟"
+    )
+  )
     return;
 
-  movies =
+  movies=
     movies.filter(
-      m=>String(m.id)!==String(id)
+      m=>String(m.id)!==
+        String(id)
     );
 
   saveJSON(
@@ -2735,52 +3466,30 @@ function deleteMovie(id){
   buildGenres();
   renderHome();
 
-  toast("محتوا حذف شد");
+  toast(
+    "محتوا حذف شد"
+  );
 
   openAdmin();
+
 }
 
-/* ---------- KEYBOARD ---------- */
+/* ================= KEYBOARD ================= */
 
-document.addEventListener("keydown",e=>{
+document.addEventListener(
+  "keydown",
+  e=>{
 
-  if(e.key==="Escape"){
-    closeModal();
+    if(e.key==="Escape")
+      closeModal();
+
   }
+);
 
-});
-
-/* ---------- INITIALIZE ---------- */
+/* ================= INIT ================= */
 
 buildGenres();
 renderHome();
-
-/*
-  preload فقط اولین چند پوستر را انجام می‌دهیم.
-  بقیه با lazy loading می‌آیند.
-*/
-
-requestIdleCallback
-? requestIdleCallback(()=>{
-    movies
-      .slice(0,5)
-      .forEach(m=>{
-        if(!m.poster) return;
-
-        const img=new Image();
-        img.src=m.poster;
-      });
-  })
-: setTimeout(()=>{
-    movies
-      .slice(0,3)
-      .forEach(m=>{
-        if(!m.poster) return;
-
-        const img=new Image();
-        img.src=m.poster;
-      });
-  },500);
 
 </script>
 
