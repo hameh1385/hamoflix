@@ -644,7 +644,7 @@ main{
     0 5px 15px rgba(100,40,180,.18);
 }
 
-/* MODAL */
+/* MODAL - طراحی جدید شیشه‌ای + پوستر کوچک */
 
 .modal{
   position:fixed;
@@ -653,8 +653,9 @@ main{
   display:none;
   align-items:flex-end;
   justify-content:center;
-  background:#0009;
+  background:rgba(0,0,0,.65);
   padding:12px;
+  backdrop-filter:blur(8px);
 }
 
 .modal.show{
@@ -662,75 +663,79 @@ main{
 }
 
 .modal-box{
-  width:min(800px,100%);
+  width:min(780px,100%);
   max-height:92vh;
   overflow:auto;
-  border-radius:25px 25px 15px 15px;
-  background:#100a18;
+  border-radius:24px;
+  background:rgba(16,10,24,.78);
   border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 -20px 80px #000;
+  box-shadow:0 -20px 80px #000a;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
 }
 
 .modal-top{
   position:relative;
+  display:flex;
+  justify-content:center;
+  padding:22px 20px 0;
 }
 
 .modal-poster{
-  width:100%;
+  width:140px;
   aspect-ratio:2/3;
-  max-height:55vh;
   object-fit:cover;
+  border-radius:16px;
   display:block;
-}
-
-.modal-gradient{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(transparent 35%,#100a18 90%);
+  box-shadow:0 12px 30px rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.12);
 }
 
 .close{
   position:absolute;
-  top:12px;
-  left:12px;
+  top:14px;
+  left:14px;
   z-index:5;
   width:36px;
   height:36px;
   border:0;
   border-radius:50%;
-  background:#0009;
+  background:rgba(0,0,0,.55);
   color:white;
   font-size:20px;
+  border:1px solid rgba(255,255,255,.12);
 }
 
 .modal-content{
-  padding:0 20px 25px;
-  margin-top:-70px;
-  position:relative;
+  padding:18px 20px 28px;
 }
 
 .modal-content h2{
   margin:0 0 8px;
-  font-size:23px;
+  font-size:22px;
+  text-align:center;
 }
 
 .modal-meta{
   color:#aaa;
   font-size:12px;
-  margin-bottom:15px;
+  margin-bottom:14px;
+  text-align:center;
 }
 
 .description{
   color:#ccc;
-  line-height:2;
+  line-height:1.9;
   font-size:13px;
+  text-align:justify;
 }
 
 .actions{
   display:flex;
   gap:10px;
-  margin:16px 0;
+  margin:18px 0;
   flex-wrap:wrap;
+  justify-content:center;
 }
 
 /* دکمه‌های سه‌بعدی بنفش */
@@ -785,6 +790,45 @@ main{
     0 3px 10px rgba(100,40,180,.4),
     0 1px 0 #4a1580,
     inset 0 2px rgba(0,0,0,.3);
+}
+
+/* قسمت‌های سریال */
+.episodes-box{
+  margin:16px 0 6px;
+  padding:14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.episodes-box h3{
+  margin:0 0 12px;
+  font-size:15px;
+}
+
+.episodes-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.episode-btn{
+  min-width:52px;
+  height:40px;
+  border-radius:11px;
+  border:1px solid rgba(170,110,255,.35);
+  background:rgba(120,50,200,.18);
+  color:#e8d0ff;
+  font-size:13px;
+  transition:.15s;
+}
+
+.episode-btn:hover,
+.episode-btn.selected{
+  background:linear-gradient(145deg,#9b4dff,#5a1a9e);
+  border-color:rgba(200,140,255,.6);
+  color:#fff;
+  box-shadow:0 4px 12px rgba(100,40,180,.35);
 }
 
 .similar{
@@ -929,8 +973,12 @@ main{
   }
 
   .modal-box{
-    max-height:95vh;
-    border-radius:24px 24px 0 0;
+    max-height:96vh;
+    border-radius:22px 22px 0 0;
+  }
+
+  .modal-poster{
+    width:120px;
   }
 }
 
@@ -959,7 +1007,6 @@ main{
       <div id="searchResults" class="search-results"></div>
     </div>
 
-    <!-- دکمه تاریخچه -->
     <div style="position:relative">
       <button class="history-btn" onclick="toggleHistory(event)">
         🕘 تاریخچه
@@ -1086,7 +1133,7 @@ main{
 
   </div>
 
-  <div id="adminArea"></div>
+  <!-- بخش مدیریت از اینجا حذف شد تا تابلو نباشه -->
 
 </section>
 
@@ -1157,8 +1204,6 @@ main{
         alt=""
       >
 
-      <div class="modal-gradient"></div>
-
     </div>
 
     <div class="modal-content">
@@ -1168,6 +1213,12 @@ main{
       <div id="modalMeta" class="modal-meta"></div>
 
       <div id="modalDescription" class="description"></div>
+
+      <!-- قسمت‌های سریال (فقط برای سریال نمایش داده می‌شود) -->
+      <div id="episodesBox" class="episodes-box" style="display:none">
+        <h3>انتخاب قسمت</h3>
+        <div id="episodesGrid" class="episodes-grid"></div>
+      </div>
 
       <div class="actions">
 
@@ -1263,7 +1314,8 @@ const defaultMovies = [
  rating:"8.1",
  poster:"https://image.tmdb.org/t/p/w780/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
  description:"یک داستان رازآلود و فانتزی درباره ونزدی آدامز و اتفاقاتی که در مدرسه جدیدش رخ می‌دهد.",
- isNew:true
+ isNew:true,
+ episodes:8
 },
 
 {
@@ -1275,7 +1327,8 @@ const defaultMovies = [
  rating:"8.1",
  poster:"https://image.tmdb.org/t/p/w780/1NxaSnba1QbbaZ6UVGqL9Y16k.jpg",
  description:"هزاران انسان در یک سیلوی زیرزمینی زندگی می‌کنند و راز بزرگی درباره دنیای بیرون وجود دارد.",
- isNew:true
+ isNew:true,
+ episodes:10
 },
 
 {
@@ -1287,7 +1340,8 @@ const defaultMovies = [
  rating:"7.5",
  poster:"https://image.tmdb.org/t/p/w780/pTEFqAjLd5YTsMD6NSUxV6Dq7A.jpg",
  description:"دانش‌آموزان یک مدرسه در میان شیوع یک ویروس خطرناک گرفتار می‌شوند.",
- isNew:false
+ isNew:false,
+ episodes:12
 },
 
 {
@@ -1323,7 +1377,8 @@ const defaultMovies = [
  rating:"8.6",
  poster:"https://image.tmdb.org/t/p/w780/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",
  description:"سال‌ها پس از یک فروپاشی جهانی، دو نفر برای عبور از آمریکای ویران‌شده تلاش می‌کنند.",
- isNew:true
+ isNew:true,
+ episodes:9
 },
 
 {
@@ -1335,7 +1390,8 @@ const defaultMovies = [
  rating:"8.6",
  poster:"https://image.tmdb.org/t/p/w780/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
  description:"گروهی از نوجوانان وارد ماجراهایی عجیب و ماورایی می‌شوند.",
- isNew:false
+ isNew:false,
+ episodes:8
 },
 
 {
@@ -1383,7 +1439,8 @@ const defaultMovies = [
  rating:"9.5",
  poster:"https://image.tmdb.org/t/p/w780/ztkUQFLlC2W2aG9f9J5YpV3Vv8C.jpg",
  description:"داستان یک معلم شیمی که وارد دنیای جرم و جنایت می‌شود.",
- isNew:false
+ isNew:false,
+ episodes:7
 },
 
 {
@@ -1395,7 +1452,8 @@ const defaultMovies = [
  rating:"8.7",
  poster:"https://image.tmdb.org/t/p/w780/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",
  description:"ناپدید شدن یک کودک رازهای عجیبی درباره زمان و خانواده‌ها آشکار می‌کند.",
- isNew:false
+ isNew:false,
+ episodes:10
 }
 
 ];
@@ -1410,7 +1468,9 @@ let settings = loadJSON(SETTINGS_KEY,{
 let historyList = loadJSON(HISTORY_KEY,[]);
 
 let currentMovie = null;
+let selectedEpisode = 1;
 let modalOpen = false;
+let currentPage = "homePage";
 
 let featuredIds = loadJSON(
   FEATURED_KEY,
@@ -1509,13 +1569,9 @@ function posterError(img){
 function addToHistory(movie){
   if(!movie) return;
 
-  // حذف اگر قبلاً بوده
   historyList = historyList.filter(id => String(id) !== String(movie.id));
-
-  // اضافه کردن به اول لیست
   historyList.unshift(String(movie.id));
 
-  // حداکثر ۲۰ تا نگه می‌داریم
   if(historyList.length > 20){
     historyList = historyList.slice(0,20);
   }
@@ -1530,7 +1586,6 @@ function toggleHistory(e){
   const dropdown = document.getElementById("historyDropdown");
   const isOpen = dropdown.classList.contains("show");
 
-  // بستن همه دراپ‌داون‌ها
   document.querySelectorAll(".history-dropdown").forEach(d => d.classList.remove("show"));
   document.getElementById("searchResults").style.display = "none";
 
@@ -1575,7 +1630,6 @@ function closeHistory(){
 }
 
 
-// بستن تاریخچه با کلیک بیرون
 document.addEventListener("click", (e) => {
   if(!e.target.closest(".history-btn") && !e.target.closest(".history-dropdown")){
     closeHistory();
@@ -1584,7 +1638,7 @@ document.addEventListener("click", (e) => {
 
 
 /* =========================
-   NAV
+   NAV + BACK BUTTON
 ========================= */
 
 function openPage(id,button){
@@ -1602,6 +1656,8 @@ function openPage(id,button){
     button.classList.add("active");
   }
 
+  currentPage = id;
+
   if(id==="moviesPage"){
     if(!window._customMoviesTitle){
       document.getElementById("moviesPageTitle").textContent = "🎬 فیلم‌ها";
@@ -1618,6 +1674,11 @@ function openPage(id,button){
   }
 
   window._customMoviesTitle = false;
+
+  // برای پشتیبانی دکمه بازگشت
+  if(id !== "homePage"){
+    history.pushState({ page: id }, "");
+  }
 
   window.scrollTo({
     top:0,
@@ -1804,23 +1865,28 @@ function featuredMove(direction){
 const sectionData=[
 
   {
-    title:"🔥 جدیدترین‌ها",
-    filter:m=>m.isNew
+    title:"🔥 فیلم‌های جدید",
+    filter:m => m.type === "movie" && m.isNew
+  },
+
+  {
+    title:"📺 سریال‌های جدید",
+    filter:m => m.type === "series" && m.isNew
   },
 
   {
     title:"📺 سریال‌ها",
-    filter:m=>m.type==="series"
+    filter:m => m.type === "series"
   },
 
   {
     title:"🎬 فیلم‌ها",
-    filter:m=>m.type==="movie"
+    filter:m => m.type === "movie"
   },
 
   {
     title:"⭐ محبوب‌ترین‌ها",
-    filter:m=>true,
+    filter:m => true,
     sort:(a,b)=>Number(b.rating||0)-Number(a.rating||0)
   }
 
@@ -2061,12 +2127,14 @@ function renderFullSeries(){
 
 function openSectionAll(index){
 
-  if(index === 1){
+  // سریال‌ها
+  if(index === 2){
     document.querySelector('[data-page="seriesPage"]').click();
     return;
   }
 
-  if(index === 2){
+  // فیلم‌ها
+  if(index === 3){
     document.querySelector('[data-page="moviesPage"]').click();
     return;
   }
@@ -2190,8 +2258,8 @@ function openMovie(id){
   if(!movie) return;
 
   currentMovie=movie;
+  selectedEpisode = 1;
 
-  // اضافه به تاریخچه
   addToHistory(movie);
 
   document.getElementById("modalPoster").src=
@@ -2214,7 +2282,7 @@ function openMovie(id){
     "توضیحی برای این محتوا ثبت نشده است.";
 
   updateFavoriteButton();
-
+  renderEpisodes();
   renderSimilar();
 
   document.getElementById("modal")
@@ -2222,8 +2290,42 @@ function openMovie(id){
 
   modalOpen = true;
 
-  // برای پشتیبانی از دکمه بازگشت گوشی
   history.pushState({ modal: true }, "");
+}
+
+
+function renderEpisodes(){
+  const box = document.getElementById("episodesBox");
+  const grid = document.getElementById("episodesGrid");
+
+  if(!currentMovie || currentMovie.type !== "series"){
+    box.style.display = "none";
+    return;
+  }
+
+  const count = currentMovie.episodes || 8;
+
+  box.style.display = "block";
+
+  let html = "";
+  for(let i = 1; i <= count; i++){
+    html += `
+      <button 
+        class="episode-btn ${i === selectedEpisode ? "selected" : ""}"
+        onclick="selectEpisode(${i})"
+      >
+        قسمت ${i}
+      </button>
+    `;
+  }
+  grid.innerHTML = html;
+}
+
+
+function selectEpisode(num){
+  selectedEpisode = num;
+  renderEpisodes();
+  toast(`قسمت ${num} انتخاب شد`);
 }
 
 
@@ -2246,11 +2348,20 @@ function closeModal(e){
 }
 
 
-// پشتیبانی از دکمه بازگشت گوشی / مرورگر
+/* پشتیبانی کامل از دکمه بازگشت گوشی */
 window.addEventListener("popstate", function(e){
+
+  // اگر مودال باز بود → ببند
   if(modalOpen){
     hideModal();
+    return;
   }
+
+  // اگر داخل فیلم‌ها یا سریال‌ها بودیم → برو خانه
+  if(currentPage === "moviesPage" || currentPage === "seriesPage" || currentPage === "settingsPage"){
+    openPage("homePage", document.querySelector('[data-page="homePage"]'));
+  }
+
 });
 
 
@@ -2260,12 +2371,22 @@ window.addEventListener("popstate", function(e){
 
 function playMovie(){
   if(!currentMovie) return;
-  toast("در حال پخش «" + currentMovie.title + "» ...");
+
+  if(currentMovie.type === "series"){
+    toast(`در حال پخش «${currentMovie.title}» - قسمت ${selectedEpisode} ...`);
+  }else{
+    toast("در حال پخش «" + currentMovie.title + "» ...");
+  }
 }
 
 function downloadMovie(){
   if(!currentMovie) return;
-  toast("دانلود «" + currentMovie.title + "» شروع شد ⬇");
+
+  if(currentMovie.type === "series"){
+    toast(`دانلود «${currentMovie.title}» - قسمت ${selectedEpisode} شروع شد ⬇`);
+  }else{
+    toast("دانلود «" + currentMovie.title + "» شروع شد ⬇");
+  }
 }
 
 
@@ -2410,13 +2531,11 @@ function renderSettings(){
       };
 
     });
-
-  renderAdminArea();
 }
 
 
 /* =========================
-   ADMIN
+   ADMIN (پنهان - فقط با ۵ کلیک روی لوگو)
 ========================= */
 
 let adminClicks=0;
@@ -2431,324 +2550,183 @@ document.getElementById("logo")
     window.adminClickTimer=
       setTimeout(()=>{
         adminClicks=0;
-      },1200);
+      },1500);
 
-    if(adminClicks>=5){
+    if(adminClicks >= 5){
 
       adminClicks=0;
 
-      const pass=
-        prompt("رمز ورود مدیر:");
+      const pass = prompt("رمز ورود مدیر:");
 
-      if(pass===ADMIN_PASSWORD){
-
+      if(pass === ADMIN_PASSWORD){
         renderAdminPanel();
-
-      }else if(pass!==null){
-
+        toast("ورود موفق به پنل مدیریت ✨");
+      }else if(pass !== null){
         toast("رمز اشتباه است");
-
       }
-
     }
-
   });
-
-
-function renderAdminArea(){
-
-  const area=
-    document.getElementById("adminArea");
-
-  area.innerHTML=`
-    <div class="admin-box glass">
-
-      <h3>🔐 مدیریت</h3>
-
-      <p style="color:#999;font-size:11px">
-        برای ورود، روی لوگوی HAMOFLIX پنج بار بزن.
-      </p>
-
-    </div>
-  `;
-}
 
 
 function renderAdminPanel(){
 
+  // پنل ادمین رو به صورت موقت روی صفحه تنظیمات نشون می‌دیم
   openPage(
     "settingsPage",
     document.querySelector('[data-page="settingsPage"]')
   );
 
-  const area=
-    document.getElementById("adminArea");
+  // یک باکس ادمین موقت می‌سازیم
+  let existing = document.getElementById("tempAdminBox");
+  if(existing) existing.remove();
 
-  const selected=
-    new Set(featuredIds.map(String));
+  const box = document.createElement("div");
+  box.id = "tempAdminBox";
+  box.className = "admin-box glass";
+  box.style.marginTop = "20px";
 
-  area.innerHTML=`
+  const selected = new Set(featuredIds.map(String));
 
-    <div class="admin-box glass">
+  box.innerHTML = `
 
-      <h3>🛠 پنل مدیریت HAMOFLIX</h3>
+    <h3>🛠 پنل مدیریت HAMOFLIX</h3>
 
-      <p class="count">
-        ویژه‌های انتخاب‌شده:
-        <span id="featuredCount">
-          ${Math.min(selected.size,5)}
-        </span>
-        / 5
-      </p>
+    <p class="count">
+      ویژه‌های انتخاب‌شده:
+      <span id="featuredCount">${Math.min(selected.size,5)}</span> / 5
+    </p>
 
-      <p style="font-size:11px;color:#999;line-height:1.8">
-        پنج فیلم را انتخاب کن تا در بخش ویژه بالای صفحه نمایش داده شوند.
-        هر زمان خواستی می‌توانی انتخابشان را تغییر بدهی.
-      </p>
+    <p style="font-size:11px;color:#999;line-height:1.8">
+      پنج فیلم را انتخاب کن تا در بخش ویژه بالای صفحه نمایش داده شوند.
+    </p>
 
-      <div class="admin-movies">
-
-        ${
-          movies.map(m=>`
-
-            <div class="admin-movie">
-
-              <img
-                src="${escapeHTML(m.poster || fallbackPoster)}"
-                onerror="posterError(this)"
-                loading="lazy"
-              >
-
-              <label>
-                ${escapeHTML(m.title)}
-              </label>
-
-              <input
-                type="checkbox"
-                class="featured-check"
-                value="${escapeHTML(m.id)}"
-                ${selected.has(String(m.id))?"checked":""}
-              >
-
-            </div>
-
-          `).join("")
-        }
-
-      </div>
-
-      <button
-        class="btn primary"
-        style="margin-top:14px;width:100%"
-        onclick="saveFeaturedAdmin()"
-      >
-        ذخیره بخش ویژه
-      </button>
-
-      <hr style="border-color:#ffffff10;margin:20px 0">
-
-      <h3>➕ افزودن فیلم / سریال</h3>
-
-      <input
-        id="newTitle"
-        class="admin-input"
-        placeholder="نام فیلم یا سریال"
-      >
-
-      <select id="newType" class="admin-input">
-        <option value="movie">فیلم</option>
-        <option value="series">سریال</option>
-      </select>
-
-      <input
-        id="newGenre"
-        class="admin-input"
-        placeholder="ژانر"
-      >
-
-      <input
-        id="newYear"
-        class="admin-input"
-        placeholder="سال"
-      >
-
-      <input
-        id="newRating"
-        class="admin-input"
-        placeholder="امتیاز"
-      >
-
-      <input
-        id="newPoster"
-        class="admin-input"
-        placeholder="لینک پوستر"
-      >
-
-      <textarea
-        id="newDescription"
-        class="admin-input"
-        rows="3"
-        placeholder="توضیحات"
-      ></textarea>
-
-      <label style="
-        display:flex;
-        gap:8px;
-        align-items:center;
-        font-size:12px;
-        margin:10px 0;
-      ">
-        <input
-          id="newFeatured"
-          type="checkbox"
-        >
-        نمایش در بخش ویژه بالا
-      </label>
-
-      <button
-        class="btn primary"
-        style="width:100%"
-        onclick="addMovieAdmin()"
-      >
-        افزودن محتوا
-      </button>
-
+    <div class="admin-movies">
+      ${
+        movies.map(m=>`
+          <div class="admin-movie">
+            <img src="${escapeHTML(m.poster || fallbackPoster)}" onerror="posterError(this)" loading="lazy">
+            <label>${escapeHTML(m.title)}</label>
+            <input type="checkbox" class="featured-check" value="${escapeHTML(m.id)}" ${selected.has(String(m.id))?"checked":""}>
+          </div>
+        `).join("")
+      }
     </div>
+
+    <button class="btn primary" style="margin-top:14px;width:100%" onclick="saveFeaturedAdmin()">
+      ذخیره بخش ویژه
+    </button>
+
+    <hr style="border-color:#ffffff10;margin:20px 0">
+
+    <h3>➕ افزودن فیلم / سریال</h3>
+
+    <input id="newTitle" class="admin-input" placeholder="نام فیلم یا سریال">
+    <select id="newType" class="admin-input">
+      <option value="movie">فیلم</option>
+      <option value="series">سریال</option>
+    </select>
+    <input id="newGenre" class="admin-input" placeholder="ژانر">
+    <input id="newYear" class="admin-input" placeholder="سال">
+    <input id="newRating" class="admin-input" placeholder="امتیاز">
+    <input id="newPoster" class="admin-input" placeholder="لینک پوستر">
+    <input id="newEpisodes" class="admin-input" placeholder="تعداد قسمت (فقط برای سریال)">
+    <textarea id="newDescription" class="admin-input" rows="3" placeholder="توضیحات"></textarea>
+
+    <label style="display:flex;gap:8px;align-items:center;font-size:12px;margin:10px 0">
+      <input id="newFeatured" type="checkbox">
+      نمایش در بخش ویژه بالا
+    </label>
+
+    <button class="btn primary" style="width:100%" onclick="addMovieAdmin()">
+      افزودن محتوا
+    </button>
+
+    <button class="btn" style="width:100%;margin-top:10px" onclick="document.getElementById('tempAdminBox').remove()">
+      بستن پنل
+    </button>
   `;
 
-  document
-    .querySelectorAll(".featured-check")
-    .forEach(check=>{
+  document.getElementById("settingsPage").appendChild(box);
 
-      check.addEventListener("change",()=>{
-
-        const count=
-          document.querySelectorAll(
-            ".featured-check:checked"
-          ).length;
-
-        if(count>5){
-
-          check.checked=false;
-
-          toast("حداکثر ۵ فیلم می‌توانی انتخاب کنی");
-
-          return;
-        }
-
-        document.getElementById("featuredCount")
-          .textContent=count;
-
-      });
-
+  document.querySelectorAll(".featured-check").forEach(check=>{
+    check.addEventListener("change",()=>{
+      const count = document.querySelectorAll(".featured-check:checked").length;
+      if(count > 5){
+        check.checked = false;
+        toast("حداکثر ۵ فیلم می‌توانی انتخاب کنی");
+        return;
+      }
+      document.getElementById("featuredCount").textContent = count;
     });
-
+  });
 }
 
 
 function saveFeaturedAdmin(){
 
-  const checked=[
-    ...document.querySelectorAll(
-      ".featured-check:checked"
-    )
-  ];
+  const checked = [...document.querySelectorAll(".featured-check:checked")];
 
-  if(checked.length!==5){
-
+  if(checked.length !== 5){
     toast("دقیقاً ۵ فیلم انتخاب کن");
-
     return;
   }
 
-  featuredIds=
-    checked.map(x=>String(x.value));
+  featuredIds = checked.map(x => String(x.value));
 
-  localStorage.setItem(
-    FEATURED_KEY,
-    JSON.stringify(featuredIds)
-  );
+  localStorage.setItem(FEATURED_KEY, JSON.stringify(featuredIds));
 
   renderFeatured();
-
   toast("بخش ویژه با موفقیت تغییر کرد ✨");
 }
 
 
 function addMovieAdmin(){
 
-  const title=
-    document.getElementById("newTitle").value.trim();
+  const title = document.getElementById("newTitle").value.trim();
 
   if(!title){
-
     toast("اسم فیلم را وارد کن");
-
     return;
   }
 
-  const movie={
+  const type = document.getElementById("newType").value;
 
-    id:String(Date.now()),
-
+  const movie = {
+    id: String(Date.now()),
     title,
-
-    type:
-      document.getElementById("newType").value,
-
-    genre:
-      document.getElementById("newGenre").value.trim() ||
-      "عمومی",
-
-    year:
-      document.getElementById("newYear").value.trim(),
-
-    rating:
-      document.getElementById("newRating").value.trim() ||
-      "0",
-
-    poster:
-      document.getElementById("newPoster").value.trim() ||
-      fallbackPoster,
-
-    description:
-      document.getElementById("newDescription").value.trim(),
-
-    isNew:true
-
+    type,
+    genre: document.getElementById("newGenre").value.trim() || "عمومی",
+    year: document.getElementById("newYear").value.trim(),
+    rating: document.getElementById("newRating").value.trim() || "0",
+    poster: document.getElementById("newPoster").value.trim() || fallbackPoster,
+    description: document.getElementById("newDescription").value.trim(),
+    isNew: true
   };
 
-  movies.unshift(movie);
+  if(type === "series"){
+    movie.episodes = parseInt(document.getElementById("newEpisodes").value) || 8;
+  }
 
+  movies.unshift(movie);
   saveMovies();
 
-  const wantFeatured=
-    document.getElementById("newFeatured").checked;
+  const wantFeatured = document.getElementById("newFeatured").checked;
 
   if(wantFeatured){
-
-    if(featuredIds.length<5){
-
+    if(featuredIds.length < 5){
       featuredIds.push(String(movie.id));
-
-      localStorage.setItem(
-        FEATURED_KEY,
-        JSON.stringify(featuredIds)
-      );
-
+      localStorage.setItem(FEATURED_KEY, JSON.stringify(featuredIds));
     }else{
-
       toast("فیلم اضافه شد؛ برای ویژه کردن، اول یکی را از بخش ویژه بردار.");
-
     }
-
   }
 
   renderHome();
-
-  renderAdminPanel();
-
   toast("محتوا با موفقیت اضافه شد 🎉");
+
+  // پنل رو دوباره رندر کن
+  document.getElementById("tempAdminBox")?.remove();
+  renderAdminPanel();
 }
 
 
@@ -2774,15 +2752,10 @@ function reportProblem(){
     loadJSON("hamoflix_reports_v1",[]);
 
   reports.push({
-
     id:Date.now(),
-
     movie:title,
-
     text,
-
     date:new Date().toISOString()
-
   });
 
   localStorage.setItem(
