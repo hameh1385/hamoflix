@@ -64,7 +64,7 @@ header{
  margin:auto;
  display:flex;
  align-items:center;
- gap:12px;
+ gap:10px;
 }
 
 .logo{
@@ -93,6 +93,22 @@ header{
 }
 
 .search-box input::placeholder{color:#aaa}
+
+.history-head-btn{
+ width:43px;
+ height:43px;
+ flex:0 0 43px;
+ border:1px solid rgba(255,255,255,.11);
+ border-radius:15px;
+ background:rgba(255,255,255,.07);
+ color:white;
+ font-size:18px;
+ box-shadow:inset 0 1px rgba(255,255,255,.07);
+}
+
+.history-head-btn:active{
+ transform:scale(.95);
+}
 
 .search-results{
  position:absolute;
@@ -376,6 +392,34 @@ main{
  z-index:3;
 }
 
+.continue-progress{
+ position:absolute;
+ bottom:0;
+ left:0;
+ right:0;
+ height:4px;
+ background:#ffffff22;
+ z-index:5;
+}
+
+.continue-progress i{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,#a85cff,#6b20c8);
+ width:0%;
+}
+
+.continue-percent{
+ position:absolute;
+ bottom:8px;
+ right:7px;
+ z-index:6;
+ font-size:9px;
+ background:#000b;
+ padding:3px 5px;
+ border-radius:6px;
+}
+
 .see-all-card{
  display:grid;
  place-items:center;
@@ -594,7 +638,7 @@ main{
  font-size:13px;
 }
 
-/* WATCH BUTTONS */
+/* WATCH */
 
 .watch-actions{
  display:grid;
@@ -630,6 +674,8 @@ main{
  cursor:not-allowed;
 }
 
+/* BUTTONS */
+
 .actions{
  display:flex;
  gap:8px;
@@ -650,7 +696,7 @@ main{
  background:linear-gradient(135deg,#8d42ed,#4d168c);
 }
 
-/* SMALL RATING */
+/* RATING */
 
 .rating-box{
  padding:10px;
@@ -690,9 +736,7 @@ main{
 
 /* COMMENTS */
 
-.comments{
- margin-top:25px;
-}
+.comments{margin-top:25px}
 
 .comments h3{
  font-size:16px;
@@ -768,6 +812,276 @@ main{
  padding:15px;
 }
 
+/* HISTORY */
+
+.history-list{
+ display:grid;
+ gap:10px;
+ margin-top:12px;
+}
+
+.history-item{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:9px;
+ border-radius:15px;
+ background:rgba(255,255,255,.05);
+ border:1px solid rgba(255,255,255,.07);
+ cursor:pointer;
+}
+
+.history-item img{
+ width:50px;
+ height:72px;
+ object-fit:cover;
+ border-radius:9px;
+}
+
+.history-info{
+ flex:1;
+ min-width:0;
+}
+
+.history-info strong{
+ display:block;
+ font-size:13px;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+}
+
+.history-info small{
+ display:block;
+ color:#999;
+ font-size:10px;
+ margin-top:5px;
+}
+
+.history-remove{
+ width:32px;
+ height:32px;
+ border:0;
+ border-radius:10px;
+ color:#bbb;
+ background:#ffffff08;
+}
+
+/* PLAYER */
+
+.player{
+ position:fixed;
+ inset:0;
+ z-index:1000;
+ display:none;
+ background:#030207;
+}
+
+.player.show{
+ display:flex;
+ flex-direction:column;
+}
+
+.player-top{
+ position:absolute;
+ top:0;
+ left:0;
+ right:0;
+ z-index:20;
+ padding:14px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ background:linear-gradient(#000c,transparent);
+}
+
+.player-title{
+ flex:1;
+ min-width:0;
+ font-size:14px;
+ font-weight:bold;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+}
+
+.player-close{
+ width:38px;
+ height:38px;
+ border:1px solid rgba(255,255,255,.12);
+ border-radius:50%;
+ color:white;
+ background:rgba(20,10,30,.72);
+}
+
+.player-stage{
+ flex:1;
+ min-height:0;
+ position:relative;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden;
+}
+
+#hamoVideo{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ background:#000;
+ transition:transform .25s;
+}
+
+#hamoVideo.fill{
+ object-fit:cover;
+}
+
+.player-message{
+ position:absolute;
+ z-index:15;
+ display:none;
+ max-width:90%;
+ text-align:center;
+ padding:20px;
+ border-radius:20px;
+ background:rgba(17,8,27,.92);
+ border:1px solid rgba(255,255,255,.12);
+ box-shadow:0 20px 70px #000;
+}
+
+.player-message.show{display:block}
+
+.player-message strong{
+ display:block;
+ font-size:15px;
+ margin-bottom:8px;
+}
+
+.player-message p{
+ color:#aaa;
+ font-size:11px;
+ line-height:1.8;
+ margin:0 0 13px;
+}
+
+.player-center{
+ position:absolute;
+ z-index:10;
+ left:50%;
+ top:50%;
+ transform:translate(-50%,-50%);
+ display:flex;
+ align-items:center;
+ gap:14px;
+ pointer-events:none;
+}
+
+.player-center button{
+ pointer-events:auto;
+}
+
+.p-control-big{
+ width:54px;
+ height:54px;
+ border:1px solid rgba(255,255,255,.13);
+ border-radius:50%;
+ color:#fff;
+ background:rgba(20,10,30,.7);
+ backdrop-filter:blur(12px);
+ font-size:20px;
+}
+
+.seek-bubble{
+ width:45px;
+ height:45px;
+ border:1px solid rgba(255,255,255,.11);
+ border-radius:50%;
+ color:white;
+ background:rgba(20,10,30,.65);
+ font-size:11px;
+}
+
+.player-controls{
+ position:absolute;
+ bottom:0;
+ left:0;
+ right:0;
+ z-index:20;
+ padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+ background:linear-gradient(transparent,#050308ee);
+}
+
+.progress-line{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ margin-bottom:8px;
+}
+
+.progress-line span{
+ color:#ddd;
+ font-size:10px;
+ min-width:37px;
+ text-align:center;
+}
+
+#videoProgress{
+ flex:1;
+ accent-color:#8b3fe5;
+}
+
+.player-buttons{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ overflow-x:auto;
+ scrollbar-width:none;
+}
+
+.player-buttons::-webkit-scrollbar{display:none}
+
+.p-btn{
+ flex:0 0 auto;
+ min-width:39px;
+ height:36px;
+ padding:0 9px;
+ border:1px solid rgba(255,255,255,.10);
+ border-radius:11px;
+ color:white;
+ background:rgba(255,255,255,.065);
+ font-size:11px;
+}
+
+.p-btn.active{
+ background:linear-gradient(135deg,#8d42ed,#4d168c);
+}
+
+.speed-menu{
+ position:absolute;
+ bottom:65px;
+ left:14px;
+ display:none;
+ padding:7px;
+ border-radius:14px;
+ background:rgba(18,9,29,.96);
+ border:1px solid rgba(255,255,255,.12);
+ box-shadow:0 15px 50px #000;
+}
+
+.speed-menu.show{display:grid}
+
+.speed-menu button{
+ border:0;
+ color:#ddd;
+ background:transparent;
+ padding:8px 15px;
+ border-radius:9px;
+}
+
+.speed-menu button:hover{
+ background:#ffffff0b;
+}
+
 /* ADMIN */
 
 .admin-box{
@@ -827,7 +1141,7 @@ main{
 
 .toast{
  position:fixed;
- z-index:500;
+ z-index:1500;
  bottom:92px;
  left:50%;
  transform:translateX(-50%) translateY(15px);
@@ -895,12 +1209,38 @@ main{
   grid-template-columns:1fr 1fr;
  }
 
+ .comment-row{
+  flex-wrap:wrap;
+ }
+
+ .comment-row .comment-input{
+  min-width:calc(50% - 4px);
+ }
+
+ .comment-row .btn{
+  width:100%;
+ }
+
+ .player-top{
+  padding:10px;
+ }
+
 }
 
 @media(max-width:400px){
 
  .watch-actions{
   grid-template-columns:1fr;
+ }
+
+ .player-buttons{
+  gap:5px;
+ }
+
+ .p-btn{
+  min-width:36px;
+  padding:0 7px;
+  font-size:10px;
  }
 
 }
@@ -910,107 +1250,75 @@ main{
 <body>
 
 <header>
-
  <div class="header-inner">
 
   <div class="logo" id="logo">HAMOFLIX</div>
 
   <div class="search-box">
-
    <input
     id="searchInput"
     type="search"
     placeholder="جستجوی فیلم یا سریال..."
     autocomplete="off"
    >
-
-   <div
-    id="searchResults"
-    class="search-results"
-   ></div>
-
+   <div id="searchResults" class="search-results"></div>
   </div>
 
- </div>
+  <button
+   class="history-head-btn"
+   onclick="showHistory()"
+   title="تاریخچه تماشا"
+  >🕘</button>
 
+ </div>
 </header>
 
 
 <main>
-
-<!-- HOME -->
 
 <section id="homePage" class="page active">
 
  <section class="hero glass">
 
   <div class="welcome">
-
    <h1>به HAMOFLIX خوش اومدی 👋</h1>
-
-   <p>
-    اینجا قراره دنیای فیلم و سریال مورد علاقه‌ات رو راحت‌تر پیدا کنی.
-   </p>
-
+   <p>اینجا قراره دنیای فیلم و سریال مورد علاقه‌ات رو راحت‌تر پیدا کنی.</p>
   </div>
 
   <div class="featured-window">
 
-   <button
-    class="featured-arrow right"
-    onclick="featuredMove(-1)"
-   >›</button>
+   <button class="featured-arrow right" onclick="featuredMove(-1)">›</button>
 
-   <div
-    id="featuredTrack"
-    class="featured-track"
-   ></div>
+   <div id="featuredTrack" class="featured-track"></div>
 
-   <button
-    class="featured-arrow left"
-    onclick="featuredMove(1)"
-   >‹</button>
+   <button class="featured-arrow left" onclick="featuredMove(1)">‹</button>
 
   </div>
 
  </section>
 
-
  <div id="genres" class="genres"></div>
-
 
  <div id="homeSections"></div>
 
 </section>
 
 
-<!-- MOVIES -->
-
 <section id="moviesPage" class="page">
-
  <div class="full-page-title">
   <h1>🎬 فیلم‌ها</h1>
  </div>
-
  <div id="moviesGrid" class="full-grid"></div>
-
 </section>
 
 
-<!-- SERIES -->
-
 <section id="seriesPage" class="page">
-
  <div class="full-page-title">
   <h1>📺 سریال‌ها</h1>
  </div>
-
  <div id="seriesGrid" class="full-grid"></div>
-
 </section>
 
-
-<!-- SETTINGS -->
 
 <section id="settingsPage" class="page">
 
@@ -1021,74 +1329,46 @@ main{
  <div class="settings-list">
 
   <div class="setting glass">
-
    <div class="setting-info">
     <strong>اعلان فیلم‌های جدید</strong>
     <small>وقتی محتوای جدید اضافه شد مطلع شو</small>
    </div>
-
-   <div
-    class="switch"
-    data-setting="notify"
-   >
-    <i></i>
-   </div>
-
+   <div class="switch" data-setting="notify"><i></i></div>
   </div>
 
-
   <div class="setting glass">
-
    <div class="setting-info">
     <strong>پخش خودکار بخش ویژه</strong>
     <small>حرکت خودکار فیلم‌های بالای صفحه</small>
    </div>
-
-   <div
-    class="switch"
-    data-setting="auto"
-   >
-    <i></i>
-   </div>
-
+   <div class="switch" data-setting="auto"><i></i></div>
   </div>
 
-
   <div class="setting glass">
-
    <div class="setting-info">
     <strong>علاقه‌مندی‌های من</strong>
     <small>فیلم‌هایی که ذخیره کردی</small>
    </div>
-
-   <button
-    class="btn primary"
-    onclick="showFavorites()"
-   >
-    مشاهده
-   </button>
-
+   <button class="btn primary" onclick="showFavorites()">مشاهده</button>
   </div>
 
+  <div class="setting glass">
+   <div class="setting-info">
+    <strong>تاریخچه تماشا</strong>
+    <small>چیزهایی که قبلاً بازدید کردی</small>
+   </div>
+   <button class="btn" onclick="showHistory()">مشاهده</button>
+  </div>
 
   <div class="setting glass">
-
    <div class="setting-info">
     <strong>گزارش مشکل</strong>
     <small>مشکل مربوط به یک فیلم یا سایت را گزارش کن</small>
    </div>
-
-   <button
-    class="btn"
-    onclick="reportProblem()"
-   >
-    گزارش
-   </button>
-
+   <button class="btn" onclick="reportProblem()">گزارش</button>
   </div>
 
  </div>
-
 
  <div id="adminArea"></div>
 
@@ -1097,182 +1377,94 @@ main{
 </main>
 
 
-<!-- BOTTOM NAV -->
-
 <nav class="bottom-nav">
-
  <div class="nav-inner">
 
-  <button
-   class="nav-item active"
-   data-page="homePage"
-   onclick="openPage('homePage',this)"
-  >
-   <span>⌂</span>
-   <span>خانه</span>
+  <button class="nav-item active" data-page="homePage" onclick="openPage('homePage',this)">
+   <span>⌂</span><span>خانه</span>
   </button>
 
-
-  <button
-   class="nav-item"
-   data-page="moviesPage"
-   onclick="openPage('moviesPage',this)"
-  >
-   <span>🎬</span>
-   <span>فیلم‌ها</span>
+  <button class="nav-item" data-page="moviesPage" onclick="openPage('moviesPage',this)">
+   <span>🎬</span><span>فیلم‌ها</span>
   </button>
 
-
-  <button
-   class="nav-item"
-   data-page="seriesPage"
-   onclick="openPage('seriesPage',this)"
-  >
-   <span>📺</span>
-   <span>سریال‌ها</span>
+  <button class="nav-item" data-page="seriesPage" onclick="openPage('seriesPage',this)">
+   <span>📺</span><span>سریال‌ها</span>
   </button>
 
-
-  <button
-   class="nav-item"
-   data-page="settingsPage"
-   onclick="openPage('settingsPage',this)"
-  >
-   <span>⚙️</span>
-   <span>تنظیمات</span>
+  <button class="nav-item" data-page="settingsPage" onclick="openPage('settingsPage',this)">
+   <span>⚙️</span><span>تنظیمات</span>
   </button>
 
  </div>
-
 </nav>
 
 
-<!-- DETAIL MODAL -->
+<!-- DETAIL -->
 
-<div
- id="modal"
- class="modal"
- onclick="closeModal(event)"
->
+<div id="modal" class="modal" onclick="closeModal(event)">
 
- <div
-  class="modal-box"
-  onclick="event.stopPropagation()"
- >
+ <div class="modal-box" onclick="event.stopPropagation()">
 
   <div class="modal-top">
 
-   <button
-    class="close"
-    onclick="hideModal()"
-   >×</button>
+   <button class="close" onclick="hideModal()">×</button>
 
-   <img
-    id="modalPoster"
-    class="modal-poster"
-    src=""
-    alt=""
-   >
+   <img id="modalPoster" class="modal-poster" src="" alt="">
 
    <div class="modal-gradient"></div>
 
   </div>
 
-
   <div class="modal-content">
 
    <h2 id="modalTitle"></h2>
 
-   <div
-    id="modalMeta"
-    class="modal-meta"
-   ></div>
+   <div id="modalMeta" class="modal-meta"></div>
 
-   <div
-    id="modalDescription"
-    class="description"
-   ></div>
-
-
-   <!-- WATCH OPTIONS -->
+   <div id="modalDescription" class="description"></div>
 
    <div class="watch-actions">
 
-    <button
-     id="onlineBtn"
-     class="watch-btn primary"
-     onclick="playOnline()"
-    >
+    <button id="onlineBtn" class="watch-btn primary" onclick="playOnline()">
      ▶️ پخش آنلاین
     </button>
 
-
-    <button
-     id="mxBtn"
-     class="watch-btn"
-     onclick="openMXPlayer()"
-    >
+    <button id="mxBtn" class="watch-btn" onclick="openMXPlayer()">
      📱 MX Player
     </button>
 
-
-    <button
-     id="chromeBtn"
-     class="watch-btn"
-     onclick="openChrome()"
-    >
+    <button id="chromeBtn" class="watch-btn" onclick="openChrome()">
      🌐 Google Chrome
     </button>
 
-
-    <button
-     id="downloadBtn"
-     class="watch-btn"
-     onclick="downloadMovie()"
-    >
+    <button id="downloadBtn" class="watch-btn" onclick="downloadMovie()">
      ⬇️ دانلود
     </button>
 
    </div>
 
+   <div id="continueDetailAction"></div>
 
    <div class="actions">
 
-    <button
-     id="favoriteBtn"
-     class="btn"
-     onclick="toggleFavorite()"
-    >
+    <button id="favoriteBtn" class="btn" onclick="toggleFavorite()">
      ♡ علاقه‌مندی
     </button>
 
-    <button
-     class="btn"
-     onclick="reportProblem()"
-    >
+    <button class="btn" onclick="reportProblem()">
      ⚠ گزارش
     </button>
 
    </div>
 
-
-   <!-- RATING -->
-
    <div class="rating-box">
 
-    <div class="rating-title">
-     امتیاز شما
-    </div>
+    <div class="rating-title">امتیاز شما</div>
 
-    <div
-     id="ratingNumbers"
-     class="rating-numbers"
-    ></div>
+    <div id="ratingNumbers" class="rating-numbers"></div>
 
    </div>
-
-
-   <!-- COMMENTS -->
 
    <div class="comments">
 
@@ -1296,38 +1488,153 @@ main{
        maxlength="250"
       >
 
-      <button
-       class="btn primary"
-       onclick="addComment()"
-      >
-       ارسال
-      </button>
+      <button class="btn primary" onclick="addComment()">ارسال</button>
 
      </div>
 
     </div>
 
-
-    <div
-     id="commentsList"
-     class="comments-list"
-    ></div>
+    <div id="commentsList" class="comments-list"></div>
 
    </div>
-
-
-   <!-- SIMILAR -->
 
    <div class="similar">
-
     <h3>🎞 فیلم‌های مشابه</h3>
+    <div id="similarRow" class="movie-row"></div>
+   </div>
 
-    <div
-     id="similarRow"
-     class="movie-row"
-    ></div>
+  </div>
+ </div>
+</div>
+
+
+<!-- HISTORY MODAL -->
+
+<div id="historyModal" class="modal" onclick="closeHistory(event)">
+
+ <div class="modal-box" onclick="event.stopPropagation()">
+
+  <div class="modal-content" style="margin-top:0;padding-top:20px">
+
+   <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+
+    <h2 style="margin:0;font-size:21px">🕘 تاریخچه تماشا</h2>
+
+    <button class="btn" onclick="clearHistory()">
+     پاک کردن
+    </button>
 
    </div>
+
+   <div id="historyList" class="history-list"></div>
+
+  </div>
+
+ </div>
+
+</div>
+
+
+<!-- PLAYER -->
+
+<div id="player" class="player">
+
+ <div class="player-top">
+
+  <button class="player-close" onclick="closePlayer()">×</button>
+
+  <div id="playerTitle" class="player-title">HAMOFLIX</div>
+
+ </div>
+
+ <div class="player-stage">
+
+  <video
+   id="hamoVideo"
+   playsinline
+   preload="metadata"
+  ></video>
+
+  <div id="playerMessage" class="player-message">
+
+   <strong>این لینک مستقیماً قابل پخش نیست</strong>
+
+   <p>
+    اگر لینک مربوط به یک صفحه وب، DRM یا سرویس خارجی باشد،
+    مرورگر اجازه پخش داخلی آن را نمی‌دهد.
+   </p>
+
+   <button class="btn primary" onclick="openExternalFromPlayer()">
+    🌐 باز کردن لینک
+   </button>
+
+  </div>
+
+  <div class="player-center">
+
+   <button class="seek-bubble" onclick="seekVideo(-10)">
+    ↶10
+   </button>
+
+   <button id="centerPlay" class="p-control-big" onclick="toggleVideo()">
+    ▶
+   </button>
+
+   <button class="seek-bubble" onclick="seekVideo(10)">
+    10↷
+   </button>
+
+  </div>
+
+ </div>
+
+ <div class="player-controls">
+
+  <div class="progress-line">
+
+   <span id="currentTimeText">00:00</span>
+
+   <input
+    id="videoProgress"
+    type="range"
+    min="0"
+    max="100"
+    value="0"
+    step="0.1"
+   >
+
+   <span id="durationText">00:00</span>
+
+  </div>
+
+  <div class="player-buttons">
+
+   <button class="p-btn" onclick="toggleVideo()">▶/Ⅱ</button>
+
+   <button class="p-btn" onclick="seekVideo(-10)">↶ ۱۰</button>
+
+   <button class="p-btn" onclick="seekVideo(10)">۱۰ ↷</button>
+
+   <button id="muteBtn" class="p-btn" onclick="toggleMute()">🔊</button>
+
+   <button class="p-btn" onclick="toggleSpeedMenu()">⚡ سرعت</button>
+
+   <button id="fitBtn" class="p-btn" onclick="toggleFit()">🔲 Fit</button>
+
+   <button class="p-btn" onclick="rotateVideo()">🔄 چرخش</button>
+
+   <button class="p-btn" onclick="toggleFullscreen()">⛶</button>
+
+  </div>
+
+  <div id="speedMenu" class="speed-menu">
+
+   <button onclick="setSpeed(.5)">0.5x</button>
+   <button onclick="setSpeed(.75)">0.75x</button>
+   <button onclick="setSpeed(1)">1x</button>
+   <button onclick="setSpeed(1.25)">1.25x</button>
+   <button onclick="setSpeed(1.5)">1.5x</button>
+   <button onclick="setSpeed(2)">2x</button>
 
   </div>
 
@@ -1351,6 +1658,9 @@ const FAV_KEY="hamoflix_favorites_v6";
 const RATINGS_KEY="hamoflix_ratings_v6";
 const COMMENTS_KEY="hamoflix_comments_v6";
 const SETTINGS_KEY="hamoflix_settings_v6";
+
+const CONTINUE_KEY="hamoflix_continue_v1";
+const HISTORY_KEY="hamoflix_history_v1";
 
 const ADMIN_PASSWORD="HAMOFLIX_2026_ADMIN";
 
@@ -1571,13 +1881,12 @@ const defaultMovies=[
 function loadJSON(key,fallback){
 
  try{
-  const x=JSON.parse(
-   localStorage.getItem(key)||"null"
-  );
+  const x=JSON.parse(localStorage.getItem(key)||"null");
   return x ?? fallback;
  }catch(e){
   return fallback;
  }
+
 }
 
 
@@ -1585,17 +1894,11 @@ function loadMovies(){
 
  try{
 
-  const saved=
-   JSON.parse(
-    localStorage.getItem(STORAGE_KEY)||"null"
-   );
+  const saved=JSON.parse(
+   localStorage.getItem(STORAGE_KEY)||"null"
+  );
 
   if(Array.isArray(saved)&&saved.length){
-
-   /*
-     برای سازگاری با نسخه قبلی:
-     فیلدهای جدید را به محتواهای قدیمی اضافه می‌کنیم.
-   */
 
    return saved.map(m=>({
     ...m,
@@ -1614,31 +1917,33 @@ function loadMovies(){
  );
 
  return [...defaultMovies];
+
 }
 
 
 let movies=loadMovies();
-
 let favorites=loadJSON(FAV_KEY,[]);
-
 let ratings=loadJSON(RATINGS_KEY,{});
-
 let comments=loadJSON(COMMENTS_KEY,{});
 
 let settings=loadJSON(
  SETTINGS_KEY,
- {
-  notify:false,
-  auto:true
- }
+ {notify:false,auto:true}
 );
 
-let currentMovie=null;
+let continueWatching=loadJSON(CONTINUE_KEY,{});
+let history=loadJSON(HISTORY_KEY,[]);
 
+let currentMovie=null;
 let featuredIds=loadJSON(
  FEATURED_KEY,
  ["4","5","1","6","7"]
 );
+
+let playerMovie=null;
+let playerSaveTimer=null;
+let playerRotation=0;
+let playerIsFill=false;
 
 
 /* =========================
@@ -1646,21 +1951,14 @@ let featuredIds=loadJSON(
 ========================= */
 
 function saveMovies(){
-
- localStorage.setItem(
-  STORAGE_KEY,
-  JSON.stringify(movies)
- );
-
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(movies));
 }
-
 
 function toast(text){
 
  const el=document.getElementById("toast");
 
  el.textContent=text;
-
  el.classList.add("show");
 
  clearTimeout(window.toastTimer);
@@ -1670,7 +1968,6 @@ function toast(text){
  },2200);
 
 }
-
 
 function escapeHTML(text){
 
@@ -1683,13 +1980,25 @@ function escapeHTML(text){
 
 }
 
-
 function posterError(img){
 
  img.onerror=null;
-
  img.src=fallbackPoster;
 
+}
+
+function saveContinue(){
+ localStorage.setItem(
+  CONTINUE_KEY,
+  JSON.stringify(continueWatching)
+ );
+}
+
+function saveHistory(){
+ localStorage.setItem(
+  HISTORY_KEY,
+  JSON.stringify(history)
+ );
 }
 
 
@@ -1702,23 +2011,16 @@ function openPage(id,button){
  document.querySelectorAll(".page")
  .forEach(p=>p.classList.remove("active"));
 
- document.getElementById(id)
- .classList.add("active");
+ document.getElementById(id).classList.add("active");
 
  document.querySelectorAll(".nav-item")
  .forEach(b=>b.classList.remove("active"));
 
- if(button)
-  button.classList.add("active");
+ if(button)button.classList.add("active");
 
- if(id==="moviesPage")
-  renderFullMovies();
-
- if(id==="seriesPage")
-  renderFullSeries();
-
- if(id==="settingsPage")
-  renderSettings();
+ if(id==="moviesPage")renderFullMovies();
+ if(id==="seriesPage")renderFullSeries();
+ if(id==="settingsPage")renderSettings();
 
  window.scrollTo({
   top:0,
@@ -1735,32 +2037,25 @@ function openPage(id,button){
 let featuredBaseCount=0;
 let correctingFeatured=false;
 
-
 function getFeatured(){
 
  let selected=
   featuredIds
-  .map(id=>
-   movies.find(
-    m=>String(m.id)===String(id)
-   )
-  )
+  .map(id=>movies.find(
+   m=>String(m.id)===String(id)
+  ))
   .filter(Boolean);
 
- const used=
-  new Set(
-   selected.map(m=>String(m.id))
-  );
+ const used=new Set(
+  selected.map(m=>String(m.id))
+ );
 
  const extras=
   [...movies]
-  .sort(
-   (a,b)=>
-    Number(b.rating||0)-Number(a.rating||0)
+  .sort((a,b)=>
+   Number(b.rating||0)-Number(a.rating||0)
   )
-  .filter(
-   m=>!used.has(String(m.id))
-  );
+  .filter(m=>!used.has(String(m.id)));
 
  while(selected.length<5&&extras.length)
   selected.push(extras.shift());
@@ -1769,16 +2064,13 @@ function getFeatured(){
 
 }
 
-
 function featuredCard(movie){
 
  return `
-
  <article
   class="featured-card"
   onclick="openMovie('${escapeHTML(movie.id)}')"
  >
-
   <img
    src="${escapeHTML(movie.poster||fallbackPoster)}"
    onerror="posterError(this)"
@@ -1786,31 +2078,18 @@ function featuredCard(movie){
    decoding="async"
    alt="${escapeHTML(movie.title)}"
   >
-
   <div class="featured-info">
-
-   <strong>
-    ${escapeHTML(movie.title)}
-   </strong>
-
-   <span>
-    ⭐ ${escapeHTML(movie.rating||"—")}
-   </span>
-
+   <strong>${escapeHTML(movie.title)}</strong>
+   <span>⭐ ${escapeHTML(movie.rating||"—")}</span>
   </div>
-
  </article>
-
  `;
 
 }
 
-
 function renderFeatured(){
 
- const track=
-  document.getElementById("featuredTrack");
-
+ const track=document.getElementById("featuredTrack");
  const base=getFeatured();
 
  if(!base.length){
@@ -1820,26 +2099,18 @@ function renderFeatured(){
 
  featuredBaseCount=base.length;
 
- track.innerHTML=
-  [
-   ...base,
-   ...base,
-   ...base
-  ]
-  .map(featuredCard)
-  .join("");
+ track.innerHTML=[
+  ...base,...base,...base
+ ].map(featuredCard).join("");
 
  requestAnimationFrame(()=>{
 
   const card=track.children[0];
-
   if(!card)return;
 
-  const width=
-   card.getBoundingClientRect().width+12;
+  const width=card.getBoundingClientRect().width+12;
 
-  track.scrollLeft=
-   width*featuredBaseCount;
+  track.scrollLeft=width*featuredBaseCount;
 
  });
 
@@ -1847,40 +2118,30 @@ function renderFeatured(){
 
 }
 
-
 function handleFeaturedScroll(){
 
  if(correctingFeatured)return;
 
- const track=
-  document.getElementById("featuredTrack");
-
+ const track=document.getElementById("featuredTrack");
  const card=track.children[0];
 
  if(!card)return;
 
- const width=
-  card.getBoundingClientRect().width+12;
-
- const setWidth=
-  width*featuredBaseCount;
+ const width=card.getBoundingClientRect().width+12;
+ const setWidth=width*featuredBaseCount;
 
  if(track.scrollLeft<setWidth*.35){
 
   correctingFeatured=true;
-
   track.scrollLeft+=setWidth;
 
   requestAnimationFrame(()=>{
    correctingFeatured=false;
   });
 
- }
-
- else if(track.scrollLeft>setWidth*1.65){
+ }else if(track.scrollLeft>setWidth*1.65){
 
   correctingFeatured=true;
-
   track.scrollLeft-=setWidth;
 
   requestAnimationFrame(()=>{
@@ -1891,19 +2152,14 @@ function handleFeaturedScroll(){
 
 }
 
-
 function featuredMove(direction){
 
- const track=
-  document.getElementById("featuredTrack");
-
- const card=
-  track.querySelector(".featured-card");
+ const track=document.getElementById("featuredTrack");
+ const card=track.querySelector(".featured-card");
 
  if(!card)return;
 
- const amount=
-  card.getBoundingClientRect().width+12;
+ const amount=card.getBoundingClientRect().width+12;
 
  track.scrollBy({
   left:direction*amount,
@@ -1914,7 +2170,365 @@ function featuredMove(direction){
 
 
 /* =========================
-   HOME SECTIONS
+   CONTINUE WATCHING
+========================= */
+
+function getContinueItems(){
+
+ return Object.values(continueWatching)
+ .filter(x=>
+  x &&
+  movies.some(m=>String(m.id)===String(x.id))
+ )
+ .sort((a,b)=>
+  Number(b.updatedAt||0)-Number(a.updatedAt||0)
+ )
+ .slice(0,10);
+
+}
+
+function getContinueData(id){
+
+ return continueWatching[String(id)]||null;
+
+}
+
+function saveWatchPosition(){
+
+ if(!playerMovie)return;
+
+ const video=document.getElementById("hamoVideo");
+
+ if(!video.duration||!isFinite(video.duration))return;
+
+ const position=Number(video.currentTime)||0;
+ const duration=Number(video.duration)||0;
+
+ if(duration-position<=8 || position/duration>=.95){
+
+  delete continueWatching[String(playerMovie.id)];
+
+ }else if(position>3){
+
+  continueWatching[String(playerMovie.id)]={
+   id:String(playerMovie.id),
+   position:position,
+   duration:duration,
+   updatedAt:Date.now()
+  };
+
+ }
+
+ saveContinue();
+ renderContinueWatching();
+
+}
+
+function renderContinueWatching(){
+
+ const old=document.getElementById("continueSection");
+
+ if(old)old.remove();
+
+ const items=getContinueItems();
+
+ if(!items.length)return;
+
+ const section=document.createElement("section");
+
+ section.id="continueSection";
+ section.className="section";
+
+ section.innerHTML=`
+  <div class="section-head">
+   <h2>▶️ ادامه تماشا</h2>
+   <button class="view-all" onclick="showContinueAll()">
+    مشاهده همه
+   </button>
+  </div>
+
+  <div class="movie-row">
+   ${items.slice(0,5).map(item=>{
+
+    const movie=movies.find(
+     m=>String(m.id)===String(item.id)
+    );
+
+    if(!movie)return "";
+
+    const percent=
+     item.duration
+     ?
+     Math.min(
+      100,
+      Math.max(
+       0,
+       (item.position/item.duration)*100
+      )
+     )
+     :
+     0;
+
+    return `
+     <article
+      class="movie-card"
+      onclick="resumeMovie('${escapeHTML(movie.id)}')"
+     >
+
+      <div class="poster-wrap">
+
+       <img
+        src="${escapeHTML(movie.poster||fallbackPoster)}"
+        onerror="posterError(this)"
+        loading="lazy"
+        alt="${escapeHTML(movie.title)}"
+       >
+
+       <span class="continue-percent">
+        ${Math.round(percent)}٪
+       </span>
+
+       <div class="continue-progress">
+        <i style="width:${percent}%"></i>
+       </div>
+
+      </div>
+
+      <div class="movie-info">
+
+       <strong>${escapeHTML(movie.title)}</strong>
+
+       <div class="movie-meta">
+        <span>ادامه پخش</span>
+        <span class="rating">▶</span>
+       </div>
+
+      </div>
+
+     </article>
+    `;
+
+   }).join("")}
+
+   ${
+    items.length>5
+    ?
+    `
+    <div class="see-all-card" onclick="showContinueAll()">
+     <div class="see-all-inner">
+      <div>▶</div>
+      <span>ادامه تماشا</span>
+     </div>
+    </div>
+    `
+    :
+    ""
+   }
+
+  </div>
+ `;
+
+ const container=document.getElementById("homeSections");
+
+ container.prepend(section);
+
+}
+
+function showContinueAll(){
+
+ const items=getContinueItems();
+
+ document.getElementById("homeSections").innerHTML=`
+
+  <section class="section">
+
+   <div class="section-head">
+    <h2>▶️ ادامه تماشا</h2>
+   </div>
+
+   <div class="full-grid">
+    ${items.map(item=>{
+
+     const movie=movies.find(
+      m=>String(m.id)===String(item.id)
+     );
+
+     if(!movie)return "";
+
+     return movieCard(movie,true);
+
+    }).join("")}
+   </div>
+
+  </section>
+ `;
+
+ document.querySelector(
+  '[data-page="homePage"]'
+ ).click();
+
+}
+
+
+function resumeMovie(id){
+
+ const movie=movies.find(
+  m=>String(m.id)===String(id)
+ );
+
+ if(!movie)return;
+
+ openMovie(id);
+
+ setTimeout(()=>{
+  playOnline(true);
+ },180);
+
+}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+function addHistory(id){
+
+ id=String(id);
+
+ history=history.filter(
+  x=>String(x.id)!==id
+ );
+
+ history.unshift({
+  id:id,
+  watchedAt:Date.now()
+ });
+
+ history=history.slice(0,30);
+
+ saveHistory();
+
+}
+
+function showHistory(){
+
+ const list=document.getElementById("historyList");
+
+ const items=
+  history
+  .map(x=>({
+   ...x,
+   movie:movies.find(
+    m=>String(m.id)===String(x.id)
+   )
+  }))
+  .filter(x=>x.movie);
+
+ if(!items.length){
+
+  list.innerHTML=`
+   <div class="no-comments">
+    هنوز چیزی تماشا نکردی 👀
+   </div>
+  `;
+
+ }else{
+
+  list.innerHTML=
+   items.map(item=>`
+
+    <div
+     class="history-item"
+     onclick="openMovie('${escapeHTML(item.movie.id)}');hideHistory()"
+    >
+
+     <img
+      src="${escapeHTML(item.movie.poster||fallbackPoster)}"
+      onerror="posterError(this)"
+      loading="lazy"
+     >
+
+     <div class="history-info">
+
+      <strong>${escapeHTML(item.movie.title)}</strong>
+
+      <small>
+       ${item.movie.type==="movie"?"فیلم":"سریال"}
+       ·
+       ${escapeHTML(item.movie.year||"")}
+      </small>
+
+      <small>
+       ${new Date(item.watchedAt).toLocaleDateString("fa-IR")}
+      </small>
+
+     </div>
+
+     <button
+      class="history-remove"
+      onclick="
+       event.stopPropagation();
+       removeHistory('${escapeHTML(item.movie.id)}')
+      "
+     >×</button>
+
+    </div>
+
+   `).join("");
+
+ }
+
+ document.getElementById("historyModal")
+ .classList.add("show");
+
+}
+
+function hideHistory(){
+ document.getElementById("historyModal")
+ .classList.remove("show");
+}
+
+function closeHistory(e){
+ if(e.target.id==="historyModal")
+  hideHistory();
+}
+
+function removeHistory(id){
+
+ history=history.filter(
+  x=>String(x.id)!==String(id)
+ );
+
+ saveHistory();
+
+ showHistory();
+
+ toast("از تاریخچه حذف شد");
+
+}
+
+function clearHistory(){
+
+ if(!history.length){
+  toast("تاریخچه خالی است");
+  return;
+ }
+
+ if(!confirm("کل تاریخچه پاک شود؟"))return;
+
+ history=[];
+
+ saveHistory();
+
+ showHistory();
+
+ toast("تاریخچه پاک شد");
+
+}
+
+
+/* =========================
+   HOME
 ========================= */
 
 const sectionData=[
@@ -1926,8 +2540,7 @@ const sectionData=[
 
  {
   title:"📺 سریال‌های بروز شده",
-  filter:m=>
-   m.type==="series"&&m.updated
+  filter:m=>m.type==="series"&&m.updated
  },
 
  {
@@ -1953,89 +2566,85 @@ const sectionData=[
 function renderHome(){
 
  renderFeatured();
-
  renderGenres();
 
- const container=
-  document.getElementById("homeSections");
+ const container=document.getElementById("homeSections");
 
  container.innerHTML="";
 
- sectionData.forEach(
-  (section,index)=>{
+ renderContinueWatching();
 
-   let items=
-    movies.filter(section.filter);
+ sectionData.forEach((section,index)=>{
 
-   if(section.sort)
-    items.sort(section.sort);
+  let items=movies.filter(section.filter);
 
-   items=items.slice(0,10);
+  if(section.sort)items.sort(section.sort);
 
-   if(!items.length)return;
+  items=items.slice(0,10);
 
-   const el=
-    document.createElement("section");
+  if(!items.length)return;
 
-   el.className="section";
+  const el=document.createElement("section");
 
-   el.innerHTML=`
+  el.className="section";
 
-    <div class="section-head">
+  el.innerHTML=`
 
-     <h2>
-      ${section.title}
-     </h2>
+   <div class="section-head">
 
-     <button
-      class="view-all"
-      onclick="openSectionAll(${index})"
-     >
-      مشاهده همه
-     </button>
+    <h2>${section.title}</h2>
 
-    </div>
+    <button
+     class="view-all"
+     onclick="openSectionAll(${index})"
+    >
+     مشاهده همه
+    </button>
 
-    <div class="movie-row">
+   </div>
 
-     ${items.slice(0,5)
-       .map(movieCard)
-       .join("")}
+   <div class="movie-row">
 
-     <div
-      class="see-all-card"
-      onclick="openSectionAll(${index})"
-     >
+    ${items.slice(0,5).map(movieCard).join("")}
 
-      <div class="see-all-inner">
-       <div>➜</div>
-       <span>مشاهده همه</span>
-      </div>
+    <div
+     class="see-all-card"
+     onclick="openSectionAll(${index})"
+    >
 
+     <div class="see-all-inner">
+      <div>➜</div>
+      <span>مشاهده همه</span>
      </div>
 
     </div>
 
-   `;
+   </div>
 
-   container.appendChild(el);
+  `;
 
-  }
- );
+  container.appendChild(el);
+
+ });
 
 }
 
 
-function movieCard(movie){
+function movieCard(movie,fromContinue=false){
 
- const fav=
-  favorites.includes(String(movie.id));
+ const fav=favorites.includes(String(movie.id));
 
  return `
 
  <article
   class="movie-card"
-  onclick="openMovie('${escapeHTML(movie.id)}')"
+  onclick="${
+   fromContinue
+   ?
+   `resumeMovie('${escapeHTML(movie.id)}')`
+   :
+   `openMovie('${escapeHTML(movie.id)}')`
+  }"
  >
 
   <div class="poster-wrap">
@@ -2070,15 +2679,11 @@ function movieCard(movie){
 
   <div class="movie-info">
 
-   <strong>
-    ${escapeHTML(movie.title)}
-   </strong>
+   <strong>${escapeHTML(movie.title)}</strong>
 
    <div class="movie-meta">
 
-    <span>
-     ${escapeHTML(movie.year||"")}
-    </span>
+    <span>${escapeHTML(movie.year||"")}</span>
 
     <span class="rating">
      ⭐ ${escapeHTML(movie.rating||"—")}
@@ -2132,10 +2737,8 @@ function filterGenre(genre,button){
 
  const list=
   genre==="همه"
-  ?
-  movies
-  :
-  movies.filter(m=>m.genre===genre);
+  ?movies
+  :movies.filter(m=>m.genre===genre);
 
  document.getElementById("homeSections").innerHTML=`
 
@@ -2147,9 +2750,7 @@ function filterGenre(genre,button){
 
    <div class="movie-row">
 
-    ${list.slice(0,5)
-      .map(movieCard)
-      .join("")}
+    ${list.slice(0,5).map(movieCard).join("")}
 
     ${
      list.length>5
@@ -2172,7 +2773,6 @@ function filterGenre(genre,button){
    </div>
 
   </section>
-
  `;
 
 }
@@ -2184,37 +2784,29 @@ function filterGenre(genre,button){
 
 function renderFullMovies(){
 
- const list=
-  movies
-  .filter(m=>m.type==="movie")
-  .sort(
-   (a,b)=>
-    Number(b.rating||0)-Number(a.rating||0)
-  );
+ const list=movies
+ .filter(m=>m.type==="movie")
+ .sort((a,b)=>
+  Number(b.rating||0)-Number(a.rating||0)
+ );
 
  document.getElementById("moviesGrid")
- .innerHTML=
-  list.map(movieCard).join("");
+ .innerHTML=list.map(movieCard).join("");
 
 }
-
 
 function renderFullSeries(){
 
- const list=
-  movies
-  .filter(m=>m.type==="series")
-  .sort(
-   (a,b)=>
-    Number(b.rating||0)-Number(a.rating||0)
-  );
+ const list=movies
+ .filter(m=>m.type==="series")
+ .sort((a,b)=>
+  Number(b.rating||0)-Number(a.rating||0)
+ );
 
  document.getElementById("seriesGrid")
- .innerHTML=
-  list.map(movieCard).join("");
+ .innerHTML=list.map(movieCard).join("");
 
 }
-
 
 function openSectionAll(index){
 
@@ -2240,16 +2832,12 @@ function openSectionAll(index){
 
  const section=sectionData[index];
 
- const list=
-  section
-  ?
-  movies.filter(section.filter)
-  :
-  movies;
+ const list=section
+  ?movies.filter(section.filter)
+  :movies;
 
  document.getElementById("moviesGrid")
- .innerHTML=
-  list.map(movieCard).join("");
+ .innerHTML=list.map(movieCard).join("");
 
  document.querySelector(
   '[data-page="moviesPage"]'
@@ -2257,15 +2845,12 @@ function openSectionAll(index){
 
 }
 
-
 function showFilteredAll(genre){
 
- const list=
-  movies.filter(m=>m.genre===genre);
+ const list=movies.filter(m=>m.genre===genre);
 
  document.getElementById("moviesGrid")
- .innerHTML=
-  list.map(movieCard).join("");
+ .innerHTML=list.map(movieCard).join("");
 
  document.querySelector(
   '[data-page="moviesPage"]'
@@ -2278,83 +2863,65 @@ function showFilteredAll(genre){
    SEARCH
 ========================= */
 
-const searchInput=
- document.getElementById("searchInput");
+const searchInput=document.getElementById("searchInput");
+const searchResults=document.getElementById("searchResults");
 
-const searchResults=
- document.getElementById("searchResults");
+searchInput.addEventListener("input",()=>{
 
+ const q=searchInput.value.trim().toLowerCase();
 
-searchInput.addEventListener(
- "input",
- ()=>{
+ if(!q){
 
-  const q=
-   searchInput.value.trim().toLowerCase();
+  searchResults.style.display="none";
+  searchResults.innerHTML="";
+  return;
 
-  if(!q){
+ }
 
-   searchResults.style.display="none";
-   searchResults.innerHTML="";
-   return;
+ const found=movies
+ .filter(m=>
+  `${m.title} ${m.genre} ${m.year}`
+  .toLowerCase()
+  .includes(q)
+ )
+ .slice(0,7);
 
-  }
+ searchResults.innerHTML=
+  found.length
+  ?
+  found.map(m=>`
 
-  const found=
-   movies
-   .filter(m=>
-    `${m.title} ${m.genre} ${m.year}`
-    .toLowerCase()
-    .includes(q)
-   )
-   .slice(0,7);
+   <div
+    class="search-result"
+    onclick="openMovie('${escapeHTML(m.id)}')"
+   >
 
-  searchResults.innerHTML=
-   found.length
-   ?
-   found.map(m=>`
-
-    <div
-     class="search-result"
-     onclick="openMovie('${escapeHTML(m.id)}')"
+    <img
+     src="${escapeHTML(m.poster||fallbackPoster)}"
+     onerror="posterError(this)"
     >
 
-     <img
-      src="${escapeHTML(m.poster||fallbackPoster)}"
-      onerror="posterError(this)"
-     >
+    <div>
 
-     <div>
+     <strong>${escapeHTML(m.title)}</strong>
 
-      <strong>
-       ${escapeHTML(m.title)}
-      </strong>
-
-      <small>
-       ${escapeHTML(
-        m.type==="movie"
-        ?"فیلم"
-        :"سریال"
-       )}
-       ·
-       ${escapeHTML(m.year||"")}
-      </small>
-
-     </div>
+     <small>
+      ${m.type==="movie"?"فیلم":"سریال"}
+      ·
+      ${escapeHTML(m.year||"")}
+     </small>
 
     </div>
 
-   `).join("")
-   :
-   `<div class="search-result">
-     چیزی پیدا نشد 😕
-    </div>`;
+   </div>
 
-  searchResults.style.display="block";
+  `).join("")
+  :
+  `<div class="search-result">چیزی پیدا نشد 😕</div>`;
 
- }
-);
+ searchResults.style.display="block";
 
+});
 
 document.addEventListener("click",e=>{
 
@@ -2370,130 +2937,78 @@ document.addEventListener("click",e=>{
 
 function openMovie(id){
 
- const movie=
-  movies.find(
-   m=>String(m.id)===String(id)
-  );
+ const movie=movies.find(
+  m=>String(m.id)===String(id)
+ );
 
  if(!movie)return;
 
  currentMovie=movie;
 
- const poster=
-  document.getElementById("modalPoster");
+ const poster=document.getElementById("modalPoster");
 
- poster.src=
-  movie.poster||fallbackPoster;
+ poster.src=movie.poster||fallbackPoster;
 
  poster.onerror=function(){
   this.onerror=null;
   this.src=fallbackPoster;
  };
 
+ document.getElementById("modalTitle").textContent=movie.title;
 
- document.getElementById("modalTitle")
- .textContent=movie.title;
-
-
- document.getElementById("modalMeta")
- .textContent=
+ document.getElementById("modalMeta").textContent=
   `${movie.type==="movie"?"فیلم":"سریال"} · `+
   `${movie.year||"نامشخص"} · `+
   `${movie.genre||"عمومی"} · `+
   `⭐ ${movie.rating||"—"}`;
 
-
- document.getElementById("modalDescription")
- .textContent=
+ document.getElementById("modalDescription").textContent=
   movie.description||
   "توضیحی برای این محتوا ثبت نشده است.";
 
-
  updateWatchButtons();
-
  updateFavoriteButton();
-
  renderRating();
-
  renderComments();
-
  renderSimilar();
+ renderContinueDetail();
 
-
- document.getElementById("modal")
- .classList.add("show");
+ document.getElementById("modal").classList.add("show");
 
 }
-
 
 function hideModal(){
-
- document.getElementById("modal")
- .classList.remove("show");
-
+ document.getElementById("modal").classList.remove("show");
  currentMovie=null;
-
 }
 
-
 function closeModal(e){
-
- if(e.target.id==="modal")
-  hideModal();
-
+ if(e.target.id==="modal")hideModal();
 }
 
 
 /* =========================
-   WATCH
+   WATCH BUTTONS
 ========================= */
 
 function updateWatchButtons(){
 
  if(!currentMovie)return;
 
- const online=
-  document.getElementById("onlineBtn");
+ const online=document.getElementById("onlineBtn");
+ const mx=document.getElementById("mxBtn");
+ const chrome=document.getElementById("chromeBtn");
+ const download=document.getElementById("downloadBtn");
 
- const mx=
-  document.getElementById("mxBtn");
+ const hasWatch=!!currentMovie.watchUrl;
+ const hasDownload=!!currentMovie.downloadUrl;
 
- const chrome=
-  document.getElementById("chromeBtn");
-
- const download=
-  document.getElementById("downloadBtn");
-
-
- const hasWatch=
-  !!currentMovie.watchUrl;
-
- const hasDownload=
-  !!currentMovie.downloadUrl;
-
-
- online.classList.toggle(
-  "disabled",
-  !hasWatch
- );
-
- mx.classList.toggle(
-  "disabled",
-  !hasWatch
- );
-
- chrome.classList.toggle(
-  "disabled",
-  !hasWatch
- );
-
- download.classList.toggle(
-  "disabled",
-  !hasDownload
- );
+ online.classList.toggle("disabled",!hasWatch);
+ mx.classList.toggle("disabled",!hasWatch);
+ chrome.classList.toggle("disabled",!hasWatch);
+ download.classList.toggle("disabled",!hasDownload);
 
 }
-
 
 function validUrl(url){
 
@@ -2501,40 +3016,370 @@ function validUrl(url){
 
   const u=new URL(url);
 
-  return(
-   u.protocol==="https:"||
-   u.protocol==="http:"
-  );
+  return u.protocol==="https:"||u.protocol==="http:";
 
  }catch(e){
-
   return false;
-
  }
 
 }
 
 
-function playOnline(){
+/* =========================
+   INTERNAL PLAYER
+========================= */
+
+function playOnline(resume=false){
 
  if(!currentMovie?.watchUrl){
-
   toast("لینک پخش برای این محتوا ثبت نشده");
-
   return;
-
  }
 
  if(!validUrl(currentMovie.watchUrl)){
-
   toast("لینک پخش معتبر نیست");
-
   return;
+ }
+
+ const movie=currentMovie;
+
+ addHistory(movie.id);
+
+ const saved=getContinueData(movie.id);
+
+ openPlayer(
+  movie,
+  resume&&saved
+  ?
+  Number(saved.position)||0
+  :
+  0
+ );
+
+}
+
+function openPlayer(movie,startAt=0){
+
+ playerMovie=movie;
+
+ const player=document.getElementById("player");
+ const video=document.getElementById("hamoVideo");
+
+ document.getElementById("playerTitle").textContent=movie.title;
+
+ document.getElementById("playerMessage").classList.remove("show");
+
+ video.pause();
+
+ video.src=movie.watchUrl;
+ video.playbackRate=1;
+ video.currentTime=0;
+
+ playerRotation=0;
+ playerIsFill=false;
+
+ video.classList.remove("fill");
+ video.style.transform="rotate(0deg)";
+
+ document.getElementById("fitBtn").textContent="🔲 Fit";
+
+ document.getElementById("speedMenu").classList.remove("show");
+
+ player.classList.add("show");
+
+ updatePlayerUI();
+
+ video.onloadedmetadata=()=>{
+
+  if(startAt>0 && startAt<video.duration-3){
+
+   try{
+    video.currentTime=startAt;
+   }catch(e){}
+
+  }
+
+  updatePlayerUI();
+
+  video.play()
+  .then(()=>{
+   updatePlayIcon();
+  })
+  .catch(()=>{
+   updatePlayIcon();
+  });
+
+ };
+
+ video.onplay=()=>{
+  updatePlayIcon();
+ };
+
+ video.onpause=()=>{
+  updatePlayIcon();
+  saveWatchPosition();
+ };
+
+ video.ontimeupdate=()=>{
+
+  updatePlayerUI();
+
+  if(!playerSaveTimer){
+   playerSaveTimer=setTimeout(()=>{
+    playerSaveTimer=null;
+    saveWatchPosition();
+   },1500);
+  }
+
+ };
+
+ video.onended=()=>{
+
+  if(playerMovie){
+   delete continueWatching[
+    String(playerMovie.id)
+   ];
+   saveContinue();
+   renderContinueWatching();
+  }
+
+  updatePlayerUI();
+
+  toast("پخش به پایان رسید ✓");
+
+ };
+
+ video.onerror=()=>{
+
+  video.pause();
+
+  document.getElementById("playerMessage")
+  .classList.add("show");
+
+  toast("این لینک داخل پلیر قابل پخش نیست");
+
+ };
+
+}
+
+function closePlayer(){
+
+ saveWatchPosition();
+
+ const video=document.getElementById("hamoVideo");
+
+ video.pause();
+ video.removeAttribute("src");
+ video.load();
+
+ document.getElementById("player")
+ .classList.remove("show");
+
+ document.getElementById("playerMessage")
+ .classList.remove("show");
+
+ playerMovie=null;
+
+ renderContinueWatching();
+
+}
+
+function toggleVideo(){
+
+ const video=document.getElementById("hamoVideo");
+
+ if(!video.src)return;
+
+ if(video.paused){
+  video.play().catch(()=>{});
+ }else{
+  video.pause();
+ }
+
+}
+
+function updatePlayIcon(){
+
+ const video=document.getElementById("hamoVideo");
+
+ document.getElementById("centerPlay")
+ .textContent=video.paused?"▶":"Ⅱ";
+
+}
+
+function seekVideo(seconds){
+
+ const video=document.getElementById("hamoVideo");
+
+ if(!isFinite(video.duration))return;
+
+ video.currentTime=
+  Math.max(
+   0,
+   Math.min(
+    video.duration,
+    video.currentTime+seconds
+   )
+  );
+
+ updatePlayerUI();
+ saveWatchPosition();
+
+}
+
+function toggleMute(){
+
+ const video=document.getElementById("hamoVideo");
+
+ video.muted=!video.muted;
+
+ document.getElementById("muteBtn")
+ .textContent=
+  video.muted
+  ?"🔇"
+  :"🔊";
+
+}
+
+function toggleSpeedMenu(){
+
+ document.getElementById("speedMenu")
+ .classList.toggle("show");
+
+}
+
+function setSpeed(speed){
+
+ const video=document.getElementById("hamoVideo");
+
+ video.playbackRate=speed;
+
+ document.getElementById("speedMenu")
+ .classList.remove("show");
+
+ toast(`سرعت پخش ${speed}x`);
+
+}
+
+function toggleFit(){
+
+ const video=document.getElementById("hamoVideo");
+
+ playerIsFill=!playerIsFill;
+
+ video.classList.toggle(
+  "fill",
+  playerIsFill
+ );
+
+ document.getElementById("fitBtn")
+ .textContent=
+  playerIsFill
+  ?"🔳 Fill"
+  :"🔲 Fit";
+
+}
+
+function rotateVideo(){
+
+ const video=document.getElementById("hamoVideo");
+
+ playerRotation=(playerRotation+90)%360;
+
+ video.style.transform=
+  `rotate(${playerRotation}deg)`;
+
+}
+
+function toggleFullscreen(){
+
+ const player=document.getElementById("player");
+
+ if(document.fullscreenElement){
+
+  document.exitFullscreen?.();
+
+ }else{
+
+  player.requestFullscreen?.();
 
  }
 
+}
+
+function updatePlayerUI(){
+
+ const video=document.getElementById("hamoVideo");
+
+ const progress=document.getElementById("videoProgress");
+
+ const current=document.getElementById("currentTimeText");
+
+ const duration=document.getElementById("durationText");
+
+ if(isFinite(video.duration)&&video.duration>0){
+
+  progress.value=
+   (video.currentTime/video.duration)*100;
+
+ }else{
+
+  progress.value=0;
+
+ }
+
+ current.textContent=formatTime(video.currentTime||0);
+
+ duration.textContent=
+  formatTime(
+   isFinite(video.duration)
+   ?video.duration
+   :0
+  );
+
+}
+
+function formatTime(seconds){
+
+ seconds=Math.max(0,Math.floor(seconds||0));
+
+ const h=Math.floor(seconds/3600);
+ const m=Math.floor((seconds%3600)/60);
+ const s=seconds%60;
+
+ if(h){
+
+  return `${String(h).padStart(2,"0")}:`+
+         `${String(m).padStart(2,"0")}:`+
+         `${String(s).padStart(2,"0")}`;
+
+ }
+
+ return `${String(m).padStart(2,"0")}:`+
+        `${String(s).padStart(2,"0")}`;
+
+}
+
+document.getElementById("videoProgress")
+.addEventListener("input",function(){
+
+ const video=document.getElementById("hamoVideo");
+
+ if(!isFinite(video.duration))return;
+
+ video.currentTime=
+  (Number(this.value)/100)*video.duration;
+
+ updatePlayerUI();
+
+});
+
+function openExternalFromPlayer(){
+
+ if(!playerMovie?.watchUrl)return;
+
  window.open(
-  currentMovie.watchUrl,
+  playerMovie.watchUrl,
   "_blank",
   "noopener"
  );
@@ -2542,30 +3387,56 @@ function playOnline(){
 }
 
 
+/* =========================
+   KEYBOARD PLAYER CONTROLS
+========================= */
+
+document.addEventListener("keydown",e=>{
+
+ const player=document.getElementById("player");
+
+ if(!player.classList.contains("show"))return;
+
+ if(e.key===" "){
+  e.preventDefault();
+  toggleVideo();
+ }
+
+ if(e.key==="ArrowLeft")
+  seekVideo(-10);
+
+ if(e.key==="ArrowRight")
+  seekVideo(10);
+
+ if(e.key==="m"||e.key==="M")
+  toggleMute();
+
+ if(e.key==="f"||e.key==="F")
+  toggleFullscreen();
+
+ if(e.key==="Escape"&&document.fullscreenElement)
+  document.exitFullscreen?.();
+
+});
+
+
+/* =========================
+   ANDROID / EXTERNAL
+========================= */
+
 function openChrome(){
 
  if(!currentMovie?.watchUrl){
-
   toast("لینک پخش برای این محتوا ثبت نشده");
-
   return;
-
  }
 
  if(!validUrl(currentMovie.watchUrl)){
-
   toast("لینک پخش معتبر نیست");
-
   return;
-
  }
 
- /*
-   روی اندروید تلاش می‌کنیم لینک را
-   با Chrome باز کنیم.
-   اگر intent توسط دستگاه پشتیبانی نشود،
-   لینک عادی باز می‌شود.
- */
+ addHistory(currentMovie.id);
 
  const url=currentMovie.watchUrl;
 
@@ -2584,42 +3455,27 @@ function openChrome(){
 
  }else{
 
-  window.open(
-   url,
-   "_blank",
-   "noopener"
-  );
+  window.open(url,"_blank","noopener");
 
  }
 
 }
 
-
 function openMXPlayer(){
 
  if(!currentMovie?.watchUrl){
-
   toast("لینک پخش برای این محتوا ثبت نشده");
-
   return;
-
  }
 
  if(!validUrl(currentMovie.watchUrl)){
-
   toast("لینک پخش معتبر نیست");
-
   return;
-
  }
 
- const url=currentMovie.watchUrl;
+ addHistory(currentMovie.id);
 
- /*
-   MX Player باید روی گوشی نصب باشد.
-   اگر سیستم intent را نپذیرد،
-   لینک عادی باز می‌شود.
- */
+ const url=currentMovie.watchUrl;
 
  if(/Android/i.test(navigator.userAgent)){
 
@@ -2636,33 +3492,22 @@ function openMXPlayer(){
 
  }else{
 
-  window.open(
-   url,
-   "_blank",
-   "noopener"
-  );
+  window.open(url,"_blank","noopener");
 
  }
 
 }
 
-
 function downloadMovie(){
 
  if(!currentMovie?.downloadUrl){
-
   toast("لینک دانلود برای این محتوا ثبت نشده");
-
   return;
-
  }
 
  if(!validUrl(currentMovie.downloadUrl)){
-
   toast("لینک دانلود معتبر نیست");
-
   return;
-
  }
 
  const a=document.createElement("a");
@@ -2673,10 +3518,49 @@ function downloadMovie(){
  a.download="";
 
  document.body.appendChild(a);
-
  a.click();
-
  a.remove();
+
+}
+
+
+/* =========================
+   DETAIL CONTINUE
+========================= */
+
+function renderContinueDetail(){
+
+ if(!currentMovie)return;
+
+ const data=getContinueData(currentMovie.id);
+ const box=document.getElementById("continueDetailAction");
+
+ if(!data||!data.duration||data.position<3){
+
+  box.innerHTML="";
+
+  return;
+
+ }
+
+ const percent=Math.min(
+  100,
+  Math.max(
+   0,
+   (data.position/data.duration)*100
+  )
+ );
+
+ box.innerHTML=`
+  <button
+   class="btn primary"
+   style="width:100%;margin:5px 0 10px"
+   onclick="resumeMovie('${escapeHTML(currentMovie.id)}')"
+  >
+   ▶️ ادامه از ${formatTime(data.position)}
+   · ${Math.round(percent)}٪
+  </button>
+ `;
 
 }
 
@@ -2691,15 +3575,12 @@ function quickFavorite(id){
 
  if(favorites.includes(id)){
 
-  favorites=
-   favorites.filter(x=>x!==id);
-
+  favorites=favorites.filter(x=>x!==id);
   toast("از علاقه‌مندی‌ها حذف شد");
 
  }else{
 
   favorites.push(id);
-
   toast("به علاقه‌مندی‌ها اضافه شد ❤️");
 
  }
@@ -2711,53 +3592,42 @@ function quickFavorite(id){
 
  renderHome();
 
-}
+ if(currentMovie&&String(currentMovie.id)===id)
+  updateFavoriteButton();
 
+}
 
 function toggleFavorite(){
 
  if(!currentMovie)return;
 
- quickFavorite(
-  String(currentMovie.id)
- );
-
- updateFavoriteButton();
+ quickFavorite(String(currentMovie.id));
 
 }
-
 
 function updateFavoriteButton(){
 
  if(!currentMovie)return;
 
- const active=
-  favorites.includes(
-   String(currentMovie.id)
-  );
+ const active=favorites.includes(
+  String(currentMovie.id)
+ );
 
  document.getElementById("favoriteBtn")
  .textContent=
   active
-  ?
-  "♥ حذف از علاقه‌مندی"
-  :
-  "♡ علاقه‌مندی";
+  ?"♥ حذف از علاقه‌مندی"
+  :"♡ علاقه‌مندی";
 
 }
 
-
 function showFavorites(){
 
- const list=
-  movies.filter(m=>
-   favorites.includes(
-    String(m.id)
-   )
-  );
+ const list=movies.filter(m=>
+  favorites.includes(String(m.id))
+ );
 
- document.getElementById("homeSections")
- .innerHTML=`
+ document.getElementById("homeSections").innerHTML=`
 
   <section class="section">
 
@@ -2773,8 +3643,7 @@ function showFavorites(){
      </div>`
     :
     `
-     <div
-      class="glass"
+     <div class="glass"
       style="
        padding:25px;
        border-radius:18px;
@@ -2830,14 +3699,11 @@ function renderRating(){
 
 }
 
-
 function setRating(n){
 
  if(!currentMovie)return;
 
- ratings[
-  String(currentMovie.id)
- ]=n;
+ ratings[String(currentMovie.id)]=n;
 
  localStorage.setItem(
   RATINGS_KEY,
@@ -2869,17 +3735,15 @@ function renderComments(){
 
   container.innerHTML=
    `<div class="no-comments">
-     هنوز نظری ثبت نشده؛ اولین نفر باش 👋
-    </div>`;
+    هنوز نظری ثبت نشده؛ اولین نفر باش 👋
+   </div>`;
 
   return;
 
  }
 
  container.innerHTML=
-  list
-  .slice()
-  .reverse()
+  list.slice().reverse()
   .map(comment=>`
 
    <div class="comment">
@@ -2902,11 +3766,9 @@ function renderComments(){
 
    </div>
 
-  `)
-  .join("");
+  `).join("");
 
 }
-
 
 function addComment(){
 
@@ -2914,68 +3776,39 @@ function addComment(){
 
  const name=
   document.getElementById("commentName")
-  .value
-  .trim();
+  .value.trim();
 
  const text=
   document.getElementById("commentText")
-  .value
-  .trim();
+  .value.trim();
 
  if(!name){
-
   toast("اسمت رو وارد کن");
-
   return;
-
  }
 
  if(!text){
-
   toast("متن نظرت رو بنویس");
-
   return;
-
  }
 
+ const id=String(currentMovie.id);
 
- const id=
-  String(currentMovie.id);
-
- if(!comments[id])
-  comments[id]=[];
-
+ if(!comments[id])comments[id]=[];
 
  comments[id].push({
-
   name:name,
-
   text:text,
-
-  date:new Date()
-   .toLocaleDateString("fa-IR")
-
+  date:new Date().toLocaleDateString("fa-IR")
  });
-
-
- /*
-   فعلاً نظرات روی همین دستگاه ذخیره می‌شوند.
-   در مرحله بعد می‌توانیم آنها را به Supabase
-   متصل کنیم تا همه کاربران سایت ببینند.
- */
 
  localStorage.setItem(
   COMMENTS_KEY,
   JSON.stringify(comments)
  );
 
-
- document.getElementById("commentName")
- .value="";
-
- document.getElementById("commentText")
- .value="";
-
+ document.getElementById("commentName").value="";
+ document.getElementById("commentText").value="";
 
  renderComments();
 
@@ -2992,20 +3825,18 @@ function renderSimilar(){
 
  if(!currentMovie)return;
 
- const list=
-  movies
-  .filter(m=>
-   m.id!==currentMovie.id&&
-   (
-    m.genre===currentMovie.genre||
-    m.type===currentMovie.type
-   )
+ const list=movies
+ .filter(m=>
+  String(m.id)!==String(currentMovie.id)&&
+  (
+   m.genre===currentMovie.genre||
+   m.type===currentMovie.type
   )
-  .slice(0,5);
+ )
+ .slice(0,5);
 
  document.getElementById("similarRow")
- .innerHTML=
-  list.map(movieCard).join("");
+ .innerHTML=list.map(movieCard).join("");
 
 }
 
@@ -3036,7 +3867,6 @@ function renderSettings(){
    );
 
    renderSettings();
-
    setupFeaturedAuto();
 
   };
@@ -3054,70 +3884,55 @@ function renderSettings(){
 
 let adminClicks=0;
 
-
 document.getElementById("logo")
-.addEventListener(
- "click",
- ()=>{
+.addEventListener("click",()=>{
 
-  adminClicks++;
+ adminClicks++;
 
-  clearTimeout(
-   window.adminClickTimer
-  );
+ clearTimeout(window.adminClickTimer);
 
-  window.adminClickTimer=
-   setTimeout(()=>{
-    adminClicks=0;
-   },1200);
+ window.adminClickTimer=setTimeout(()=>{
+  adminClicks=0;
+ },1200);
 
-  if(adminClicks>=5){
+ if(adminClicks>=5){
 
-   adminClicks=0;
+  adminClicks=0;
 
-   const pass=
-    prompt("رمز ورود مدیر:");
+  const pass=prompt("رمز ورود مدیر:");
 
-   if(pass===ADMIN_PASSWORD){
+  if(pass===ADMIN_PASSWORD){
 
-    renderAdminPanel();
+   renderAdminPanel();
 
-   }else if(pass!==null){
+  }else if(pass!==null){
 
-    toast("رمز اشتباه است");
-
-   }
+   toast("رمز اشتباه است");
 
   }
 
  }
-);
+
+});
 
 
 function renderAdminArea(){
 
- document.getElementById("adminArea")
- .innerHTML=`
+ document.getElementById("adminArea").innerHTML=`
 
   <div class="admin-box glass">
 
    <h3>🔐 مدیریت</h3>
 
-   <p
-    style="
-     color:#999;
-     font-size:11px
-    "
-   >
-    برای ورود روی لوگوی HAMOFLIX
-    پنج بار بزن.
+   <p style="color:#999;font-size:11px">
+    برای ورود روی لوگوی HAMOFLIX پنج بار بزن.
    </p>
 
   </div>
+
  `;
 
 }
-
 
 function renderAdminPanel(){
 
@@ -3128,14 +3943,11 @@ function renderAdminPanel(){
   )
  );
 
- const area=
-  document.getElementById("adminArea");
+ const area=document.getElementById("adminArea");
 
- const selected=
-  new Set(
-   featuredIds.map(String)
-  );
-
+ const selected=new Set(
+  featuredIds.map(String)
+ );
 
  area.innerHTML=`
 
@@ -3144,27 +3956,16 @@ function renderAdminPanel(){
    <h3>🛠 پنل مدیریت HAMOFLIX</h3>
 
    <p class="count">
-
     ویژه‌های انتخاب‌شده:
     <span id="featuredCount">
      ${Math.min(selected.size,5)}
     </span>
     / 5
-
    </p>
 
-
-   <p
-    style="
-     font-size:11px;
-     color:#999;
-     line-height:1.8
-    "
-   >
-    پنج فیلم را انتخاب کن تا در بالای سایت
-    نمایش داده شوند.
+   <p style="font-size:11px;color:#999;line-height:1.8">
+    پنج فیلم را انتخاب کن تا در بالای سایت نمایش داده شوند.
    </p>
-
 
    <div class="admin-movies">
 
@@ -3174,26 +3975,18 @@ function renderAdminPanel(){
       <div class="admin-movie">
 
        <img
-        src="${escapeHTML(
-         m.poster||fallbackPoster
-        )}"
+        src="${escapeHTML(m.poster||fallbackPoster)}"
         onerror="posterError(this)"
         loading="lazy"
        >
 
-       <label>
-        ${escapeHTML(m.title)}
-       </label>
+       <label>${escapeHTML(m.title)}</label>
 
        <input
         type="checkbox"
         class="featured-check"
         value="${escapeHTML(m.id)}"
-        ${
-         selected.has(String(m.id))
-         ?"checked"
-         :""
-        }
+        ${selected.has(String(m.id))?"checked":""}
        >
 
       </div>
@@ -3203,87 +3996,36 @@ function renderAdminPanel(){
 
    </div>
 
-
    <button
     class="btn primary"
-    style="
-     margin-top:14px;
-     width:100%
-    "
+    style="margin-top:14px;width:100%"
     onclick="saveFeaturedAdmin()"
    >
     ذخیره بخش ویژه
    </button>
 
-
-   <hr
-    style="
-     border-color:#ffffff10;
-     margin:20px 0
-    "
-   >
-
+   <hr style="border-color:#ffffff10;margin:20px 0">
 
    <h3>➕ افزودن فیلم / سریال</h3>
 
+   <input id="newTitle" class="admin-input" placeholder="نام فیلم یا سریال">
 
-   <input
-    id="newTitle"
-    class="admin-input"
-    placeholder="نام فیلم یا سریال"
-   >
-
-
-   <select
-    id="newType"
-    class="admin-input"
-   >
+   <select id="newType" class="admin-input">
     <option value="movie">فیلم</option>
     <option value="series">سریال</option>
    </select>
 
+   <input id="newGenre" class="admin-input" placeholder="ژانر">
 
-   <input
-    id="newGenre"
-    class="admin-input"
-    placeholder="ژانر"
-   >
+   <input id="newYear" class="admin-input" placeholder="سال">
 
+   <input id="newRating" class="admin-input" placeholder="امتیاز">
 
-   <input
-    id="newYear"
-    class="admin-input"
-    placeholder="سال"
-   >
+   <input id="newPoster" class="admin-input" placeholder="لینک پوستر">
 
+   <input id="newWatchUrl" class="admin-input" placeholder="لینک مستقیم ویدیو برای پلیر">
 
-   <input
-    id="newRating"
-    class="admin-input"
-    placeholder="امتیاز"
-   >
-
-
-   <input
-    id="newPoster"
-    class="admin-input"
-    placeholder="لینک پوستر"
-   >
-
-
-   <input
-    id="newWatchUrl"
-    class="admin-input"
-    placeholder="لینک پخش قانونی"
-   >
-
-
-   <input
-    id="newDownloadUrl"
-    class="admin-input"
-    placeholder="لینک دانلود قانونی"
-   >
-
+   <input id="newDownloadUrl" class="admin-input" placeholder="لینک دانلود قانونی">
 
    <textarea
     id="newDescription"
@@ -3292,46 +4034,27 @@ function renderAdminPanel(){
     placeholder="توضیحات"
    ></textarea>
 
-
-   <label
-    style="
-     display:flex;
-     gap:8px;
-     align-items:center;
-     font-size:12px;
-     margin:10px 0
-    "
-   >
-
-    <input
-     id="newFeatured"
-     type="checkbox"
-    >
-
+   <label style="
+    display:flex;
+    gap:8px;
+    align-items:center;
+    font-size:12px;
+    margin:10px 0
+   ">
+    <input id="newFeatured" type="checkbox">
     نمایش در بخش ویژه بالا
-
    </label>
 
-
-   <label
-    style="
-     display:flex;
-     gap:8px;
-     align-items:center;
-     font-size:12px;
-     margin:10px 0
-    "
-   >
-
-    <input
-     id="newUpdated"
-     type="checkbox"
-    >
-
+   <label style="
+    display:flex;
+    gap:8px;
+    align-items:center;
+    font-size:12px;
+    margin:10px 0
+   ">
+    <input id="newUpdated" type="checkbox">
     نمایش در «سریال‌های بروز شده»
-
    </label>
-
 
    <button
     class="btn primary"
@@ -3341,106 +4064,76 @@ function renderAdminPanel(){
     افزودن محتوا
    </button>
 
-
-   <hr
-    style="
-     border-color:#ffffff10;
-     margin:20px 0
-    "
-   >
-
+   <hr style="border-color:#ffffff10;margin:20px 0">
 
    <h3>✏️ ویرایش لینک‌های محتوا</h3>
 
-
-   <div
-    id="adminEditMovies"
-    class="admin-movies"
-   ></div>
+   <div id="adminEditMovies" class="admin-movies"></div>
 
   </div>
  `;
 
-
- document
- .querySelectorAll(".featured-check")
+ document.querySelectorAll(".featured-check")
  .forEach(check=>{
 
-  check.addEventListener(
-   "change",
-   ()=>{
+  check.addEventListener("change",()=>{
 
-    const count=
-     document.querySelectorAll(
-      ".featured-check:checked"
-     ).length;
+   const count=document.querySelectorAll(
+    ".featured-check:checked"
+   ).length;
 
-    if(count>5){
+   if(count>5){
 
-     check.checked=false;
+    check.checked=false;
 
-     toast(
-      "حداکثر ۵ فیلم می‌توانی انتخاب کنی"
-     );
+    toast("حداکثر ۵ فیلم می‌توانی انتخاب کنی");
 
-     return;
-
-    }
-
-    document.getElementById(
-     "featuredCount"
-    ).textContent=count;
+    return;
 
    }
-  );
+
+   document.getElementById(
+    "featuredCount"
+   ).textContent=count;
+
+  });
 
  });
-
 
  renderAdminEditMovies();
 
 }
 
-
 function renderAdminEditMovies(){
 
- const area=
-  document.getElementById(
-   "adminEditMovies"
-  );
+ const area=document.getElementById("adminEditMovies");
 
  if(!area)return;
 
  area.innerHTML=
   movies.map(m=>`
 
-   <div
-    style="
-     padding:12px;
-     border-radius:14px;
-     background:#ffffff05;
-     margin-bottom:8px
-    "
-   >
+   <div style="
+    padding:12px;
+    border-radius:14px;
+    background:#ffffff05;
+    margin-bottom:8px
+   ">
 
-    <strong
-     style="
-      font-size:12px;
-      display:block;
-      margin-bottom:8px
-     "
-    >
+    <strong style="
+     font-size:12px;
+     display:block;
+     margin-bottom:8px
+    ">
      ${escapeHTML(m.title)}
     </strong>
-
 
     <input
      class="admin-input"
      value="${escapeHTML(m.watchUrl||"")}"
-     placeholder="لینک پخش"
+     placeholder="لینک مستقیم ویدیو"
      id="watch_${escapeHTML(m.id)}"
     >
-
 
     <input
      class="admin-input"
@@ -3449,15 +4142,12 @@ function renderAdminEditMovies(){
      id="download_${escapeHTML(m.id)}"
     >
 
-
-    <label
-     style="
-      font-size:11px;
-      color:#aaa;
-      display:block;
-      margin:7px 0
-     "
-    >
+    <label style="
+     font-size:11px;
+     color:#aaa;
+     display:block;
+     margin:7px 0
+    ">
      <input
       type="checkbox"
       id="updated_${escapeHTML(m.id)}"
@@ -3465,7 +4155,6 @@ function renderAdminEditMovies(){
      >
      سریال بروز شده
     </label>
-
 
     <button
      class="btn primary"
@@ -3480,30 +4169,25 @@ function renderAdminEditMovies(){
 
 }
 
-
 function saveMovieLinks(id){
 
- const movie=
-  movies.find(
-   m=>String(m.id)===String(id)
-  );
+ const movie=movies.find(
+  m=>String(m.id)===String(id)
+ );
 
  if(!movie)return;
 
  movie.watchUrl=
-  document.getElementById(
-   `watch_${id}`
-  ).value.trim();
+  document.getElementById(`watch_${id}`)
+  .value.trim();
 
  movie.downloadUrl=
-  document.getElementById(
-   `download_${id}`
-  ).value.trim();
+  document.getElementById(`download_${id}`)
+  .value.trim();
 
  movie.updated=
-  document.getElementById(
-   `updated_${id}`
-  ).checked;
+  document.getElementById(`updated_${id}`)
+  .checked;
 
  saveMovies();
 
@@ -3512,7 +4196,6 @@ function saveMovieLinks(id){
  toast("اطلاعات محتوا ذخیره شد");
 
 }
-
 
 function saveFeaturedAdmin(){
 
@@ -3525,15 +4208,13 @@ function saveFeaturedAdmin(){
  if(checked.length!==5){
 
   toast("دقیقاً ۵ فیلم انتخاب کن");
-
   return;
 
  }
 
- featuredIds=
-  checked.map(
-   x=>String(x.value)
-  );
+ featuredIds=checked.map(
+  x=>String(x.value)
+ );
 
  localStorage.setItem(
   FEATURED_KEY,
@@ -3542,28 +4223,22 @@ function saveFeaturedAdmin(){
 
  renderFeatured();
 
- toast(
-  "بخش ویژه با موفقیت تغییر کرد ✨"
- );
+ toast("بخش ویژه با موفقیت تغییر کرد ✨");
 
 }
-
 
 function addMovieAdmin(){
 
  const title=
-  document.getElementById(
-   "newTitle"
-  ).value.trim();
+  document.getElementById("newTitle")
+  .value.trim();
 
  if(!title){
 
   toast("اسم فیلم را وارد کن");
-
   return;
 
  }
-
 
  const movie={
 
@@ -3571,77 +4246,56 @@ function addMovieAdmin(){
 
   title:title,
 
-  type:
-   document.getElementById(
-    "newType"
-   ).value,
+  type:document.getElementById("newType").value,
 
   genre:
-   document.getElementById(
-    "newGenre"
-   ).value.trim()||
-   "عمومی",
+   document.getElementById("newGenre")
+   .value.trim()||"عمومی",
 
   year:
-   document.getElementById(
-    "newYear"
-   ).value.trim(),
+   document.getElementById("newYear")
+   .value.trim(),
 
   rating:
-   document.getElementById(
-    "newRating"
-   ).value.trim()||
-   "0",
+   document.getElementById("newRating")
+   .value.trim()||"0",
 
   poster:
-   document.getElementById(
-    "newPoster"
-   ).value.trim()||
-   fallbackPoster,
+   document.getElementById("newPoster")
+   .value.trim()||fallbackPoster,
 
   description:
-   document.getElementById(
-    "newDescription"
-   ).value.trim(),
+   document.getElementById("newDescription")
+   .value.trim(),
 
   watchUrl:
-   document.getElementById(
-    "newWatchUrl"
-   ).value.trim(),
+   document.getElementById("newWatchUrl")
+   .value.trim(),
 
   downloadUrl:
-   document.getElementById(
-    "newDownloadUrl"
-   ).value.trim(),
+   document.getElementById("newDownloadUrl")
+   .value.trim(),
 
   isNew:true,
 
   updated:
-   document.getElementById(
-    "newUpdated"
-   ).checked
+   document.getElementById("newUpdated")
+   .checked
 
  };
-
 
  movies.unshift(movie);
 
  saveMovies();
 
-
  const wantFeatured=
-  document.getElementById(
-   "newFeatured"
-  ).checked;
-
+  document.getElementById("newFeatured").checked;
 
  if(wantFeatured){
 
   if(featuredIds.length<5){
 
-   featuredIds.push(
-    String(movie.id)
-   );
+   featuredIds.push(String(movie.id));
 
    localStorage.setItem(
     FEATURED_KEY,
@@ -3658,14 +4312,10 @@ function addMovieAdmin(){
 
  }
 
-
  renderHome();
-
  renderAdminPanel();
 
- toast(
-  "محتوا با موفقیت اضافه شد 🎉"
- );
+ toast("محتوا با موفقیت اضافه شد 🎉");
 
 }
 
@@ -3676,36 +4326,26 @@ function addMovieAdmin(){
 
 function reportProblem(){
 
- const title=
-  currentMovie
-  ?
-  currentMovie.title
-  :
-  "سایت";
+ const title=currentMovie
+  ?currentMovie.title
+  :"سایت";
 
- const text=
-  prompt(
-   `مشکل مربوط به «${title}» را بنویس:`
-  );
+ const text=prompt(
+  `مشکل مربوط به «${title}» را بنویس:`
+ );
 
  if(!text)return;
 
- const reports=
-  loadJSON(
-   "hamoflix_reports_v1",
-   []
-  );
+ const reports=loadJSON(
+  "hamoflix_reports_v1",
+  []
+ );
 
  reports.push({
-
   id:Date.now(),
-
   movie:title,
-
   text:text,
-
   date:new Date().toISOString()
-
  });
 
  localStorage.setItem(
@@ -3724,35 +4364,52 @@ function reportProblem(){
 
 let featuredTimer=null;
 
-
 function setupFeaturedAuto(){
 
  clearInterval(featuredTimer);
 
  if(!settings.auto)return;
 
- featuredTimer=
-  setInterval(()=>{
+ featuredTimer=setInterval(()=>{
 
-   const track=
-    document.getElementById(
-     "featuredTrack"
-    );
+  const track=document.getElementById(
+   "featuredTrack"
+  );
 
-   if(!track)return;
+  if(!track)return;
 
-   if(
-    !document
-    .getElementById("homePage")
-    .classList
-    .contains("active")
-   )return;
+  if(
+   !document
+   .getElementById("homePage")
+   .classList
+   .contains("active")
+  )return;
 
-   featuredMove(1);
+  featuredMove(1);
 
-  },4500);
+ },4500);
 
 }
+
+
+/* =========================
+   SAVE WHEN LEAVING
+========================= */
+
+window.addEventListener(
+ "beforeunload",
+ ()=>{
+  saveWatchPosition();
+ }
+);
+
+document.addEventListener(
+ "visibilitychange",
+ ()=>{
+  if(document.hidden)
+   saveWatchPosition();
+ }
+);
 
 
 /* =========================
@@ -3760,9 +4417,7 @@ function setupFeaturedAuto(){
 ========================= */
 
 renderHome();
-
 renderSettings();
-
 setupFeaturedAuto();
 
 </script>
