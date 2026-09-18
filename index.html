@@ -129,17 +129,22 @@ main{
 .featured{
   display:flex;
   gap:12px;
+  direction:ltr;
   overflow-x:auto;
+  overflow-y:hidden;
   scroll-behavior:smooth;
   scrollbar-width:none;
   padding:5px 42px 10px;
   scroll-snap-type:x proximity;
   overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-x;
 }
 .featured::-webkit-scrollbar{display:none}
 .featured-card{
   flex:0 0 150px;
   position:relative;
+  direction:rtl;
   scroll-snap-align:center;
 }
 .featured-card img{
@@ -425,9 +430,7 @@ main{
 }
 .similar{margin-top:18px}
 
-.episode-box{
-  margin-top:20px;
-}
+.episode-box{margin-top:20px}
 .season-tabs{
   display:flex;
   gap:7px;
@@ -755,14 +758,33 @@ main{
 
 <header>
   <div class="header-inner">
-    <div class="logo" id="logo">HAMO<span>FLIX</span></div>
 
-    <div class="search-wrap">
-      <input id="search" class="search" placeholder="جستجوی فیلم یا سریال..." autocomplete="off">
-      <div id="searchResults" class="search-results glass hidden"></div>
+    <div class="logo" id="logo">
+      HAMO<span>FLIX</span>
     </div>
 
-    <button class="history-btn" id="historyBtn" title="تاریخچه">🕘</button>
+    <div class="search-wrap">
+
+      <input
+        id="search"
+        class="search"
+        placeholder="جستجوی فیلم یا سریال..."
+        autocomplete="off">
+
+      <div
+        id="searchResults"
+        class="search-results glass hidden">
+      </div>
+
+    </div>
+
+    <button
+      class="history-btn"
+      id="historyBtn"
+      title="تاریخچه">
+      🕘
+    </button>
+
   </div>
 </header>
 
@@ -778,9 +800,24 @@ main{
     </div>
 
     <div class="featured-wrap">
-      <button class="arrow right" id="featuredRight">›</button>
-      <div id="featured" class="featured"></div>
-      <button class="arrow left" id="featuredLeft">‹</button>
+
+      <button
+        class="arrow right"
+        id="featuredRight">
+        ›
+      </button>
+
+      <div
+        id="featured"
+        class="featured">
+      </div>
+
+      <button
+        class="arrow left"
+        id="featuredLeft">
+        ‹
+      </button>
+
     </div>
 
   </div>
@@ -788,11 +825,26 @@ main{
   <div id="genres" class="genres"></div>
 
   <div id="continueSection" class="section hidden">
+
     <div class="section-head">
-      <div class="section-title">▶️ ادامه تماشا</div>
-      <button class="section-all" onclick="openContinueAll()">مشاهده همه</button>
+
+      <div class="section-title">
+        ▶️ ادامه تماشا
+      </div>
+
+      <button
+        class="section-all"
+        onclick="openContinueAll()">
+        مشاهده همه
+      </button>
+
     </div>
-    <div id="continueRow" class="row"></div>
+
+    <div
+      id="continueRow"
+      class="row">
+    </div>
+
   </div>
 
   <div id="homeSections"></div>
@@ -800,155 +852,351 @@ main{
 </section>
 
 <section id="moviesPage" class="page">
+
   <div class="section">
+
     <div class="section-head">
-      <div class="section-title">🎬 همه فیلم‌ها</div>
+      <div class="section-title">
+        🎬 همه فیلم‌ها
+      </div>
     </div>
-    <div id="moviesGrid" class="history-list"></div>
+
+    <div
+      id="moviesGrid"
+      class="history-list">
+    </div>
+
   </div>
+
 </section>
 
 <section id="seriesPage" class="page">
+
   <div class="section">
+
     <div class="section-head">
-      <div class="section-title">📺 همه سریال‌ها</div>
+      <div class="section-title">
+        📺 همه سریال‌ها
+      </div>
     </div>
-    <div id="seriesGrid" class="history-list"></div>
+
+    <div
+      id="seriesGrid"
+      class="history-list">
+    </div>
+
   </div>
+
 </section>
 
 <section id="settingsPage" class="page">
+
   <div class="glass modal">
+
     <h2>⚙️ تنظیمات</h2>
 
     <div class="setting">
-      <span>🔔 اعلان فیلم‌های جدید</span>
-      <button class="switch" id="notifySwitch"><i></i></button>
+
+      <span>
+        🔔 اعلان فیلم‌های جدید
+      </span>
+
+      <button
+        class="switch"
+        id="notifySwitch">
+        <i></i>
+      </button>
+
     </div>
 
     <div class="setting">
-      <span>✨ انتخاب خودکار ویژه‌ها</span>
-      <button class="switch" id="autoFeaturedSwitch"><i></i></button>
+
+      <span>
+        ✨ انتخاب خودکار ویژه‌ها
+      </span>
+
+      <button
+        class="switch"
+        id="autoFeaturedSwitch">
+        <i></i>
+      </button>
+
     </div>
 
-    <div class="setting" onclick="openHistory()">
-      <span>🕘 تاریخچه تماشا</span>
-      <button class="action">باز کردن</button>
+    <div
+      class="setting"
+      onclick="openHistory()">
+
+      <span>
+        🕘 تاریخچه تماشا
+      </span>
+
+      <button class="action">
+        باز کردن
+      </button>
+
     </div>
 
-    <div class="setting" onclick="openAdmin()">
-      <span>🔐 پنل مدیریت</span>
-      <button class="action">ورود</button>
-    </div>
   </div>
+
 </section>
 
 </main>
 
 <nav class="bottom-nav glass">
-  <button class="nav-btn active" data-page="homePage">⌂<br>خانه</button>
-  <button class="nav-btn" data-page="moviesPage">🎬<br>فیلم‌ها</button>
-  <button class="nav-btn" data-page="seriesPage">📺<br>سریال‌ها</button>
-  <button class="nav-btn" data-page="settingsPage">⚙️<br>تنظیمات</button>
+
+  <button
+    class="nav-btn active"
+    data-page="homePage">
+    ⌂<br>خانه
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="moviesPage">
+    🎬<br>فیلم‌ها
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="seriesPage">
+    📺<br>سریال‌ها
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="settingsPage">
+    ⚙️<br>تنظیمات
+  </button>
+
 </nav>
 
 <div id="detailOverlay" class="overlay">
+
   <div class="modal glass">
-    <button class="close" onclick="closeDetail()">×</button>
+
+    <button
+      class="close"
+      onclick="closeDetail()">
+      ×
+    </button>
+
     <div id="detailContent"></div>
+
   </div>
+
 </div>
 
 <div id="historyOverlay" class="overlay">
+
   <div class="modal glass">
-    <button class="close" onclick="closeHistory()">×</button>
+
+    <button
+      class="close"
+      onclick="closeHistory()">
+      ×
+    </button>
 
     <div class="history-actions">
+
       <h2>🕘 تاریخچه تماشا</h2>
-      <button class="action" onclick="clearHistory()">پاک کردن</button>
+
+      <button
+        class="action"
+        onclick="clearHistory()">
+        پاک کردن
+      </button>
+
     </div>
 
     <div id="historyContent"></div>
+
   </div>
+
 </div>
 
 <div id="adminOverlay" class="overlay">
+
   <div class="modal glass">
-    <button class="close" onclick="closeAdmin()">×</button>
+
+    <button
+      class="close"
+      onclick="closeAdmin()">
+      ×
+    </button>
+
     <div id="adminContent"></div>
+
   </div>
+
 </div>
 
 <div id="playerOverlay" class="player-overlay">
 
   <div class="player">
 
-    <video id="hamoVideo"
+    <video
+      id="hamoVideo"
       playsinline
-      preload="metadata"></video>
+      preload="metadata">
+    </video>
 
     <div class="player-top">
-      <button class="player-close" onclick="closePlayer()">×</button>
-      <div id="playerTitle" class="player-title"></div>
+
+      <button
+        class="player-close"
+        onclick="closePlayer()">
+        ×
+      </button>
+
+      <div
+        id="playerTitle"
+        class="player-title">
+      </div>
+
     </div>
 
     <div class="player-center">
-      <button onclick="seekVideo(-10)">↶10</button>
-      <button id="playerPlay" class="play" onclick="togglePlay()">▶</button>
-      <button onclick="seekVideo(10)">10↷</button>
+
+      <button onclick="seekVideo(-10)">
+        ↶10
+      </button>
+
+      <button
+        id="playerPlay"
+        class="play"
+        onclick="togglePlay()">
+        ▶
+      </button>
+
+      <button onclick="seekVideo(10)">
+        10↷
+      </button>
+
     </div>
 
     <div class="player-bottom">
 
-      <input id="seekBar" class="seek" type="range" min="0" max="1000" value="0">
+      <input
+        id="seekBar"
+        class="seek"
+        type="range"
+        min="0"
+        max="1000"
+        value="0">
 
       <div class="player-controls">
 
-        <button onclick="toggleMute()" id="muteBtn">🔊</button>
+        <button
+          onclick="toggleMute()"
+          id="muteBtn">
+          🔊
+        </button>
 
-        <button onclick="changeVolume(-.1)">−</button>
-        <button onclick="changeVolume(.1)">+</button>
+        <button onclick="changeVolume(-.1)">
+          −
+        </button>
 
-        <select id="speedSelect" class="speed-select" onchange="changeSpeed(this.value)">
+        <button onclick="changeVolume(.1)">
+          +
+        </button>
+
+        <select
+          id="speedSelect"
+          class="speed-select"
+          onchange="changeSpeed(this.value)">
+
           <option value=".5">0.5x</option>
           <option value=".75">0.75x</option>
           <option value="1" selected>1x</option>
           <option value="1.25">1.25x</option>
           <option value="1.5">1.5x</option>
           <option value="2">2x</option>
+
         </select>
 
-        <button onclick="toggleFit()">⛶</button>
-        <button onclick="rotateVideo()">↻</button>
-        <button onclick="fullscreenVideo()">⛶</button>
+        <button onclick="toggleFit()">
+          ⛶
+        </button>
 
-        <div id="playerTime" class="time">00:00 / 00:00</div>
+        <button onclick="rotateVideo()">
+          ↻
+        </button>
+
+        <button onclick="fullscreenVideo()">
+          ⛶
+        </button>
+
+        <div
+          id="playerTime"
+          class="time">
+          00:00 / 00:00
+        </div>
+
       </div>
+
     </div>
 
-    <div id="playerError" class="player-error">
+    <div
+      id="playerError"
+      class="player-error">
+
       <div class="error-box glass">
-        <h3>پخش داخلی ممکن نیست</h3>
+
+        <h3>
+          پخش داخلی ممکن نیست
+        </h3>
+
         <p>
           این لینک باید لینک مستقیم و مجاز فایل ویدئویی مثل
           MP4 یا WebM باشد.
         </p>
 
-        <div class="actions" style="justify-content:center">
-          <button class="action main" onclick="openCurrentExternal()">باز کردن لینک</button>
-          <button class="action" onclick="openChromeCurrent()">Chrome</button>
-          <button class="action" onclick="openMXCurrent()">MX Player</button>
-          <button class="action" onclick="closePlayer()">بستن</button>
+        <div
+          class="actions"
+          style="justify-content:center">
+
+          <button
+            class="action main"
+            onclick="openCurrentExternal()">
+            باز کردن لینک
+          </button>
+
+          <button
+            class="action"
+            onclick="openChromeCurrent()">
+            Chrome
+          </button>
+
+          <button
+            class="action"
+            onclick="openMXCurrent()">
+            MX Player
+          </button>
+
+          <button
+            class="action"
+            onclick="closePlayer()">
+            بستن
+          </button>
+
         </div>
+
       </div>
+
     </div>
 
   </div>
+
 </div>
 
-<div id="toast" class="toast"></div>
+<div
+  id="toast"
+  class="toast">
+</div>
 
 <script>
+
 const MOVIES_KEY="hamoflix_movies_v9";
 const FEATURED_KEY="hamoflix_featured_v9";
 const CONTINUE_KEY="hamoflix_continue_v1";
@@ -956,6 +1204,8 @@ const HISTORY_KEY="hamoflix_history_v1";
 const RATING_KEY="hamoflix_ratings_v1";
 const COMMENTS_KEY="hamoflix_comments_v1";
 const FAVORITES_KEY="hamoflix_favorites_v1";
+
+const ADMIN_PASSWORD="hamoxu";
 
 const fallbackPoster=
 "data:image/svg+xml;charset=UTF-8,"+
@@ -979,8 +1229,20 @@ const defaultMovies=[
  watchUrl:demoVideos[0],
  description:"یک سریال فانتزی و معمایی درباره ونزدی آدامز.",
  episodes:[
-  {season:1,episode:1,title:"قسمت اول",watchUrl:demoVideos[0],downloadUrl:""},
-  {season:1,episode:2,title:"قسمت دوم",watchUrl:demoVideos[1],downloadUrl:""}
+  {
+   season:1,
+   episode:1,
+   title:"قسمت اول",
+   watchUrl:demoVideos[0],
+   downloadUrl:""
+  },
+  {
+   season:1,
+   episode:2,
+   title:"قسمت دوم",
+   watchUrl:demoVideos[1],
+   downloadUrl:""
+  }
  ]
 },
 {
@@ -1068,14 +1330,22 @@ const defaultMovies=[
 }
 ];
 
-let movies=JSON.parse(localStorage.getItem(MOVIES_KEY)||"null")||defaultMovies;
+let movies=
+  JSON.parse(
+    localStorage.getItem(MOVIES_KEY)||"null"
+  )||defaultMovies;
 
 movies=movies.map(m=>{
-  if(m.type==="series" && !Array.isArray(m.episodes))m.episodes=[];
+  if(m.type==="series"&&!Array.isArray(m.episodes)){
+    m.episodes=[];
+  }
   return m;
 });
 
-let featuredIds=JSON.parse(localStorage.getItem(FEATURED_KEY)||"null")||[1,2,3,4,5];
+let featuredIds=
+  JSON.parse(
+    localStorage.getItem(FEATURED_KEY)||"null"
+  )||[1,2,3,4,5];
 
 let currentMovie=null;
 let currentEpisode=null;
@@ -1084,66 +1354,133 @@ let saveTimer=null;
 let rotation=0;
 let fitMode=false;
 
-const video=document.getElementById("hamoVideo");
-const playerOverlay=document.getElementById("playerOverlay");
-const seekBar=document.getElementById("seekBar");
-const playerTime=document.getElementById("playerTime");
+const video=
+  document.getElementById("hamoVideo");
+
+const playerOverlay=
+  document.getElementById("playerOverlay");
+
+const seekBar=
+  document.getElementById("seekBar");
+
+const playerTime=
+  document.getElementById("playerTime");
 
 function saveMovies(){
-  localStorage.setItem(MOVIES_KEY,JSON.stringify(movies));
+  localStorage.setItem(
+    MOVIES_KEY,
+    JSON.stringify(movies)
+  );
 }
 
 function esc(v){
-  return String(v??"").replace(/[&<>"']/g,m=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
+  return String(v??"").replace(
+    /[&<>"']/g,
+    m=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[m])
+  );
 }
 
-function poster(url){return url||fallbackPoster}
+function poster(url){
+  return url||fallbackPoster;
+}
 
 function toast(msg){
   const t=document.getElementById("toast");
+
   t.textContent=msg;
   t.classList.add("show");
+
   clearTimeout(t._timer);
-  t._timer=setTimeout(()=>t.classList.remove("show"),2200);
+
+  t._timer=setTimeout(
+    ()=>t.classList.remove("show"),
+    2200
+  );
 }
 
 function getContinue(){
-  try{return JSON.parse(localStorage.getItem(CONTINUE_KEY)||"[]")}
-  catch{return[]}
+  try{
+    return JSON.parse(
+      localStorage.getItem(CONTINUE_KEY)||"[]"
+    );
+  }catch{
+    return[];
+  }
 }
 
 function getContinueItem(id){
-  return getContinue().find(x=>Number(x.id)===Number(id));
+  return getContinue().find(
+    x=>Number(x.id)===Number(id)
+  );
 }
 
 function saveContinue(item){
-  let arr=getContinue().filter(x=>Number(x.id)!==Number(item.id));
+  let arr=
+    getContinue().filter(
+      x=>Number(x.id)!==Number(item.id)
+    );
+
   arr.unshift(item);
-  localStorage.setItem(CONTINUE_KEY,JSON.stringify(arr.slice(0,10)));
+
+  localStorage.setItem(
+    CONTINUE_KEY,
+    JSON.stringify(arr.slice(0,10))
+  );
 }
 
 function removeContinue(id){
-  const arr=getContinue().filter(x=>Number(x.id)!==Number(id));
-  localStorage.setItem(CONTINUE_KEY,JSON.stringify(arr));
+  const arr=
+    getContinue().filter(
+      x=>Number(x.id)!==Number(id)
+    );
+
+  localStorage.setItem(
+    CONTINUE_KEY,
+    JSON.stringify(arr)
+  );
+
   renderContinue();
 }
 
 function addHistory(id){
-  let arr=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");
-  arr=arr.filter(x=>Number(x.id)!==Number(id));
-  arr.unshift({id:Number(id),watchedAt:Date.now()});
-  localStorage.setItem(HISTORY_KEY,JSON.stringify(arr.slice(0,30)));
+  let arr=
+    JSON.parse(
+      localStorage.getItem(HISTORY_KEY)||"[]"
+    );
+
+  arr=
+    arr.filter(
+      x=>Number(x.id)!==Number(id)
+    );
+
+  arr.unshift({
+    id:Number(id),
+    watchedAt:Date.now()
+  });
+
+  localStorage.setItem(
+    HISTORY_KEY,
+    JSON.stringify(arr.slice(0,30))
+  );
 }
 
 function getHistory(){
-  return JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");
+  return JSON.parse(
+    localStorage.getItem(HISTORY_KEY)||"[]"
+  );
 }
 
 function clearHistory(){
   localStorage.removeItem(HISTORY_KEY);
+
   renderHistory();
+
   toast("تاریخچه پاک شد");
 }
 
@@ -1153,320 +1490,661 @@ function imageError(img){
 }
 
 function cardHTML(m,continued=false){
-  const c=continued?getContinueItem(m.id):null;
+
+  const c=
+    continued
+    ? getContinueItem(m.id)
+    : null;
+
   let pct=0;
 
   if(c&&c.duration){
-    pct=Math.max(0,Math.min(100,(c.position/c.duration)*100));
+    pct=Math.max(
+      0,
+      Math.min(
+        100,
+        (c.position/c.duration)*100
+      )
+    );
   }
 
   return `
-    <div class="card" onclick="openMovie(${m.id})">
-      ${m.isNew?`<span class="badge">جدید</span>`:""}
+    <div
+      class="card"
+      onclick="openMovie(${m.id})">
 
-      <img class="poster"
+      ${
+        m.isNew
+        ? `<span class="badge">جدید</span>`
+        :""
+      }
+
+      <img
+        class="poster"
         src="${esc(poster(m.poster))}"
         loading="lazy"
         onerror="imageError(this)">
 
-      <div class="card-title">${esc(m.title)}</div>
-      <div class="card-fa">${esc(m.fa||"")}</div>
-
-      <div class="card-meta">
-        <span>${esc(m.year||"")}</span>
-        <span>⭐ ${esc(m.rating||"-")}</span>
+      <div class="card-title">
+        ${esc(m.title)}
       </div>
 
-      ${continued?`
-        <div class="progress">
-          <i style="width:${pct}%"></i>
-        </div>
-      `:""}
+      <div class="card-fa">
+        ${esc(m.fa||"")}
+      </div>
+
+      <div class="card-meta">
+
+        <span>
+          ${esc(m.year||"")}
+        </span>
+
+        <span>
+          ⭐ ${esc(m.rating||"-")}
+        </span>
+
+      </div>
+
+      ${
+        continued
+        ? `
+          <div class="progress">
+            <i style="width:${pct}%"></i>
+          </div>
+        `
+        :""
+      }
+
     </div>
   `;
 }
 
+/* FEATURED */
+
 function getFeaturedBase(){
-  return featuredIds
-    .map(id=>movies.find(m=>Number(m.id)===Number(id)))
-    .filter(Boolean)
-    .slice(0,5);
+
+  const valid=
+    featuredIds
+      .map(
+        id=>movies.find(
+          m=>Number(m.id)===Number(id)
+        )
+      )
+      .filter(Boolean)
+      .slice(0,5);
+
+  return valid;
 }
 
 function renderFeatured(){
+
   const base=getFeaturedBase();
 
-  if(!base.length)return;
+  const featured=
+    document.getElementById("featured");
 
-  const featured=document.getElementById("featured");
+  if(!base.length){
+    featured.innerHTML=`
+      <div
+        style="
+          width:100%;
+          padding:30px;
+          text-align:center;
+          color:#aaa;
+          direction:rtl;
+        ">
+        هنوز عنوانی برای بخش ویژه انتخاب نشده
+      </div>
+    `;
+    return;
+  }
 
-  featured.innerHTML=[
+  /*
+    دقیقاً همان ۵ عنوان انتخاب‌شده
+    چند بار تکرار می‌شوند تا اسکرول
+    بی‌نهایت و بدون پرش باشد.
+  */
+
+  const items=[
+    ...base,
     ...base,
     ...base,
     ...base,
     ...base
-  ].map(m=>`
-    <div class="featured-card" onclick="openMovie(${m.id})">
-      <img src="${esc(poster(m.poster))}"
-        loading="lazy"
-        onerror="imageError(this)">
-      <div class="fc-title">${esc(m.title)}</div>
-      <div class="fc-fa">${esc(m.fa||"")}</div>
-    </div>
-  `).join("");
+  ];
+
+  featured.innerHTML=
+    items.map(m=>`
+
+      <div
+        class="featured-card"
+        onclick="openMovie(${m.id})">
+
+        <img
+          src="${esc(poster(m.poster))}"
+          loading="lazy"
+          onerror="imageError(this)">
+
+        <div class="fc-title">
+          ${esc(m.title)}
+        </div>
+
+        <div class="fc-fa">
+          ${esc(m.fa||"")}
+        </div>
+
+      </div>
+
+    `).join("");
 
   requestAnimationFrame(()=>{
-    const middle=base.length;
-    const card=featured.children[middle];
 
-    if(card){
-      featured.scrollLeft=
-        card.offsetLeft-
-        featured.clientWidth/2+
-        card.clientWidth/2;
-    }
+    const first=featured.children[0];
+
+    if(!first)return;
+
+    const unit=
+      first.getBoundingClientRect().width+12;
+
+    const middleGroup=base.length*2;
+
+    featured.scrollTo({
+      left:middleGroup*unit,
+      behavior:"auto"
+    });
+
   });
 }
 
 function initFeaturedLoop(){
-  const box=document.getElementById("featured");
+
+  const box=
+    document.getElementById("featured");
+
+  if(!box)return;
 
   box.addEventListener("scroll",()=>{
+
     const base=getFeaturedBase();
-    if(!base.length||!box.children.length)return;
+
+    if(
+      !base.length||
+      !box.children.length
+    )return;
 
     const card=box.children[0];
-    const unit=card.offsetWidth+12;
-    const group=unit*base.length;
 
-    const leftLimit=group*.55;
-    const rightLimit=group*2.55;
+    const unit=
+      card.getBoundingClientRect().width+12;
 
-    if(box.scrollLeft<leftLimit){
-      box.scrollLeft+=group;
+    const group=
+      unit*base.length;
+
+    /*
+      چون direction بخش اسلایدر LTR است،
+      scrollLeft در موبایل پایدارتر و مثبت است.
+    */
+
+    if(box.scrollLeft<group*.7){
+
+      box.scrollTo({
+        left:box.scrollLeft+group,
+        behavior:"auto"
+      });
+
     }
 
-    if(box.scrollLeft>rightLimit){
-      box.scrollLeft-=group;
+    if(box.scrollLeft>group*3.3){
+
+      box.scrollTo({
+        left:box.scrollLeft-group,
+        behavior:"auto"
+      });
+
     }
+
   });
 }
 
-document.getElementById("featuredRight").onclick=()=>{
-  document.getElementById("featured").scrollBy({
-    left:190,
+document.getElementById(
+  "featuredRight"
+).onclick=()=>{
+
+  const box=
+    document.getElementById("featured");
+
+  const card=
+    box.querySelector(".featured-card");
+
+  if(!card)return;
+
+  const amount=
+    card.getBoundingClientRect().width+12;
+
+  box.scrollBy({
+    left:amount,
     behavior:"smooth"
   });
+
 };
 
-document.getElementById("featuredLeft").onclick=()=>{
-  document.getElementById("featured").scrollBy({
-    left:-190,
+document.getElementById(
+  "featuredLeft"
+).onclick=()=>{
+
+  const box=
+    document.getElementById("featured");
+
+  const card=
+    box.querySelector(".featured-card");
+
+  if(!card)return;
+
+  const amount=
+    card.getBoundingClientRect().width+12;
+
+  box.scrollBy({
+    left:-amount,
     behavior:"smooth"
   });
+
 };
+
+/* GENRES */
 
 function renderGenres(){
-  const genres=[...new Set(movies.map(m=>m.genre).filter(Boolean))];
 
-  document.getElementById("genres").innerHTML=
-    `<button class="genre" onclick="renderHome()">همه</button>`+
+  const genres=[
+    ...new Set(
+      movies
+        .map(m=>m.genre)
+        .filter(Boolean)
+    )
+  ];
+
+  document.getElementById(
+    "genres"
+  ).innerHTML=
+    `<button
+      class="genre"
+      onclick="renderHome()">
+      همه
+    </button>`+
+
     genres.map(g=>
-      `<button class="genre" onclick="filterGenre('${esc(g)}')">
+      `<button
+        class="genre"
+        onclick="filterGenre('${esc(g)}')">
         ${esc(g)}
       </button>`
     ).join("");
 }
 
+/* HOME */
+
 function sectionHTML(title,list,id){
+
   if(!list.length)return"";
 
-  const visible=list.slice(0,5);
+  const visible=
+    list.slice(0,5);
 
   return `
+
     <section class="section">
 
       <div class="section-head">
-        <div class="section-title">${title}</div>
-        <button class="section-all" onclick="openAll('${id}')">
+
+        <div class="section-title">
+          ${title}
+        </div>
+
+        <button
+          class="section-all"
+          onclick="openAll('${id}')">
           مشاهده همه
         </button>
+
       </div>
 
       <div class="row">
-        ${visible.map(m=>cardHTML(m)).join("")}
 
-        <div class="all-card glass" onclick="openAll('${id}')">
+        ${visible.map(
+          m=>cardHTML(m)
+        ).join("")}
+
+        <div
+          class="all-card glass"
+          onclick="openAll('${id}')">
+
           مشاهده<br>همه
+
         </div>
+
       </div>
 
     </section>
+
   `;
 }
 
 function renderHome(){
+
   renderFeatured();
   renderGenres();
 
+  /*
+    جدیدترین‌ها فقط فیلم هستند.
+    سریال‌ها هیچ‌وقت وارد این بخش نمی‌شوند.
+  */
+
   const newestMovies=
     movies
-      .filter(m=>m.type==="movie"&&m.isNew)
+      .filter(
+        m=>m.type==="movie"&&m.isNew
+      )
       .slice()
       .reverse();
 
   const newest=
     newestMovies.length
-      ? newestMovies
-      : movies.filter(m=>m.type==="movie").slice().reverse();
+    ? newestMovies
+    : movies
+        .filter(m=>m.type==="movie")
+        .slice()
+        .reverse();
 
   const updated=
-    movies.filter(m=>m.type==="series"&&m.updated);
+    movies.filter(
+      m=>m.type==="series"&&m.updated
+    );
 
   const series=
-    movies.filter(m=>m.type==="series");
+    movies.filter(
+      m=>m.type==="series"
+    );
 
   const films=
-    movies.filter(m=>m.type==="movie");
+    movies.filter(
+      m=>m.type==="movie"
+    );
 
   const popular=
     [...movies].sort(
-      (a,b)=>Number(b.rating||0)-Number(a.rating||0)
+      (a,b)=>
+        Number(b.rating||0)-
+        Number(a.rating||0)
     );
 
-  document.getElementById("homeSections").innerHTML=
-    sectionHTML("🔥 جدیدترین فیلم‌ها",newest,"new")+
-    sectionHTML("📺 سریال‌های بروز شده",updated,"updated")+
-    sectionHTML("📺 سریال‌ها",series,"series")+
-    sectionHTML("🎬 فیلم‌ها",films,"movies")+
-    sectionHTML("⭐ محبوب‌ترین‌ها",popular,"popular");
+  document.getElementById(
+    "homeSections"
+  ).innerHTML=
+
+    sectionHTML(
+      "🔥 جدیدترین فیلم‌ها",
+      newest,
+      "new"
+    )+
+
+    sectionHTML(
+      "📺 سریال‌های بروز شده",
+      updated,
+      "updated"
+    )+
+
+    sectionHTML(
+      "📺 سریال‌ها",
+      series,
+      "series"
+    )+
+
+    sectionHTML(
+      "🎬 فیلم‌ها",
+      films,
+      "movies"
+    )+
+
+    sectionHTML(
+      "⭐ محبوب‌ترین‌ها",
+      popular,
+      "popular"
+    );
 
   renderContinue();
 }
 
 function renderContinue(){
+
   const data=getContinue();
 
-  const section=document.getElementById("continueSection");
-  const row=document.getElementById("continueRow");
+  const section=
+    document.getElementById(
+      "continueSection"
+    );
+
+  const row=
+    document.getElementById(
+      "continueRow"
+    );
 
   if(!data.length){
-    section.classList.add("hidden");
+
+    section.classList.add(
+      "hidden"
+    );
+
     row.innerHTML="";
+
     return;
   }
 
-  section.classList.remove("hidden");
+  section.classList.remove(
+    "hidden"
+  );
 
-  const list=data
-    .map(x=>movies.find(m=>Number(m.id)===Number(x.id)))
-    .filter(Boolean);
+  const list=
+    data
+      .map(
+        x=>movies.find(
+          m=>Number(m.id)===Number(x.id)
+        )
+      )
+      .filter(Boolean);
 
-  row.innerHTML=list.map(m=>cardHTML(m,true)).join("");
+  row.innerHTML=
+    list.map(
+      m=>cardHTML(m,true)
+    ).join("");
 }
 
 function openContinueAll(){
+
   const data=getContinue();
 
-  const list=data
-    .map(x=>movies.find(m=>Number(m.id)===Number(x.id)))
-    .filter(Boolean);
+  const list=
+    data
+      .map(
+        x=>movies.find(
+          m=>Number(m.id)===Number(x.id)
+        )
+      )
+      .filter(Boolean);
 
-  openCollection("▶️ ادامه تماشا",list);
+  openCollection(
+    "▶️ ادامه تماشا",
+    list
+  );
 }
 
 function openAll(type){
+
   let list=[];
 
-  if(type==="new")
-    list=movies.filter(m=>m.type==="movie"&&m.isNew);
+  if(type==="new"){
+    list=
+      movies.filter(
+        m=>m.type==="movie"&&m.isNew
+      );
+  }
 
-  if(type==="updated")
-    list=movies.filter(m=>m.type==="series"&&m.updated);
+  if(type==="updated"){
+    list=
+      movies.filter(
+        m=>m.type==="series"&&m.updated
+      );
+  }
 
-  if(type==="series")
-    list=movies.filter(m=>m.type==="series");
+  if(type==="series"){
+    list=
+      movies.filter(
+        m=>m.type==="series"
+      );
+  }
 
-  if(type==="movies")
-    list=movies.filter(m=>m.type==="movie");
+  if(type==="movies"){
+    list=
+      movies.filter(
+        m=>m.type==="movie"
+      );
+  }
 
-  if(type==="popular")
-    list=[...movies].sort(
-      (a,b)=>Number(b.rating||0)-Number(a.rating||0)
-    );
+  if(type==="popular"){
+    list=
+      [...movies].sort(
+        (a,b)=>
+          Number(b.rating||0)-
+          Number(a.rating||0)
+      );
+  }
 
   openCollection(
-    type==="new"?"🔥 جدیدترین فیلم‌ها":"همه موارد",
+    type==="new"
+      ?"🔥 جدیدترین فیلم‌ها"
+      :"همه موارد",
     list
   );
 }
 
 function filterGenre(g){
+
   openCollection(
     "ژانر: "+g,
-    movies.filter(m=>m.genre===g)
+    movies.filter(
+      m=>m.genre===g
+    )
   );
+
 }
 
 function openCollection(title,list){
-  document.getElementById("homeSections").innerHTML="";
+
+  document.getElementById(
+    "homeSections"
+  ).innerHTML="";
+
   showPage("homePage");
 
-  document.getElementById("continueSection").classList.add("hidden");
+  document.getElementById(
+    "continueSection"
+  ).classList.add("hidden");
 
-  document.getElementById("homeSections").innerHTML=`
+  document.getElementById(
+    "homeSections"
+  ).innerHTML=`
+
     <section class="section">
 
       <div class="section-head">
-        <div class="section-title">${esc(title)}</div>
-        <button class="section-all" onclick="renderHome()">
+
+        <div class="section-title">
+          ${esc(title)}
+        </div>
+
+        <button
+          class="section-all"
+          onclick="renderHome()">
           بازگشت
         </button>
+
       </div>
 
       <div class="history-list">
+
         ${
           list.length
-          ? list.map(m=>cardHTML(m)).join("")
-          : `<div class="empty">چیزی پیدا نشد.</div>`
+          ? list.map(
+              m=>cardHTML(m)
+            ).join("")
+          : `
+            <div class="empty">
+              چیزی پیدا نشد.
+            </div>
+          `
         }
+
       </div>
 
     </section>
+
   `;
 }
 
+/* DETAIL */
+
 function openMovie(id){
-  const m=movies.find(x=>Number(x.id)===Number(id));
+
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
+
   if(!m)return;
 
-  const c=getContinueItem(m.id);
+  const c=
+    getContinueItem(m.id);
 
-  const similar=movies
-    .filter(x=>
-      Number(x.id)!==Number(m.id)&&
-      (x.genre===m.genre||x.type===m.type)
-    )
-    .slice(0,5);
+  const similar=
+    movies
+      .filter(x=>
+        Number(x.id)!==Number(m.id)&&
+        (
+          x.genre===m.genre||
+          x.type===m.type
+        )
+      )
+      .slice(0,5);
 
   const rating=
-    JSON.parse(localStorage.getItem(RATING_KEY)||"{}")[m.id]||0;
+    JSON.parse(
+      localStorage.getItem(
+        RATING_KEY
+      )||"{}"
+    )[m.id]||0;
 
   let seasons=[];
-  let activeSeason=1;
 
   if(m.type==="series"){
+
     seasons=[
       ...new Set(
         (m.episodes||[])
-          .map(e=>Number(e.season)||1)
+          .map(
+            e=>Number(e.season)||1
+          )
       )
-    ].sort((a,b)=>a-b);
+    ].sort(
+      (a,b)=>a-b
+    );
 
-    if(!seasons.length)seasons=[1];
+    if(!seasons.length){
+      seasons=[1];
+    }
+
   }
 
-  document.getElementById("detailContent").innerHTML=`
+  document.getElementById(
+    "detailContent"
+  ).innerHTML=`
 
     <div class="detail">
 
@@ -1476,88 +2154,129 @@ function openMovie(id){
 
       <div>
 
-        <h2>${esc(m.title)}</h2>
+        <h2>
+          ${esc(m.title)}
+        </h2>
 
         <div class="fa-title">
           ${esc(m.fa||"")}
         </div>
 
         <div class="card-meta">
+
           <span>
-            ${esc(m.type==="series"?"سریال":"فیلم")}
+            ${esc(
+              m.type==="series"
+              ?"سریال"
+              :"فیلم"
+            )}
             • ${esc(m.year||"")}
           </span>
 
           <span>
             ⭐ ${esc(m.rating||"-")}
           </span>
+
         </div>
 
         <p class="desc">
-          ${esc(m.description||"توضیحی ثبت نشده است.")}
+          ${esc(
+            m.description||
+            "توضیحی ثبت نشده است."
+          )}
         </p>
 
         <div class="actions">
 
           ${
             m.type==="series"
+
             ? `
-              ${
-                m.episodes?.length
-                ? `<button class="action main"
-                    onclick="playEpisode(${m.id},${m.episodes[0].season},${m.episodes[0].episode})">
-                    ▶️ پخش اولین قسمت
-                  </button>`
-                : ""
-              }
-            `
-            : `
-              <button
-                class="action main"
-                onclick="playOnline(${m.id})">
-                ▶️ ${c?"ادامه پخش":"پخش آنلاین"}
-              </button>
 
               ${
-                c
+                m.episodes?.length
+
                 ? `
-                  <button class="action"
-                    onclick="resumeMovie(${m.id})">
-                    ⏯ ادامه از ${formatTime(c.position)}
+                  <button
+                    class="action main"
+                    onclick="
+                      playEpisode(
+                        ${m.id},
+                        ${m.episodes[0].season},
+                        ${m.episodes[0].episode}
+                      )">
+                    ▶️ پخش اولین قسمت
                   </button>
                 `
                 :""
               }
+
+            `
+
+            : `
+
+              <button
+                class="action main"
+                onclick="playOnline(${m.id})">
+                ▶️ ${
+                  c
+                  ?"ادامه پخش"
+                  :"پخش آنلاین"
+                }
+              </button>
+
+              ${
+                c
+
+                ? `
+                  <button
+                    class="action"
+                    onclick="resumeMovie(${m.id})">
+                    ⏯ ادامه از
+                    ${formatTime(c.position)}
+                  </button>
+                `
+
+                :""
+              }
+
             `
           }
 
-          <button class="action"
+          <button
+            class="action"
             onclick="openMXPlayer(${m.id})">
             🎞 MX Player
           </button>
 
-          <button class="action"
+          <button
+            class="action"
             onclick="openChrome(${m.id})">
             🌐 Chrome
           </button>
 
           ${
             m.downloadUrl
+
             ? `
-              <button class="action"
+              <button
+                class="action"
                 onclick="downloadMovie(${m.id})">
                 ⬇️ دانلود
               </button>
             `
+
             :""
           }
 
-          <button class="action"
+          <button
+            class="action"
             onclick="toggleFavorite(${m.id})">
             ❤️ علاقه‌مندی
           </button>
 
-          <button class="action"
+          <button
+            class="action"
             onclick="reportMovie(${m.id})">
             ⚠️ گزارش
           </button>
@@ -1572,19 +2291,34 @@ function openMovie(id){
           </div>
 
           <div class="rate-buttons">
-            ${
-              Array.from({length:10},(_,i)=>{
-                const n=i+1;
 
-                return `
-                  <button
-                    class="${rating===n?"active":""}"
-                    onclick="rateMovie(${m.id},${n})">
-                    ${n}
-                  </button>
-                `;
-              }).join("")
+            ${
+              Array.from(
+                {length:10},
+                (_,i)=>{
+
+                  const n=i+1;
+
+                  return `
+                    <button
+                      class="${
+                        rating===n
+                        ?"active"
+                        :""
+                      }"
+                      onclick="
+                        rateMovie(
+                          ${m.id},
+                          ${n}
+                        )">
+                      ${n}
+                    </button>
+                  `;
+
+                }
+              ).join("")
             }
+
           </div>
 
         </div>
@@ -1595,8 +2329,11 @@ function openMovie(id){
 
     ${
       m.type==="series"
-      ? renderEpisodes(m,seasons[0]||1)
-      : ""
+      ?renderEpisodes(
+        m,
+        seasons[0]||1
+      )
+      :""
     }
 
     <div class="section">
@@ -1619,7 +2356,9 @@ function openMovie(id){
 
       </div>
 
-      <div id="commentsList" class="comments">
+      <div
+        id="commentsList"
+        class="comments">
         ${renderComments(m.id)}
       </div>
 
@@ -1632,31 +2371,48 @@ function openMovie(id){
       </div>
 
       <div class="row">
-        ${similar.map(x=>cardHTML(x)).join("")}
+        ${similar.map(
+          x=>cardHTML(x)
+        ).join("")}
       </div>
 
     </div>
+
   `;
 
-  document.getElementById("detailOverlay").classList.add("show");
+  document.getElementById(
+    "detailOverlay"
+  ).classList.add("show");
 }
 
 function renderEpisodes(movie,season){
+
   const seasons=[
     ...new Set(
       (movie.episodes||[])
-        .map(e=>Number(e.season)||1)
+        .map(
+          e=>Number(e.season)||1
+        )
     )
-  ].sort((a,b)=>a-b);
+  ].sort(
+    (a,b)=>a-b
+  );
 
   const episodes=
     (movie.episodes||[])
-      .filter(e=>(Number(e.season)||1)===Number(season))
-      .sort((a,b)=>
-        Number(a.episode||0)-Number(b.episode||0)
+      .filter(
+        e=>
+          (Number(e.season)||1)===
+          Number(season)
+      )
+      .sort(
+        (a,b)=>
+          Number(a.episode||0)-
+          Number(b.episode||0)
       );
 
   return `
+
     <div class="episode-box">
 
       <div class="section-title">
@@ -1667,14 +2423,25 @@ function renderEpisodes(movie,season){
 
         ${
           seasons.length
+
           ? seasons.map(s=>`
+
               <button
-                class="season-tab ${s===season?"active":""}"
-                onclick="changeSeason(${movie.id},${s})">
+                class="
+                  season-tab
+                  ${s===season?"active":""}
+                "
+                onclick="
+                  changeSeason(
+                    ${movie.id},
+                    ${s}
+                  )">
                 فصل ${s}
               </button>
+
             `).join("")
-          : ""
+
+          :""
         }
 
       </div>
@@ -1683,6 +2450,7 @@ function renderEpisodes(movie,season){
 
         ${
           episodes.length
+
           ? episodes.map(e=>`
 
               <div class="episode">
@@ -1709,19 +2477,27 @@ function renderEpisodes(movie,season){
 
                 ${
                   e.watchUrl
+
                   ? `
+
                     <button
                       class="episode-play"
-                      onclick="playEpisode(
-                        ${movie.id},
-                        ${Number(e.season)},
-                        ${Number(e.episode)}
-                      )">
+                      onclick="
+                        playEpisode(
+                          ${movie.id},
+                          ${Number(e.season)},
+                          ${Number(e.episode)}
+                        )">
                       ▶️ پخش
                     </button>
+
                   `
+
                   : `
-                    <span style="color:#766b7e;font-size:10px">
+                    <span
+                      style="
+                        color:#766b7e;
+                        font-size:10px">
                       لینک ندارد
                     </span>
                   `
@@ -1730,44 +2506,56 @@ function renderEpisodes(movie,season){
               </div>
 
             `).join("")
+
           : `
+
             <div class="no-episodes">
               هنوز قسمتی برای این فصل ثبت نشده.
             </div>
+
           `
         }
 
       </div>
 
     </div>
+
   `;
 }
 
 function changeSeason(movieId,season){
-  const m=movies.find(x=>Number(x.id)===Number(movieId));
+
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(movieId)
+    );
+
   if(!m)return;
 
-  const seasons=[
-    ...new Set(
-      (m.episodes||[])
-        .map(e=>Number(e.season)||1)
-    )
-  ].sort((a,b)=>a-b);
+  const similar=
+    movies
+      .filter(x=>
+        Number(x.id)!==Number(m.id)&&
+        (
+          x.genre===m.genre||
+          x.type===m.type
+        )
+      )
+      .slice(0,5);
 
-  const similar=movies
-    .filter(x=>
-      Number(x.id)!==Number(m.id)&&
-      (x.genre===m.genre||x.type===m.type)
-    )
-    .slice(0,5);
+  const c=
+    getContinueItem(m.id);
 
-  const c=getContinueItem(m.id);
   const rating=
-    JSON.parse(localStorage.getItem(RATING_KEY)||"{}")[m.id]||0;
+    JSON.parse(
+      localStorage.getItem(
+        RATING_KEY
+      )||"{}"
+    )[m.id]||0;
 
-  const oldContent=document.getElementById("detailContent");
-
-  oldContent.innerHTML=`
+  document.getElementById(
+    "detailContent"
+  ).innerHTML=`
 
     <div class="detail">
 
@@ -1777,40 +2565,57 @@ function changeSeason(movieId,season){
 
       <div>
 
-        <h2>${esc(m.title)}</h2>
+        <h2>
+          ${esc(m.title)}
+        </h2>
 
         <div class="fa-title">
           ${esc(m.fa||"")}
         </div>
 
         <div class="card-meta">
-          <span>📺 سریال • ${esc(m.year||"")}</span>
-          <span>⭐ ${esc(m.rating||"-")}</span>
+
+          <span>
+            📺 سریال • ${esc(m.year||"")}
+          </span>
+
+          <span>
+            ⭐ ${esc(m.rating||"-")}
+          </span>
+
         </div>
 
         <p class="desc">
-          ${esc(m.description||"توضیحی ثبت نشده است.")}
+          ${esc(
+            m.description||
+            "توضیحی ثبت نشده است."
+          )}
         </p>
 
         <div class="actions">
 
           ${
             c
+
             ? `
-              <button class="action"
+              <button
+                class="action"
                 onclick="resumeMovie(${m.id})">
                 ⏯ ادامه تماشا
               </button>
             `
+
             :""
           }
 
-          <button class="action"
+          <button
+            class="action"
             onclick="toggleFavorite(${m.id})">
             ❤️ علاقه‌مندی
           </button>
 
-          <button class="action"
+          <button
+            class="action"
             onclick="reportMovie(${m.id})">
             ⚠️ گزارش
           </button>
@@ -1825,19 +2630,34 @@ function changeSeason(movieId,season){
           </div>
 
           <div class="rate-buttons">
-            ${
-              Array.from({length:10},(_,i)=>{
-                const n=i+1;
 
-                return `
-                  <button
-                    class="${rating===n?"active":""}"
-                    onclick="rateMovie(${m.id},${n})">
-                    ${n}
-                  </button>
-                `;
-              }).join("")
+            ${
+              Array.from(
+                {length:10},
+                (_,i)=>{
+
+                  const n=i+1;
+
+                  return `
+                    <button
+                      class="${
+                        rating===n
+                        ?"active"
+                        :""
+                      }"
+                      onclick="
+                        rateMovie(
+                          ${m.id},
+                          ${n}
+                        )">
+                      ${n}
+                    </button>
+                  `;
+
+                }
+              ).join("")
             }
+
           </div>
 
         </div>
@@ -1881,34 +2701,56 @@ function changeSeason(movieId,season){
       </div>
 
       <div class="row">
-        ${similar.map(x=>cardHTML(x)).join("")}
+        ${similar.map(
+          x=>cardHTML(x)
+        ).join("")}
       </div>
 
     </div>
+
   `;
 }
 
 function closeDetail(){
-  document.getElementById("detailOverlay").classList.remove("show");
+  document.getElementById(
+    "detailOverlay"
+  ).classList.remove("show");
 }
 
+/* PLAYER */
+
 function playEpisode(movieId,season,episode){
-  const m=movies.find(x=>Number(x.id)===Number(movieId));
+
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(movieId)
+    );
+
   if(!m)return;
 
-  const ep=(m.episodes||[]).find(e=>
-    Number(e.season)===Number(season)&&
-    Number(e.episode)===Number(episode)
-  );
+  const ep=
+    (m.episodes||[]).find(
+      e=>
+        Number(e.season)===Number(season)&&
+        Number(e.episode)===Number(episode)
+    );
 
   if(!ep)return;
 
-  if(!ep.watchUrl||!/^https?:\/\//i.test(ep.watchUrl)){
-    toast("لینک مستقیم و مجاز این قسمت ثبت نشده");
+  if(
+    !ep.watchUrl||
+    !/^https?:\/\//i.test(ep.watchUrl)
+  ){
+
+    toast(
+      "لینک مستقیم و مجاز این قسمت ثبت نشده"
+    );
+
     return;
   }
 
   addHistory(movieId);
+
   closeDetail();
 
   openPlayer(
@@ -1919,138 +2761,258 @@ function playEpisode(movieId,season,episode){
 }
 
 function playOnline(id,startAt=null){
-  const m=movies.find(x=>Number(x.id)===Number(id));
+
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
+
   if(!m)return;
 
   addHistory(id);
 
-  if(!m.watchUrl||!/^https?:\/\//i.test(m.watchUrl)){
-    toast("لینک مستقیم و مجاز برای پخش داخلی ثبت نشده");
+  if(
+    !m.watchUrl||
+    !/^https?:\/\//i.test(m.watchUrl)
+  ){
+
+    toast(
+      "لینک مستقیم و مجاز برای پخش داخلی ثبت نشده"
+    );
+
     return;
   }
 
-  const c=getContinueItem(id);
+  const c=
+    getContinueItem(id);
 
   if(startAt===null){
-    startAt=c?Number(c.position||0):0;
+    startAt=
+      c
+      ?Number(c.position||0)
+      :0;
   }
 
   closeDetail();
-  openPlayer(m,startAt,null);
-}
 
-function resumeMovie(id){
-  const c=getContinueItem(id);
-  playOnline(
-    id,
-    c?Number(c.position||0):0
+  openPlayer(
+    m,
+    startAt,
+    null
   );
 }
 
-function openPlayer(movie,startAt=0,episode=null){
+function resumeMovie(id){
+
+  const c=
+    getContinueItem(id);
+
+  playOnline(
+    id,
+    c
+    ?Number(c.position||0)
+    :0
+  );
+}
+
+function openPlayer(
+  movie,
+  startAt=0,
+  episode=null
+){
+
   currentMovie=movie;
   currentEpisode=episode;
 
-  const token=++playerToken;
+  const token=
+    ++playerToken;
 
-  document.getElementById("playerTitle").textContent=
+  document.getElementById(
+    "playerTitle"
+  ).textContent=
+
     episode
+
     ? `${movie.title} — فصل ${episode.season} قسمت ${episode.episode}${episode.title?` — ${episode.title}`:""}`
+
     : movie.fa
       ? `${movie.title} — ${movie.fa}`
       : movie.title;
 
-  document.getElementById("playerError").classList.remove("show");
-  document.getElementById("playerPlay").textContent="▶";
+  document.getElementById(
+    "playerError"
+  ).classList.remove("show");
 
-  playerOverlay.classList.add("show");
+  document.getElementById(
+    "playerPlay"
+  ).textContent="▶";
+
+  playerOverlay.classList.add(
+    "show"
+  );
 
   video.pause();
+
   video.removeAttribute("src");
+
   video.load();
 
-  video.style.objectFit="contain";
-  rotation=0;
-  video.style.transform="rotate(0deg)";
+  video.style.objectFit=
+    "contain";
 
-  video.src=episode?episode.watchUrl:movie.watchUrl;
+  rotation=0;
+
+  video.style.transform=
+    "rotate(0deg)";
+
+  video.src=
+    episode
+    ?episode.watchUrl
+    :movie.watchUrl;
+
   video.load();
 
   video.onloadedmetadata=()=>{
+
     if(token!==playerToken)return;
 
-    const duration=video.duration||0;
+    const duration=
+      video.duration||0;
 
-    const safeStart=Math.min(
-      Math.max(Number(startAt||0),0),
-      Math.max(duration-2,0)
-    );
+    const safeStart=
+      Math.min(
+        Math.max(
+          Number(startAt||0),
+          0
+        ),
+        Math.max(
+          duration-2,
+          0
+        )
+      );
 
     if(safeStart>0){
+
       try{
-        video.currentTime=safeStart;
+        video.currentTime=
+          safeStart;
       }catch(e){}
+
     }
 
     updatePlayerTime();
 
-    video.play().then(()=>{
-      document.getElementById("playerPlay").textContent="❚❚";
-    }).catch(()=>{
-      document.getElementById("playerPlay").textContent="▶";
-    });
+    video.play()
+      .then(()=>{
+        document.getElementById(
+          "playerPlay"
+        ).textContent="❚❚";
+      })
+      .catch(()=>{
+        document.getElementById(
+          "playerPlay"
+        ).textContent="▶";
+      });
+
   };
 
   video.onerror=()=>{
+
     if(token!==playerToken)return;
 
-    document.getElementById("playerError").classList.add("show");
+    document.getElementById(
+      "playerError"
+    ).classList.add("show");
+
   };
 
   video.onplay=()=>{
-    document.getElementById("playerPlay").textContent="❚❚";
+    document.getElementById(
+      "playerPlay"
+    ).textContent="❚❚";
   };
 
   video.onpause=()=>{
-    document.getElementById("playerPlay").textContent="▶";
+    document.getElementById(
+      "playerPlay"
+    ).textContent="▶";
+
     saveCurrentProgress();
   };
 
   video.ontimeupdate=()=>{
+
     updatePlayerTime();
 
     if(!saveTimer){
-      saveTimer=setTimeout(()=>{
-        saveTimer=null;
-        saveCurrentProgress();
-      },2000);
+
+      saveTimer=
+        setTimeout(()=>{
+          saveTimer=null;
+          saveCurrentProgress();
+        },2000);
+
     }
+
   };
 
   video.onended=()=>{
+
     if(!episode){
-      removeContinue(movie.id);
+      removeContinue(
+        movie.id
+      );
     }
 
     saveCurrentProgress(true);
 
-    document.getElementById("playerPlay").textContent="▶";
-    toast("پخش کامل شد ✓");
+    document.getElementById(
+      "playerPlay"
+    ).textContent="▶";
+
+    toast(
+      "پخش کامل شد ✓"
+    );
+
   };
 }
 
-function saveCurrentProgress(forceCompleted=false){
-  if(!currentMovie||!video)return;
+function saveCurrentProgress(
+  forceCompleted=false
+){
+
+  if(
+    !currentMovie||
+    !video
+  )return;
+
+  /*
+    برای قسمت‌های سریال فعلاً
+    پیشرفت کلی فیلم ذخیره نمی‌شود.
+  */
 
   if(currentEpisode)return;
 
-  const duration=Number(video.duration||0);
-  const position=Number(video.currentTime||0);
+  const duration=
+    Number(video.duration||0);
 
-  if(!duration||!isFinite(duration))return;
+  const position=
+    Number(video.currentTime||0);
 
-  if(forceCompleted||position/duration>=.95){
-    removeContinue(currentMovie.id);
+  if(
+    !duration||
+    !isFinite(duration)
+  )return;
+
+  if(
+    forceCompleted||
+    position/duration>=.95
+  ){
+
+    removeContinue(
+      currentMovie.id
+    );
+
     return;
   }
 
@@ -2067,12 +3029,17 @@ function saveCurrentProgress(forceCompleted=false){
 }
 
 function closePlayer(){
+
   saveCurrentProgress();
 
   playerToken++;
 
   video.pause();
-  video.removeAttribute("src");
+
+  video.removeAttribute(
+    "src"
+  );
+
   video.load();
 
   video.onloadedmetadata=null;
@@ -2082,146 +3049,236 @@ function closePlayer(){
   video.ontimeupdate=null;
   video.onended=null;
 
-  playerOverlay.classList.remove("show");
-  document.getElementById("playerError").classList.remove("show");
+  playerOverlay.classList.remove(
+    "show"
+  );
+
+  document.getElementById(
+    "playerError"
+  ).classList.remove(
+    "show"
+  );
 
   currentMovie=null;
   currentEpisode=null;
 }
 
 function togglePlay(){
+
   if(video.paused){
-    video.play().catch(()=>{});
+
+    video.play()
+      .catch(()=>{});
+
   }else{
+
     video.pause();
+
   }
 }
 
 function seekVideo(sec){
+
   if(!video.duration)return;
 
-  video.currentTime=Math.max(
-    0,
-    Math.min(
-      video.duration,
-      video.currentTime+sec
-    )
-  );
+  video.currentTime=
+    Math.max(
+      0,
+      Math.min(
+        video.duration,
+        video.currentTime+sec
+      )
+    );
 }
 
 function toggleMute(){
-  video.muted=!video.muted;
 
-  document.getElementById("muteBtn").textContent=
-    video.muted?"🔇":"🔊";
+  video.muted=
+    !video.muted;
+
+  document.getElementById(
+    "muteBtn"
+  ).textContent=
+    video.muted
+    ?"🔇"
+    :"🔊";
 }
 
 function changeVolume(v){
+
   video.muted=false;
 
-  video.volume=Math.max(
-    0,
-    Math.min(1,video.volume+v)
-  );
+  video.volume=
+    Math.max(
+      0,
+      Math.min(
+        1,
+        video.volume+v
+      )
+    );
 
-  document.getElementById("muteBtn").textContent="🔊";
+  document.getElementById(
+    "muteBtn"
+  ).textContent="🔊";
 }
 
 function changeSpeed(v){
-  video.playbackRate=Number(v);
+  video.playbackRate=
+    Number(v);
 }
 
 function toggleFit(){
+
   fitMode=!fitMode;
+
   video.style.objectFit=
-    fitMode?"cover":"contain";
+    fitMode
+    ?"cover"
+    :"contain";
 }
 
 function rotateVideo(){
-  rotation=(rotation+90)%360;
+
+  rotation=
+    (rotation+90)%360;
+
   video.style.transform=
     `rotate(${rotation}deg)`;
 }
 
 function fullscreenVideo(){
-  const p=document.querySelector(".player");
+
+  const p=
+    document.querySelector(
+      ".player"
+    );
 
   if(document.fullscreenElement){
+
     document.exitFullscreen?.();
+
   }else{
+
     p.requestFullscreen?.();
+
   }
 }
 
 function updatePlayerTime(){
-  const cur=video.currentTime||0;
-  const dur=video.duration||0;
+
+  const cur=
+    video.currentTime||0;
+
+  const dur=
+    video.duration||0;
 
   playerTime.textContent=
     `${formatTime(cur)} / ${formatTime(dur)}`;
 
   if(dur){
+
     seekBar.value=
       (cur/dur)*1000;
+
   }
 }
 
-seekBar.addEventListener("input",()=>{
-  if(!video.duration)return;
+seekBar.addEventListener(
+  "input",
+  ()=>{
 
-  video.currentTime=
-    (Number(seekBar.value)/1000)*
-    video.duration;
-});
+    if(!video.duration)return;
+
+    video.currentTime=
+      (Number(
+        seekBar.value
+      )/1000)*
+      video.duration;
+
+  }
+);
 
 function formatTime(sec){
-  if(!sec||!isFinite(sec))return"00:00";
+
+  if(
+    !sec||
+    !isFinite(sec)
+  ){
+    return"00:00";
+  }
 
   sec=Math.floor(sec);
 
-  const h=Math.floor(sec/3600);
-  const m=Math.floor((sec%3600)/60);
-  const s=sec%60;
+  const h=
+    Math.floor(
+      sec/3600
+    );
+
+  const m=
+    Math.floor(
+      (sec%3600)/60
+    );
+
+  const s=
+    sec%60;
 
   if(h){
+
     return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+
   }
 
   return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 }
 
 function openCurrentExternal(){
+
   const url=
     currentEpisode?.watchUrl||
     currentMovie?.watchUrl;
 
   if(url){
-    window.open(url,"_blank");
+    window.open(
+      url,
+      "_blank"
+    );
   }
 }
 
 function openChromeCurrent(){
+
   const url=
     currentEpisode?.watchUrl||
     currentMovie?.watchUrl;
 
   if(!url)return;
 
-  window.open(url,"_blank");
+  window.open(
+    url,
+    "_blank"
+  );
 }
 
 function openMXCurrent(){
+
   const url=
     currentEpisode?.watchUrl||
     currentMovie?.watchUrl;
 
   if(!url)return;
 
-  window.open(url,"_blank");
+  window.open(
+    url,
+    "_blank"
+  );
 }
 
 function openChrome(id){
-  const m=movies.find(x=>Number(x.id)===Number(id));
+
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
 
   if(!m?.watchUrl)return;
 
@@ -2234,7 +3291,11 @@ function openChrome(id){
 }
 
 function openMXPlayer(id){
-  const m=movies.find(x=>Number(x.id)===Number(id));
+
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
 
   if(!m?.watchUrl)return;
 
@@ -2247,20 +3308,31 @@ function openMXPlayer(id){
 }
 
 function downloadMovie(id){
-  const m=movies.find(x=>Number(x.id)===Number(id));
+
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
 
   if(m?.downloadUrl){
+
     window.open(
       m.downloadUrl,
       "_blank"
     );
+
   }
 }
 
+/* RATING */
+
 function rateMovie(id,n){
+
   const r=
     JSON.parse(
-      localStorage.getItem(RATING_KEY)||"{}"
+      localStorage.getItem(
+        RATING_KEY
+      )||"{}"
     );
 
   r[id]=n;
@@ -2271,52 +3343,98 @@ function rateMovie(id,n){
   );
 
   openMovie(id);
-  toast(`امتیاز ${n} ثبت شد`);
+
+  toast(
+    `امتیاز ${n} ثبت شد`
+  );
 }
 
+/* COMMENTS */
+
 function renderComments(id){
+
   const all=
     JSON.parse(
-      localStorage.getItem(COMMENTS_KEY)||"{}"
+      localStorage.getItem(
+        COMMENTS_KEY
+      )||"{}"
     );
 
-  const arr=all[id]||[];
+  const arr=
+    all[id]||[];
 
   if(!arr.length){
-    return `<div class="empty">هنوز نظری ثبت نشده.</div>`;
+
+    return `
+      <div class="empty">
+        هنوز نظری ثبت نشده.
+      </div>
+    `;
+
   }
 
-  return arr.slice().reverse().map(c=>`
-    <div class="comment">
+  return arr
+    .slice()
+    .reverse()
+    .map(c=>`
 
-      ${esc(c.text)}
+      <div class="comment">
 
-      <div style="color:#766b7e;font-size:9px;margin-top:5px">
-        ${new Date(c.time).toLocaleString("fa-IR")}
+        ${esc(c.text)}
+
+        <div
+          style="
+            color:#766b7e;
+            font-size:9px;
+            margin-top:5px">
+
+          ${
+            new Date(
+              c.time
+            ).toLocaleString(
+              "fa-IR"
+            )
+          }
+
+        </div>
+
       </div>
 
-    </div>
-  `).join("");
+    `)
+    .join("");
 }
 
 function addComment(id){
-  const input=document.getElementById("commentInput");
+
+  const input=
+    document.getElementById(
+      "commentInput"
+    );
 
   if(!input)return;
 
-  const text=input.value.trim();
+  const text=
+    input.value.trim();
 
   if(!text){
-    toast("اول نظر خودت رو بنویس");
+
+    toast(
+      "اول نظر خودت رو بنویس"
+    );
+
     return;
   }
 
   const all=
     JSON.parse(
-      localStorage.getItem(COMMENTS_KEY)||"{}"
+      localStorage.getItem(
+        COMMENTS_KEY
+      )||"{}"
     );
 
-  if(!all[id])all[id]=[];
+  if(!all[id]){
+    all[id]=[];
+  }
 
   all[id].push({
     text,
@@ -2329,21 +3447,42 @@ function addComment(id){
   );
 
   openMovie(id);
-  toast("نظر ثبت شد");
+
+  toast(
+    "نظر ثبت شد"
+  );
 }
 
+/* FAVORITE / REPORT */
+
 function toggleFavorite(id){
+
   let arr=
     JSON.parse(
-      localStorage.getItem(FAVORITES_KEY)||"[]"
+      localStorage.getItem(
+        FAVORITES_KEY
+      )||"[]"
     );
 
   if(arr.includes(id)){
-    arr=arr.filter(x=>x!==id);
-    toast("از علاقه‌مندی حذف شد");
+
+    arr=
+      arr.filter(
+        x=>x!==id
+      );
+
+    toast(
+      "از علاقه‌مندی حذف شد"
+    );
+
   }else{
+
     arr.unshift(id);
-    toast("به علاقه‌مندی اضافه شد ❤️");
+
+    toast(
+      "به علاقه‌مندی اضافه شد ❤️"
+    );
+
   }
 
   localStorage.setItem(
@@ -2353,17 +3492,24 @@ function toggleFavorite(id){
 }
 
 function reportMovie(id){
-  const m=movies.find(x=>Number(x.id)===Number(id));
 
-  const reason=prompt(
-    `گزارش برای «${m?.title||""}»\nدلیل گزارش را وارد کن:`
-  );
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
+
+  const reason=
+    prompt(
+      `گزارش برای «${m?.title||""}»\nدلیل گزارش را وارد کن:`
+    );
 
   if(!reason)return;
 
   const reports=
     JSON.parse(
-      localStorage.getItem("hamoflix_reports_v1")||"[]"
+      localStorage.getItem(
+        "hamoflix_reports_v1"
+      )||"[]"
     );
 
   reports.push({
@@ -2377,46 +3523,85 @@ function reportMovie(id){
     JSON.stringify(reports)
   );
 
-  toast("گزارش ثبت شد");
+  toast(
+    "گزارش ثبت شد"
+  );
 }
 
+/* HISTORY */
+
 function openHistory(){
+
   renderHistory();
 
-  document
-    .getElementById("historyOverlay")
-    .classList.add("show");
+  document.getElementById(
+    "historyOverlay"
+  ).classList.add("show");
 }
 
 function closeHistory(){
-  document
-    .getElementById("historyOverlay")
-    .classList.remove("show");
+
+  document.getElementById(
+    "historyOverlay"
+  ).classList.remove("show");
 }
 
-document.getElementById("historyBtn").onclick=openHistory;
+document.getElementById(
+  "historyBtn"
+).onclick=openHistory;
 
 function renderHistory(){
-  const data=getHistory();
 
-  const list=data
-    .map(x=>movies.find(m=>Number(m.id)===Number(x.id)))
-    .filter(Boolean);
+  const data=
+    getHistory();
 
-  document.getElementById("historyContent").innerHTML=
+  const list=
+    data
+      .map(
+        x=>movies.find(
+          m=>Number(m.id)===Number(x.id)
+        )
+      )
+      .filter(Boolean);
+
+  document.getElementById(
+    "historyContent"
+  ).innerHTML=
+
     list.length
-    ? `<div class="history-list">${list.map(m=>cardHTML(m)).join("")}</div>`
-    : `<div class="empty">هنوز فیلم یا سریالی پخش نکردی.</div>`;
+
+    ? `
+      <div class="history-list">
+        ${list.map(
+          m=>cardHTML(m)
+        ).join("")}
+      </div>
+    `
+
+    : `
+      <div class="empty">
+        هنوز فیلم یا سریالی پخش نکردی.
+      </div>
+    `;
 }
 
+/* NAVIGATION */
+
 function showPage(id){
+
   document
     .querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
+    .forEach(
+      p=>p.classList.remove(
+        "active"
+      )
+    );
 
   document
     .getElementById(id)
-    ?.classList.add("active");
+    ?.classList.add(
+      "active"
+    );
 
   document
     .querySelectorAll(".nav-btn")
@@ -2432,167 +3617,332 @@ function showPage(id){
     behavior:"smooth"
   });
 
-  if(id==="moviesPage")renderMovies();
-  if(id==="seriesPage")renderSeries();
-  if(id==="homePage")renderHome();
+  if(id==="moviesPage"){
+    renderMovies();
+  }
+
+  if(id==="seriesPage"){
+    renderSeries();
+  }
+
+  if(id==="homePage"){
+    renderHome();
+  }
 }
 
 document
   .querySelectorAll(".nav-btn")
   .forEach(btn=>{
+
     btn.onclick=()=>{
-      showPage(btn.dataset.page);
+      showPage(
+        btn.dataset.page
+      );
     };
+
   });
 
 function renderMovies(){
-  const list=
-    movies.filter(m=>m.type==="movie");
 
-  document.getElementById("moviesGrid").innerHTML=
-    list.map(m=>cardHTML(m)).join("")||
-    `<div class="empty">فیلمی ثبت نشده.</div>`;
+  const list=
+    movies.filter(
+      m=>m.type==="movie"
+    );
+
+  document.getElementById(
+    "moviesGrid"
+  ).innerHTML=
+
+    list.map(
+      m=>cardHTML(m)
+    ).join("")
+
+    ||
+
+    `
+      <div class="empty">
+        فیلمی ثبت نشده.
+      </div>
+    `;
 }
 
 function renderSeries(){
-  const list=
-    movies.filter(m=>m.type==="series");
 
-  document.getElementById("seriesGrid").innerHTML=
-    list.map(m=>cardHTML(m)).join("")||
-    `<div class="empty">سریالی ثبت نشده.</div>`;
+  const list=
+    movies.filter(
+      m=>m.type==="series"
+    );
+
+  document.getElementById(
+    "seriesGrid"
+  ).innerHTML=
+
+    list.map(
+      m=>cardHTML(m)
+    ).join("")
+
+    ||
+
+    `
+      <div class="empty">
+        سریالی ثبت نشده.
+      </div>
+    `;
 }
 
 /* SEARCH */
 
-const search=document.getElementById("search");
-const searchResults=document.getElementById("searchResults");
+const search=
+  document.getElementById(
+    "search"
+  );
 
-search.addEventListener("input",()=>{
-  const q=search.value.trim().toLowerCase();
+const searchResults=
+  document.getElementById(
+    "searchResults"
+  );
 
-  if(!q){
-    searchResults.classList.add("hidden");
-    return;
-  }
+search.addEventListener(
+  "input",
+  ()=>{
 
-  const result=
-    movies
-      .filter(m=>
-        m.title.toLowerCase().includes(q)||
-        (m.fa||"").toLowerCase().includes(q)||
-        (m.genre||"").toLowerCase().includes(q)
-      )
-      .slice(0,8);
+    const q=
+      search.value
+        .trim()
+        .toLowerCase();
 
-  searchResults.innerHTML=
-    result.length
-    ? result.map(m=>`
-      <div
-        class="search-item"
-        onclick="
-          openMovie(${m.id});
-          searchResults.classList.add('hidden');
-          search.value=''
-        ">
+    if(!q){
 
-        <img
-          src="${esc(poster(m.poster))}"
-          onerror="imageError(this)">
+      searchResults.classList.add(
+        "hidden"
+      );
 
-        <div>
-          <b>${esc(m.title)}</b>
+      return;
+    }
 
-          <small>
-            ${esc(m.fa||"")}
-            •
-            ${esc(m.type==="series"?"سریال":"فیلم")}
-          </small>
+    const result=
+      movies
+        .filter(m=>
+          m.title
+            .toLowerCase()
+            .includes(q)||
+
+          (m.fa||"")
+            .toLowerCase()
+            .includes(q)||
+
+          (m.genre||"")
+            .toLowerCase()
+            .includes(q)
+        )
+        .slice(0,8);
+
+    searchResults.innerHTML=
+
+      result.length
+
+      ? result.map(m=>`
+
+        <div
+          class="search-item"
+          onclick="
+            openMovie(${m.id});
+            searchResults.classList.add('hidden');
+            search.value=''
+          ">
+
+          <img
+            src="${esc(
+              poster(m.poster)
+            )}"
+            onerror="imageError(this)">
+
+          <div>
+
+            <b>
+              ${esc(m.title)}
+            </b>
+
+            <small>
+              ${esc(m.fa||"")}
+              •
+              ${esc(
+                m.type==="series"
+                ?"سریال"
+                :"فیلم"
+              )}
+            </small>
+
+          </div>
+
         </div>
 
-      </div>
-    `).join("")
-    : `<div class="empty" style="padding:15px">
-        نتیجه‌ای پیدا نشد.
-       </div>`;
+      `).join("")
 
-  searchResults.classList.remove("hidden");
-});
+      : `
+        <div
+          class="empty"
+          style="padding:15px">
+          نتیجه‌ای پیدا نشد.
+        </div>
+      `;
 
-document.addEventListener("click",e=>{
-  if(!e.target.closest(".search-wrap")){
-    searchResults.classList.add("hidden");
+    searchResults.classList.remove(
+      "hidden"
+    );
+
   }
-});
+);
+
+document.addEventListener(
+  "click",
+  e=>{
+
+    if(
+      !e.target.closest(
+        ".search-wrap"
+      )
+    ){
+
+      searchResults.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+);
 
 /* ADMIN */
 
 let logoClicks=0;
 let logoTimer=null;
 
-document.getElementById("logo").onclick=()=>{
+document.getElementById(
+  "logo"
+).onclick=()=>{
+
   logoClicks++;
 
-  clearTimeout(logoTimer);
+  clearTimeout(
+    logoTimer
+  );
 
-  logoTimer=setTimeout(()=>{
-    logoClicks=0;
-  },1500);
+  logoTimer=
+    setTimeout(()=>{
+      logoClicks=0;
+    },1500);
 
   if(logoClicks>=5){
+
     logoClicks=0;
+
     openAdmin();
+
   }
+
 };
 
 function openAdmin(){
-  const password=prompt("رمز پنل مدیریت:");
 
-  if(password!=="HAMOFLIX_2026_ADMIN"){
+  const password=
+    prompt(
+      "رمز پنل مدیریت:"
+    );
+
+  if(password!==ADMIN_PASSWORD){
+
     if(password!==null){
-      toast("رمز اشتباه است");
+
+      toast(
+        "رمز اشتباه است"
+      );
+
     }
+
     return;
   }
 
   renderAdmin();
 
-  document
-    .getElementById("adminOverlay")
-    .classList.add("show");
+  document.getElementById(
+    "adminOverlay"
+  ).classList.add(
+    "show"
+  );
 }
 
 function closeAdmin(){
-  document
-    .getElementById("adminOverlay")
-    .classList.remove("show");
+
+  document.getElementById(
+    "adminOverlay"
+  ).classList.remove(
+    "show"
+  );
 }
 
 function renderAdmin(){
-  document.getElementById("adminContent").innerHTML=`
 
-    <h2>🔐 پنل مدیریت</h2>
+  const selectedCount=
+    featuredIds
+      .filter(
+        id=>movies.some(
+          m=>Number(m.id)===Number(id)
+        )
+      )
+      .length;
+
+  document.getElementById(
+    "adminContent"
+  ).innerHTML=`
+
+    <h2>
+      🔐 پنل مدیریت
+    </h2>
 
     <p class="hint">
       برای پخش داخلی، لینک مستقیم و مجاز MP4/WebM وارد کن.
     </p>
 
-    <h3>⭐ انتخاب ۵ عنوان ویژه</h3>
+    <h3>
+      ⭐ انتخاب ۵ عنوان ویژه
+    </h3>
+
+    <div
+      class="hint"
+      style="margin-bottom:8px">
+
+      انتخاب شده:
+      <b>${selectedCount}/5</b>
+
+      <br>
+
+      این ۵ عنوان در بخش بالای صفحه اصلی نمایش داده می‌شوند.
+
+    </div>
 
     <div class="feature-select">
 
       ${movies.map(m=>`
+
         <label class="feature-check">
 
           <input
             type="checkbox"
             value="${m.id}"
-            ${featuredIds.includes(m.id)?"checked":""}
+            ${
+              featuredIds.includes(
+                m.id
+              )
+              ?"checked"
+              :""
+            }
             onchange="limitFeatured(this)">
 
           ${esc(m.title)}
 
         </label>
+
       `).join("")}
 
     </div>
@@ -2601,28 +3951,57 @@ function renderAdmin(){
       class="action main"
       style="margin-top:8px"
       onclick="saveFeatured()">
-      ذخیره ویژه‌ها
+
+      ذخیره ۵ ویژه
+
     </button>
 
-    <hr style="border-color:rgba(255,255,255,.08);margin:18px 0">
+    <hr
+      style="
+        border-color:rgba(255,255,255,.08);
+        margin:18px 0">
 
-    <h3>➕ افزودن فیلم / سریال</h3>
+    <h3>
+      ➕ افزودن فیلم / سریال
+    </h3>
 
     <div class="admin-form">
 
-      <input id="aTitle" placeholder="نام انگلیسی">
+      <input
+        id="aTitle"
+        placeholder="نام انگلیسی">
 
-      <input id="aFa" placeholder="نام فارسی">
+      <input
+        id="aFa"
+        placeholder="نام فارسی">
 
       <select id="aType">
-        <option value="movie">فیلم</option>
-        <option value="series">سریال</option>
+
+        <option value="movie">
+          فیلم
+        </option>
+
+        <option value="series">
+          سریال
+        </option>
+
       </select>
 
-      <input id="aGenre" placeholder="ژانر">
-      <input id="aYear" placeholder="سال">
-      <input id="aRating" placeholder="امتیاز">
-      <input id="aPoster" placeholder="لینک پوستر">
+      <input
+        id="aGenre"
+        placeholder="ژانر">
+
+      <input
+        id="aYear"
+        placeholder="سال">
+
+      <input
+        id="aRating"
+        placeholder="امتیاز">
+
+      <input
+        id="aPoster"
+        placeholder="لینک پوستر">
 
       <input
         id="aWatch"
@@ -2634,29 +4013,47 @@ function renderAdmin(){
 
       <textarea
         id="aDesc"
-        placeholder="توضیحات"></textarea>
+        placeholder="توضیحات">
+      </textarea>
 
       <label class="feature-check">
-        <input id="aNew" type="checkbox">
+
+        <input
+          id="aNew"
+          type="checkbox">
+
         جدید
+
       </label>
 
       <label class="feature-check">
-        <input id="aUpdated" type="checkbox">
+
+        <input
+          id="aUpdated"
+          type="checkbox">
+
         سریال بروز شده
+
       </label>
 
       <button
         class="action main"
         onclick="addMovie()">
+
         افزودن
+
       </button>
 
     </div>
 
-    <hr style="border-color:rgba(255,255,255,.08);margin:18px 0">
+    <hr
+      style="
+        border-color:rgba(255,255,255,.08);
+        margin:18px 0">
 
-    <h3>📺 افزودن قسمت سریال</h3>
+    <h3>
+      📺 افزودن قسمت سریال
+    </h3>
 
     <div class="admin-form">
 
@@ -2668,11 +4065,15 @@ function renderAdmin(){
 
         ${
           movies
-            .filter(m=>m.type==="series")
+            .filter(
+              m=>m.type==="series"
+            )
             .map(m=>`
+
               <option value="${m.id}">
                 ${esc(m.title)}
               </option>
+
             `)
             .join("")
         }
@@ -2708,14 +4109,21 @@ function renderAdmin(){
       <button
         class="action main"
         onclick="addEpisode()">
+
         افزودن قسمت
+
       </button>
 
     </div>
 
-    <hr style="border-color:rgba(255,255,255,.08);margin:18px 0">
+    <hr
+      style="
+        border-color:rgba(255,255,255,.08);
+        margin:18px 0">
 
-    <h3>🛠 مدیریت عناوین</h3>
+    <h3>
+      🛠 مدیریت عناوین
+    </h3>
 
     <div class="admin-form">
 
@@ -2723,9 +4131,13 @@ function renderAdmin(){
 
         <div
           class="glass"
-          style="padding:10px;border-radius:13px">
+          style="
+            padding:10px;
+            border-radius:13px">
 
-          <b>${esc(m.title)}</b>
+          <b>
+            ${esc(m.title)}
+          </b>
 
           <div class="hint">
             ${esc(m.fa||"")}
@@ -2733,11 +4145,18 @@ function renderAdmin(){
 
           ${
             m.type==="series"
+
             ? `
               <div class="hint">
-                ${m.episodes?.length||0} قسمت ثبت شده
+
+                ${
+                  m.episodes?.length||0
+                }
+                قسمت ثبت شده
+
               </div>
             `
+
             :""
           }
 
@@ -2751,19 +4170,29 @@ function renderAdmin(){
 
             ${
               m.type==="series"
+
               ? `
+
                 <button
                   class="action"
-                  onclick="manageEpisodes(${m.id})">
+                  onclick="
+                    manageEpisodes(
+                      ${m.id}
+                    )">
                   مدیریت قسمت‌ها
                 </button>
+
               `
+
               :""
             }
 
             <button
               class="action"
-              onclick="deleteMovie(${m.id})">
+              onclick="
+                deleteMovie(
+                  ${m.id}
+                )">
               حذف
             </button>
 
@@ -2774,103 +4203,201 @@ function renderAdmin(){
       `).join("")}
 
     </div>
+
   `;
 }
 
 function limitFeatured(box){
-  const checked=[
-    ...document.querySelectorAll(
-      ".feature-check input[type=checkbox]:checked"
-    )
-  ];
 
-  if(checked.length>5){
-    box.checked=false;
-    toast("حداکثر ۵ عنوان");
-  }
-}
-
-function saveFeatured(){
   const checked=[
     ...document.querySelectorAll(
       ".feature-select input[type=checkbox]:checked"
     )
-  ].map(x=>Number(x.value));
+  ];
+
+  if(checked.length>5){
+
+    box.checked=false;
+
+    toast(
+      "حداکثر ۵ عنوان"
+    );
+
+  }
+}
+
+function saveFeatured(){
+
+  const checked=[
+    ...document.querySelectorAll(
+      ".feature-select input[type=checkbox]:checked"
+    )
+  ].map(
+    x=>Number(x.value)
+  );
 
   if(checked.length!==5){
-    toast("دقیقاً ۵ عنوان انتخاب کن");
+
+    toast(
+      "دقیقاً ۵ عنوان انتخاب کن"
+    );
+
     return;
   }
 
-  featuredIds=checked;
+  featuredIds=
+    checked.slice(0,5);
 
   localStorage.setItem(
     FEATURED_KEY,
-    JSON.stringify(featuredIds)
+    JSON.stringify(
+      featuredIds
+    )
   );
 
   renderFeatured();
 
-  toast("ویژه‌ها ذخیره شدند");
+  toast(
+    "۵ عنوان ویژه ذخیره شدند ✓"
+  );
 }
 
+/* ADD MOVIE */
+
 function addMovie(){
+
   const title=
-    document.getElementById("aTitle")
-    .value.trim();
+    document.getElementById(
+      "aTitle"
+    ).value.trim();
 
   if(!title){
-    toast("نام انگلیسی را وارد کن");
+
+    toast(
+      "نام انگلیسی را وارد کن"
+    );
+
     return;
   }
 
   const type=
-    document.getElementById("aType").value;
+    document.getElementById(
+      "aType"
+    ).value;
 
   const movie={
     id:Date.now(),
+
     title,
-    fa:document.getElementById("aFa").value.trim(),
+
+    fa:
+      document.getElementById(
+        "aFa"
+      ).value.trim(),
+
     type,
-    genre:document.getElementById("aGenre").value.trim(),
-    year:document.getElementById("aYear").value.trim(),
-    rating:document.getElementById("aRating").value.trim(),
-    poster:document.getElementById("aPoster").value.trim(),
-    watchUrl:document.getElementById("aWatch").value.trim(),
-    downloadUrl:document.getElementById("aDownload").value.trim(),
-    description:document.getElementById("aDesc").value.trim(),
-    isNew:document.getElementById("aNew").checked,
-    updated:document.getElementById("aUpdated").checked,
-    episodes:type==="series"?[]:undefined
+
+    genre:
+      document.getElementById(
+        "aGenre"
+      ).value.trim(),
+
+    year:
+      document.getElementById(
+        "aYear"
+      ).value.trim(),
+
+    rating:
+      document.getElementById(
+        "aRating"
+      ).value.trim(),
+
+    poster:
+      document.getElementById(
+        "aPoster"
+      ).value.trim(),
+
+    watchUrl:
+      document.getElementById(
+        "aWatch"
+      ).value.trim(),
+
+    downloadUrl:
+      document.getElementById(
+        "aDownload"
+      ).value.trim(),
+
+    description:
+      document.getElementById(
+        "aDesc"
+      ).value.trim(),
+
+    isNew:
+      document.getElementById(
+        "aNew"
+      ).checked,
+
+    updated:
+      document.getElementById(
+        "aUpdated"
+      ).checked,
+
+    episodes:
+      type==="series"
+      ?[]
+      :undefined
   };
 
-  movies.unshift(movie);
+  movies.unshift(
+    movie
+  );
 
   saveMovies();
+
   renderHome();
   renderMovies();
   renderSeries();
   renderAdmin();
 
-  toast("عنوان اضافه شد");
+  toast(
+    "عنوان اضافه شد"
+  );
 }
 
+/* EPISODES */
+
 function addEpisode(){
+
   const seriesId=
     Number(
-      document.getElementById("episodeSeries").value
+      document.getElementById(
+        "episodeSeries"
+      ).value
     );
 
   if(!seriesId){
-    toast("اول سریال را انتخاب کن");
+
+    toast(
+      "اول سریال را انتخاب کن"
+    );
+
     return;
   }
 
   const m=
-    movies.find(x=>Number(x.id)===seriesId);
+    movies.find(
+      x=>Number(x.id)===seriesId
+    );
 
-  if(!m||m.type!=="series"){
-    toast("سریال پیدا نشد");
+  if(
+    !m||
+    m.type!=="series"
+  ){
+
+    toast(
+      "سریال پیدا نشد"
+    );
+
     return;
   }
 
@@ -2880,70 +4407,106 @@ function addEpisode(){
 
   const season=
     Number(
-      document.getElementById("episodeSeason").value
+      document.getElementById(
+        "episodeSeason"
+      ).value
     )||1;
 
   const episode=
     Number(
-      document.getElementById("episodeNumber").value
+      document.getElementById(
+        "episodeNumber"
+      ).value
     )||1;
 
   const watchUrl=
-    document.getElementById("episodeWatch")
-    .value.trim();
+    document.getElementById(
+      "episodeWatch"
+    ).value.trim();
 
   const downloadUrl=
-    document.getElementById("episodeDownload")
-    .value.trim();
+    document.getElementById(
+      "episodeDownload"
+    ).value.trim();
 
   const title=
-    document.getElementById("episodeTitle")
-    .value.trim();
+    document.getElementById(
+      "episodeTitle"
+    ).value.trim();
 
   if(!watchUrl){
-    toast("لینک پخش قسمت را وارد کن");
+
+    toast(
+      "لینک پخش قسمت را وارد کن"
+    );
+
     return;
   }
 
   const exists=
-    m.episodes.some(e=>
-      Number(e.season)===season&&
-      Number(e.episode)===episode
+    m.episodes.some(
+      e=>
+        Number(e.season)===season&&
+        Number(e.episode)===episode
     );
 
   if(exists){
-    toast("این قسمت قبلاً ثبت شده");
+
+    toast(
+      "این قسمت قبلاً ثبت شده"
+    );
+
     return;
   }
 
   m.episodes.push({
+
     season,
+
     episode,
-    title:title||`قسمت ${episode}`,
+
+    title:
+      title||
+      `قسمت ${episode}`,
+
     watchUrl,
+
     downloadUrl
+
   });
 
-  m.episodes.sort((a,b)=>
-    Number(a.season)-Number(b.season)||
-    Number(a.episode)-Number(b.episode)
+  m.episodes.sort(
+    (a,b)=>
+      Number(a.season)-
+      Number(b.season)||
+      Number(a.episode)-
+      Number(b.episode)
   );
 
   m.updated=true;
 
   saveMovies();
+
   renderHome();
   renderSeries();
   renderAdmin();
 
-  toast("قسمت اضافه شد");
+  toast(
+    "قسمت اضافه شد ✓"
+  );
 }
 
 function manageEpisodes(id){
-  const m=
-    movies.find(x=>Number(x.id)===Number(id));
 
-  if(!m||m.type!=="series")return;
+  const m=
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
+
+  if(
+    !m||
+    m.type!=="series"
+  )return;
 
   if(!Array.isArray(m.episodes)){
     m.episodes=[];
@@ -2951,7 +4514,9 @@ function manageEpisodes(id){
 
   const html=
     m.episodes.length
-    ? m.episodes.map((e,i)=>`
+
+    ? m.episodes.map(
+      (e,i)=>`
 
         <div class="episode-admin">
 
@@ -2964,17 +4529,30 @@ function manageEpisodes(id){
             ${esc(e.title||"")}
           </div>
 
+          <div class="hint">
+            لینک پخش:
+            ${esc(e.watchUrl||"ثبت نشده")}
+          </div>
+
           <div class="actions">
 
             <button
               class="action"
-              onclick="editEpisode(${m.id},${i})">
+              onclick="
+                editEpisode(
+                  ${m.id},
+                  ${i}
+                )">
               ویرایش
             </button>
 
             <button
               class="action"
-              onclick="deleteEpisode(${m.id},${i})">
+              onclick="
+                deleteEpisode(
+                  ${m.id},
+                  ${i}
+                )">
               حذف
             </button>
 
@@ -2982,10 +4560,18 @@ function manageEpisodes(id){
 
         </div>
 
-      `).join("")
-    : `<div class="empty">هنوز قسمتی ثبت نشده.</div>`;
+      `
+    ).join("")
 
-  document.getElementById("adminContent").innerHTML=`
+    : `
+      <div class="empty">
+        هنوز قسمتی ثبت نشده.
+      </div>
+    `;
+
+  document.getElementById(
+    "adminContent"
+  ).innerHTML=`
 
     <button
       class="action"
@@ -3001,147 +4587,238 @@ function manageEpisodes(id){
       ${esc(m.fa||"")}
     </div>
 
+    <div class="actions">
+
+      <button
+        class="action main"
+        onclick="
+          renderAdmin();
+          setTimeout(()=>{
+            const s=document.getElementById('episodeSeries');
+            if(s){
+              s.value='${m.id}';
+            }
+          },50);
+        ">
+        ➕ افزودن قسمت جدید
+      </button>
+
+    </div>
+
     ${html}
 
   `;
 }
 
-function editEpisode(movieId,index){
+function editEpisode(
+  movieId,
+  index
+){
+
   const m=
-    movies.find(x=>Number(x.id)===Number(movieId));
+    movies.find(
+      x=>Number(x.id)===Number(movieId)
+    );
 
   if(!m?.episodes?.[index])return;
 
-  const e=m.episodes[index];
+  const e=
+    m.episodes[index];
 
-  const season=prompt(
-    "شماره فصل:",
-    e.season
-  );
+  const season=
+    prompt(
+      "شماره فصل:",
+      e.season
+    );
 
   if(season===null)return;
 
-  const episode=prompt(
-    "شماره قسمت:",
-    e.episode
-  );
+  const episode=
+    prompt(
+      "شماره قسمت:",
+      e.episode
+    );
 
   if(episode===null)return;
 
-  const title=prompt(
-    "عنوان قسمت:",
-    e.title||""
-  );
+  const title=
+    prompt(
+      "عنوان قسمت:",
+      e.title||""
+    );
 
   if(title===null)return;
 
-  const watchUrl=prompt(
-    "لینک مستقیم و مجاز پخش:",
-    e.watchUrl||""
-  );
+  const watchUrl=
+    prompt(
+      "لینک مستقیم و مجاز پخش:",
+      e.watchUrl||""
+    );
 
   if(watchUrl===null)return;
 
-  const downloadUrl=prompt(
-    "لینک دانلود مجاز:",
-    e.downloadUrl||""
-  );
+  const downloadUrl=
+    prompt(
+      "لینک دانلود مجاز:",
+      e.downloadUrl||""
+    );
 
   if(downloadUrl===null)return;
 
-  e.season=Number(season)||1;
-  e.episode=Number(episode)||1;
-  e.title=title;
-  e.watchUrl=watchUrl;
-  e.downloadUrl=downloadUrl;
+  e.season=
+    Number(season)||1;
 
-  m.episodes.sort((a,b)=>
-    Number(a.season)-Number(b.season)||
-    Number(a.episode)-Number(b.episode)
+  e.episode=
+    Number(episode)||1;
+
+  e.title=
+    title;
+
+  e.watchUrl=
+    watchUrl;
+
+  e.downloadUrl=
+    downloadUrl;
+
+  m.episodes.sort(
+    (a,b)=>
+      Number(a.season)-
+      Number(b.season)||
+      Number(a.episode)-
+      Number(b.episode)
   );
 
   m.updated=true;
 
   saveMovies();
+
   renderHome();
   renderSeries();
-  manageEpisodes(movieId);
 
-  toast("قسمت ویرایش شد");
+  manageEpisodes(
+    movieId
+  );
+
+  toast(
+    "قسمت ویرایش شد"
+  );
 }
 
-function deleteEpisode(movieId,index){
+function deleteEpisode(
+  movieId,
+  index
+){
+
   const m=
-    movies.find(x=>Number(x.id)===Number(movieId));
+    movies.find(
+      x=>Number(x.id)===Number(movieId)
+    );
 
   if(!m?.episodes?.[index])return;
 
-  const e=m.episodes[index];
+  const e=
+    m.episodes[index];
 
   if(!confirm(
     `فصل ${e.season} قسمت ${e.episode} حذف شود؟`
   ))return;
 
-  m.episodes.splice(index,1);
+  m.episodes.splice(
+    index,
+    1
+  );
 
   saveMovies();
+
   renderHome();
   renderSeries();
-  manageEpisodes(movieId);
 
-  toast("قسمت حذف شد");
+  manageEpisodes(
+    movieId
+  );
+
+  toast(
+    "قسمت حذف شد"
+  );
 }
 
+/* EDIT / DELETE */
+
 function editMovie(id){
+
   const m=
-    movies.find(x=>Number(x.id)===Number(id));
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
 
   if(!m)return;
 
-  const watch=prompt(
-    "لینک مستقیم و مجاز پخش:",
-    m.watchUrl||""
-  );
+  const watch=
+    prompt(
+      "لینک مستقیم و مجاز پخش:",
+      m.watchUrl||""
+    );
 
   if(watch===null)return;
 
-  const download=prompt(
-    "لینک دانلود مجاز:",
-    m.downloadUrl||""
-  );
+  const download=
+    prompt(
+      "لینک دانلود مجاز:",
+      m.downloadUrl||""
+    );
 
-  const fa=prompt(
-    "نام فارسی:",
-    m.fa||""
-  );
+  const fa=
+    prompt(
+      "نام فارسی:",
+      m.fa||""
+    );
 
-  const posterUrl=prompt(
-    "لینک پوستر:",
-    m.poster||""
-  );
+  const posterUrl=
+    prompt(
+      "لینک پوستر:",
+      m.poster||""
+    );
 
-  m.watchUrl=watch;
+  m.watchUrl=
+    watch;
 
-  if(download!==null)m.downloadUrl=download;
-  if(fa!==null)m.fa=fa;
-  if(posterUrl!==null)m.poster=posterUrl;
+  if(download!==null){
+    m.downloadUrl=
+      download;
+  }
+
+  if(fa!==null){
+    m.fa=fa;
+  }
+
+  if(posterUrl!==null){
+    m.poster=posterUrl;
+  }
 
   saveMovies();
+
   renderHome();
   renderMovies();
   renderSeries();
   renderAdmin();
 
-  toast("ویرایش شد");
+  toast(
+    "ویرایش شد"
+  );
 }
 
 function deleteMovie(id){
+
   const m=
-    movies.find(x=>Number(x.id)===Number(id));
+    movies.find(
+      x=>Number(x.id)===Number(id)
+    );
 
   if(!m)return;
 
-  if(!confirm(`«${m.title}» حذف شود؟`))return;
+  if(!confirm(
+    `«${m.title}» حذف شود؟`
+  ))return;
 
   movies=
     movies.filter(
@@ -3157,7 +4834,9 @@ function deleteMovie(id){
 
   localStorage.setItem(
     FEATURED_KEY,
-    JSON.stringify(featuredIds)
+    JSON.stringify(
+      featuredIds
+    )
   );
 
   removeContinue(id);
@@ -3167,48 +4846,106 @@ function deleteMovie(id){
   renderSeries();
   renderAdmin();
 
-  toast("حذف شد");
+  toast(
+    "حذف شد"
+  );
 }
 
 /* KEYBOARD */
 
-document.addEventListener("keydown",e=>{
-  if(!playerOverlay.classList.contains("show"))return;
+document.addEventListener(
+  "keydown",
+  e=>{
 
-  if(e.key===" "){
-    e.preventDefault();
-    togglePlay();
+    if(
+      !playerOverlay.classList.contains(
+        "show"
+      )
+    )return;
+
+    if(e.key===" "){
+
+      e.preventDefault();
+
+      togglePlay();
+
+    }
+
+    if(
+      e.key==="ArrowRight"
+    ){
+      seekVideo(10);
+    }
+
+    if(
+      e.key==="ArrowLeft"
+    ){
+      seekVideo(-10);
+    }
+
+    if(
+      e.key.toLowerCase()==="m"
+    ){
+      toggleMute();
+    }
+
+    if(
+      e.key.toLowerCase()==="f"
+    ){
+      fullscreenVideo();
+    }
+
+    if(e.key==="Escape"){
+      closePlayer();
+    }
+
   }
-
-  if(e.key==="ArrowRight")seekVideo(10);
-  if(e.key==="ArrowLeft")seekVideo(-10);
-  if(e.key.toLowerCase()==="m")toggleMute();
-  if(e.key.toLowerCase()==="f")fullscreenVideo();
-  if(e.key==="Escape")closePlayer();
-});
+);
 
 /* TOUCH SEEK */
 
 let touchX=0;
 
-video.addEventListener("touchstart",e=>{
-  if(e.touches.length===1){
-    touchX=e.touches[0].clientX;
-  }
-},{passive:true});
+video.addEventListener(
+  "touchstart",
+  e=>{
 
-video.addEventListener("touchend",e=>{
-  if(!touchX)return;
+    if(e.touches.length===1){
+      touchX=
+        e.touches[0].clientX;
+    }
 
-  const endX=e.changedTouches[0].clientX;
-  const dx=endX-touchX;
+  },
+  {passive:true}
+);
 
-  if(Math.abs(dx)>70){
-    seekVideo(dx>0?10:-10);
-  }
+video.addEventListener(
+  "touchend",
+  e=>{
 
-  touchX=0;
-},{passive:true});
+    if(!touchX)return;
+
+    const endX=
+      e.changedTouches[0].clientX;
+
+    const dx=
+      endX-touchX;
+
+    if(Math.abs(dx)>70){
+
+      seekVideo(
+        dx>0
+        ?10
+        :-10
+      );
+
+    }
+
+    touchX=0;
+
+  },
+  {passive:true}
+);
 
 window.addEventListener(
   "beforeunload",
@@ -3218,10 +4955,14 @@ window.addEventListener(
 /* INIT */
 
 renderHome();
+
 renderMovies();
+
 renderSeries();
+
 initFeaturedLoop();
 
 </script>
+
 </body>
 </html>
