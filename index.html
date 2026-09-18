@@ -76,7 +76,7 @@ header{
   margin:auto;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
 }
 
 .logo{
@@ -140,6 +140,76 @@ header{
   height:50px;
   object-fit:cover;
   border-radius:7px;
+}
+
+/* HISTORY BUTTON */
+.history-btn{
+  height:43px;
+  padding:0 14px;
+  border-radius:15px;
+  border:1px solid rgba(170,110,255,.45);
+  background:linear-gradient(145deg,rgba(120,50,200,.35),rgba(70,20,140,.45));
+  color:#e0c0ff;
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+  box-shadow:
+    0 4px 12px rgba(100,40,180,.3),
+    inset 0 1px rgba(255,255,255,.12);
+  transition:.2s;
+}
+
+.history-btn:hover{
+  background:linear-gradient(145deg,rgba(140,70,230,.5),rgba(90,30,170,.55));
+  transform:translateY(-1px);
+}
+
+.history-dropdown{
+  position:absolute;
+  top:55px;
+  left:0;
+  width:min(320px,90vw);
+  max-height:380px;
+  overflow:auto;
+  border-radius:16px;
+  background:rgba(17,10,28,.97);
+  border:1px solid rgba(170,110,255,.25);
+  box-shadow:0 20px 50px #000a;
+  display:none;
+  z-index:120;
+}
+
+.history-dropdown.show{
+  display:block;
+}
+
+.history-item{
+  padding:11px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  cursor:pointer;
+}
+
+.history-item:hover{
+  background:rgba(160,80,255,.13);
+}
+
+.history-item img{
+  width:35px;
+  height:50px;
+  object-fit:cover;
+  border-radius:7px;
+}
+
+.history-empty{
+  padding:20px;
+  text-align:center;
+  color:#999;
+  font-size:13px;
 }
 
 /* PAGE */
@@ -658,30 +728,63 @@ main{
 
 .actions{
   display:flex;
-  gap:8px;
+  gap:10px;
   margin:16px 0;
   flex-wrap:wrap;
 }
 
+/* دکمه‌های سه‌بعدی بنفش */
 .btn{
   border:0;
-  padding:10px 15px;
-  border-radius:13px;
+  padding:12px 18px;
+  border-radius:14px;
   color:#fff;
   background:rgba(255,255,255,.09);
   border:1px solid rgba(255,255,255,.1);
+  font-size:14px;
+  transition:.2s;
 }
 
 .btn.primary{
-  background:linear-gradient(135deg,#8d42ed,#4d168c);
+  background:linear-gradient(145deg,#9b4dff,#5a1a9e);
+  border:1px solid rgba(180,120,255,.5);
+  box-shadow:
+    0 6px 18px rgba(100,40,180,.45),
+    inset 0 1px rgba(255,255,255,.2),
+    inset 0 -2px rgba(0,0,0,.25);
 }
 
-.btn.play{
-  background:linear-gradient(135deg,#2ecc71,#27ae60);
-}
-
+.btn.play,
 .btn.download{
-  background:linear-gradient(135deg,#3498db,#2980b9);
+  background:linear-gradient(145deg,#a855f7,#6b21a8);
+  border:1.5px solid rgba(200,140,255,.65);
+  box-shadow:
+    0 8px 20px rgba(120,50,200,.5),
+    0 3px 0 #4a1580,
+    inset 0 1px rgba(255,255,255,.25),
+    inset 0 -3px rgba(0,0,0,.3);
+  text-shadow:0 1px 2px rgba(0,0,0,.4);
+  transform:translateY(0);
+}
+
+.btn.play:hover,
+.btn.download:hover{
+  background:linear-gradient(145deg,#b86bff,#7c2dd4);
+  box-shadow:
+    0 10px 24px rgba(140,70,230,.55),
+    0 2px 0 #4a1580,
+    inset 0 1px rgba(255,255,255,.3),
+    inset 0 -2px rgba(0,0,0,.25);
+  transform:translateY(-2px);
+}
+
+.btn.play:active,
+.btn.download:active{
+  transform:translateY(2px);
+  box-shadow:
+    0 3px 10px rgba(100,40,180,.4),
+    0 1px 0 #4a1580,
+    inset 0 2px rgba(0,0,0,.3);
 }
 
 .similar{
@@ -788,6 +891,11 @@ main{
     font-size:18px;
   }
 
+  .history-btn{
+    padding:0 10px;
+    font-size:12px;
+  }
+
   .featured-card{
     flex:0 0 calc((100vw - 45px)/2.25);
   }
@@ -849,6 +957,14 @@ main{
         autocomplete="off"
       >
       <div id="searchResults" class="search-results"></div>
+    </div>
+
+    <!-- دکمه تاریخچه -->
+    <div style="position:relative">
+      <button class="history-btn" onclick="toggleHistory(event)">
+        🕘 تاریخچه
+      </button>
+      <div id="historyDropdown" class="history-dropdown"></div>
     </div>
   </div>
 </header>
@@ -1117,6 +1233,7 @@ const STORAGE_KEY = "hamoflix_movies_v5";
 const FEATURED_KEY = "hamoflix_featured_v5";
 const FAV_KEY = "hamoflix_favorites_v5";
 const SETTINGS_KEY = "hamoflix_settings_v5";
+const HISTORY_KEY = "hamoflix_history_v5";
 
 const ADMIN_PASSWORD = "HAMOFLIX_2026_ADMIN";
 
@@ -1290,8 +1407,10 @@ let settings = loadJSON(SETTINGS_KEY,{
   notify:false,
   auto:true
 });
+let historyList = loadJSON(HISTORY_KEY,[]);
 
 let currentMovie = null;
+let modalOpen = false;
 
 let featuredIds = loadJSON(
   FEATURED_KEY,
@@ -1384,6 +1503,87 @@ function posterError(img){
 
 
 /* =========================
+   HISTORY
+========================= */
+
+function addToHistory(movie){
+  if(!movie) return;
+
+  // حذف اگر قبلاً بوده
+  historyList = historyList.filter(id => String(id) !== String(movie.id));
+
+  // اضافه کردن به اول لیست
+  historyList.unshift(String(movie.id));
+
+  // حداکثر ۲۰ تا نگه می‌داریم
+  if(historyList.length > 20){
+    historyList = historyList.slice(0,20);
+  }
+
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(historyList));
+}
+
+
+function toggleHistory(e){
+  e.stopPropagation();
+
+  const dropdown = document.getElementById("historyDropdown");
+  const isOpen = dropdown.classList.contains("show");
+
+  // بستن همه دراپ‌داون‌ها
+  document.querySelectorAll(".history-dropdown").forEach(d => d.classList.remove("show"));
+  document.getElementById("searchResults").style.display = "none";
+
+  if(isOpen){
+    dropdown.classList.remove("show");
+    return;
+  }
+
+  renderHistoryDropdown();
+  dropdown.classList.add("show");
+}
+
+
+function renderHistoryDropdown(){
+  const dropdown = document.getElementById("historyDropdown");
+
+  if(!historyList.length){
+    dropdown.innerHTML = `<div class="history-empty">هنوز چیزی ندیده‌ای 😕</div>`;
+    return;
+  }
+
+  const items = historyList
+    .map(id => movies.find(m => String(m.id) === String(id)))
+    .filter(Boolean);
+
+  dropdown.innerHTML = items.map(m => `
+    <div class="history-item" onclick="openMovie('${escapeHTML(m.id)}'); closeHistory()">
+      <img src="${escapeHTML(m.poster || fallbackPoster)}" onerror="posterError(this)">
+      <div>
+        <strong style="font-size:13px">${escapeHTML(m.title)}</strong>
+        <div style="font-size:11px;color:#aaa;margin-top:3px">
+          ${m.type === "movie" ? "فیلم" : "سریال"} · ${escapeHTML(m.year || "")}
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+
+function closeHistory(){
+  document.getElementById("historyDropdown").classList.remove("show");
+}
+
+
+// بستن تاریخچه با کلیک بیرون
+document.addEventListener("click", (e) => {
+  if(!e.target.closest(".history-btn") && !e.target.closest(".history-dropdown")){
+    closeHistory();
+  }
+});
+
+
+/* =========================
    NAV
 ========================= */
 
@@ -1403,7 +1603,6 @@ function openPage(id,button){
   }
 
   if(id==="moviesPage"){
-    // اگر از قبل فیلتر خاصی ست نشده باشد، فیلم‌های معمولی را نشان بده
     if(!window._customMoviesTitle){
       document.getElementById("moviesPageTitle").textContent = "🎬 فیلم‌ها";
       renderFullMovies();
@@ -1418,7 +1617,6 @@ function openPage(id,button){
     renderSettings();
   }
 
-  // پاک کردن حالت سفارشی بعد از رندر
   window._customMoviesTitle = false;
 
   window.scrollTo({
@@ -1863,32 +2061,28 @@ function renderFullSeries(){
 
 function openSectionAll(index){
 
-  // سریال‌ها → صفحه سریال
   if(index === 1){
     document.querySelector('[data-page="seriesPage"]').click();
     return;
   }
 
-  // فیلم‌ها → صفحه فیلم
   if(index === 2){
     document.querySelector('[data-page="moviesPage"]').click();
     return;
   }
 
-  // بقیه بخش‌ها (جدیدترین‌ها و محبوب‌ترین‌ها)
   let list = movies.filter(sectionData[index].filter);
 
   if(sectionData[index].sort){
     list = [...list].sort(sectionData[index].sort);
   }
 
-  // عنوان صفحه را عوض می‌کنیم
   document.getElementById("moviesPageTitle").textContent = sectionData[index].title;
 
   document.getElementById("moviesGrid").innerHTML =
     list.map(movieCard).join("");
 
-  window._customMoviesTitle = true; // جلوگیری از بازنویسی عنوان
+  window._customMoviesTitle = true;
 
   document.querySelector('[data-page="moviesPage"]').click();
 }
@@ -1985,7 +2179,7 @@ document.addEventListener("click",e=>{
 
 
 /* =========================
-   MOVIE DETAIL
+   MOVIE DETAIL + BACK BUTTON
 ========================= */
 
 function openMovie(id){
@@ -1996,6 +2190,9 @@ function openMovie(id){
   if(!movie) return;
 
   currentMovie=movie;
+
+  // اضافه به تاریخچه
+  addToHistory(movie);
 
   document.getElementById("modalPoster").src=
     movie.poster || fallbackPoster;
@@ -2023,6 +2220,10 @@ function openMovie(id){
   document.getElementById("modal")
     .classList.add("show");
 
+  modalOpen = true;
+
+  // برای پشتیبانی از دکمه بازگشت گوشی
+  history.pushState({ modal: true }, "");
 }
 
 
@@ -2032,6 +2233,7 @@ function hideModal(){
     .classList.remove("show");
 
   currentMovie=null;
+  modalOpen = false;
 }
 
 
@@ -2044,6 +2246,14 @@ function closeModal(e){
 }
 
 
+// پشتیبانی از دکمه بازگشت گوشی / مرورگر
+window.addEventListener("popstate", function(e){
+  if(modalOpen){
+    hideModal();
+  }
+});
+
+
 /* =========================
    PLAY & DOWNLOAD
 ========================= */
@@ -2051,13 +2261,11 @@ function closeModal(e){
 function playMovie(){
   if(!currentMovie) return;
   toast("در حال پخش «" + currentMovie.title + "» ...");
-  // اینجا می‌تونی لینک واقعی پخش رو بذاری
 }
 
 function downloadMovie(){
   if(!currentMovie) return;
   toast("دانلود «" + currentMovie.title + "» شروع شد ⬇");
-  // اینجا می‌تونی لینک واقعی دانلود رو بذاری
 }
 
 
