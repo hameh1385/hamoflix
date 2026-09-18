@@ -3,1663 +3,1323 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10051f">
 <title>HAMOFLIX</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Tahoma,Arial,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Tahoma,Arial,sans-serif;
 }
 
 :root{
-    --purple:#a45cff;
-    --purple2:#672bc8;
-    --bg:#08030f;
-    --glass:rgba(255,255,255,.075);
-    --glass-light:rgba(255,255,255,.11);
-    --border:rgba(255,255,255,.16);
-    --text:#fff;
-    --muted:#aaa1b7;
+  --purple:#9b5cff;
+  --purple2:#6f35d8;
+  --glass:rgba(255,255,255,.10);
+  --glass2:rgba(255,255,255,.17);
+  --border:rgba(255,255,255,.18);
+  --text:#fff;
+  --muted:#bdb5ce;
 }
 
 body{
-    min-height:100vh;
-    color:var(--text);
-    background:
-        radial-gradient(circle at 10% 5%,rgba(145,65,255,.25),transparent 28%),
-        radial-gradient(circle at 90% 25%,rgba(190,65,255,.18),transparent 30%),
-        radial-gradient(circle at 50% 100%,rgba(100,35,190,.18),transparent 35%),
-        linear-gradient(135deg,#07030d,#130620 48%,#07030d);
-    padding-bottom:115px;
-    overflow-x:hidden;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 10%,rgba(155,92,255,.25),transparent 30%),
+    radial-gradient(circle at 90% 30%,rgba(111,53,216,.20),transparent 35%),
+    linear-gradient(135deg,#090611,#12091e 45%,#08050d);
+  padding-bottom:100px;
+}
+
+button,input,select{
+  font-family:inherit;
 }
 
 button{
-    border:0;
-    color:white;
-    cursor:pointer;
-}
-
-.glass{
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.12),
-            rgba(255,255,255,.035)
-        );
-    border:1px solid var(--border);
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.12),
-        inset 0 -1px 0 rgba(0,0,0,.18),
-        0 20px 50px rgba(0,0,0,.32);
+  border:0;
+  cursor:pointer;
 }
 
 /* HEADER */
 
 header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    padding:13px 5%;
-    background:rgba(7,3,13,.68);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(28px);
-    -webkit-backdrop-filter:blur(28px);
+  position:sticky;
+  top:0;
+  z-index:100;
+  padding:14px 5%;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  background:rgba(8,5,14,.65);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .header-inner{
-    max-width:1250px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    gap:15px;
+  max-width:1250px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
 
 .logo{
-    font-size:25px;
-    font-weight:900;
-    white-space:nowrap;
-    cursor:pointer;
-    color:white;
-    text-shadow:
-        0 0 8px #a45cff,
-        0 0 25px rgba(164,92,255,.8),
-        0 4px 0 rgba(55,20,100,.8);
+  font-size:25px;
+  font-weight:900;
+  color:#fff;
+  cursor:pointer;
+  text-shadow:
+    0 0 12px rgba(155,92,255,.9),
+    0 0 30px rgba(155,92,255,.45);
+  white-space:nowrap;
 }
 
-.logo span{
-    color:#b777ff;
+.search-box{
+  position:relative;
+  flex:1;
 }
 
-.search{
-    flex:1;
-    position:relative;
+.search-box input{
+  width:100%;
+  padding:13px 18px;
+  border-radius:18px;
+  outline:none;
+  color:#fff;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(15px);
+  transition:.25s;
 }
 
-.search input{
-    width:100%;
-    padding:14px 45px 14px 15px;
-    border-radius:17px;
-    outline:none;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.065);
-    color:white;
-    font-size:14px;
-    box-shadow:
-        inset 0 2px 8px rgba(0,0,0,.25),
-        0 8px 25px rgba(0,0,0,.15);
+.search-box input:focus{
+  border-color:rgba(155,92,255,.7);
+  box-shadow:0 0 20px rgba(155,92,255,.18);
 }
 
-.search input:focus{
-    border-color:rgba(170,100,255,.55);
-    box-shadow:
-        0 0 0 3px rgba(155,92,255,.08),
-        inset 0 2px 8px rgba(0,0,0,.25),
-        0 8px 30px rgba(100,40,200,.18);
-}
-
-.search-icon{
-    position:absolute;
-    right:15px;
-    top:13px;
-    opacity:.7;
+.search-box input::placeholder{
+  color:#aaa1b7;
 }
 
 /* SEARCH SUGGESTIONS */
 
 .search-suggestions{
-    position:absolute;
-    top:calc(100% + 9px);
-    right:0;
-    left:0;
-    max-height:330px;
-    overflow-y:auto;
-    display:none;
-    padding:7px;
-    border-radius:18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(35,17,55,.90),
-            rgba(15,7,25,.88)
-        );
-
-    border:1px solid rgba(255,255,255,.14);
-
-    backdrop-filter:blur(28px);
-    -webkit-backdrop-filter:blur(28px);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.1),
-        0 18px 45px rgba(0,0,0,.5);
-
-    z-index:300;
-}
-
-.search-suggestions.active{
-    display:block;
+  display:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  left:0;
+  max-height:430px;
+  overflow:auto;
+  padding:8px;
+  border-radius:18px;
+  background:rgba(20,14,30,.92);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 20px 50px rgba(0,0,0,.45);
+  backdrop-filter:blur(25px);
+  z-index:200;
 }
 
 .suggestion{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    width:100%;
-    padding:8px;
-    margin-bottom:5px;
-    border-radius:13px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.05);
-    text-align:right;
-    transition:.2s;
-}
-
-.suggestion:last-child{
-    margin-bottom:0;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px;
+  border-radius:13px;
+  cursor:pointer;
+  transition:.2s;
 }
 
 .suggestion:hover{
-    background:rgba(155,92,255,.14);
-    transform:translateX(-2px);
+  background:rgba(155,92,255,.18);
 }
 
 .suggestion img{
-    width:42px;
-    height:57px;
-    object-fit:cover;
-    border-radius:8px;
-    flex-shrink:0;
+  width:42px;
+  height:58px;
+  object-fit:cover;
+  border-radius:8px;
 }
 
 .suggestion-info{
-    min-width:0;
-    flex:1;
+  min-width:0;
 }
 
 .suggestion-title{
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:6px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+  font-weight:bold;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .suggestion-meta{
-    color:#aaa;
-    font-size:10px;
-}
-
-.suggestion-empty{
-    text-align:center;
-    color:#aaa;
-    padding:20px 10px;
-    font-size:12px;
+  font-size:11px;
+  color:#aaa;
+  margin-top:4px;
 }
 
 /* HERO */
 
 .hero{
-    max-width:1250px;
-    margin:25px auto;
-    min-height:275px;
-    padding:45px 6%;
-    border-radius:30px;
-    overflow:hidden;
-    position:relative;
-
-    background:
-        linear-gradient(
-            100deg,
-            rgba(65,20,130,.88),
-            rgba(15,6,28,.75)
-        ),
-        url("https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg")
-        center/cover;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.15),
-        inset 0 -1px 0 rgba(0,0,0,.3),
-        0 30px 70px rgba(0,0,0,.42);
+  max-width:1250px;
+  margin:25px auto;
+  padding:0 5%;
 }
 
-.hero:before{
-    content:"";
-    position:absolute;
-    width:280px;
-    height:280px;
-    border-radius:50%;
-    background:rgba(180,90,255,.22);
-    filter:blur(65px);
-    top:-110px;
-    left:-70px;
+.hero-box{
+  min-height:310px;
+  border-radius:30px;
+  padding:45px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  position:relative;
+  background:
+    linear-gradient(90deg,rgba(8,5,14,.95),rgba(8,5,14,.55),rgba(8,5,14,.2)),
+    radial-gradient(circle at 80% 50%,rgba(155,92,255,.4),transparent 45%);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.4),
+    inset 0 1px rgba(255,255,255,.08);
 }
 
-.hero:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        90deg,
-        rgba(10,3,20,.08),
-        rgba(10,3,20,.84)
-    );
+.hero-box:before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  background:rgba(155,92,255,.25);
+  filter:blur(80px);
+  right:-100px;
+  top:-100px;
 }
 
 .hero-content{
-    position:relative;
-    z-index:2;
-    max-width:600px;
+  position:relative;
+  z-index:2;
+  max-width:650px;
 }
 
 .hero h1{
-    font-size:42px;
-    margin-bottom:13px;
-    text-shadow:
-        0 3px 0 rgba(65,25,105,.9),
-        0 8px 25px rgba(0,0,0,.65);
+  font-size:44px;
+  margin-bottom:15px;
+}
+
+.hero h1 span{
+  color:var(--purple);
 }
 
 .hero p{
-    color:#ddd;
-    line-height:2;
-    margin-bottom:20px;
-}
-
-.hero-btn{
-    padding:13px 25px;
-    border-radius:14px;
-    font-weight:bold;
-    background:linear-gradient(135deg,#ad69ff,#6728c8);
-    box-shadow:
-        0 6px 0 #49208e,
-        0 18px 35px rgba(120,50,220,.35);
+  color:#c7bfd1;
+  line-height:2;
+  font-size:14px;
 }
 
 /* GENRES */
 
+.genres-wrap{
+  max-width:1250px;
+  margin:15px auto 30px;
+  padding:0 5%;
+}
+
 .genres{
-    max-width:1250px;
-    margin:20px auto;
-    padding:0 5%;
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding:8px 3px 12px;
+  scrollbar-width:none;
 }
 
-.genre-title{
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.genre-list{
-    display:flex;
-    gap:9px;
-    overflow-x:auto;
-    scrollbar-width:none;
-    padding:4px 2px 10px;
-}
-
-.genre-list::-webkit-scrollbar{
-    display:none;
+.genres::-webkit-scrollbar{
+  display:none;
 }
 
 .genre{
-    flex-shrink:0;
-    padding:9px 17px;
-    border-radius:30px;
-    background:rgba(255,255,255,.055);
-    border:1px solid var(--border);
-    color:#ddd;
-    box-shadow:
-        0 6px 14px rgba(0,0,0,.2),
-        inset 0 1px 0 rgba(255,255,255,.08);
+  flex:0 0 auto;
+  padding:9px 15px;
+  border-radius:15px;
+  color:#fff;
+  font-size:12px;
+  border:1px solid rgba(255,255,255,.17);
+  transition:.25s;
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.15),
+    0 6px 15px rgba(0,0,0,.15);
 }
 
+/* شیشه شفاف */
+.genre:nth-child(odd){
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+/* شیشه کدر */
+.genre:nth-child(even){
+  background:rgba(145,91,220,.22);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+}
+
+.genre:hover,
 .genre.active{
-    background:linear-gradient(135deg,#a35cff,#6427c8);
-    box-shadow:
-        0 5px 0 #431989,
-        0 13px 25px rgba(120,50,220,.3);
+  transform:translateY(-2px);
+  background:rgba(155,92,255,.38);
+  border-color:rgba(190,150,255,.5);
+  box-shadow:
+    0 8px 25px rgba(111,53,216,.28),
+    inset 0 1px rgba(255,255,255,.22);
 }
 
-/* MAIN */
+/* SECTIONS */
 
 .container{
-    max-width:1250px;
-    margin:auto;
-    padding:0 5%;
+  max-width:1250px;
+  margin:auto;
+  padding:0 5%;
 }
 
 .section{
-    margin:32px 0;
+  margin:38px 0;
 }
 
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:17px;
 }
 
 .section-title{
-    font-size:21px;
-    font-weight:bold;
-    text-shadow:0 3px 12px rgba(0,0,0,.6);
+  font-size:21px;
+  font-weight:900;
 }
 
-.section-title span{
-    color:#b275ff;
+.section-title:before{
+  content:"";
+  display:inline-block;
+  width:4px;
+  height:22px;
+  margin-left:9px;
+  vertical-align:-5px;
+  border-radius:10px;
+  background:var(--purple);
+  box-shadow:0 0 12px var(--purple);
 }
 
 .view-all{
-    background:rgba(155,92,255,.12);
-    border:1px solid rgba(155,92,255,.35);
-    padding:8px 14px;
-    border-radius:12px;
-    font-size:12px;
+  padding:8px 13px;
+  border-radius:12px;
+  color:#ddd;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:11px;
 }
 
-/* HORIZONTAL MOVIE CARD */
+/* MOVIES - VERTICAL GRID */
 
-.movie-list{
-    display:flex;
-    flex-direction:column;
-    gap:13px;
+.movie-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:17px;
 }
 
-.movie-row{
-    width:100%;
-    min-height:120px;
-    display:flex;
-    flex-direction:row;
-    direction:rtl;
-    align-items:center;
-    gap:15px;
-    padding:10px 12px;
-    border-radius:20px;
-
-    transform:
-        perspective(1000px)
-        translateZ(0);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.13),
-        inset 0 -1px 0 rgba(0,0,0,.25),
-        0 8px 0 rgba(48,19,80,.6),
-        0 18px 35px rgba(0,0,0,.32);
-
-    transition:.25s;
+.movie-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  padding:7px;
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.055)
+  );
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.30),
+    inset 0 1px rgba(255,255,255,.12);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  transition:.3s;
 }
 
-.movie-row:hover{
-    transform:
-        perspective(1000px)
-        translateY(-4px)
-        rotateX(1deg);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.12),
-            rgba(145,75,255,.065)
-        );
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.16),
-        0 13px 0 rgba(55,22,92,.65),
-        0 28px 50px rgba(0,0,0,.4);
+.movie-card:hover{
+  transform:translateY(-7px) scale(1.015);
+  border-color:rgba(170,120,255,.4);
+  box-shadow:
+    0 22px 45px rgba(0,0,0,.45),
+    0 0 25px rgba(155,92,255,.14);
 }
 
-.movie-poster{
-    width:76px;
-    height:105px;
-    object-fit:cover;
-    border-radius:12px;
-    flex-shrink:0;
-    border:1px solid rgba(255,255,255,.16);
-
-    box-shadow:
-        4px 5px 0 rgba(43,17,72,.8),
-        9px 13px 22px rgba(0,0,0,.45);
+.poster{
+  width:100%;
+  aspect-ratio:2/3;
+  object-fit:cover;
+  display:block;
+  border-radius:15px;
+  background:#17111e;
 }
 
 .movie-info{
-    flex:1;
-    min-width:0;
+  padding:11px 7px 7px;
 }
 
-.movie-info h3{
-    font-size:16px;
-    margin-bottom:8px;
-
-    text-shadow:
-        0 2px 0 rgba(70,27,115,.85),
-        0 5px 12px rgba(0,0,0,.65);
+.movie-title{
+  font-size:14px;
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .movie-meta{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    color:#aaa;
-    font-size:11px;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:7px;
 }
 
 .badge{
-    padding:4px 8px;
-    border-radius:7px;
-    background:rgba(155,92,255,.15);
-    color:#cbaaff;
-    border:1px solid rgba(170,100,255,.12);
+  font-size:9px;
+  color:#d9cbed;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.08);
+  padding:4px 7px;
+  border-radius:8px;
 }
 
 .rating{
-    color:#ffd15c;
+  color:#ffd76b;
 }
 
 .movie-actions{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
-    flex-shrink:0;
+  display:flex;
+  gap:6px;
+  margin-top:9px;
 }
 
-.watch-btn,
-.info-btn{
-    padding:8px 12px;
-    border-radius:10px;
-    font-size:11px;
-    white-space:nowrap;
+.movie-actions button{
+  flex:1;
+  padding:8px 5px;
+  border-radius:10px;
+  font-size:10px;
+  color:white;
+  background:rgba(155,92,255,.2);
+  border:1px solid rgba(155,92,255,.25);
 }
 
-.watch-btn{
-    background:linear-gradient(135deg,#9959ff,#6327c8);
-    box-shadow:
-        0 4px 0 #431989,
-        0 9px 16px rgba(100,40,200,.3);
-}
-
-.info-btn{
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.08);
-}
-
-/* BOTTOM FLOATING GLASS */
-
-.bottom-menu{
-    position:fixed;
-    bottom:13px;
-    left:50%;
-    transform:translateX(-50%);
-
-    width:min(94%,650px);
-
-    z-index:200;
-
-    padding:9px;
-
-    border-radius:25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(45,20,65,.78),
-            rgba(15,7,25,.75)
-        );
-
-    border:1px solid rgba(255,255,255,.17);
-
-    backdrop-filter:blur(30px);
-    -webkit-backdrop-filter:blur(30px);
-
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:6px;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.13),
-        0 7px 0 rgba(46,18,76,.7),
-        0 20px 45px rgba(0,0,0,.55);
-}
-
-.nav-btn{
-    background:transparent;
-    padding:9px 3px;
-    border-radius:16px;
-    color:#aaa;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-
-    font-size:11px;
-
-    transition:.2s;
-}
-
-.nav-btn .icon{
-    font-size:20px;
-    filter:drop-shadow(0 3px 5px rgba(0,0,0,.5));
-}
-
-.nav-btn.active{
-    background:
-        linear-gradient(
-            135deg,
-            rgba(165,92,255,.22),
-            rgba(100,40,190,.10)
-        );
-
-    color:#c69eff;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.1),
-        0 5px 15px rgba(110,45,200,.18);
+.movie-actions button:hover{
+  background:rgba(155,92,255,.4);
 }
 
 /* OVERLAY */
 
 .overlay{
-    position:fixed;
-    inset:0;
-    z-index:500;
-
-    background:rgba(5,2,10,.90);
-
-    backdrop-filter:blur(26px);
-    -webkit-backdrop-filter:blur(26px);
-
-    overflow-y:auto;
-
-    padding:25px 5% 120px;
-
-    display:none;
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(4,2,8,.82);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  overflow:auto;
+  padding:30px 5%;
 }
 
-.overlay.active{
-    display:block;
+.overlay-box{
+  max-width:1200px;
+  margin:0 auto;
+  padding:22px;
+  border-radius:28px;
+  background:rgba(20,13,30,.76);
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
 }
 
-.overlay-inner{
-    max-width:1100px;
-    margin:auto;
-}
-
-.overlay-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.overlay-head h2{
-    font-size:24px;
+.overlay-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
 }
 
 .close{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.1);
-    font-size:22px;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  color:white;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:20px;
 }
 
-.grid{
-    display:flex;
-    flex-direction:column;
-    gap:13px;
-}
-
-/* MODALS */
-
-.modal-bg{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(14px);
-    z-index:1000;
-
-    display:none;
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-}
-
-.modal-bg.active{
-    display:flex;
-}
+/* MODAL */
 
 .modal{
-    width:min(520px,100%);
-    max-height:90vh;
-    overflow-y:auto;
-    border-radius:25px;
-    padding:25px;
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:700;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  overflow:auto;
 }
 
-.modal h2{
-    margin-bottom:20px;
+.modal-box{
+  width:min(600px,100%);
+  margin:30px auto;
+  padding:25px;
+  border-radius:25px;
+  background:rgba(22,14,32,.92);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
 }
 
-.modal input,
-.modal select,
-.modal textarea{
-    width:100%;
-    padding:12px;
-    margin-bottom:10px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.07);
-    color:white;
-    outline:none;
+.modal-box h2{
+  margin-bottom:18px;
 }
 
-.modal textarea{
-    min-height:100px;
-    resize:vertical;
+.info-poster{
+  width:150px;
+  height:220px;
+  object-fit:cover;
+  border-radius:15px;
+  float:right;
+  margin-left:18px;
+  margin-bottom:10px;
 }
 
-.modal select option{
-    background:#160d24;
+.info-description{
+  color:#c4bdcc;
+  line-height:2;
+  font-size:13px;
 }
 
-.modal-btn{
-    width:100%;
-    padding:13px;
-    border-radius:13px;
-    background:linear-gradient(135deg,#995bff,#652ac8);
-    box-shadow:
-        0 5px 0 #431989,
-        0 12px 20px rgba(100,40,200,.25);
-    margin-top:5px;
+.clear{
+  clear:both;
+}
+
+/* FORMS */
+
+.form-group{
+  margin-bottom:13px;
+}
+
+.form-group label{
+  display:block;
+  font-size:12px;
+  color:#bfb5cb;
+  margin-bottom:6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  padding:11px;
+  border-radius:12px;
+  outline:none;
+  color:#fff;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.13);
+}
+
+.form-group textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.primary{
+  width:100%;
+  padding:12px;
+  border-radius:13px;
+  color:#fff;
+  background:linear-gradient(135deg,#9b5cff,#6730c9);
+  box-shadow:0 8px 25px rgba(111,53,216,.3);
 }
 
 /* SETTINGS */
 
-.setting{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    padding:16px 5px;
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.setting-text{
-    flex:1;
+.setting-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .setting-text strong{
-    display:block;
-    margin-bottom:6px;
+  display:block;
+  font-size:13px;
 }
 
-.setting-text small{
-    color:#aaa;
-    line-height:1.7;
+.setting-text span{
+  display:block;
+  color:#9d95a8;
+  font-size:10px;
+  margin-top:5px;
 }
 
-.setting-action{
-    flex-shrink:0;
-    padding:8px 12px;
-    border-radius:10px;
-    background:rgba(155,92,255,.12);
-    border:1px solid rgba(155,92,255,.25);
+.setting-btn{
+  padding:8px 12px;
+  border-radius:10px;
+  color:#fff;
+  background:rgba(155,92,255,.18);
+  border:1px solid rgba(155,92,255,.25);
+  font-size:11px;
 }
 
-/* REPORT */
+/* TOGGLE */
 
-.report-option{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:13px;
-    margin-bottom:8px;
-    border-radius:13px;
-    background:rgba(255,255,255,.05);
+.toggle{
+  width:45px;
+  height:24px;
+  border-radius:20px;
+  background:#3b3345;
+  position:relative;
+  cursor:pointer;
+  flex:none;
 }
 
-.report-option input{
-    width:auto;
-    margin:0;
+.toggle:after{
+  content:"";
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  position:absolute;
+  top:3px;
+  right:24px;
+  background:white;
+  transition:.25s;
+}
+
+.toggle.on{
+  background:#8c4fff;
+}
+
+.toggle.on:after{
+  right:3px;
+}
+
+/* BOTTOM MENU */
+
+.bottom-nav{
+  position:fixed;
+  z-index:400;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(340px,88%);
+  height:60px;
+  padding:6px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  border-radius:22px;
+
+  /* شیشه */
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.17);
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.45),
+    inset 0 1px rgba(255,255,255,.16);
+}
+
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:2px;
+  border-radius:16px;
+  color:#aaa2b3;
+  background:transparent;
+  transition:.25s;
+}
+
+.nav-item .icon{
+  font-size:17px;
+}
+
+.nav-item span:last-child{
+  font-size:9px;
+}
+
+.nav-item:hover,
+.nav-item.active{
+  color:#fff;
+  background:rgba(155,92,255,.24);
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.12),
+    0 5px 15px rgba(111,53,216,.18);
 }
 
 /* EMPTY */
 
 .empty{
-    text-align:center;
-    padding:45px 20px;
-    color:#aaa;
+  text-align:center;
+  padding:35px 10px;
+  color:#938a9d;
+  font-size:13px;
 }
 
 /* ADMIN */
 
-.admin-item{
-    display:flex;
-    align-items:center;
+.admin-trigger{
+  cursor:pointer;
+}
+
+.admin-list{
+  max-height:250px;
+  overflow:auto;
+  margin-top:15px;
+}
+
+.admin-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px;
+  margin-bottom:7px;
+  border-radius:12px;
+  background:rgba(255,255,255,.05);
+}
+
+.delete-btn{
+  color:#ff8e9b;
+  background:rgba(255,80,100,.1);
+  border:1px solid rgba(255,80,100,.15);
+  padding:6px 9px;
+  border-radius:8px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+  .movie-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+
+@media(max-width:750px){
+  .hero-box{
+    min-height:260px;
+    padding:30px;
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+
+  .movie-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+  }
+
+  .movie-info{
+    padding:9px 5px 5px;
+  }
+
+  .movie-title{
+    font-size:12px;
+  }
+}
+
+@media(max-width:520px){
+  header{
+    padding:11px 4%;
+  }
+
+  .header-inner{
     gap:10px;
-    padding:10px;
-    margin:7px 0;
+  }
+
+  .logo{
+    font-size:20px;
+  }
+
+  .hero{
+    padding:0 4%;
+  }
+
+  .hero-box{
+    min-height:230px;
+    padding:25px;
+    border-radius:23px;
+  }
+
+  .hero h1{
+    font-size:27px;
+  }
+
+  .container,
+  .genres-wrap{
+    padding-left:4%;
+    padding-right:4%;
+  }
+
+  .movie-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .movie-card{
+    border-radius:17px;
+    padding:5px;
+  }
+
+  .poster{
     border-radius:12px;
-    background:rgba(255,255,255,.05);
-}
+  }
 
-.admin-item img{
-    width:45px;
-    height:60px;
-    object-fit:cover;
-    border-radius:7px;
-}
+  .section-title{
+    font-size:17px;
+  }
 
-.delete{
-    margin-right:auto;
-    background:#d93665;
-    padding:7px 10px;
-    border-radius:8px;
-}
-
-/* MOBILE */
-
-@media(max-width:650px){
-
-    header{
-        padding:11px 4%;
-    }
-
-    .header-inner{
-        gap:9px;
-    }
-
-    .logo{
-        font-size:19px;
-    }
-
-    .hero{
-        margin:15px 4%;
-        min-height:270px;
-        padding:30px 22px;
-        border-radius:23px;
-    }
-
-    .hero h1{
-        font-size:29px;
-    }
-
-    .hero p{
-        font-size:12px;
-    }
-
-    .container{
-        padding:0 4%;
-    }
-
-    .movie-row{
-        min-height:108px;
-        padding:8px;
-        gap:10px;
-    }
-
-    .movie-poster{
-        width:64px;
-        height:88px;
-    }
-
-    .movie-info h3{
-        font-size:13px;
-    }
-
-    .movie-meta{
-        font-size:9px;
-        gap:4px;
-    }
-
-    .movie-actions{
-        gap:5px;
-    }
-
-    .watch-btn,
-    .info-btn{
-        padding:7px 7px;
-        font-size:9px;
-    }
-
-    .section-title{
-        font-size:18px;
-    }
-
-    .search-suggestions{
-        max-height:270px;
-    }
-
-    .suggestion img{
-        width:38px;
-        height:52px;
-    }
+  .bottom-nav{
+    width:285px;
+    height:56px;
+    bottom:10px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header>
-    <div class="header-inner">
+  <div class="header-inner">
 
-        <div class="logo" id="logo">
-            HAMO<span>FLIX</span>
-        </div>
-
-        <div class="search">
-
-            <span class="search-icon">🔍</span>
-
-            <input
-                id="searchInput"
-                type="text"
-                autocomplete="off"
-                placeholder="جستجوی فیلم یا سریال..."
-            >
-
-            <div
-                id="searchSuggestions"
-                class="search-suggestions"
-            ></div>
-
-        </div>
-
+    <div class="logo admin-trigger" id="logo">
+      HAMOFLIX
     </div>
+
+    <div class="search-box">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="جستجوی فیلم یا سریال..."
+        autocomplete="off"
+      >
+
+      <div id="searchSuggestions" class="search-suggestions"></div>
+    </div>
+
+  </div>
 </header>
 
-
-<!-- HERO -->
-
-<section class="hero glass">
-
+<section class="hero">
+  <div class="hero-box">
     <div class="hero-content">
-
-        <h1>به HAMOFLIX خوش آمدی</h1>
-
-        <p>
-            دنیای فیلم و سریال را کشف کن.
-            فیلم‌ها و سریال‌های مورد علاقه‌ات را پیدا کن
-            و بین ژانرهای مختلف جستجو کن.
-        </p>
-
-        <button
-            class="hero-btn"
-            onclick="showCategory('all')"
-        >
-            🎬 مشاهده محتوا
-        </button>
-
+      <h1>دنیای <span>HAMOFLIX</span></h1>
+      <p>
+        فیلم‌ها و سریال‌های مورد علاقه‌ات رو پیدا کن،
+        اطلاعاتشون رو ببین و دنیای سینما رو کشف کن.
+      </p>
     </div>
-
+  </div>
 </section>
-
 
 <!-- GENRES -->
 
-<section class="genres">
+<div class="genres-wrap">
+  <div class="genres" id="genres">
 
-    <div class="genre-title">
-        🎭 ژانرها
-    </div>
+    <button class="genre active" data-genre="همه">
+      همه
+    </button>
 
-    <div class="genre-list">
+    <button class="genre" data-genre="اکشن">
+      اکشن
+    </button>
 
-        <button class="genre active" onclick="showGenre('همه')">
-            همه
-        </button>
+    <button class="genre" data-genre="ترسناک">
+      ترسناک
+    </button>
 
-        <button class="genre" onclick="showGenre('اکشن')">
-            اکشن
-        </button>
+    <button class="genre" data-genre="علمی تخیلی">
+      علمی تخیلی
+    </button>
 
-        <button class="genre" onclick="showGenre('ترسناک')">
-            ترسناک
-        </button>
+    <button class="genre" data-genre="فانتزی">
+      فانتزی
+    </button>
 
-        <button class="genre" onclick="showGenre('علمی تخیلی')">
-            علمی‌تخیلی
-        </button>
+    <button class="genre" data-genre="ماجراجویی">
+      ماجراجویی
+    </button>
 
-        <button class="genre" onclick="showGenre('فانتزی')">
-            فانتزی
-        </button>
+    <button class="genre" data-genre="معمایی">
+      معمایی
+    </button>
 
-        <button class="genre" onclick="showGenre('ماجراجویی')">
-            ماجراجویی
-        </button>
+    <button class="genre" data-genre="کمدی">
+      کمدی
+    </button>
 
-        <button class="genre" onclick="showGenre('معمایی')">
-            معمایی
-        </button>
+    <button class="genre" data-genre="عاشقانه">
+      عاشقانه
+    </button>
 
-        <button class="genre" onclick="showGenre('کمدی')">
-            کمدی
-        </button>
-
-        <button class="genre" onclick="showGenre('عاشقانه')">
-            عاشقانه
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- CONTENT -->
+  </div>
+</div>
 
 <main class="container">
 
-    <section class="section">
+  <!-- NEW MOVIES -->
 
-        <div class="section-head">
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">فیلم‌های جدید</h2>
+      <button class="view-all" onclick="openCategory('newMovies','فیلم‌های جدید')">
+        مشاهده همه
+      </button>
+    </div>
 
-            <div class="section-title">
-                🎬 فیلم‌های <span>جدید</span>
-            </div>
-
-            <button
-                class="view-all"
-                onclick="showCategory('newMovies')"
-            >
-                مشاهده همه
-            </button>
-
-        </div>
-
-        <div
-            id="newMovies"
-            class="movie-list"
-        ></div>
-
-    </section>
+    <div class="movie-grid" id="newMovies"></div>
+  </section>
 
 
-    <section class="section">
+  <!-- NEW SERIES -->
 
-        <div class="section-head">
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">سریال‌های جدید</h2>
+      <button class="view-all" onclick="openCategory('newSeries','سریال‌های جدید')">
+        مشاهده همه
+      </button>
+    </div>
 
-            <div class="section-title">
-                📺 سریال‌های <span>جدید</span>
-            </div>
-
-            <button
-                class="view-all"
-                onclick="showCategory('newSeries')"
-            >
-                مشاهده همه
-            </button>
-
-        </div>
-
-        <div
-            id="newSeries"
-            class="movie-list"
-        ></div>
-
-    </section>
+    <div class="movie-grid" id="newSeries"></div>
+  </section>
 
 
-    <section class="section">
+  <!-- POPULAR -->
 
-        <div class="section-head">
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">محبوب‌ترین‌ها</h2>
+      <button class="view-all" onclick="openCategory('popular','محبوب‌ترین‌ها')">
+        مشاهده همه
+      </button>
+    </div>
 
-            <div class="section-title">
-                ⭐ <span>محبوب‌ترین‌ها</span>
-            </div>
-
-            <button
-                class="view-all"
-                onclick="showCategory('popular')"
-            >
-                مشاهده همه
-            </button>
-
-        </div>
-
-        <div
-            id="popular"
-            class="movie-list"
-        ></div>
-
-    </section>
+    <div class="movie-grid" id="popular"></div>
+  </section>
 
 </main>
 
 
-<!-- CATEGORY -->
+<!-- CATEGORY OVERLAY -->
 
-<div
-    class="overlay"
-    id="categoryOverlay"
->
+<div class="overlay" id="categoryOverlay">
 
-    <div class="overlay-inner">
+  <div class="overlay-box">
 
-        <div class="overlay-head">
+    <div class="overlay-header">
 
-            <h2 id="categoryTitle">
-                همه محتوا
-            </h2>
+      <h2 id="categoryTitle">
+        فیلم‌ها
+      </h2>
 
-            <button
-                class="close"
-                onclick="closeOverlay()"
-            >
-                ×
-            </button>
-
-        </div>
-
-        <div
-            id="categoryGrid"
-            class="grid"
-        ></div>
-
-        <div
-            id="categoryEmpty"
-            class="empty"
-            style="display:none"
-        >
-            چیزی پیدا نشد 😕
-        </div>
+      <button class="close" onclick="closeCategory()">
+        ×
+      </button>
 
     </div>
+
+    <div class="movie-grid" id="categoryGrid"></div>
+
+  </div>
+
+</div>
+
+
+<!-- INFO MODAL -->
+
+<div class="modal" id="infoModal">
+
+  <div class="modal-box">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+
+      <h2 id="infoTitle">
+        اطلاعات
+      </h2>
+
+      <button class="close" onclick="closeModal('infoModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div id="infoContent"></div>
+
+  </div>
 
 </div>
 
 
 <!-- SETTINGS -->
 
-<div
-    class="modal-bg"
-    id="settingsModal"
->
+<div class="modal" id="settingsModal">
 
-    <div class="modal glass">
+  <div class="modal-box">
 
-        <div class="overlay-head">
+    <div style="display:flex;justify-content:space-between;align-items:center">
 
-            <h2>⚙️ تنظیمات HAMOFLIX</h2>
+      <h2>تنظیمات</h2>
 
-            <button
-                class="close"
-                onclick="closeModal('settingsModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div class="setting-text">
-
-                <strong>🔔 اعلان فیلم‌های جدید</strong>
-
-                <small>
-                    هنگام انتشار محتوای جدید اعلان دریافت کن.
-                </small>
-
-            </div>
-
-            <label
-                class="switch"
-                style="
-                position:relative;
-                width:48px;
-                height:27px;
-                "
-            >
-
-                <input
-                    type="checkbox"
-                    id="notificationToggle"
-                    onchange="toggleNotifications(this)"
-                    style="display:none"
-                >
-
-                <span class="slider"></span>
-
-            </label>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div class="setting-text">
-
-                <strong>🔎 جستجوی پیشرفته</strong>
-
-                <small>
-                    جستجو بر اساس نوع، ژانر، سال و امتیاز.
-                </small>
-
-            </div>
-
-            <button
-                class="setting-action"
-                onclick="openAdvancedSearch()"
-            >
-                باز کردن
-            </button>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div class="setting-text">
-
-                <strong>❤️ علاقه‌مندی‌ها</strong>
-
-                <small>
-                    فیلم‌های ذخیره‌شده.
-                </small>
-
-            </div>
-
-            <button
-                class="setting-action"
-                onclick="showFavorites()"
-            >
-                مشاهده
-            </button>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div class="setting-text">
-
-                <strong>▶️ ادامه تماشا</strong>
-
-                <small>
-                    آخرین محتوای مشاهده‌شده.
-                </small>
-
-            </div>
-
-            <button
-                class="setting-action"
-                onclick="showContinueWatching()"
-            >
-                مشاهده
-            </button>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div class="setting-text">
-
-                <strong>📝 گزارش مشکل</strong>
-
-                <small>
-                    مشکل مربوط به سایت یا محتوا را گزارش کن.
-                </small>
-
-            </div>
-
-            <button
-                class="setting-action"
-                onclick="openReport()"
-            >
-                گزارش
-            </button>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div class="setting-text">
-
-                <strong>ℹ️ درباره HAMOFLIX</strong>
-
-                <small>
-                    اطلاعات سایت.
-                </small>
-
-            </div>
-
-            <button
-                class="setting-action"
-                onclick="aboutSite()"
-            >
-                مشاهده
-            </button>
-
-        </div>
+      <button class="close" onclick="closeModal('settingsModal')">
+        ×
+      </button>
 
     </div>
+
+    <div class="setting-item">
+
+      <div class="setting-text">
+        <strong>اعلان فیلم‌های جدید</strong>
+        <span>وقتی فیلم جدید اضافه شد اطلاع بده</span>
+      </div>
+
+      <div
+        class="toggle"
+        id="notificationToggle"
+        onclick="toggleNotifications()">
+      </div>
+
+    </div>
+
+    <div class="setting-item">
+
+      <div class="setting-text">
+        <strong>جستجوی پیشرفته</strong>
+        <span>جستجو بر اساس ژانر، سال و امتیاز</span>
+      </div>
+
+      <button class="setting-btn" onclick="openAdvancedSearch()">
+        باز کردن
+      </button>
+
+    </div>
+
+    <div class="setting-item">
+
+      <div class="setting-text">
+        <strong>ادامه تماشا</strong>
+        <span>آخرین عنوانی که باز کردی</span>
+      </div>
+
+      <button class="setting-btn" onclick="continueWatching()">
+        مشاهده
+      </button>
+
+    </div>
+
+    <div class="setting-item">
+
+      <div class="setting-text">
+        <strong>گزارش مشکل</strong>
+        <span>گزارش مشکل پوستر، اطلاعات یا لینک</span>
+      </div>
+
+      <button class="setting-btn" onclick="openReport()">
+        گزارش
+      </button>
+
+    </div>
+
+    <div class="setting-item">
+
+      <div class="setting-text">
+        <strong>درباره HAMOFLIX</strong>
+        <span>نسخه فعلی سایت</span>
+      </div>
+
+      <button class="setting-btn" onclick="showAbout()">
+        درباره
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
 
 <!-- ADVANCED SEARCH -->
 
-<div
-    class="modal-bg"
-    id="advancedModal"
->
+<div class="modal" id="advancedModal">
 
-    <div class="modal glass">
+  <div class="modal-box">
 
-        <div class="overlay-head">
+    <div style="display:flex;justify-content:space-between;align-items:center">
 
-            <h2>🔎 جستجوی پیشرفته</h2>
+      <h2>جستجوی پیشرفته</h2>
 
-            <button
-                class="close"
-                onclick="closeModal('advancedModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-        <input
-            id="advancedTitle"
-            placeholder="نام فیلم یا سریال"
-        >
-
-        <select id="advancedType">
-
-            <option value="all">همه</option>
-            <option value="movie">فقط فیلم</option>
-            <option value="series">فقط سریال</option>
-
-        </select>
-
-        <select id="advancedGenre">
-
-            <option value="all">همه ژانرها</option>
-            <option value="اکشن">اکشن</option>
-            <option value="ترسناک">ترسناک</option>
-            <option value="علمی تخیلی">علمی تخیلی</option>
-            <option value="فانتزی">فانتزی</option>
-            <option value="ماجراجویی">ماجراجویی</option>
-            <option value="معمایی">معمایی</option>
-            <option value="کمدی">کمدی</option>
-            <option value="عاشقانه">عاشقانه</option>
-
-        </select>
-
-        <input
-            id="advancedYear"
-            type="number"
-            placeholder="سال انتشار"
-        >
-
-        <input
-            id="advancedRating"
-            type="number"
-            step="0.1"
-            min="0"
-            max="10"
-            placeholder="حداقل امتیاز"
-        >
-
-        <button
-            class="modal-btn"
-            onclick="advancedSearch()"
-        >
-            🔍 جستجو
-        </button>
+      <button class="close" onclick="closeModal('advancedModal')">
+        ×
+      </button>
 
     </div>
+
+    <div class="form-group">
+      <label>نام فیلم یا سریال</label>
+      <input id="advancedTitle" placeholder="مثلاً Wednesday">
+    </div>
+
+    <div class="form-group">
+      <label>نوع</label>
+
+      <select id="advancedType">
+        <option value="">همه</option>
+        <option value="movie">فیلم</option>
+        <option value="series">سریال</option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label>ژانر</label>
+
+      <select id="advancedGenre">
+        <option value="">همه</option>
+        <option>اکشن</option>
+        <option>ترسناک</option>
+        <option>علمی تخیلی</option>
+        <option>فانتزی</option>
+        <option>ماجراجویی</option>
+        <option>معمایی</option>
+        <option>کمدی</option>
+        <option>عاشقانه</option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label>سال</label>
+      <input id="advancedYear" placeholder="2026">
+    </div>
+
+    <div class="form-group">
+      <label>حداقل امتیاز</label>
+      <input id="advancedRating" type="number" min="0" max="10" step=".1" placeholder="7">
+    </div>
+
+    <button class="primary" onclick="runAdvancedSearch()">
+      جستجو
+    </button>
+
+  </div>
 
 </div>
 
 
 <!-- REPORT -->
 
-<div
-    class="modal-bg"
-    id="reportModal"
->
+<div class="modal" id="reportModal">
 
-    <div class="modal glass">
+  <div class="modal-box">
 
-        <div class="overlay-head">
+    <div style="display:flex;justify-content:space-between;align-items:center">
 
-            <h2>📝 گزارش مشکل</h2>
+      <h2>گزارش مشکل</h2>
 
-            <button
-                class="close"
-                onclick="closeModal('reportModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-        <div class="report-option">
-            <input
-                type="radio"
-                name="reportType"
-                value="poster"
-                checked
-            >
-            🖼 پوستر نمایش داده نمی‌شود
-        </div>
-
-        <div class="report-option">
-            <input
-                type="radio"
-                name="reportType"
-                value="watch"
-            >
-            ▶️ مشکل در لینک تماشا
-        </div>
-
-        <div class="report-option">
-            <input
-                type="radio"
-                name="reportType"
-                value="info"
-            >
-            ℹ️ اطلاعات فیلم اشتباه است
-        </div>
-
-        <div class="report-option">
-            <input
-                type="radio"
-                name="reportType"
-                value="other"
-            >
-            ⚠️ مشکل دیگر
-        </div>
-
-        <textarea
-            id="reportText"
-            placeholder="توضیحات مشکل..."
-        ></textarea>
-
-        <button
-            class="modal-btn"
-            onclick="submitReport()"
-        >
-            ارسال گزارش
-        </button>
+      <button class="close" onclick="closeModal('reportModal')">
+        ×
+      </button>
 
     </div>
+
+    <div class="form-group">
+      <label>نوع مشکل</label>
+
+      <select id="reportType">
+        <option>پوستر</option>
+        <option>لینک تماشا</option>
+        <option>اطلاعات فیلم</option>
+        <option>مشکل دیگر</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>توضیحات</label>
+
+      <textarea
+        id="reportText"
+        placeholder="مشکل را توضیح بده..."></textarea>
+    </div>
+
+    <button class="primary" onclick="sendReport()">
+      ارسال گزارش
+    </button>
+
+  </div>
 
 </div>
 
 
-<!-- INFO -->
+<!-- ADMIN LOGIN -->
 
-<div
-    class="modal-bg"
-    id="infoModal"
->
+<div class="modal" id="adminLoginModal">
 
-    <div class="modal glass">
+  <div class="modal-box">
 
-        <div class="overlay-head">
+    <div style="display:flex;justify-content:space-between;align-items:center">
 
-            <h2 id="infoTitle">
-                اطلاعات
-            </h2>
+      <h2>ورود مدیر</h2>
 
-            <button
-                class="close"
-                onclick="closeModal('infoModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-        <img
-            id="infoPoster"
-            style="
-            width:140px;
-            height:200px;
-            object-fit:cover;
-            border-radius:15px;
-            display:block;
-            margin:0 auto 20px;
-            "
-        >
-
-        <p
-            id="infoDescription"
-            style="
-            color:#ccc;
-            line-height:2;
-            margin-bottom:15px;
-            "
-        ></p>
-
-        <div
-            id="infoMeta"
-            style="
-            color:#aaa;
-            line-height:2;
-            "
-        ></div>
-
-        <button
-            id="infoWatch"
-            class="modal-btn"
-        >
-            ▶️ تماشا
-        </button>
+      <button class="close" onclick="closeModal('adminLoginModal')">
+        ×
+      </button>
 
     </div>
+
+    <div class="form-group">
+      <label>رمز عبور</label>
+
+      <input
+        type="password"
+        id="adminPassword"
+        placeholder="رمز مدیر">
+    </div>
+
+    <button class="primary" onclick="loginAdmin()">
+      ورود
+    </button>
+
+  </div>
 
 </div>
 
 
-<!-- LOGIN -->
+<!-- ADMIN PANEL -->
 
-<div
-    class="modal-bg"
-    id="loginModal"
->
+<div class="modal" id="adminModal">
 
-    <div class="modal glass">
+  <div class="modal-box">
 
-        <h2>🔐 ورود مدیر</h2>
+    <div style="display:flex;justify-content:space-between;align-items:center">
 
-        <input
-            id="adminPassword"
-            type="password"
-            placeholder="رمز مدیریت"
-        >
+      <h2>پنل مدیریت</h2>
 
-        <button
-            class="modal-btn"
-            onclick="loginAdmin()"
-        >
-            ورود
-        </button>
-
-        <p
-            id="loginError"
-            style="
-            color:#ff6b8b;
-            text-align:center;
-            margin-top:10px;
-            "
-        ></p>
+      <button class="close" onclick="closeModal('adminModal')">
+        ×
+      </button>
 
     </div>
+
+    <div class="form-group">
+      <label>نام</label>
+      <input id="adminTitle" placeholder="نام فیلم یا سریال">
+    </div>
+
+    <div class="form-group">
+      <label>نوع</label>
+
+      <select id="adminType">
+        <option value="movie">فیلم</option>
+        <option value="series">سریال</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>ژانر</label>
+      <input id="adminGenre" placeholder="مثلاً اکشن">
+    </div>
+
+    <div class="form-group">
+      <label>سال</label>
+      <input id="adminYear" placeholder="2026">
+    </div>
+
+    <div class="form-group">
+      <label>امتیاز</label>
+      <input id="adminRating" placeholder="8.5">
+    </div>
+
+    <div class="form-group">
+      <label>لینک پوستر</label>
+      <input id="adminPoster" placeholder="https://...">
+    </div>
+
+    <div class="form-group">
+      <label>لینک تماشا</label>
+      <input id="adminWatch" placeholder="https://...">
+    </div>
+
+    <div class="form-group">
+      <label>توضیحات</label>
+
+      <textarea
+        id="adminDescription"
+        placeholder="توضیحات فیلم..."></textarea>
+    </div>
+
+    <div class="form-group">
+
+      <label>بخش</label>
+
+      <select id="adminCategory">
+
+        <option value="newMovies">
+          فیلم‌های جدید
+        </option>
+
+        <option value="newSeries">
+          سریال‌های جدید
+        </option>
+
+        <option value="popular">
+          محبوب‌ترین‌ها
+        </option>
+
+      </select>
+
+    </div>
+
+    <button class="primary" onclick="addMovie()">
+      افزودن محتوا
+    </button>
+
+    <div class="admin-list" id="adminList"></div>
+
+  </div>
 
 </div>
 
 
-<!-- ADMIN -->
+<!-- BOTTOM NAV -->
 
-<div
-    class="modal-bg"
-    id="adminModal"
->
+<nav class="bottom-nav">
 
-    <div class="modal glass">
+  <button class="nav-item active" onclick="goHome(this)">
+    <span class="icon">⌂</span>
+    <span>خانه</span>
+  </button>
 
-        <div class="overlay-head">
+  <button class="nav-item" onclick="openCategory('newMovies','فیلم‌ها')">
+    <span class="icon">🎬</span>
+    <span>فیلم‌ها</span>
+  </button>
 
-            <h2>👑 مدیریت HAMOFLIX</h2>
+  <button class="nav-item" onclick="openCategory('newSeries','سریال‌ها')">
+    <span class="icon">📺</span>
+    <span>سریال‌ها</span>
+  </button>
 
-            <button
-                class="close"
-                onclick="closeModal('adminModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-        <input
-            id="adminTitle"
-            placeholder="نام فیلم / سریال"
-        >
-
-        <select id="adminType">
-            <option value="movie">فیلم</option>
-            <option value="series">سریال</option>
-        </select>
-
-        <input
-            id="adminGenre"
-            placeholder="ژانر"
-        >
-
-        <input
-            id="adminYear"
-            placeholder="سال"
-        >
-
-        <input
-            id="adminRating"
-            placeholder="امتیاز"
-        >
-
-        <select id="adminCategory">
-
-            <option value="newMovies">
-                فیلم‌های جدید
-            </option>
-
-            <option value="newSeries">
-                سریال‌های جدید
-            </option>
-
-            <option value="popular">
-                محبوب‌ترین‌ها
-            </option>
-
-        </select>
-
-        <input
-            id="adminPoster"
-            placeholder="لینک پوستر"
-        >
-
-        <input
-            id="adminWatch"
-            placeholder="لینک تماشا"
-        >
-
-        <textarea
-            id="adminDescription"
-            placeholder="توضیحات"
-        ></textarea>
-
-        <button
-            class="modal-btn"
-            onclick="addMovie()"
-        >
-            ➕ اضافه کردن
-        </button>
-
-        <hr style="
-        border:0;
-        border-top:1px solid rgba(255,255,255,.1);
-        margin:20px 0;
-        ">
-
-        <div id="adminList"></div>
-
-    </div>
-
-</div>
-
-
-<!-- BOTTOM MENU -->
-
-<nav class="bottom-menu glass">
-
-    <button
-        class="nav-btn active"
-        onclick="goHome(this)"
-    >
-        <span class="icon">🏠</span>
-        خانه
-    </button>
-
-    <button
-        class="nav-btn"
-        onclick="showCategory('movies')"
-    >
-        <span class="icon">🎬</span>
-        فیلم‌ها
-    </button>
-
-    <button
-        class="nav-btn"
-        onclick="showCategory('series')"
-    >
-        <span class="icon">📺</span>
-        سریال‌ها
-    </button>
-
-    <button
-        class="nav-btn"
-        onclick="openSettings(this)"
-    >
-        <span class="icon">⚙️</span>
-        تنظیمات
-    </button>
+  <button class="nav-item" onclick="openModal('settingsModal')">
+    <span class="icon">⚙</span>
+    <span>تنظیمات</span>
+  </button>
 
 </nav>
 
@@ -1667,1213 +1327,1119 @@ header{
 <script>
 
 /* =========================
-   DATABASE
+   DATA
 ========================= */
 
-const defaultMovies=[
+const defaultData = {
 
-{
-id:1,
-title:"Wednesday",
-type:"series",
-genre:"فانتزی",
-year:"2022",
-rating:"8.0",
-category:"newSeries",
-poster:"https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
-watch:"#",
-description:"سریالی فانتزی و رازآلود درباره ونزدی آدامز."
-},
-
-{
-id:2,
-title:"Silo",
-type:"series",
-genre:"علمی تخیلی",
-year:"2023",
-rating:"8.1",
-category:"newSeries",
-poster:"https://image.tmdb.org/t/p/w500/dyZpQdG0X7J5nV3Z1h2s7kT4R5x.jpg",
-watch:"#",
-description:"در دنیایی زیرزمینی، مردم برای بقا زندگی می‌کنند."
-},
-
-{
-id:3,
-title:"All of Us Are Dead",
-type:"series",
-genre:"ترسناک",
-year:"2022",
-rating:"7.5",
-category:"newSeries",
-poster:"https://image.tmdb.org/t/p/w500/pTE3E3w0b2z9u3h9d8nYx2m3X4r.jpg",
-watch:"#",
-description:"یک مدرسه درگیر شیوع یک ویروس خطرناک می‌شود."
-},
-
-{
-id:4,
-title:"Stranger Things",
-type:"series",
-genre:"علمی تخیلی",
-year:"2016",
-rating:"8.6",
-category:"newSeries",
-poster:"https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
-watch:"#",
-description:"گروهی از نوجوانان با اتفاقات عجیب و ماورایی روبه‌رو می‌شوند."
-},
-
-{
-id:5,
-title:"The Last of Us",
-type:"series",
-genre:"علمی تخیلی",
-year:"2023",
-rating:"8.7",
-category:"newSeries",
-poster:"https://image.tmdb.org/t/p/w500/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",
-watch:"#",
-description:"سفری در دنیایی پساآخرالزمانی."
-},
-
-{
-id:6,
-title:"The Witcher",
-type:"series",
-genre:"فانتزی",
-year:"2019",
-rating:"8.0",
-category:"newSeries",
-poster:"https://image.tmdb.org/t/p/w500/cZ0d3rtvXPVvuiOQ1VbKQZNg1d.jpg",
-watch:"#",
-description:"داستان گرالت، شکارچی هیولاها."
-},
-
-{
-id:7,
-title:"Harry Potter",
-type:"movie",
-genre:"فانتزی",
-year:"2001",
-rating:"7.6",
-category:"popular",
-poster:"https://image.tmdb.org/t/p/w500/1N5y0ZrP3k6h8h8F5K8V2G6m8.jpg",
-watch:"#",
-description:"ماجراهای هری پاتر در مدرسه جادوگری."
-},
-
-{
-id:8,
-title:"Interstellar",
-type:"movie",
-genre:"علمی تخیلی",
-year:"2014",
-rating:"8.7",
-category:"newMovies",
-poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-watch:"#",
-description:"گروهی از فضانوردان برای یافتن خانه‌ای جدید برای بشر سفر می‌کنند."
-},
-
-{
-id:9,
-title:"Dune",
-type:"movie",
-genre:"علمی تخیلی",
-year:"2021",
-rating:"8.0",
-category:"newMovies",
-poster:"https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-watch:"#",
-description:"حماسه‌ای علمی تخیلی در سیاره آراکیس."
-},
-
-{
-id:10,
-title:"The Batman",
-type:"movie",
-genre:"اکشن",
-year:"2022",
-rating:"7.8",
-category:"popular",
-poster:"https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-watch:"#",
-description:"بتمن با پرونده‌ای مرموز در گاتهام روبه‌رو می‌شود."
-},
-
-{
-id:11,
-title:"Avengers: Endgame",
-type:"movie",
-genre:"اکشن",
-year:"2019",
-rating:"8.4",
-category:"popular",
-poster:"https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
-watch:"#",
-description:"قهرمانان مارول برای نجات جهان متحد می‌شوند."
-},
-
-{
-id:12,
-title:"The Maze Runner",
-type:"movie",
-genre:"ماجراجویی",
-year:"2014",
-rating:"7.2",
-category:"newMovies",
-poster:"https://image.tmdb.org/t/p/w500/ode14q7WtDugFDp78fo9lCsmay9.jpg",
-watch:"#",
-description:"گروهی از نوجوانان در یک هزارتوی مرموز گرفتار شده‌اند."
-},
-
-{
-id:13,
-title:"Inception",
-type:"movie",
-genre:"علمی تخیلی",
-year:"2010",
-rating:"8.8",
-category:"popular",
-poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
-watch:"#",
-description:"دزدیدن اطلاعات از رویاها."
-},
-
-{
-id:14,
-title:"It",
-type:"movie",
-genre:"ترسناک",
-year:"2017",
-rating:"7.3",
-category:"newMovies",
-poster:"https://image.tmdb.org/t/p/w500/9E2y5Q7Wl9f2QWq4y9y1m7d8.jpg",
-watch:"#",
-description:"گروهی از نوجوانان با موجودی ترسناک روبه‌رو می‌شوند."
-},
-
-{
-id:15,
-title:"The Conjuring",
-type:"movie",
-genre:"ترسناک",
-year:"2013",
-rating:"7.5",
-category:"popular",
-poster:"https://image.tmdb.org/t/p/w500/wVYREutTvI2tmxr6ujrHT704wGF.jpg",
-watch:"#",
-description:"پرونده‌ای ماورایی برای خانواده‌ای گرفتار."
-},
-
-{
-id:16,
-title:"Joker",
-type:"movie",
-genre:"معمایی",
-year:"2019",
-rating:"8.4",
-category:"popular",
-poster:"https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
-watch:"#",
-description:"داستان شکل‌گیری یکی از مشهورترین شخصیت‌های گاتهام."
-}
-
-];
-
-
-/* STORAGE */
-
-function getMovies(){
-
-    const saved=localStorage.getItem("hamoflix_movies");
-
-    if(saved){
-
-        try{
-            return JSON.parse(saved);
-        }catch(e){}
-
+  newMovies:[
+    {
+      id:1,
+      title:"Interstellar",
+      type:"movie",
+      genre:"علمی تخیلی",
+      year:"2014",
+      rating:"8.7",
+      poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      watch:"#",
+      description:"یک سفر علمی تخیلی عظیم در فضا و زمان."
+    },
+    {
+      id:2,
+      title:"Dune",
+      type:"movie",
+      genre:"علمی تخیلی",
+      year:"2021",
+      rating:"8.0",
+      poster:"https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+      watch:"#",
+      description:"داستان خانواده‌ای که وارد دنیایی خطرناک و ناشناخته می‌شوند."
+    },
+    {
+      id:3,
+      title:"The Batman",
+      type:"movie",
+      genre:"اکشن",
+      year:"2022",
+      rating:"7.8",
+      poster:"https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+      watch:"#",
+      description:"نسخه‌ای تاریک از داستان بتمن."
+    },
+    {
+      id:4,
+      title:"Avengers: Endgame",
+      type:"movie",
+      genre:"اکشن",
+      year:"2019",
+      rating:"8.4",
+      poster:"https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+      watch:"#",
+      description:"آخرین نبرد بزرگ انتقام‌جویان."
+    },
+    {
+      id:5,
+      title:"The Maze Runner",
+      type:"movie",
+      genre:"ماجراجویی",
+      year:"2014",
+      rating:"6.8",
+      poster:"https://image.tmdb.org/t/p/w500/ode14q7WtDugFDp78fo9lCsmay9.jpg",
+      watch:"#",
+      description:"گروهی از نوجوانان در یک هزارتوی اسرارآمیز گرفتار شده‌اند."
     }
+  ],
 
-    return defaultMovies;
+  newSeries:[
+    {
+      id:6,
+      title:"Wednesday",
+      type:"series",
+      genre:"فانتزی",
+      year:"2022",
+      rating:"8.0",
+      poster:"https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
+      watch:"#",
+      description:"ماجراهای مرموز و عجیب ونزدی آدامز."
+    },
+    {
+      id:7,
+      title:"Silo",
+      type:"series",
+      genre:"علمی تخیلی",
+      year:"2023",
+      rating:"8.1",
+      poster:"https://image.tmdb.org/t/p/w500/tS4gjhJYw3c1H8QzG7d0H0Z7x0J.jpg",
+      watch:"#",
+      description:"مردم در یک سازه زیرزمینی عظیم زندگی می‌کنند و رازهای بزرگی در انتظارشان است."
+    },
+    {
+      id:8,
+      title:"All of Us Are Dead",
+      type:"series",
+      genre:"ترسناک",
+      year:"2022",
+      rating:"7.5",
+      poster:"https://image.tmdb.org/t/p/w500/pTE3hIhU4p7fFQhQJz5t7kM2r6v.jpg",
+      watch:"#",
+      description:"یک مدرسه تبدیل به مرکز شیوع یک بیماری مرموز می‌شود."
+    },
+    {
+      id:9,
+      title:"Stranger Things",
+      type:"series",
+      genre:"علمی تخیلی",
+      year:"2016",
+      rating:"8.6",
+      poster:"https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
+      watch:"#",
+      description:"گروهی از دوستان با اتفاقات عجیب و دنیایی ناشناخته روبه‌رو می‌شوند."
+    },
+    {
+      id:10,
+      title:"The Last of Us",
+      type:"series",
+      genre:"ماجراجویی",
+      year:"2023",
+      rating:"8.7",
+      poster:"https://image.tmdb.org/t/p/w500/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",
+      watch:"#",
+      description:"سفری خطرناک در دنیایی پساآخرالزمانی."
+    }
+  ],
+
+  popular:[
+    {
+      id:11,
+      title:"The Witcher",
+      type:"series",
+      genre:"فانتزی",
+      year:"2019",
+      rating:"8.0",
+      poster:"https://image.tmdb.org/t/p/w500/cZ0d3rtvXPVvuiX22sP79K3Hmjz.jpg",
+      watch:"#",
+      description:"یک شکارچی هیولا در دنیایی پر از جادو."
+    },
+    {
+      id:12,
+      title:"Harry Potter",
+      type:"movie",
+      genre:"فانتزی",
+      year:"2001",
+      rating:"7.6",
+      poster:"https://image.tmdb.org/t/p/w500/1DV4Wf4pYd6Y9f7JwT5J5x8R5gG.jpg",
+      watch:"#",
+      description:"آغاز ماجراهای هری پاتر در دنیای جادوگران."
+    },
+    {
+      id:13,
+      title:"Inception",
+      type:"movie",
+      genre:"معمایی",
+      year:"2010",
+      rating:"8.8",
+      poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
+      watch:"#",
+      description:"داستانی پیچیده درباره رویا و واقعیت."
+    },
+    {
+      id:14,
+      title:"It",
+      type:"movie",
+      genre:"ترسناک",
+      year:"2017",
+      rating:"7.3",
+      poster:"https://image.tmdb.org/t/p/w500/9f5zGWcTEV5Qq5qK4R7XQZ4V6eH.jpg",
+      watch:"#",
+      description:"گروهی از کودکان با موجودی ترسناک روبه‌رو می‌شوند."
+    },
+    {
+      id:15,
+      title:"The Conjuring",
+      type:"movie",
+      genre:"ترسناک",
+      year:"2013",
+      rating:"7.5",
+      poster:"https://image.tmdb.org/t/p/w500/wVYREutTvI2tmxr6ujrYB8V5m4v.jpg",
+      watch:"#",
+      description:"یک پرونده ماورایی و خانه‌ای پر از راز."
+    },
+    {
+      id:16,
+      title:"Joker",
+      type:"movie",
+      genre:"معمایی",
+      year:"2019",
+      rating:"8.4",
+      poster:"https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+      watch:"#",
+      description:"روایتی تاریک از تبدیل شدن یک مرد به جوکر."
+    }
+  ]
+
+};
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+let data =
+  JSON.parse(localStorage.getItem("hamoflix_data"))
+  || defaultData;
+
+function saveData(){
+  localStorage.setItem(
+    "hamoflix_data",
+    JSON.stringify(data)
+  );
+}
+
+
+/* =========================
+   ALL ITEMS
+========================= */
+
+function allMovies(){
+
+  return [
+    ...data.newMovies,
+    ...data.newSeries,
+    ...data.popular
+  ];
 
 }
 
-function saveMovies(movies){
 
-    localStorage.setItem(
-        "hamoflix_movies",
-        JSON.stringify(movies)
-    );
+/* =========================
+   CARD
+========================= */
 
-}
+function movieCard(movie){
 
+  return `
+    <div class="movie-card">
 
-/* MOVIE CARD */
+      <img
+        class="poster"
+        src="${movie.poster || ""}"
+        alt="${movie.title}"
+        loading="lazy"
+        onerror="this.style.opacity='.25'"
+      >
 
-function createRow(movie){
+      <div class="movie-info">
 
-    return `
+        <div class="movie-title">
+          ${movie.title}
+        </div>
 
-    <div class="movie-row glass">
+        <div class="movie-meta">
 
-        <img
-            class="movie-poster"
-            src="${movie.poster}"
-            onerror="this.style.opacity='.25'"
-        >
+          <span class="badge">
+            ${movie.type === "series" ? "سریال" : "فیلم"}
+          </span>
 
-        <div class="movie-info">
+          <span class="badge">
+            ${movie.genre || "بدون ژانر"}
+          </span>
 
-            <h3>${movie.title}</h3>
+          <span class="badge">
+            ${movie.year || "----"}
+          </span>
 
-            <div class="movie-meta">
-
-                <span class="badge">
-                    ${movie.type==="series"?"سریال":"فیلم"}
-                </span>
-
-                <span>${movie.genre||"عمومی"}</span>
-
-                <span>${movie.year||""}</span>
-
-                <span class="rating">
-                    ⭐ ${movie.rating||"-"}
-                </span>
-
-            </div>
+          <span class="badge rating">
+            ★ ${movie.rating || "-"}
+          </span>
 
         </div>
 
         <div class="movie-actions">
 
-            <button
-                class="watch-btn"
-                onclick="watchMovie(${movie.id})"
-            >
-                ▶️ تماشا
-            </button>
+          <button onclick='showInfo(${JSON.stringify(movie).replace(/'/g,"&#39;")})'>
+            اطلاعات
+          </button>
 
-            <button
-                class="info-btn"
-                onclick="showInfo(${movie.id})"
-            >
-                اطلاعات
-            </button>
+          <button onclick='watchMovie(${JSON.stringify(movie).replace(/'/g,"&#39;")})'>
+            مشاهده
+          </button>
 
         </div>
 
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+  renderSection(
+    "newMovies",
+    data.newMovies
+  );
+
+  renderSection(
+    "newSeries",
+    data.newSeries
+  );
+
+  renderSection(
+    "popular",
+    data.popular
+  );
+
+}
+
+
+function renderSection(id,items){
+
+  const el = document.getElementById(id);
+
+  if(!items.length){
+
+    el.innerHTML =
+      `<div class="empty">محتوایی وجود ندارد.</div>`;
+
+    return;
+  }
+
+  el.innerHTML =
+    items
+      .slice(0,10)
+      .map(movieCard)
+      .join("");
+
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+function showInfo(movie){
+
+  document.getElementById("infoTitle").textContent =
+    movie.title;
+
+  document.getElementById("infoContent").innerHTML = `
+
+    <img
+      class="info-poster"
+      src="${movie.poster || ""}"
+      onerror="this.style.opacity='.3'"
+    >
+
+    <div class="info-description">
+
+      <p>
+        <b>نوع:</b>
+        ${movie.type === "series" ? "سریال" : "فیلم"}
+      </p>
+
+      <p>
+        <b>ژانر:</b>
+        ${movie.genre || "-"}
+      </p>
+
+      <p>
+        <b>سال:</b>
+        ${movie.year || "-"}
+      </p>
+
+      <p>
+        <b>امتیاز:</b>
+        ★ ${movie.rating || "-"}
+      </p>
+
+      <br>
+
+      <p>
+        ${movie.description || "توضیحی ثبت نشده است."}
+      </p>
+
     </div>
 
-    `;
+    <div class="clear"></div>
 
+    <br>
+
+    <button
+      class="primary"
+      onclick='watchMovie(${JSON.stringify(movie).replace(/'/g,"&#39;")})'>
+      مشاهده
+    </button>
+  `;
+
+  openModal("infoModal");
 }
 
 
-/* HOME */
+/* =========================
+   WATCH
+========================= */
 
-function renderHome(){
+function watchMovie(movie){
 
-    const movies=getMovies();
+  localStorage.setItem(
+    "hamoflix_last_watch",
+    JSON.stringify(movie)
+  );
 
-    renderList(
-        "newMovies",
-        movies.filter(x=>x.category==="newMovies").slice(0,10)
+  if(movie.watch && movie.watch !== "#"){
+
+    window.open(
+      movie.watch,
+      "_blank"
     );
 
-    renderList(
-        "newSeries",
-        movies.filter(x=>x.category==="newSeries").slice(0,10)
-    );
-
-    renderList(
-        "popular",
-        movies.filter(x=>x.category==="popular").slice(0,10)
-    );
-
-}
-
-function renderList(id,movies){
-
-    document.getElementById(id).innerHTML=
-        movies.length
-        ? movies.map(createRow).join("")
-        : `<div class="empty">هنوز محتوایی اضافه نشده 😕</div>`;
-
-}
-
-
-/* CATEGORY */
-
-function showCategory(category){
-
-    let movies=getMovies();
-    let title="همه محتوا";
-
-    if(category==="newMovies"){
-        movies=movies.filter(x=>x.category==="newMovies");
-        title="🎬 همه فیلم‌های جدید";
-    }
-
-    else if(category==="newSeries"){
-        movies=movies.filter(x=>x.category==="newSeries");
-        title="📺 همه سریال‌های جدید";
-    }
-
-    else if(category==="popular"){
-        movies=movies.filter(x=>x.category==="popular");
-        title="⭐ محبوب‌ترین‌ها";
-    }
-
-    else if(category==="movies"){
-        movies=movies.filter(x=>x.type==="movie");
-        title="🎬 تمام فیلم‌ها";
-    }
-
-    else if(category==="series"){
-        movies=movies.filter(x=>x.type==="series");
-        title="📺 تمام سریال‌ها";
-    }
-
-    document.getElementById("categoryTitle").textContent=title;
-
-    document.getElementById("categoryGrid").innerHTML=
-        movies.length
-        ? movies.map(createRow).join("")
-        : "";
-
-    document.getElementById("categoryEmpty").style.display=
-        movies.length ? "none" : "block";
-
-    document.getElementById("categoryOverlay")
-        .classList.add("active");
-
-    document.body.style.overflow="hidden";
-
-}
-
-
-/* CLOSE */
-
-function closeOverlay(){
-
-    document.getElementById("categoryOverlay")
-        .classList.remove("active");
-
-    document.body.style.overflow="";
-
-}
-
-
-/* GENRE */
-
-function showGenre(genre){
-
-    let movies=getMovies();
-
-    if(genre!=="همه"){
-
-        movies=movies.filter(x=>
-            (x.genre||"").includes(genre)
-        );
-
-    }
-
-    document.getElementById("categoryTitle").textContent=
-        "🎭 ژانر: "+genre;
-
-    document.getElementById("categoryGrid").innerHTML=
-        movies.length
-        ? movies.map(createRow).join("")
-        : "";
-
-    document.getElementById("categoryEmpty").style.display=
-        movies.length ? "none" : "block";
-
-    document.getElementById("categoryOverlay")
-        .classList.add("active");
-
-    document.body.style.overflow="hidden";
-
-}
-
-
-/* LIVE SEARCH */
-
-const searchInput=
-    document.getElementById("searchInput");
-
-const suggestions=
-    document.getElementById("searchSuggestions");
-
-
-searchInput.addEventListener("input",function(){
-
-    const query=
-        this.value
-        .trim()
-        .toLowerCase();
-
-    if(!query){
-
-        suggestions.classList.remove("active");
-        suggestions.innerHTML="";
-
-        return;
-
-    }
-
-    const results=
-        getMovies()
-        .filter(movie=>
-
-            movie.title.toLowerCase().includes(query) ||
-
-            (movie.genre||"")
-            .toLowerCase()
-            .includes(query)
-
-        )
-        .slice(0,7);
-
-
-    if(!results.length){
-
-        suggestions.innerHTML=`
-            <div class="suggestion-empty">
-                فیلمی با این عبارت پیدا نشد 😕
-            </div>
-        `;
-
-        suggestions.classList.add("active");
-
-        return;
-
-    }
-
-
-    suggestions.innerHTML=
-        results.map(movie=>`
-
-            <button
-                class="suggestion"
-                onclick="selectSuggestion(${movie.id})"
-            >
-
-                <img
-                    src="${movie.poster}"
-                    onerror="this.style.opacity='.25'"
-                >
-
-                <div class="suggestion-info">
-
-                    <div class="suggestion-title">
-                        ${movie.title}
-                    </div>
-
-                    <div class="suggestion-meta">
-                        ${movie.type==="series"?"سریال":"فیلم"}
-                        • ${movie.genre||"عمومی"}
-                        • ${movie.year||"-"}
-                        • ⭐ ${movie.rating||"-"}
-                    </div>
-
-                </div>
-
-            </button>
-
-        `).join("");
-
-    suggestions.classList.add("active");
-
-});
-
-
-/* SELECT SEARCH RESULT */
-
-function selectSuggestion(id){
-
-    const movie=
-        getMovies().find(x=>x.id===id);
-
-    if(!movie)return;
-
-    suggestions.classList.remove("active");
-
-    searchInput.value=movie.title;
-
-    showInfo(movie.id);
-
-}
-
-
-/* CLOSE SEARCH */
-
-document.addEventListener("click",function(e){
-
-    if(
-        !e.target.closest(".search")
-    ){
-
-        suggestions.classList.remove("active");
-
-    }
-
-});
-
-
-/* INFO */
-
-function showInfo(id){
-
-    const movie=
-        getMovies().find(x=>x.id===id);
-
-    if(!movie)return;
-
-    document.getElementById("infoTitle")
-        .textContent=movie.title;
-
-    document.getElementById("infoPoster")
-        .src=movie.poster;
-
-    document.getElementById("infoDescription")
-        .textContent=
-        movie.description||"توضیحاتی ثبت نشده.";
-
-    document.getElementById("infoMeta")
-        .innerHTML=`
-
-        🎭 ژانر: ${movie.genre||"-"}<br>
-        📅 سال: ${movie.year||"-"}<br>
-        ⭐ امتیاز: ${movie.rating||"-"}<br>
-        📌 نوع:
-        ${movie.type==="series"?"سریال":"فیلم"}
-
-    `;
-
-    document.getElementById("infoWatch")
-        .onclick=()=>watchMovie(movie.id);
-
-    openModal("infoModal");
-
-}
-
-
-/* WATCH */
-
-function watchMovie(id){
-
-    const movie=
-        getMovies().find(x=>x.id===id);
-
-    if(!movie)return;
-
-    localStorage.setItem(
-        "hamoflix_last_watch",
-        JSON.stringify(movie)
-    );
-
-    if(movie.watch && movie.watch!=="#"){
-
-        window.open(
-            movie.watch,
-            "_blank"
-        );
-
-    }else{
-
-        alert(
-            "لینک تماشا برای این محتوا هنوز اضافه نشده."
-        );
-
-    }
-
-}
-
-
-/* SETTINGS */
-
-function openSettings(btn){
-
-    document.querySelectorAll(".nav-btn")
-        .forEach(x=>x.classList.remove("active"));
-
-    if(btn)btn.classList.add("active");
-
-    document.getElementById(
-        "notificationToggle"
-    ).checked=
-        localStorage.getItem(
-            "hamoflix_notifications"
-        )==="true";
-
-    openModal("settingsModal");
-
-}
-
-
-/* NOTIFICATIONS */
-
-function toggleNotifications(input){
-
-    localStorage.setItem(
-        "hamoflix_notifications",
-        input.checked
-    );
-
-    if(
-        input.checked &&
-        "Notification" in window
-    ){
-
-        Notification.requestPermission()
-        .then(permission=>{
-
-            if(permission==="granted"){
-
-                new Notification(
-                    "HAMOFLIX 🔔",
-                    {
-                        body:
-                        "اعلان محتوای جدید فعال شد."
-                    }
-                );
-
-            }
-
-        });
-
-    }
-
-}
-
-
-/* ADVANCED SEARCH */
-
-function openAdvancedSearch(){
-
-    closeModal("settingsModal");
-    openModal("advancedModal");
-
-}
-
-function advancedSearch(){
-
-    const title=
-        document.getElementById("advancedTitle")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const type=
-        document.getElementById("advancedType").value;
-
-    const genre=
-        document.getElementById("advancedGenre").value;
-
-    const year=
-        document.getElementById("advancedYear").value;
-
-    const rating=
-        parseFloat(
-            document.getElementById("advancedRating").value
-        )||0;
-
-    let movies=getMovies();
-
-    movies=movies.filter(movie=>{
-
-        return(
-
-            (!title ||
-             movie.title.toLowerCase().includes(title))
-
-            &&
-
-            (type==="all" ||
-             movie.type===type)
-
-            &&
-
-            (genre==="all" ||
-             (movie.genre||"").includes(genre))
-
-            &&
-
-            (!year ||
-             String(movie.year)===String(year))
-
-            &&
-
-            (!rating ||
-             parseFloat(movie.rating||0)>=rating)
-
-        );
-
-    });
-
-    closeModal("advancedModal");
-
-    document.getElementById("categoryTitle")
-        .textContent="🔎 نتایج جستجوی پیشرفته";
-
-    document.getElementById("categoryGrid")
-        .innerHTML=
-        movies.map(createRow).join("");
-
-    document.getElementById("categoryEmpty")
-        .style.display=
-        movies.length?"none":"block";
-
-    document.getElementById("categoryOverlay")
-        .classList.add("active");
-
-}
-
-
-/* FAVORITES */
-
-function showFavorites(){
-
-    closeModal("settingsModal");
-
-    const fav=[];
-
-    document.getElementById("categoryTitle")
-        .textContent="❤️ علاقه‌مندی‌ها";
-
-    document.getElementById("categoryGrid")
-        .innerHTML=
-        `<div class="empty">
-            برای نسخه بعدی، دکمه ❤️ را هم روی هر فیلم اضافه می‌کنیم.
-        </div>`;
-
-    document.getElementById("categoryOverlay")
-        .classList.add("active");
-
-}
-
-
-/* CONTINUE */
-
-function showContinueWatching(){
-
-    let movie=null;
-
-    try{
-
-        movie=JSON.parse(
-            localStorage.getItem(
-                "hamoflix_last_watch"
-            )
-        );
-
-    }catch(e){}
-
-    closeModal("settingsModal");
-
-    document.getElementById("categoryTitle")
-        .textContent="▶️ ادامه تماشا";
-
-    document.getElementById("categoryGrid")
-        .innerHTML=
-        movie
-        ? createRow(movie)
-        : `<div class="empty">
-            هنوز چیزی برای ادامه تماشا نداری.
-           </div>`;
-
-    document.getElementById("categoryOverlay")
-        .classList.add("active");
-
-}
-
-
-/* REPORT */
-
-function openReport(){
-
-    closeModal("settingsModal");
-    openModal("reportModal");
-
-}
-
-function submitReport(){
-
-    const type=
-        document.querySelector(
-            'input[name="reportType"]:checked'
-        ).value;
-
-    const text=
-        document.getElementById("reportText")
-        .value
-        .trim();
-
-    if(!text){
-
-        alert(
-            "لطفاً توضیحات مشکل را بنویس."
-        );
-
-        return;
-
-    }
-
-    localStorage.setItem(
-        "hamoflix_last_report",
-        JSON.stringify({
-            type:type,
-            text:text,
-            date:new Date().toISOString()
-        })
-    );
-
-    closeModal("reportModal");
-
-    document.getElementById("reportText")
-        .value="";
+  }else{
 
     alert(
-        "گزارش ثبت شد ✅"
+      "لینک تماشا برای این عنوان هنوز اضافه نشده."
     );
 
-}
-
-
-/* ABOUT */
-
-function aboutSite(){
-
-    alert(
-`HAMOFLIX
-
-دنیای فیلم و سریال
-نسخه فعلی: 2.0`
-    );
+  }
 
 }
 
 
-/* HOME */
+/* =========================
+   CATEGORY
+========================= */
 
-function goHome(btn){
+function openCategory(key,title){
 
-    document.querySelectorAll(".nav-btn")
-        .forEach(x=>x.classList.remove("active"));
+  document.getElementById("categoryTitle")
+    .textContent = title;
 
-    btn.classList.add("active");
+  const grid =
+    document.getElementById("categoryGrid");
 
-    closeOverlay();
+  grid.innerHTML =
+    data[key]
+      .map(movieCard)
+      .join("");
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+  document.getElementById("categoryOverlay")
+    .style.display = "block";
 
+  document.body.style.overflow = "hidden";
 }
 
 
-/* MODALS */
+function closeCategory(){
+
+  document.getElementById("categoryOverlay")
+    .style.display = "none";
+
+  document.body.style.overflow = "";
+}
+
+
+/* =========================
+   MODALS
+========================= */
 
 function openModal(id){
 
-    document.getElementById(id)
-        .classList.add("active");
+  document.getElementById(id)
+    .style.display = "block";
 
 }
 
 function closeModal(id){
 
-    document.getElementById(id)
-        .classList.remove("active");
+  document.getElementById(id)
+    .style.display = "none";
 
 }
 
 
-/* ADMIN */
+/* =========================
+   SEARCH
+========================= */
 
-const ADMIN_PASSWORD=
-    "HAMOFLIX_2026_ADMIN";
+const searchInput =
+  document.getElementById("searchInput");
+
+const searchSuggestions =
+  document.getElementById("searchSuggestions");
 
 
-function loginAdmin(){
+searchInput.addEventListener(
+  "input",
+  function(){
 
-    const password=
-        document.getElementById(
-            "adminPassword"
-        ).value;
+    const q =
+      this.value.trim().toLowerCase();
 
-    if(password===ADMIN_PASSWORD){
+    if(!q){
 
-        localStorage.setItem(
-            "hamoflix_admin",
-            "true"
-        );
-
-        closeModal("loginModal");
-
-        openModal("adminModal");
-
-        renderAdminList();
-
-    }else{
-
-        document.getElementById(
-            "loginError"
-        ).textContent=
-            "رمز اشتباه است.";
+      searchSuggestions.style.display = "none";
+      return;
 
     }
+
+    const results =
+      allMovies()
+      .filter(movie =>
+        movie.title.toLowerCase().includes(q) ||
+        (movie.genre || "")
+          .toLowerCase()
+          .includes(q)
+      )
+      .slice(0,7);
+
+    if(!results.length){
+
+      searchSuggestions.innerHTML =
+        `<div class="empty">چیزی پیدا نشد.</div>`;
+
+      searchSuggestions.style.display = "block";
+
+      return;
+    }
+
+    searchSuggestions.innerHTML =
+      results.map(movie => `
+
+        <div
+          class="suggestion"
+          onclick='selectSearchMovie(${JSON.stringify(movie).replace(/'/g,"&#39;")})'>
+
+          <img
+            src="${movie.poster || ""}"
+            onerror="this.style.opacity='.3'"
+          >
+
+          <div class="suggestion-info">
+
+            <div class="suggestion-title">
+              ${movie.title}
+            </div>
+
+            <div class="suggestion-meta">
+              ${movie.type === "series" ? "سریال" : "فیلم"}
+              • ${movie.genre || "-"}
+              • ★ ${movie.rating || "-"}
+            </div>
+
+          </div>
+
+        </div>
+
+      `).join("");
+
+    searchSuggestions.style.display = "block";
+
+  }
+);
+
+
+function selectSearchMovie(movie){
+
+  searchInput.value = movie.title;
+
+  searchSuggestions.style.display = "none";
+
+  showInfo(movie);
 
 }
 
 
-function addMovie(){
+document.addEventListener(
+  "click",
+  function(e){
 
-    const movie={
+    if(
+      !e.target.closest(".search-box")
+    ){
 
-        id:Date.now(),
-
-        title:
-            document.getElementById(
-                "adminTitle"
-            ).value.trim(),
-
-        type:
-            document.getElementById(
-                "adminType"
-            ).value,
-
-        genre:
-            document.getElementById(
-                "adminGenre"
-            ).value.trim(),
-
-        year:
-            document.getElementById(
-                "adminYear"
-            ).value.trim(),
-
-        rating:
-            document.getElementById(
-                "adminRating"
-            ).value.trim(),
-
-        category:
-            document.getElementById(
-                "adminCategory"
-            ).value,
-
-        poster:
-            document.getElementById(
-                "adminPoster"
-            ).value.trim(),
-
-        watch:
-            document.getElementById(
-                "adminWatch"
-            ).value.trim(),
-
-        description:
-            document.getElementById(
-                "adminDescription"
-            ).value.trim()
-
-    };
-
-
-    if(!movie.title){
-
-        alert(
-            "اسم فیلم را وارد کن."
-        );
-
-        return;
+      searchSuggestions.style.display =
+        "none";
 
     }
 
-
-    const movies=getMovies();
-
-    movies.push(movie);
-
-    saveMovies(movies);
-
-    renderHome();
-
-    renderAdminList();
+  }
+);
 
 
-    [
-        "adminTitle",
-        "adminGenre",
-        "adminYear",
-        "adminRating",
-        "adminPoster",
-        "adminWatch",
-        "adminDescription"
-    ].forEach(id=>{
+/* =========================
+   GENRE FILTER
+========================= */
 
-        document.getElementById(id)
-            .value="";
+document
+  .querySelectorAll(".genre")
+  .forEach(btn => {
+
+    btn.addEventListener(
+      "click",
+      function(){
+
+        document
+          .querySelectorAll(".genre")
+          .forEach(x =>
+            x.classList.remove("active")
+          );
+
+        this.classList.add("active");
+
+        const genre =
+          this.dataset.genre;
+
+        if(genre === "همه"){
+
+          render();
+          return;
+
+        }
+
+        ["newMovies","newSeries","popular"]
+          .forEach(id => {
+
+            const filtered =
+              data[id].filter(
+                movie => movie.genre === genre
+              );
+
+            renderSection(
+              id,
+              filtered
+            );
+
+          });
+
+      }
+    );
+
+  });
+
+
+/* =========================
+   ADVANCED SEARCH
+========================= */
+
+function openAdvancedSearch(){
+
+  closeModal("settingsModal");
+
+  openModal("advancedModal");
+
+}
+
+
+function runAdvancedSearch(){
+
+  const title =
+    document
+      .getElementById("advancedTitle")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const type =
+    document
+      .getElementById("advancedType")
+      .value;
+
+  const genre =
+    document
+      .getElementById("advancedGenre")
+      .value;
+
+  const year =
+    document
+      .getElementById("advancedYear")
+      .value
+      .trim();
+
+  const rating =
+    parseFloat(
+      document
+        .getElementById("advancedRating")
+        .value
+    ) || 0;
+
+
+  const results =
+    allMovies().filter(movie => {
+
+      return (
+
+        (!title ||
+          movie.title
+            .toLowerCase()
+            .includes(title))
+
+        &&
+
+        (!type ||
+          movie.type === type)
+
+        &&
+
+        (!genre ||
+          movie.genre === genre)
+
+        &&
+
+        (!year ||
+          movie.year === year)
+
+        &&
+
+        (!rating ||
+          parseFloat(movie.rating) >= rating)
+
+      );
 
     });
 
 
-    alert(
-        "محتوا با موفقیت اضافه شد ✅"
-    );
+  closeModal("advancedModal");
+
+  document.getElementById("categoryTitle")
+    .textContent =
+      `نتایج جستجو (${results.length})`;
+
+  document.getElementById("categoryGrid")
+    .innerHTML =
+      results.length
+      ? results.map(movieCard).join("")
+      : `<div class="empty">نتیجه‌ای پیدا نشد.</div>`;
+
+  document.getElementById("categoryOverlay")
+    .style.display = "block";
 
 }
 
 
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+function toggleNotifications(){
+
+  const toggle =
+    document.getElementById(
+      "notificationToggle"
+    );
+
+  const enabled =
+    localStorage.getItem(
+      "hamoflix_notifications"
+    ) === "true";
+
+
+  if(!enabled){
+
+    if(
+      "Notification" in window &&
+      Notification.permission !== "granted"
+    ){
+
+      Notification.requestPermission();
+
+    }
+
+    localStorage.setItem(
+      "hamoflix_notifications",
+      "true"
+    );
+
+    toggle.classList.add("on");
+
+  }else{
+
+    localStorage.setItem(
+      "hamoflix_notifications",
+      "false"
+    );
+
+    toggle.classList.remove("on");
+
+  }
+
+}
+
+
+function loadNotificationState(){
+
+  const enabled =
+    localStorage.getItem(
+      "hamoflix_notifications"
+    ) === "true";
+
+  if(enabled){
+
+    document
+      .getElementById("notificationToggle")
+      .classList.add("on");
+
+  }
+
+}
+
+
+/* =========================
+   CONTINUE WATCHING
+========================= */
+
+function continueWatching(){
+
+  const last =
+    localStorage.getItem(
+      "hamoflix_last_watch"
+    );
+
+  if(!last){
+
+    alert("هنوز چیزی برای ادامه تماشا وجود ندارد.");
+    return;
+
+  }
+
+  const movie =
+    JSON.parse(last);
+
+  closeModal("settingsModal");
+
+  showInfo(movie);
+
+}
+
+
+/* =========================
+   REPORT
+========================= */
+
+function openReport(){
+
+  closeModal("settingsModal");
+
+  openModal("reportModal");
+
+}
+
+
+function sendReport(){
+
+  const type =
+    document.getElementById("reportType").value;
+
+  const text =
+    document.getElementById("reportText").value.trim();
+
+  if(!text){
+
+    alert("لطفاً توضیحات را وارد کن.");
+    return;
+
+  }
+
+  localStorage.setItem(
+    "hamoflix_last_report",
+    JSON.stringify({
+      type,
+      text,
+      date:new Date().toISOString()
+    })
+  );
+
+  document.getElementById("reportText").value = "";
+
+  closeModal("reportModal");
+
+  alert("گزارش شما ثبت شد. ❤️");
+
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+function showAbout(){
+
+  alert(
+    "HAMOFLIX\n\nنسخه 1.0\n\nسایت شخصی فیلم و سریال"
+  );
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function goHome(btn){
+
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(x =>
+      x.classList.remove("active")
+    );
+
+  btn.classList.add("active");
+
+  closeCategory();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   ADMIN
+========================= */
+
+let logoClicks = 0;
+let clickTimer;
+
+
+document
+  .getElementById("logo")
+  .addEventListener("click",function(){
+
+    logoClicks++;
+
+    clearTimeout(clickTimer);
+
+    clickTimer =
+      setTimeout(() => {
+        logoClicks = 0;
+      },1500);
+
+    if(logoClicks >= 5){
+
+      logoClicks = 0;
+
+      openModal("adminLoginModal");
+
+    }
+
+  });
+
+
+function loginAdmin(){
+
+  const password =
+    document
+      .getElementById("adminPassword")
+      .value;
+
+  if(password === "HAMOFLIX_2026_ADMIN"){
+
+    closeModal("adminLoginModal");
+
+    openModal("adminModal");
+
+    document
+      .getElementById("adminPassword")
+      .value = "";
+
+    renderAdminList();
+
+  }else{
+
+    alert("رمز عبور اشتباه است.");
+
+  }
+
+}
+
+
+/* =========================
+   ADD MOVIE
+========================= */
+
+function addMovie(){
+
+  const movie = {
+
+    id:Date.now(),
+
+    title:
+      document.getElementById("adminTitle").value.trim(),
+
+    type:
+      document.getElementById("adminType").value,
+
+    genre:
+      document.getElementById("adminGenre").value.trim(),
+
+    year:
+      document.getElementById("adminYear").value.trim(),
+
+    rating:
+      document.getElementById("adminRating").value.trim(),
+
+    poster:
+      document.getElementById("adminPoster").value.trim(),
+
+    watch:
+      document.getElementById("adminWatch").value.trim(),
+
+    description:
+      document.getElementById("adminDescription").value.trim()
+
+  };
+
+
+  if(!movie.title){
+
+    alert("نام فیلم را وارد کن.");
+    return;
+
+  }
+
+
+  const category =
+    document.getElementById("adminCategory").value;
+
+
+  data[category].unshift(movie);
+
+  saveData();
+
+  render();
+
+  renderAdminList();
+
+
+  [
+    "adminTitle",
+    "adminGenre",
+    "adminYear",
+    "adminRating",
+    "adminPoster",
+    "adminWatch",
+    "adminDescription"
+  ].forEach(id => {
+
+    document.getElementById(id).value = "";
+
+  });
+
+
+  alert("محتوا با موفقیت اضافه شد.");
+
+}
+
+
+/* =========================
+   ADMIN LIST
+========================= */
+
 function renderAdminList(){
 
-    document.getElementById(
-        "adminList"
-    ).innerHTML=
+  const list =
+    document.getElementById("adminList");
 
-        getMovies()
-        .map(movie=>`
+  const items =
+    allMovies();
 
-        <div class="admin-item">
+  list.innerHTML =
+    items.map(movie => `
 
-            <img
-                src="${movie.poster}"
-            >
+      <div class="admin-row">
 
-            <div>
+        <span>
+          ${movie.title}
+        </span>
 
-                <strong>
-                    ${movie.title}
-                </strong>
+        <button
+          class="delete-btn"
+          onclick="deleteMovie(${movie.id})">
+          حذف
+        </button>
 
-                <div style="
-                color:#999;
-                font-size:10px;
-                margin-top:5px;
-                ">
+      </div>
 
-                    ${movie.type==="series"
-                    ?"سریال"
-                    :"فیلم"}
-
-                </div>
-
-            </div>
-
-            <button
-                class="delete"
-                onclick="deleteMovie(${movie.id})"
-            >
-                حذف
-            </button>
-
-        </div>
-
-        `).join("");
+    `).join("");
 
 }
 
 
 function deleteMovie(id){
 
-    if(
-        !confirm(
-            "این محتوا حذف شود؟"
-        )
-    )return;
+  if(!confirm("این محتوا حذف شود؟")) return;
 
-    saveMovies(
-        getMovies()
-        .filter(x=>x.id!==id)
-    );
+  ["newMovies","newSeries","popular"]
+    .forEach(key => {
 
-    renderHome();
+      data[key] =
+        data[key].filter(
+          movie => movie.id !== id
+        );
 
-    renderAdminList();
+    });
+
+  saveData();
+
+  render();
+
+  renderAdminList();
 
 }
 
 
-/* SECRET ADMIN */
+/* =========================
+   INIT
+========================= */
 
-let logoClicks=0;
-let logoTimer=null;
+render();
 
-document.getElementById("logo")
-.addEventListener("click",()=>{
-
-    logoClicks++;
-
-    clearTimeout(logoTimer);
-
-    logoTimer=setTimeout(
-        ()=>{
-            logoClicks=0;
-        },
-        1500
-    );
-
-    if(logoClicks>=5){
-
-        logoClicks=0;
-
-        if(
-            localStorage.getItem(
-                "hamoflix_admin"
-            )==="true"
-        ){
-
-            openModal(
-                "adminModal"
-            );
-
-            renderAdminList();
-
-        }else{
-
-            openModal(
-                "loginModal"
-            );
-
-        }
-
-    }
-
-});
-
-
-/* OUTSIDE MODAL */
-
-document.querySelectorAll(".modal-bg")
-.forEach(bg=>{
-
-    bg.addEventListener(
-        "click",
-        function(e){
-
-            if(e.target===bg){
-
-                bg.classList.remove(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
-});
-
-
-/* START */
-
-renderHome();
+loadNotificationState();
 
 </script>
 
