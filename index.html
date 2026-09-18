@@ -2,555 +2,269 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0615">
 <title>HAMOFLIX</title>
-
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{
-  margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:radial-gradient(circle at 20% 0%,rgba(130,70,255,.18),transparent 35%),
-             radial-gradient(circle at 100% 20%,rgba(90,30,180,.13),transparent 35%),
-             #08050e;
+  background:#08050e;
   color:#fff;
   min-height:100vh;
-  overflow-x:hidden;
+  padding-bottom:90px;
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-thumb{background:rgba(170,110,255,.35);border-radius:20px}
-
-.glass{
-  background:rgba(255,255,255,.065);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:0 15px 40px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.06);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-}
-
 header{
   position:sticky;top:0;z-index:50;
-  padding:12px 16px;
-  background:rgba(8,5,14,.78);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  backdrop-filter:blur(16px);
-}
-.header-inner{
-  max-width:1250px;margin:auto;
+  background:rgba(8,5,14,.9);
+  backdrop-filter:blur(12px);
+  padding:12px 14px;
   display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 .logo{
-  font-size:20px;font-weight:900;letter-spacing:1px;
-  color:#fff;cursor:pointer;user-select:none;
-  text-shadow:0 0 20px rgba(165,90,255,.8);
+  font-size:18px;font-weight:900;
+  color:#fff;cursor:pointer;
+  text-shadow:0 0 15px rgba(165,90,255,.7);
 }
-.search-box{flex:1;position:relative}
+.search-box{flex:1}
 .search-box input{
-  width:100%;height:42px;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:14px;outline:none;padding:0 14px;
-  background:rgba(255,255,255,.07);color:#fff;
+  width:100%;height:40px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  background:rgba(255,255,255,.08);
+  color:#fff;padding:0 12px;outline:none;
 }
-.search-box input::placeholder{color:#aaa}
-.search-results{
-  position:absolute;top:48px;right:0;left:0;z-index:100;
-  border-radius:14px;overflow:hidden;display:none;
-  background:rgba(17,10,28,.97);
-  border:1px solid rgba(255,255,255,.1);
-  box-shadow:0 20px 50px #0008;
-}
-.search-result{
-  padding:11px 14px;display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.search-result:hover{background:rgba(160,80,255,.13)}
-.search-result img{width:34px;height:48px;object-fit:cover;border-radius:6px}
-
 .history-btn{
-  height:42px;padding:0 12px;border-radius:14px;
-  border:1px solid rgba(170,110,255,.45);
-  background:linear-gradient(145deg,rgba(120,50,200,.35),rgba(70,20,140,.45));
-  color:#e0c0ff;font-size:12px;
-  display:flex;align-items:center;gap:5px;white-space:nowrap;
+  height:40px;padding:0 12px;
+  border-radius:12px;border:1px solid rgba(170,110,255,.4);
+  background:rgba(120,50,200,.3);color:#e0c0ff;font-size:12px;
 }
-.history-dropdown{
-  position:absolute;top:52px;left:0;width:min(300px,88vw);
-  max-height:360px;overflow:auto;border-radius:14px;
-  background:rgba(17,10,28,.97);
-  border:1px solid rgba(170,110,255,.25);
-  box-shadow:0 20px 50px #000a;display:none;z-index:120;
-}
-.history-dropdown.show{display:block}
-.history-item{
-  padding:10px 12px;display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;
-}
-.history-item:hover{background:rgba(160,80,255,.13)}
-.history-item img{width:34px;height:48px;object-fit:cover;border-radius:6px}
-.history-empty{padding:18px;text-align:center;color:#999;font-size:13px}
-
-main{width:min(1250px,calc(100% - 20px));margin:auto;padding-bottom:110px}
-.page{display:none}
-.page.active{display:block}
-
-/* FEATURED */
+main{padding:14px;max-width:1200px;margin:0 auto}
 .hero{
-  margin-top:14px;padding:14px;border-radius:20px;overflow:hidden;
-  border:1.5px solid rgba(170,110,255,.35);
-  box-shadow:0 12px 30px rgba(100,40,180,.2),inset 0 1px rgba(255,255,255,.08);
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(170,110,255,.3);
+  border-radius:18px;padding:14px;margin-bottom:16px;
 }
-.welcome{margin-bottom:12px}
-.welcome h1{margin:0 0 6px;font-size:20px}
-.welcome p{margin:0;color:#bbb;font-size:12px}
-
-.featured-window{position:relative;overflow:hidden;border-radius:16px}
+.hero h1{font-size:18px;margin-bottom:6px}
+.hero p{font-size:12px;color:#aaa}
 .featured-track{
-  display:flex;direction:ltr;gap:10px;
-  overflow-x:auto;scrollbar-width:none;
-  padding:2px 2px 6px;overscroll-behavior-x:contain;
+  display:flex;gap:10px;overflow-x:auto;
+  padding:10px 0 6px;scrollbar-width:none;
 }
 .featured-track::-webkit-scrollbar{display:none}
 .featured-card{
-  direction:rtl;flex:0 0 130px;min-width:130px;
-  position:relative;border-radius:14px;overflow:hidden;
-  background:#171021;border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 8px 20px #0005;cursor:pointer;
+  flex:0 0 120px;border-radius:12px;overflow:hidden;
+  background:#1a1225;cursor:pointer;
+  border:1px solid rgba(255,255,255,.08);
 }
-.featured-card img{
-  display:block;width:100%;aspect-ratio:2/3;
-  object-fit:cover;background:#171021;
-}
+.featured-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
 .featured-info{
-  position:absolute;bottom:0;right:0;left:0;
-  padding:24px 8px 8px;
-  background:linear-gradient(transparent,rgba(0,0,0,.9));
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 6px 6px;
+  background:linear-gradient(transparent,rgba(0,0,0,.85));
+  font-size:11px;
 }
-.featured-info strong{
-  font-size:11px;display:block;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.featured-info span{font-size:10px;color:#ccc}
-.featured-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:5;
-  width:34px;height:34px;border:0;border-radius:50%;
-  background:rgba(15,8,25,.75);color:#fff;
-  border:1px solid rgba(255,255,255,.13);
-}
-.featured-arrow.right{right:6px}
-.featured-arrow.left{left:6px}
-
-/* GENRES */
-.genres{
-  display:flex;gap:7px;overflow-x:auto;
-  padding:14px 1px 4px;scrollbar-width:none;
-}
-.genres::-webkit-scrollbar{display:none}
-.genre{
-  flex:0 0 auto;border:1px solid rgba(255,255,255,.09);
-  background:rgba(255,255,255,.055);color:#ddd;
-  padding:7px 13px;border-radius:30px;font-size:12px;
-}
-.genre.active,.genre:hover{
-  background:linear-gradient(135deg,#7c35d7,#4d168c);color:#fff;
-}
-
-/* SECTIONS */
 .section{margin-top:22px}
 .section-head{
   display:flex;justify-content:space-between;
   align-items:center;margin-bottom:10px;
 }
-.section-head h2{margin:0;font-size:16px}
-.view-all{border:0;background:none;color:#b983ff;font-size:12px}
-
+.section-head h2{font-size:15px}
+.view-all{background:none;border:none;color:#b983ff;font-size:12px}
 .movie-row{
   display:flex;gap:9px;overflow-x:auto;
-  padding:2px 2px 8px;scrollbar-width:none;
+  padding-bottom:6px;scrollbar-width:none;
 }
 .movie-row::-webkit-scrollbar{display:none}
-
-.movie-card,.see-all-card{
-  flex:0 0 110px;min-width:110px;
-  border-radius:12px;overflow:hidden;position:relative;
-  cursor:pointer;background:rgba(255,255,255,.055);
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 6px 16px #0005;transition:.2s;
+.movie-card{
+  flex:0 0 105px;border-radius:11px;overflow:hidden;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);cursor:pointer;
 }
-.movie-card:hover{transform:translateY(-2px)}
-.poster-wrap{
-  position:relative;aspect-ratio:2/3;
-  overflow:hidden;background:#171021;
-}
-.poster-wrap img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
+.movie-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
 .movie-info{padding:6px}
-.movie-info strong{
-  display:block;font-size:11px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.movie-meta{
-  margin-top:3px;display:flex;justify-content:space-between;
-  color:#999;font-size:9px;
-}
+.movie-info strong{font-size:11px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.movie-meta{font-size:9px;color:#999;margin-top:3px;display:flex;justify-content:space-between}
 .rating{color:#ffc94d}
-.new-badge{
-  position:absolute;top:5px;right:5px;
-  padding:2px 5px;border-radius:6px;
-  background:#8a35df;font-size:8px;z-index:2;
-}
-.fav-badge{
-  position:absolute;top:5px;left:5px;
-  width:22px;height:22px;display:grid;place-items:center;
-  border-radius:50%;background:#0008;z-index:3;font-size:11px;
-}
-.see-all-card{
-  display:grid;place-items:center;
-  background:radial-gradient(circle at center,rgba(145,70,255,.25),transparent 55%),
-             rgba(255,255,255,.04);
-  min-height:70px;
-}
-.see-all-inner{text-align:center}
-.see-all-inner div{font-size:22px;margin-bottom:4px}
-.see-all-inner span{font-size:11px;color:#ccc}
-
-.full-page-title{padding:22px 0 12px}
-.full-page-title h1{margin:0;font-size:22px}
-.full-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
-  gap:10px;
-}
-
-/* SETTINGS */
-.settings-list{display:grid;gap:10px;margin-top:18px}
-.setting{
-  padding:14px;border-radius:14px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-}
-.setting-info strong{display:block;font-size:13px}
-.setting-info small{display:block;margin-top:4px;color:#999;font-size:11px}
-.switch{
-  width:44px;height:24px;border-radius:30px;
-  background:#333;padding:3px;transition:.2s;
-}
-.switch i{
-  display:block;width:18px;height:18px;
-  background:#fff;border-radius:50%;transition:.2s;
-}
-.switch.on{background:#7c35d7}
-.switch.on i{transform:translateX(-20px)}
-
-/* BOTTOM NAV */
 .bottom-nav{
-  position:fixed;z-index:100;
-  bottom:calc(8px + env(safe-area-inset-bottom));
-  left:50%;transform:translateX(-50%);
-  width:min(480px,calc(100% - 18px));
-  padding:7px;border-radius:20px;
-  background:rgba(22,12,35,.75);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 14px 35px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.09);
-  backdrop-filter:blur(18px);
+  position:fixed;bottom:8px;left:50%;transform:translateX(-50%);
+  width:calc(100% - 20px);max-width:420px;
+  background:rgba(22,12,35,.85);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;padding:6px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
 }
-.nav-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 .nav-item{
-  border:0;color:#aaa;background:transparent;
-  border-radius:15px;padding:7px 3px;min-height:48px;
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:3px;
+  background:none;border:none;color:#aaa;
+  padding:8px 4px;border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;
+}
+.nav-item.active{
+  background:linear-gradient(135deg,rgba(135,57,222,.5),rgba(75,24,130,.4));
+  color:#fff;
 }
 .nav-item span:first-child{font-size:18px}
-.nav-item span:last-child{font-size:10px}
-.nav-item.active{
-  color:#fff;
-  background:linear-gradient(135deg,rgba(135,57,222,.48),rgba(75,24,130,.38));
-  box-shadow:inset 0 1px rgba(255,255,255,.12),0 4px 12px rgba(100,40,180,.18);
+.page{display:none}
+.page.active{display:block}
+.full-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(105px,1fr));
+  gap:10px;margin-top:12px;
 }
-
-/* MODAL FULL */
 .modal{
   position:fixed;inset:0;z-index:200;
-  display:none;align-items:stretch;justify-content:center;
-  background:#000;
+  background:#000;display:none;overflow:auto;
 }
-.modal.show{display:flex}
+.modal.show{display:block}
 .modal-bg{
-  position:absolute;inset:0;
+  position:fixed;inset:0;
   background-size:cover;background-position:center;
-  filter:blur(24px) brightness(.4);
-  transform:scale(1.1);
+  filter:blur(20px) brightness(.35);transform:scale(1.1);
 }
-.modal-box{
+.modal-content{
   position:relative;z-index:2;
-  width:100%;max-width:860px;height:100%;
-  overflow:auto;
-  background:rgba(12,7,20,.6);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
-.modal-top{
-  position:relative;display:flex;justify-content:center;
-  padding:28px 16px 8px;
+  padding:20px 16px 40px;max-width:600px;margin:0 auto;
 }
 .modal-poster{
-  width:140px;aspect-ratio:2/3;object-fit:cover;
-  border-radius:16px;display:block;
-  box-shadow:0 18px 45px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.12);
+  width:130px;aspect-ratio:2/3;object-fit:cover;
+  border-radius:14px;display:block;margin:0 auto 14px;
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
 }
 .close{
-  position:absolute;top:14px;left:14px;z-index:5;
-  width:36px;height:36px;border:0;border-radius:50%;
-  background:rgba(0,0,0,.55);color:#fff;font-size:20px;
-  border:1px solid rgba(255,255,255,.15);
+  position:fixed;top:14px;left:14px;z-index:10;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);
+  color:#fff;font-size:20px;
 }
-.modal-content{padding:8px 18px 36px}
-.modal-content h2{margin:0 0 6px;font-size:22px;text-align:center}
-.modal-meta{color:#bbb;font-size:12px;margin-bottom:14px;text-align:center}
-.description{
-  color:#ddd;line-height:1.85;font-size:13px;text-align:justify;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;padding:12px 14px;
-}
-.actions{
-  display:flex;gap:9px;margin:16px 0;
-  flex-wrap:wrap;justify-content:center;
-}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
 .btn{
-  border:0;padding:11px 16px;border-radius:13px;
-  color:#fff;background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.1);font-size:13px;
-}
-.btn.primary{
-  background:linear-gradient(145deg,#9b4dff,#5a1a9e);
-  border:1px solid rgba(180,120,255,.5);
-  box-shadow:0 5px 14px rgba(100,40,180,.4),inset 0 1px rgba(255,255,255,.2);
+  padding:10px 16px;border-radius:12px;border:none;color:#fff;font-size:13px;
+  background:rgba(255,255,255,.1);
 }
 .btn.play,.btn.download{
   background:linear-gradient(145deg,#a855f7,#6b21a8);
-  border:1.5px solid rgba(200,140,255,.6);
-  box-shadow:0 6px 16px rgba(120,50,200,.45),0 2px 0 #4a1580,
-             inset 0 1px rgba(255,255,255,.22);
+  box-shadow:0 4px 12px rgba(120,50,200,.4);
 }
-
-.episodes-box{
-  margin:14px 0 4px;padding:12px;border-radius:14px;
-  background:rgba(255,255,255,.04);
+.episodes-box,.comments-box{
+  background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:12px;margin:14px 0;
 }
-.episodes-box h3{margin:0 0 10px;font-size:14px}
-.episodes-grid{display:flex;flex-wrap:wrap;gap:7px}
+.episodes-grid{display:flex;flex-wrap:wrap;gap:6px}
 .episode-btn{
-  min-width:48px;height:36px;border-radius:10px;
-  border:1px solid rgba(170,110,255,.35);
-  background:rgba(120,50,200,.18);color:#e8d0ff;font-size:12px;
+  padding:7px 12px;border-radius:9px;
+  border:1px solid rgba(170,110,255,.3);
+  background:rgba(120,50,200,.2);color:#e0c0ff;font-size:12px;
 }
-.episode-btn.selected,.episode-btn:hover{
-  background:linear-gradient(145deg,#9b4dff,#5a1a9e);
-  border-color:rgba(200,140,255,.55);color:#fff;
-}
-
-.comments-box{
-  margin-top:18px;padding:14px;border-radius:16px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-}
-.comments-box h3{margin:0 0 10px;font-size:14px}
-.comment-form{display:flex;gap:7px;margin-bottom:12px}
+.episode-btn.selected{background:linear-gradient(145deg,#9b4dff,#5a1a9e);color:#fff}
+.comment-form{display:flex;gap:6px;margin-bottom:10px}
 .comment-form input{
-  flex:1;height:40px;border-radius:11px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.06);color:#fff;padding:0 12px;outline:none;
+  flex:1;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);color:#fff;padding:0 10px;outline:none;
 }
 .comment-form button{
-  height:40px;padding:0 14px;border-radius:11px;border:0;
+  padding:0 14px;border-radius:10px;border:none;
   background:linear-gradient(145deg,#9b4dff,#5a1a9e);color:#fff;
 }
-.comment-list{display:grid;gap:8px;max-height:200px;overflow:auto}
-.comment-item{
-  padding:9px 11px;border-radius:11px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.06);font-size:12px;
+.toast{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  background:rgba(30,15,45,.95);padding:10px 16px;border-radius:12px;
+  font-size:12px;opacity:0;transition:.25s;z-index:300;
+  border:1px solid rgba(255,255,255,.1);
 }
-.comment-item .meta{font-size:10px;color:#aaa;margin-bottom:3px}
-
-.similar{margin-top:18px}
-.similar h3{font-size:15px}
-
-/* ADMIN */
-.admin-box{padding:16px;border-radius:18px;margin-top:14px}
-.admin-box h3{margin-top:0}
+.toast.show{opacity:1}
+.admin-box{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:14px;margin-top:16px;
+}
 .admin-input{
   width:100%;margin-bottom:8px;padding:10px;
-  border-radius:11px;border:1px solid rgba(255,255,255,.1);
-  background:#ffffff08;color:#fff;outline:none;
-}
-.admin-movies{display:grid;gap:7px;max-height:340px;overflow:auto;margin-top:10px}
-.admin-movie{
-  display:flex;align-items:center;gap:9px;
-  padding:7px;border-radius:11px;background:#ffffff05;
-}
-.admin-movie img{width:36px;height:50px;object-fit:cover;border-radius:6px}
-.admin-movie label{flex:1;font-size:12px}
-.admin-movie .edit-btn{
-  padding:5px 9px;border-radius:8px;
-  border:1px solid rgba(170,110,255,.4);
-  background:rgba(120,50,200,.25);color:#e0c0ff;font-size:11px;
-}
-.count{color:#bb8cff;font-size:12px}
-
-.toast{
-  position:fixed;z-index:500;bottom:88px;left:50%;
-  transform:translateX(-50%) translateY(12px);
-  background:rgba(25,15,38,.95);
-  border:1px solid rgba(255,255,255,.12);
-  padding:9px 14px;border-radius:12px;
-  opacity:0;pointer-events:none;transition:.25s;font-size:12px;
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-@media(max-width:700px){
-  .featured-card{flex:0 0 120px;min-width:120px}
-  .movie-card,.see-all-card{flex:0 0 105px;min-width:105px}
-  .full-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-  .modal-poster{width:120px}
+  border-radius:10px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);color:#fff;outline:none;
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-inner">
-    <div class="logo" id="logo">HAMOFLIX</div>
-    <div class="search-box">
-      <input id="searchInput" type="search" placeholder="جستجوی فیلم یا سریال..." autocomplete="off">
-      <div id="searchResults" class="search-results"></div>
-    </div>
-    <div style="position:relative">
-      <button class="history-btn" onclick="toggleHistory(event)">🕘 تاریخچه</button>
-      <div id="historyDropdown" class="history-dropdown"></div>
-    </div>
+  <div class="logo" id="logo">HAMOFLIX</div>
+  <div class="search-box">
+    <input id="searchInput" type="search" placeholder="جستجوی فیلم یا سریال...">
   </div>
+  <button class="history-btn" onclick="toggleHistory()">🕘</button>
 </header>
 
 <main>
-<section id="homePage" class="page active">
-  <section class="hero glass">
-    <div class="welcome">
+  <section id="homePage" class="page active">
+    <div class="hero">
       <h1>به HAMOFLIX خوش اومدی 👋</h1>
-      <p>اینجا قراره دنیای فیلم و سریال مورد علاقه‌ات رو راحت‌تر پیدا کنی.</p>
+      <p>دنیای فیلم و سریال مورد علاقه‌ات</p>
+      <div class="featured-track" id="featuredTrack"></div>
     </div>
-    <div class="featured-window">
-      <button class="featured-arrow right" onclick="featuredMove(-1)">›</button>
-      <div id="featuredTrack" class="featured-track"></div>
-      <button class="featured-arrow left" onclick="featuredMove(1)">‹</button>
-    </div>
+    <div id="homeSections"></div>
   </section>
-  <div id="genres" class="genres"></div>
-  <div id="homeSections"></div>
-</section>
 
-<section id="moviesPage" class="page">
-  <div class="full-page-title"><h1 id="moviesPageTitle">🎬 فیلم‌ها</h1></div>
-  <div id="moviesGrid" class="full-grid"></div>
-</section>
+  <section id="moviesPage" class="page">
+    <h2 style="margin:10px 0">🎬 فیلم‌ها</h2>
+    <div id="moviesGrid" class="full-grid"></div>
+  </section>
 
-<section id="seriesPage" class="page">
-  <div class="full-page-title"><h1>📺 سریال‌ها</h1></div>
-  <div id="seriesGrid" class="full-grid"></div>
-</section>
+  <section id="seriesPage" class="page">
+    <h2 style="margin:10px 0">📺 سریال‌ها</h2>
+    <div id="seriesGrid" class="full-grid"></div>
+  </section>
 
-<section id="settingsPage" class="page">
-  <div class="full-page-title"><h1>⚙️ تنظیمات</h1></div>
-  <div class="settings-list">
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>اعلان فیلم‌های جدید</strong>
-        <small>وقتی محتوای جدید اضافه شد مطلع شو</small>
-      </div>
-      <div class="switch" data-setting="notify"><i></i></div>
-    </div>
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>پخش خودکار بخش ویژه</strong>
-        <small>حرکت خودکار فیلم‌های بالای صفحه</small>
-      </div>
-      <div class="switch" data-setting="auto"><i></i></div>
-    </div>
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>نمایش علاقه‌مندی‌ها</strong>
-        <small>فیلم‌هایی که ذخیره کردی</small>
-      </div>
-      <button class="btn primary" onclick="showFavorites()">مشاهده</button>
-    </div>
-    <div class="setting glass">
-      <div class="setting-info">
-        <strong>گزارش مشکل</strong>
-        <small>مشکل مربوط به یک فیلم یا سایت را گزارش کن</small>
-      </div>
-      <button class="btn" onclick="reportProblem()">گزارش</button>
-    </div>
-  </div>
-</section>
+  <section id="settingsPage" class="page">
+    <h2 style="margin:10px 0">⚙️ تنظیمات</h2>
+    <div id="settingsContent"></div>
+  </section>
 </main>
 
 <nav class="bottom-nav">
-  <div class="nav-inner">
-    <button class="nav-item active" data-page="homePage" onclick="openPage('homePage',this)">
-      <span>⌂</span><span>خانه</span>
-    </button>
-    <button class="nav-item" data-page="moviesPage" onclick="openPage('moviesPage',this)">
-      <span>🎬</span><span>فیلم‌ها</span>
-    </button>
-    <button class="nav-item" data-page="seriesPage" onclick="openPage('seriesPage',this)">
-      <span>📺</span><span>سریال‌ها</span>
-    </button>
-    <button class="nav-item" data-page="settingsPage" onclick="openPage('settingsPage',this)">
-      <span>⚙️</span><span>تنظیمات</span>
-    </button>
-  </div>
+  <button class="nav-item active" data-page="homePage" onclick="openPage('homePage',this)">
+    <span>⌂</span><span>خانه</span>
+  </button>
+  <button class="nav-item" data-page="moviesPage" onclick="openPage('moviesPage',this)">
+    <span>🎬</span><span>فیلم‌ها</span>
+  </button>
+  <button class="nav-item" data-page="seriesPage" onclick="openPage('seriesPage',this)">
+    <span>📺</span><span>سریال‌ها</span>
+  </button>
+  <button class="nav-item" data-page="settingsPage" onclick="openPage('settingsPage',this)">
+    <span>⚙️</span><span>تنظیمات</span>
+  </button>
 </nav>
 
 <div id="modal" class="modal">
   <div class="modal-bg" id="modalBg"></div>
-  <div class="modal-box">
-    <div class="modal-top">
-      <button class="close" onclick="hideModal()">×</button>
-      <img id="modalPoster" class="modal-poster" src="" alt="">
+  <button class="close" onclick="hideModal()">×</button>
+  <div class="modal-content">
+    <img id="modalPoster" class="modal-poster" src="">
+    <h2 id="modalTitle" style="text-align:center;margin-bottom:6px"></h2>
+    <div id="modalMeta" style="text-align:center;color:#aaa;font-size:12px;margin-bottom:12px"></div>
+    <div id="modalDescription" style="font-size:13px;line-height:1.8;color:#ddd;background:rgba(255,255,255,.05);padding:12px;border-radius:12px"></div>
+    
+    <div id="episodesBox" class="episodes-box" style="display:none">
+      <h3 style="font-size:14px;margin-bottom:8px">انتخاب قسمت</h3>
+      <div id="episodesGrid" class="episodes-grid"></div>
     </div>
-    <div class="modal-content">
-      <h2 id="modalTitle"></h2>
-      <div id="modalMeta" class="modal-meta"></div>
-      <div id="modalDescription" class="description"></div>
-      <div id="episodesBox" class="episodes-box" style="display:none">
-        <h3>انتخاب قسمت</h3>
-        <div id="episodesGrid" class="episodes-grid"></div>
+
+    <div class="actions">
+      <button class="btn play" onclick="playMovie()">▶ پخش</button>
+      <button class="btn download" onclick="downloadMovie()">⬇ دانلود</button>
+      <button class="btn" id="favoriteBtn" onclick="toggleFavorite()">♡ علاقه‌مندی</button>
+    </div>
+
+    <div class="comments-box">
+      <h3 style="font-size:14px;margin-bottom:8px">💬 نظرات</h3>
+      <div class="comment-form">
+        <input id="commentInput" placeholder="نظرت رو بنویس...">
+        <button onclick="addComment()">ارسال</button>
       </div>
-      <div class="actions">
-        <button class="btn play" onclick="playMovie()">▶ پخش</button>
-        <button class="btn download" onclick="downloadMovie()">⬇ دانلود</button>
-        <button id="favoriteBtn" class="btn" onclick="toggleFavorite()">♡ علاقه‌مندی</button>
-        <button class="btn" onclick="reportProblem()">⚠ گزارش</button>
-      </div>
-      <div class="comments-box">
-        <h3>💬 نظرات</h3>
-        <div class="comment-form">
-          <input id="commentInput" type="text" placeholder="نظرت رو بنویس...">
-          <button onclick="addComment()">ارسال</button>
-        </div>
-        <div id="commentList" class="comment-list"></div>
-      </div>
-      <div class="similar">
-        <h3>فیلم‌های مشابه</h3>
-        <div id="similarRow" class="movie-row"></div>
-      </div>
+      <div id="commentList"></div>
     </div>
   </div>
 </div>
@@ -558,687 +272,384 @@ main{width:min(1250px,calc(100% - 20px));margin:auto;padding-bottom:110px}
 <div id="toast" class="toast"></div>
 
 <script>
-const STORAGE_KEY = "hamoflix_movies_v6";
-const FEATURED_KEY = "hamoflix_featured_v6";
-const FAV_KEY = "hamoflix_favorites_v6";
-const SETTINGS_KEY = "hamoflix_settings_v6";
-const HISTORY_KEY = "hamoflix_history_v6";
-const COMMENTS_KEY = "hamoflix_comments_v6";
 const ADMIN_PASSWORD = "hamoxu";
+const STORAGE_KEY = "hamo_v7";
+const FAV_KEY = "hamo_fav_v7";
+const HISTORY_KEY = "hamo_hist_v7";
+const COMMENTS_KEY = "hamo_com_v7";
+const FEATURED_KEY = "hamo_feat_v7";
 
-const fallbackPoster = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600">
-<rect width="100%" height="100%" fill="#170d22"/>
-<text x="50%" y="48%" text-anchor="middle" fill="#a96cff" font-size="36" font-family="Arial">HAMOFLIX</text>
-<text x="50%" y="56%" text-anchor="middle" fill="#777" font-size="18" font-family="Arial">NO POSTER</text>
-</svg>`);
+const fallback = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect fill="#1a1225" width="100%" height="100%"/><text x="50%" y="50%" text-anchor="middle" fill="#a96cff" font-size="28">HAMOFLIX</text></svg>');
 
 const defaultMovies = [
-  {id:"1",title:"Wednesday",type:"series",genre:"فانتزی",year:"2022",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",description:"داستان رازآلود ونزدی آدامز در مدرسه جدید.",isNew:true,episodes:8,videoLink:""},
-  {id:"2",title:"Silo",type:"series",genre:"علمی تخیلی",year:"2023",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/1NxaSnba1QbbaZ6UVGqL9Y16k.jpg",description:"زندگی در سیلوی زیرزمینی و راز دنیای بیرون.",isNew:true,episodes:10,videoLink:""},
-  {id:"3",title:"All of Us Are Dead",type:"series",genre:"ترسناک",year:"2022",rating:"7.5",poster:"https://image.tmdb.org/t/p/w500/pTEFqAjLd5YTsMD6NSUxV6Dq7A.jpg",description:"شیوع ویروس خطرناک در مدرسه.",isNew:false,episodes:12,videoLink:""},
-  {id:"4",title:"Interstellar",type:"movie",genre:"علمی تخیلی",year:"2014",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",description:"سفر میان‌ستاره‌ای برای نجات بشریت.",isNew:false,videoLink:""},
-  {id:"5",title:"Inception",type:"movie",genre:"علمی تخیلی",year:"2010",rating:"8.8",poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",description:"دزدی از ذهن انسان‌ها در رؤیا.",isNew:false,videoLink:""},
-  {id:"6",title:"The Last of Us",type:"series",genre:"درام",year:"2023",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",description:"سفر دو نفر در آمریکای ویران‌شده.",isNew:true,episodes:9,videoLink:""},
-  {id:"7",title:"Stranger Things",type:"series",genre:"علمی تخیلی",year:"2016",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",description:"ماجراهای ماورایی نوجوانان.",isNew:false,episodes:8,videoLink:""},
-  {id:"8",title:"Harry Potter",type:"movie",genre:"فانتزی",year:"2001",rating:"7.6",poster:"https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",description:"جادوگری جوان در مدرسه هاگوارتز.",isNew:false,videoLink:""},
-  {id:"9",title:"Dune",type:"movie",genre:"علمی تخیلی",year:"2021",rating:"8.0",poster:"https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",description:"خاندان آتریدیس و سیاره شن.",isNew:true,videoLink:""},
-  {id:"10",title:"Avatar",type:"movie",genre:"فانتزی",year:"2009",rating:"7.9",poster:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",description:"سرباز در دنیای بیگانه پاندورا.",isNew:false,videoLink:""},
-  {id:"11",title:"Breaking Bad",type:"series",genre:"جنایی",year:"2008",rating:"9.5",poster:"https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",description:"معلم شیمی وارد دنیای جرم می‌شود.",isNew:false,episodes:7,videoLink:""},
-  {id:"12",title:"Dark",type:"series",genre:"معمایی",year:"2017",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",description:"راز زمان و ناپدید شدن یک کودک.",isNew:false,episodes:10,videoLink:""}
+  {id:"1",title:"Wednesday",type:"series",genre:"فانتزی",year:"2022",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",description:"داستان ونزدی آدامز",isNew:true,episodes:8},
+  {id:"2",title:"Silo",type:"series",genre:"علمی تخیلی",year:"2023",rating:"8.1",poster:"https://image.tmdb.org/t/p/w500/1NxaSnba1QbbaZ6UVGqL9Y16k.jpg",description:"زندگی در سیلو",isNew:true,episodes:10},
+  {id:"3",title:"The Last of Us",type:"series",genre:"درام",year:"2023",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",description:"سفر در دنیای ویران",isNew:true,episodes:9},
+  {id:"4",title:"Interstellar",type:"movie",genre:"علمی تخیلی",year:"2014",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",description:"سفر میان‌ستاره‌ای",isNew:false},
+  {id:"5",title:"Inception",type:"movie",genre:"علمی تخیلی",year:"2010",rating:"8.8",poster:"https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",description:"دزدی از ذهن",isNew:false},
+  {id:"6",title:"Dune",type:"movie",genre:"علمی تخیلی",year:"2021",rating:"8.0",poster:"https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",description:"سیاره شن",isNew:true},
+  {id:"7",title:"Stranger Things",type:"series",genre:"علمی تخیلی",year:"2016",rating:"8.6",poster:"https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",description:"ماجراهای ماورایی",isNew:false,episodes:8},
+  {id:"8",title:"Breaking Bad",type:"series",genre:"جنایی",year:"2008",rating:"9.5",poster:"https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",description:"معلم شیمی",isNew:false,episodes:7},
+  {id:"9",title:"Avatar",type:"movie",genre:"فانتزی",year:"2009",rating:"7.9",poster:"https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",description:"پاندورا",isNew:false},
+  {id:"10",title:"Dark",type:"series",genre:"معمایی",year:"2017",rating:"8.7",poster:"https://image.tmdb.org/t/p/w500/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",description:"راز زمان",isNew:false,episodes:10}
 ];
 
-let movies = loadMovies();
-let favorites = loadJSON(FAV_KEY, []);
-let settings = loadJSON(SETTINGS_KEY, {notify:false, auto:true});
-let historyList = loadJSON(HISTORY_KEY, []);
-let comments = loadJSON(COMMENTS_KEY, {});
+let movies = [];
+let favorites = [];
+let historyList = [];
+let comments = {};
+let featuredIds = ["4","5","1","3","6"];
 let currentMovie = null;
 let selectedEpisode = 1;
 let modalOpen = false;
-let currentPage = "homePage";
-let editingMovieId = null;
-let featuredIds = loadJSON(FEATURED_KEY, ["4","5","1","6","7"]);
 
-function loadMovies(){
+function loadData(){
   try{
     const saved = localStorage.getItem(STORAGE_KEY);
     if(saved){
-      const parsed = JSON.parse(saved);
-      if(Array.isArray(parsed) && parsed.length > 0) return parsed;
+      const p = JSON.parse(saved);
+      if(Array.isArray(p) && p.length) movies = p;
+      else movies = JSON.parse(JSON.stringify(defaultMovies));
+    } else {
+      movies = JSON.parse(JSON.stringify(defaultMovies));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(movies));
     }
-  }catch(e){}
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultMovies));
-  return JSON.parse(JSON.stringify(defaultMovies));
-}
-
-function loadJSON(key, fallback){
-  try{
-    const x = JSON.parse(localStorage.getItem(key) || "null");
-    return x ?? fallback;
-  }catch(e){ return fallback; }
-}
-
-function saveMovies(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(movies));
-}
-
-function toast(text){
-  const el = document.getElementById("toast");
-  el.textContent = text;
-  el.classList.add("show");
-  clearTimeout(window.toastTimer);
-  window.toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
-}
-
-function escapeHTML(text){
-  return String(text ?? "")
-    .replaceAll("&","&amp;").replaceAll("<","&lt;")
-    .replaceAll(">","&gt;").replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-function posterError(img){
-  img.onerror = null;
-  img.src = fallbackPoster;
-}
-
-/* HISTORY */
-function addToHistory(movie){
-  if(!movie) return;
-  historyList = historyList.filter(id => String(id) !== String(movie.id));
-  historyList.unshift(String(movie.id));
-  if(historyList.length > 20) historyList = historyList.slice(0,20);
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(historyList));
-}
-
-function toggleHistory(e){
-  e.stopPropagation();
-  const dropdown = document.getElementById("historyDropdown");
-  const isOpen = dropdown.classList.contains("show");
-  dropdown.classList.remove("show");
-  document.getElementById("searchResults").style.display = "none";
-  if(isOpen) return;
-  renderHistoryDropdown();
-  dropdown.classList.add("show");
-}
-
-function renderHistoryDropdown(){
-  const dropdown = document.getElementById("historyDropdown");
-  if(!historyList.length){
-    dropdown.innerHTML = `<div class="history-empty">هنوز چیزی ندیده‌ای</div>`;
-    return;
+  }catch(e){
+    movies = JSON.parse(JSON.stringify(defaultMovies));
   }
-  const items = historyList.map(id => movies.find(m => String(m.id) === String(id))).filter(Boolean);
-  dropdown.innerHTML = items.map(m => `
-    <div class="history-item" onclick="openMovie('${escapeHTML(m.id)}');closeHistory()">
-      <img src="${escapeHTML(m.poster||fallbackPoster)}" onerror="posterError(this)">
-      <div>
-        <strong style="font-size:12px">${escapeHTML(m.title)}</strong>
-        <div style="font-size:10px;color:#aaa;margin-top:2px">${m.type==="movie"?"فیلم":"سریال"} · ${escapeHTML(m.year||"")}</div>
-      </div>
-    </div>
-  `).join("");
+
+  try{ favorites = JSON.parse(localStorage.getItem(FAV_KEY) || "[]"); }catch(e){ favorites = []; }
+  try{ historyList = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]"); }catch(e){ historyList = []; }
+  try{ comments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || "{}"); }catch(e){ comments = {}; }
+  try{ 
+    const f = JSON.parse(localStorage.getItem(FEATURED_KEY) || "null");
+    if(Array.isArray(f) && f.length) featuredIds = f;
+  }catch(e){}
 }
 
-function closeHistory(){
-  document.getElementById("historyDropdown").classList.remove("show");
+function saveMovies(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(movies)); }
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2000);
 }
 
-document.addEventListener("click", e => {
-  if(!e.target.closest(".history-btn") && !e.target.closest(".history-dropdown")) closeHistory();
-});
+function esc(t){ return String(t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 
-/* NAV */
-function openPage(id, button){
+function posterError(img){ img.onerror=null; img.src=fallback; }
+
+function openPage(id, btn){
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
-  if(button) button.classList.add("active");
-  currentPage = id;
+  if(btn) btn.classList.add("active");
 
-  if(id === "moviesPage"){
-    if(!window._customMoviesTitle){
-      document.getElementById("moviesPageTitle").textContent = "🎬 فیلم‌ها";
-      renderFullMovies();
-    }
-  }
-  if(id === "seriesPage") renderFullSeries();
+  if(id === "moviesPage") renderFull("movie", "moviesGrid");
+  if(id === "seriesPage") renderFull("series", "seriesGrid");
   if(id === "settingsPage") renderSettings();
-
-  window._customMoviesTitle = false;
-  if(id !== "homePage") history.pushState({page: id}, "");
-  window.scrollTo({top:0, behavior:"smooth"});
+  window.scrollTo(0,0);
 }
 
-/* FEATURED */
-let featuredBaseCount = 0;
-
-function getFeatured(){
-  let selected = featuredIds.map(id => movies.find(m => String(m.id) === String(id))).filter(Boolean);
-  const used = new Set(selected.map(x => String(x.id)));
-  const extras = [...movies].sort((a,b) => Number(b.rating||0) - Number(a.rating||0))
-    .filter(x => !used.has(String(x.id)));
-  while(selected.length < 5 && extras.length) selected.push(extras.shift());
-  return selected.slice(0,5);
-}
-
-function featuredCard(movie){
-  return `
-    <article class="featured-card" onclick="openMovie('${escapeHTML(movie.id)}')">
-      <img src="\( {escapeHTML(movie.poster||fallbackPoster)}" onerror="posterError(this)" loading="lazy" alt=" \){escapeHTML(movie.title)}">
-      <div class="featured-info">
-        <strong>${escapeHTML(movie.title)}</strong>
-        <span>⭐ ${escapeHTML(movie.rating||"—")}</span>
-      </div>
-    </article>`;
+function card(m){
+  const fav = favorites.includes(String(m.id));
+  return `<div class="movie-card" onclick="openMovie('${esc(m.id)}')">
+    <img src="${esc(m.poster||fallback)}" onerror="posterError(this)" loading="lazy">
+    <div class="movie-info">
+      <strong>${esc(m.title)}</strong>
+      <div class="movie-meta"><span>${esc(m.year||"")}</span><span class="rating">⭐ ${esc(m.rating||"—")}</span></div>
+    </div>
+  </div>`;
 }
 
 function renderFeatured(){
   const track = document.getElementById("featuredTrack");
-  const base = getFeatured();
-  if(!base.length){ track.innerHTML = ""; return; }
-  featuredBaseCount = base.length;
-  const items = [...base, ...base, ...base];
-  track.innerHTML = items.map(featuredCard).join("");
-  requestAnimationFrame(() => {
-    const cards = track.children;
-    if(cards.length >= 10){
-      const w = cards[0].getBoundingClientRect().width + 10;
-      track.scrollLeft = w * featuredBaseCount;
-    }
-  });
-  track.onscroll = handleFeaturedScroll;
-}
-
-let correcting = false;
-function handleFeaturedScroll(){
-  if(correcting) return;
-  const track = document.getElementById("featuredTrack");
-  const cards = track.children;
-  if(!cards.length) return;
-  const w = cards[0].getBoundingClientRect().width + 10;
-  const one = w * featuredBaseCount;
-  if(track.scrollLeft < one * 0.3){
-    correcting = true;
-    track.scrollLeft += one;
-    requestAnimationFrame(() => correcting = false);
-  } else if(track.scrollLeft > one * 1.7){
-    correcting = true;
-    track.scrollLeft -= one;
-    requestAnimationFrame(() => correcting = false);
+  let list = featuredIds.map(id => movies.find(m => String(m.id)===String(id))).filter(Boolean);
+  if(list.length < 5){
+    const extra = movies.filter(m => !list.find(x => x.id===m.id)).slice(0,5-list.length);
+    list = list.concat(extra);
   }
+  track.innerHTML = list.map(m => `
+    <div class="featured-card" style="position:relative" onclick="openMovie('${esc(m.id)}')">
+      <img src="${esc(m.poster||fallback)}" onerror="posterError(this)">
+      <div class="featured-info"><strong>${esc(m.title)}</strong><br>⭐ ${esc(m.rating||"—")}</div>
+    </div>
+  `).join("");
 }
-
-function featuredMove(dir){
-  const track = document.getElementById("featuredTrack");
-  const card = track.querySelector(".featured-card");
-  if(!card) return;
-  track.scrollBy({left: dir * (card.getBoundingClientRect().width + 10), behavior:"smooth"});
-}
-
-/* HOME */
-const sectionData = [
-  {title:"🔥 فیلم‌های جدید", filter: m => m.type==="movie" && m.isNew},
-  {title:"📺 سریال‌های جدید", filter: m => m.type==="series" && m.isNew},
-  {title:"📺 سریال‌ها", filter: m => m.type==="series"},
-  {title:"🎬 فیلم‌ها", filter: m => m.type==="movie"},
-  {title:"⭐ محبوب‌ترین‌ها", filter: m => true, sort:(a,b)=>Number(b.rating||0)-Number(a.rating||0)}
-];
 
 function renderHome(){
-  try{
-    renderFeatured();
-    renderGenres();
-    const container = document.getElementById("homeSections");
-    container.innerHTML = "";
-    sectionData.forEach((section, index) => {
-      let items = movies.filter(section.filter);
-      if(section.sort) items.sort(section.sort);
-      items = items.slice(0, 10);
-      if(!items.length) return;
-      const el = document.createElement("section");
-      el.className = "section";
-      el.innerHTML = `
-        <div class="section-head">
-          <h2>${section.title}</h2>
-          <button class="view-all" onclick="openSectionAll(${index})">مشاهده همه</button>
-        </div>
-        <div class="movie-row">
-          ${items.slice(0,5).map(movieCard).join("")}
-          <div class="see-all-card" onclick="openSectionAll(${index})">
-            <div class="see-all-inner"><div>➜</div><span>مشاهده همه</span></div>
-          </div>
-        </div>`;
-      container.appendChild(el);
-    });
-  }catch(err){
-    console.error(err);
-    toast("خطا در بارگذاری محتوا");
-  }
-}
-
-function movieCard(movie){
-  const fav = favorites.includes(String(movie.id));
-  return `
-    <article class="movie-card" onclick="openMovie('${escapeHTML(movie.id)}')">
-      <div class="poster-wrap">
-        ${movie.isNew ? `<span class="new-badge">جدید</span>` : ""}
-        <span class="fav-badge" onclick="event.stopPropagation();quickFavorite('\( {escapeHTML(movie.id)}')"> \){fav?"♥":"♡"}</span>
-        <img src="\( {escapeHTML(movie.poster||fallbackPoster)}" onerror="posterError(this)" loading="lazy" alt=" \){escapeHTML(movie.title)}">
+  renderFeatured();
+  const box = document.getElementById("homeSections");
+  const sections = [
+    {title:"🔥 فیلم‌های جدید", filter:m => m.type==="movie" && m.isNew},
+    {title:"📺 سریال‌های جدید", filter:m => m.type==="series" && m.isNew},
+    {title:"📺 سریال‌ها", filter:m => m.type==="series"},
+    {title:"🎬 فیلم‌ها", filter:m => m.type==="movie"},
+    {title:"⭐ محبوب‌ترین‌ها", filter:m => true, sort:(a,b)=>Number(b.rating)-Number(a.rating)}
+  ];
+  let html = "";
+  sections.forEach((s,i) => {
+    let items = movies.filter(s.filter);
+    if(s.sort) items.sort(s.sort);
+    items = items.slice(0,8);
+    if(!items.length) return;
+    html += `<div class="section">
+      <div class="section-head">
+        <h2>${s.title}</h2>
+        <button class="view-all" onclick="openSection(${i})">مشاهده همه</button>
       </div>
-      <div class="movie-info">
-        <strong>${escapeHTML(movie.title)}</strong>
-        <div class="movie-meta">
-          <span>${escapeHTML(movie.year||"")}</span>
-          <span class="rating">⭐ ${escapeHTML(movie.rating||"—")}</span>
-        </div>
-      </div>
-    </article>`;
+      <div class="movie-row">${items.map(card).join("")}</div>
+    </div>`;
+  });
+  box.innerHTML = html || "<p style='text-align:center;color:#888;padding:30px'>محتوایی نیست</p>";
 }
 
-/* GENRES */
-function renderGenres(){
-  const genres = ["همه", ...new Set(movies.map(m => m.genre).filter(Boolean))];
-  document.getElementById("genres").innerHTML = genres.map((g,i) =>
-    `<button class="genre \( {i===0?"active":""}" onclick="filterGenre(' \){escapeHTML(g)}',this)">${escapeHTML(g)}</button>`
-  ).join("");
-}
-
-function filterGenre(genre, btn){
-  document.querySelectorAll(".genre").forEach(x => x.classList.remove("active"));
-  btn.classList.add("active");
-  const list = genre === "همه" ? movies : movies.filter(m => m.genre === genre);
-  document.getElementById("homeSections").innerHTML = `
-    <section class="section">
-      <div class="section-head"><h2>🎞 ${escapeHTML(genre)}</h2></div>
-      <div class="movie-row">
-        ${list.slice(0,5).map(movieCard).join("")}
-        \( {list.length > 5 ? `<div class="see-all-card" onclick="showFilteredAll(' \){escapeHTML(genre)}')">
-          <div class="see-all-inner"><div>➜</div><span>مشاهده همه</span></div></div>` : ""}
-      </div>
-    </section>`;
-}
-
-/* FULL PAGES */
-function renderFullMovies(){
-  const list = movies.filter(m => m.type==="movie").sort((a,b)=>Number(b.rating||0)-Number(a.rating||0));
-  document.getElementById("moviesGrid").innerHTML = list.map(movieCard).join("");
-}
-function renderFullSeries(){
-  const list = movies.filter(m => m.type==="series").sort((a,b)=>Number(b.rating||0)-Number(a.rating||0));
-  document.getElementById("seriesGrid").innerHTML = list.map(movieCard).join("");
-}
-
-function openSectionAll(index){
-  if(index === 2){ document.querySelector('[data-page="seriesPage"]').click(); return; }
-  if(index === 3){ document.querySelector('[data-page="moviesPage"]').click(); return; }
-  let list = movies.filter(sectionData[index].filter);
-  if(sectionData[index].sort) list = [...list].sort(sectionData[index].sort);
-  document.getElementById("moviesPageTitle").textContent = sectionData[index].title;
-  document.getElementById("moviesGrid").innerHTML = list.map(movieCard).join("");
-  window._customMoviesTitle = true;
+function openSection(i){
+  if(i===2){ document.querySelector('[data-page="seriesPage"]').click(); return; }
+  if(i===3){ document.querySelector('[data-page="moviesPage"]').click(); return; }
   document.querySelector('[data-page="moviesPage"]').click();
 }
 
-function showFilteredAll(genre){
-  const list = movies.filter(m => m.genre === genre);
-  document.getElementById("moviesPageTitle").textContent = "🎞 " + genre;
-  document.getElementById("moviesGrid").innerHTML = list.map(movieCard).join("");
-  window._customMoviesTitle = true;
-  document.querySelector('[data-page="moviesPage"]').click();
+function renderFull(type, id){
+  const list = movies.filter(m => m.type===type).sort((a,b)=>Number(b.rating)-Number(a.rating));
+  document.getElementById(id).innerHTML = list.map(card).join("") || "<p style='color:#888'>موردی نیست</p>";
 }
 
-/* SEARCH */
-const searchInput = document.getElementById("searchInput");
-const searchResults = document.getElementById("searchResults");
-searchInput.addEventListener("input", () => {
-  const q = searchInput.value.trim().toLowerCase();
-  if(!q){ searchResults.style.display="none"; searchResults.innerHTML=""; return; }
-  const found = movies.filter(m => `${m.title} ${m.genre} ${m.year}`.toLowerCase().includes(q)).slice(0,7);
-  searchResults.innerHTML = found.length ? found.map(m => `
-    <div class="search-result" onclick="openMovie('${escapeHTML(m.id)}')">
-      <img src="${escapeHTML(m.poster||fallbackPoster)}" onerror="posterError(this)">
-      <div><strong>${escapeHTML(m.title)}</strong><br>
-      <small style="color:#aaa">${m.type==="movie"?"فیلم":"سریال"} · ${escapeHTML(m.year||"")}</small></div>
-    </div>`).join("") : `<div class="search-result">چیزی پیدا نشد</div>`;
-  searchResults.style.display = "block";
-});
-document.addEventListener("click", e => {
-  if(!e.target.closest(".search-box")) searchResults.style.display = "none";
-});
-
-/* MOVIE DETAIL */
 function openMovie(id){
-  const movie = movies.find(m => String(m.id) === String(id));
-  if(!movie) return;
-  currentMovie = movie;
+  const m = movies.find(x => String(x.id)===String(id));
+  if(!m) return;
+  currentMovie = m;
   selectedEpisode = 1;
-  addToHistory(movie);
 
-  document.getElementById("modalBg").style.backgroundImage = `url('${movie.poster || fallbackPoster}')`;
-  const poster = document.getElementById("modalPoster");
-  poster.src = movie.poster || fallbackPoster;
-  poster.onerror = function(){ this.onerror=null; this.src=fallbackPoster; };
+  // تاریخچه
+  historyList = historyList.filter(x => x !== String(id));
+  historyList.unshift(String(id));
+  if(historyList.length>15) historyList.length=15;
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(historyList));
 
-  document.getElementById("modalTitle").textContent = movie.title;
-  document.getElementById("modalMeta").textContent =
-    `${movie.type==="movie"?"فیلم":"سریال"} · ${movie.year||"نامشخص"} · ${movie.genre||"عمومی"} · ⭐ ${movie.rating||"—"}`;
-  document.getElementById("modalDescription").textContent = movie.description || "توضیحی ثبت نشده.";
+  document.getElementById("modalBg").style.backgroundImage = `url('${m.poster||fallback}')`;
+  document.getElementById("modalPoster").src = m.poster||fallback;
+  document.getElementById("modalTitle").textContent = m.title;
+  document.getElementById("modalMeta").textContent = `${m.type==="movie"?"فیلم":"سریال"} · ${m.year||""} · ${m.genre||""} · ⭐ ${m.rating||"—"}`;
+  document.getElementById("modalDescription").textContent = m.description || "توضیحی ثبت نشده";
 
-  updateFavoriteButton();
-  renderEpisodes();
+  // قسمت‌ها
+  const epBox = document.getElementById("episodesBox");
+  if(m.type==="series"){
+    epBox.style.display="block";
+    let epHtml="";
+    for(let i=1;i<=(m.episodes||8);i++){
+      epHtml += `<button class="episode-btn \( {i===1?"selected":""}" onclick="selectEp( \){i})">قسمت ${i}</button>`;
+    }
+    document.getElementById("episodesGrid").innerHTML = epHtml;
+  } else {
+    epBox.style.display="none";
+  }
+
+  updateFavBtn();
   renderComments();
-  renderSimilar();
-
   document.getElementById("modal").classList.add("show");
   modalOpen = true;
-  history.pushState({modal:true}, "");
+  history.pushState({modal:1},"");
 }
 
-function renderEpisodes(){
-  const box = document.getElementById("episodesBox");
-  const grid = document.getElementById("episodesGrid");
-  if(!currentMovie || currentMovie.type !== "series"){
-    box.style.display = "none"; return;
-  }
-  const count = currentMovie.episodes || 8;
-  box.style.display = "block";
-  let html = "";
-  for(let i=1; i<=count; i++){
-    html += `<button class="episode-btn \( {i===selectedEpisode?"selected":""}" onclick="selectEpisode( \){i})">قسمت ${i}</button>`;
-  }
-  grid.innerHTML = html;
-}
-
-function selectEpisode(n){
+function selectEp(n){
   selectedEpisode = n;
-  renderEpisodes();
-  toast(`قسمت ${n} انتخاب شد`);
+  document.querySelectorAll(".episode-btn").forEach((b,i) => b.classList.toggle("selected", i+1===n));
+  toast("قسمت " + n + " انتخاب شد");
 }
 
 function hideModal(){
   document.getElementById("modal").classList.remove("show");
-  currentMovie = null;
   modalOpen = false;
+  currentMovie = null;
 }
 
 window.addEventListener("popstate", () => {
-  if(modalOpen){ hideModal(); return; }
-  if(["moviesPage","seriesPage","settingsPage"].includes(currentPage)){
-    openPage("homePage", document.querySelector('[data-page="homePage"]'));
-  }
+  if(modalOpen) hideModal();
 });
 
-/* COMMENTS */
-function renderComments(){
-  const list = document.getElementById("commentList");
-  const arr = comments[String(currentMovie.id)] || [];
-  if(!arr.length){
-    list.innerHTML = `<div style="color:#999;font-size:12px;text-align:center;padding:8px">هنوز نظری ثبت نشده</div>`;
-    return;
-  }
-  list.innerHTML = arr.map(c => `
-    <div class="comment-item">
-      <div class="meta">${escapeHTML(c.name||"کاربر")} · ${new Date(c.date).toLocaleDateString("fa-IR")}</div>
-      <div>${escapeHTML(c.text)}</div>
-    </div>`).join("");
+function playMovie(){
+  if(!currentMovie) return;
+  toast(currentMovie.type==="series" ? `پخش قسمت ${selectedEpisode}` : "در حال پخش...");
+}
+function downloadMovie(){
+  if(!currentMovie) return;
+  toast("دانلود شروع شد");
 }
 
+function updateFavBtn(){
+  const active = favorites.includes(String(currentMovie.id));
+  document.getElementById("favoriteBtn").textContent = active ? "♥ حذف" : "♡ علاقه‌مندی";
+}
+function toggleFavorite(){
+  if(!currentMovie) return;
+  const id = String(currentMovie.id);
+  if(favorites.includes(id)){
+    favorites = favorites.filter(x=>x!==id);
+    toast("حذف شد");
+  } else {
+    favorites.push(id);
+    toast("اضافه شد");
+  }
+  localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
+  updateFavBtn();
+  renderHome();
+}
+
+function renderComments(){
+  const list = comments[String(currentMovie.id)] || [];
+  document.getElementById("commentList").innerHTML = list.length 
+    ? list.map(c => `<div style="background:rgba(255,255,255,.05);padding:8px;border-radius:8px;margin-bottom:6px;font-size:12px">
+        <div style="color:#aaa;font-size:10px;margin-bottom:3px">کاربر · ${new Date(c.date).toLocaleDateString("fa-IR")}</div>
+        ${esc(c.text)}
+      </div>`).join("")
+    : "<div style='color:#888;font-size:12px;text-align:center'>هنوز نظری نیست</div>";
+}
 function addComment(){
   if(!currentMovie) return;
   const input = document.getElementById("commentInput");
   const text = input.value.trim();
   if(!text) return;
   const id = String(currentMovie.id);
-  if(!comments[id]) comments[id] = [];
-  comments[id].unshift({name:"کاربر", text, date:Date.now()});
-  if(comments[id].length > 30) comments[id] = comments[id].slice(0,30);
+  if(!comments[id]) comments[id]=[];
+  comments[id].unshift({text, date:Date.now()});
   localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
-  input.value = "";
+  input.value="";
   renderComments();
   toast("نظر ثبت شد");
 }
 
-/* PLAY / DOWNLOAD */
-function playMovie(){
-  if(!currentMovie) return;
-  if(currentMovie.videoLink){
-    window.open(currentMovie.videoLink, "_blank");
-  } else {
-    toast(currentMovie.type==="series"
-      ? `پخش «${currentMovie.title}» - قسمت ${selectedEpisode}`
-      : `پخش «${currentMovie.title}»`);
-  }
-}
-function downloadMovie(){
-  if(!currentMovie) return;
-  toast(currentMovie.type==="series"
-    ? `دانلود «${currentMovie.title}» - قسمت ${selectedEpisode}`
-    : `دانلود «${currentMovie.title}»`);
+function toggleHistory(){
+  if(!historyList.length){ toast("تاریخچه‌ای نیست"); return; }
+  const items = historyList.map(id => movies.find(m=>String(m.id)===id)).filter(Boolean);
+  let msg = items.map(m => m.title).join("\n");
+  alert("تاریخچه:\n\n" + msg);
 }
 
-/* FAVORITES */
-function quickFavorite(id){
-  id = String(id);
-  if(favorites.includes(id)){
-    favorites = favorites.filter(x => x !== id);
-    toast("از علاقه‌مندی‌ها حذف شد");
-  } else {
-    favorites.push(id);
-    toast("به علاقه‌مندی‌ها اضافه شد");
-  }
-  localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
-  renderHome();
-}
-function toggleFavorite(){
-  if(!currentMovie) return;
-  quickFavorite(String(currentMovie.id));
-  updateFavoriteButton();
-}
-function updateFavoriteButton(){
-  if(!currentMovie) return;
-  const active = favorites.includes(String(currentMovie.id));
-  document.getElementById("favoriteBtn").textContent = active ? "♥ حذف از علاقه‌مندی" : "♡ علاقه‌مندی";
-}
-function showFavorites(){
-  const list = movies.filter(m => favorites.includes(String(m.id)));
-  document.getElementById("homeSections").innerHTML = `
-    <section class="section">
-      <div class="section-head"><h2>❤️ علاقه‌مندی‌های من</h2></div>
-      ${list.length
-        ? `<div class="movie-row">${list.map(movieCard).join("")}</div>`
-        : `<div class="glass" style="padding:20px;border-radius:14px;text-align:center;color:#aaa">هنوز فیلمی ذخیره نکردی</div>`}
-    </section>`;
-  document.querySelector('[data-page="homePage"]').click();
-}
-
-/* SIMILAR */
-function renderSimilar(){
-  const list = movies.filter(m =>
-    m.id !== currentMovie.id && (m.genre === currentMovie.genre || m.type === currentMovie.type)
-  ).slice(0,5);
-  document.getElementById("similarRow").innerHTML = list.map(movieCard).join("");
-}
-
-/* SETTINGS */
 function renderSettings(){
-  document.querySelectorAll(".switch").forEach(sw => {
-    const key = sw.dataset.setting;
-    sw.classList.toggle("on", !!settings[key]);
-    sw.onclick = () => {
-      settings[key] = !settings[key];
-      localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-      renderSettings();
-      if(key === "auto") setupFeaturedAuto();
-    };
-  });
+  document.getElementById("settingsContent").innerHTML = `
+    <div style="background:rgba(255,255,255,.05);padding:14px;border-radius:12px;margin-bottom:10px">
+      <strong>علاقه‌مندی‌ها</strong>
+      <button class="btn" style="margin-top:8px" onclick="showFavs()">مشاهده</button>
+    </div>
+    <div style="background:rgba(255,255,255,.05);padding:14px;border-radius:12px">
+      <strong>گزارش مشکل</strong>
+      <button class="btn" style="margin-top:8px" onclick="report()">گزارش</button>
+    </div>
+  `;
+}
+function showFavs(){
+  const list = movies.filter(m => favorites.includes(String(m.id)));
+  document.getElementById("homeSections").innerHTML = list.length
+    ? `<div class="section"><h2>❤️ علاقه‌مندی‌ها</h2><div class="movie-row">${list.map(card).join("")}</div></div>`
+    : "<p style='text-align:center;color:#888;padding:20px'>چیزی ذخیره نکردی</p>";
+  openPage("homePage", document.querySelector('[data-page="homePage"]'));
+}
+function report(){
+  const t = prompt("مشکل را بنویس:");
+  if(t) toast("گزارش ثبت شد");
 }
 
 /* ADMIN */
-let adminClicks = 0;
-document.getElementById("logo").addEventListener("click", () => {
-  adminClicks++;
-  clearTimeout(window.adminClickTimer);
-  window.adminClickTimer = setTimeout(() => adminClicks = 0, 1800);
-  if(adminClicks >= 5){
-    adminClicks = 0;
-    const pass = prompt("رمز ورود مدیر:");
-    if(pass === ADMIN_PASSWORD){
-      renderAdminPanel();
-      toast("ورود موفق به پنل مدیریت");
-    } else if(pass !== null){
-      toast("رمز اشتباه است");
-    }
+let clicks = 0;
+document.getElementById("logo").onclick = function(){
+  clicks++;
+  clearTimeout(window.clk);
+  window.clk = setTimeout(()=>clicks=0, 1600);
+  if(clicks >= 5){
+    clicks=0;
+    const p = prompt("رمز ادمین:");
+    if(p === ADMIN_PASSWORD){
+      openAdmin();
+      toast("ورود موفق");
+    } else if(p!==null) toast("رمز اشتباه");
   }
-});
+};
 
-function renderAdminPanel(){
+function openAdmin(){
   openPage("settingsPage", document.querySelector('[data-page="settingsPage"]'));
-  const old = document.getElementById("tempAdminBox");
-  if(old) old.remove();
-
-  const box = document.createElement("div");
-  box.id = "tempAdminBox";
-  box.className = "admin-box glass";
-  box.style.marginTop = "16px";
-
-  const selected = new Set(featuredIds.map(String));
-  box.innerHTML = `
-    <h3>🛠 پنل مدیریت</h3>
-    <p class="count">ویژه: <span id="featuredCount">${Math.min(selected.size,5)}</span>/5</p>
-    <div class="admin-movies">
-      ${movies.map(m => `
-        <div class="admin-movie">
-          <img src="${escapeHTML(m.poster||fallbackPoster)}" onerror="posterError(this)">
-          <label>${escapeHTML(m.title)}</label>
-          <input type="checkbox" class="featured-check" value="${escapeHTML(m.id)}" ${selected.has(String(m.id))?"checked":""}>
-          <button class="edit-btn" onclick="editMovie('${escapeHTML(m.id)}')">ویرایش</button>
-        </div>`).join("")}
+  document.getElementById("settingsContent").innerHTML = `
+    <div class="admin-box">
+      <h3>🛠 پنل مدیریت</h3>
+      <p style="font-size:12px;color:#aaa;margin:8px 0">فیلم‌های فعلی:</p>
+      <div style="max-height:200px;overflow:auto;margin-bottom:12px">
+        ${movies.map(m => `
+          <div style="display:flex;align-items:center;gap:8px;padding:6px;background:rgba(255,255,255,.04);border-radius:8px;margin-bottom:4px">
+            <img src="${esc(m.poster||fallback)}" style="width:30px;height:42px;object-fit:cover;border-radius:4px" onerror="posterError(this)">
+            <span style="flex:1;font-size:12px">${esc(m.title)}</span>
+            <button onclick="editMovie('${esc(m.id)}')" style="padding:4px 8px;font-size:11px;border-radius:6px;border:1px solid #a855f7;background:rgba(168,85,247,.2);color:#e0c0ff">ویرایش</button>
+          </div>
+        `).join("")}
+      </div>
+      <h4 id="formTitle">➕ افزودن جدید</h4>
+      <input class="admin-input" id="aTitle" placeholder="نام فیلم/سریال">
+      <select class="admin-input" id="aType"><option value="movie">فیلم</option><option value="series">سریال</option></select>
+      <input class="admin-input" id="aGenre" placeholder="ژانر">
+      <input class="admin-input" id="aYear" placeholder="سال">
+      <input class="admin-input" id="aRating" placeholder="امتیاز">
+      <input class="admin-input" id="aPoster" placeholder="لینک پوستر">
+      <input class="admin-input" id="aVideo" placeholder="لینک ویدیو">
+      <input class="admin-input" id="aEpisodes" placeholder="تعداد قسمت (سریال)">
+      <textarea class="admin-input" id="aDesc" rows="2" placeholder="توضیحات"></textarea>
+      <button class="btn play" style="width:100%;margin-top:6px" onclick="saveAdmin()">ذخیره</button>
+      <button class="btn" style="width:100%;margin-top:6px" onclick="renderSettings()">بستن</button>
     </div>
-    <button class="btn primary" style="margin-top:12px;width:100%" onclick="saveFeaturedAdmin()">ذخیره بخش ویژه</button>
-    <hr style="border-color:#ffffff15;margin:16px 0">
-    <h3 id="adminFormTitle">➕ افزودن / ویرایش</h3>
-    <input id="newTitle" class="admin-input" placeholder="نام">
-    <select id="newType" class="admin-input"><option value="movie">فیلم</option><option value="series">سریال</option></select>
-    <input id="newGenre" class="admin-input" placeholder="ژانر">
-    <input id="newYear" class="admin-input" placeholder="سال">
-    <input id="newRating" class="admin-input" placeholder="امتیاز">
-    <input id="newPoster" class="admin-input" placeholder="لینک پوستر">
-    <input id="newVideo" class="admin-input" placeholder="لینک ویدیو">
-    <input id="newEpisodes" class="admin-input" placeholder="تعداد قسمت (سریال)">
-    <textarea id="newDescription" class="admin-input" rows="3" placeholder="توضیحات"></textarea>
-    <label style="display:flex;gap:7px;align-items:center;font-size:12px;margin:8px 0">
-      <input id="newFeatured" type="checkbox"> نمایش در بخش ویژه
-    </label>
-    <button class="btn primary" style="width:100%" onclick="saveMovieAdmin()">ذخیره</button>
-    <button class="btn" style="width:100%;margin-top:8px" onclick="document.getElementById('tempAdminBox').remove()">بستن</button>
   `;
-  document.getElementById("settingsPage").appendChild(box);
-
-  document.querySelectorAll(".featured-check").forEach(chk => {
-    chk.addEventListener("change", () => {
-      const count = document.querySelectorAll(".featured-check:checked").length;
-      if(count > 5){ chk.checked = false; toast("حداکثر ۵ تا"); return; }
-      document.getElementById("featuredCount").textContent = count;
-    });
-  });
-  editingMovieId = null;
+  window.editingId = null;
 }
 
 function editMovie(id){
-  const movie = movies.find(m => String(m.id) === String(id));
-  if(!movie) return;
-  editingMovieId = id;
-  document.getElementById("adminFormTitle").textContent = "✏️ ویرایش: " + movie.title;
-  document.getElementById("newTitle").value = movie.title || "";
-  document.getElementById("newType").value = movie.type || "movie";
-  document.getElementById("newGenre").value = movie.genre || "";
-  document.getElementById("newYear").value = movie.year || "";
-  document.getElementById("newRating").value = movie.rating || "";
-  document.getElementById("newPoster").value = movie.poster || "";
-  document.getElementById("newVideo").value = movie.videoLink || "";
-  document.getElementById("newEpisodes").value = movie.episodes || "";
-  document.getElementById("newDescription").value = movie.description || "";
-  document.getElementById("newFeatured").checked = featuredIds.includes(String(id));
+  const m = movies.find(x => String(x.id)===String(id));
+  if(!m) return;
+  window.editingId = id;
+  document.getElementById("formTitle").textContent = "✏️ ویرایش: " + m.title;
+  document.getElementById("aTitle").value = m.title||"";
+  document.getElementById("aType").value = m.type||"movie";
+  document.getElementById("aGenre").value = m.genre||"";
+  document.getElementById("aYear").value = m.year||"";
+  document.getElementById("aRating").value = m.rating||"";
+  document.getElementById("aPoster").value = m.poster||"";
+  document.getElementById("aVideo").value = m.videoLink||"";
+  document.getElementById("aEpisodes").value = m.episodes||"";
+  document.getElementById("aDesc").value = m.description||"";
   toast("در حال ویرایش");
 }
 
-function saveMovieAdmin(){
-  const title = document.getElementById("newTitle").value.trim();
-  if(!title){ toast("اسم را وارد کن"); return; }
-  const type = document.getElementById("newType").value;
+function saveAdmin(){
+  const title = document.getElementById("aTitle").value.trim();
+  if(!title){ toast("نام را وارد کن"); return; }
   const data = {
-    title, type,
-    genre: document.getElementById("newGenre").value.trim() || "عمومی",
-    year: document.getElementById("newYear").value.trim(),
-    rating: document.getElementById("newRating").value.trim() || "0",
-    poster: document.getElementById("newPoster").value.trim() || fallbackPoster,
-    videoLink: document.getElementById("newVideo").value.trim(),
-    description: document.getElementById("newDescription").value.trim(),
+    title,
+    type: document.getElementById("aType").value,
+    genre: document.getElementById("aGenre").value.trim()||"عمومی",
+    year: document.getElementById("aYear").value.trim(),
+    rating: document.getElementById("aRating").value.trim()||"0",
+    poster: document.getElementById("aPoster").value.trim()||fallback,
+    videoLink: document.getElementById("aVideo").value.trim(),
+    description: document.getElementById("aDesc").value.trim(),
     isNew: true
   };
-  if(type === "series") data.episodes = parseInt(document.getElementById("newEpisodes").value) || 8;
+  if(data.type==="series") data.episodes = parseInt(document.getElementById("aEpisodes").value)||8;
 
-  if(editingMovieId){
-    const idx = movies.findIndex(m => String(m.id) === String(editingMovieId));
-    if(idx > -1) movies[idx] = {...movies[idx], ...data};
+  if(window.editingId){
+    const i = movies.findIndex(m => String(m.id)===String(window.editingId));
+    if(i>-1) movies[i] = {...movies[i], ...data};
     toast("ویرایش شد");
   } else {
     data.id = String(Date.now());
     movies.unshift(data);
     toast("اضافه شد");
   }
-
-  const mid = editingMovieId || data.id;
-  const want = document.getElementById("newFeatured").checked;
-  if(want){
-    if(!featuredIds.includes(String(mid)) && featuredIds.length < 5) featuredIds.push(String(mid));
-  } else {
-    featuredIds = featuredIds.filter(id => String(id) !== String(mid));
-  }
-  localStorage.setItem(FEATURED_KEY, JSON.stringify(featuredIds));
   saveMovies();
   renderHome();
-  document.getElementById("tempAdminBox")?.remove();
-  renderAdminPanel();
-}
-
-function saveFeaturedAdmin(){
-  const checked = [...document.querySelectorAll(".featured-check:checked")];
-  if(checked.length !== 5){ toast("دقیقاً ۵ تا انتخاب کن"); return; }
-  featuredIds = checked.map(x => String(x.value));
-  localStorage.setItem(FEATURED_KEY, JSON.stringify(featuredIds));
-  renderFeatured();
-  toast("بخش ویژه ذخیره شد");
-}
-
-/* REPORT */
-function reportProblem(){
-  const title = currentMovie ? currentMovie.title : "سایت";
-  const text = prompt(`مشکل «${title}» را بنویس:`);
-  if(!text) return;
-  const reports = loadJSON("hamoflix_reports_v1", []);
-  reports.push({id:Date.now(), movie:title, text, date:new Date().toISOString()});
-  localStorage.setItem("hamoflix_reports_v1", JSON.stringify(reports));
-  toast("گزارش ثبت شد");
-}
-
-/* AUTO */
-let featuredTimer = null;
-function setupFeaturedAuto(){
-  clearInterval(featuredTimer);
-  if(!settings.auto) return;
-  featuredTimer = setInterval(() => {
-    if(!document.getElementById("homePage").classList.contains("active")) return;
-    featuredMove(1);
-  }, 4500);
+  openAdmin();
 }
 
 /* INIT */
+loadData();
 renderHome();
-renderSettings();
-setupFeaturedAuto();
 </script>
 </body>
 </html>
